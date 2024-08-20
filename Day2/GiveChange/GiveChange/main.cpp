@@ -24,7 +24,7 @@ int main(int argc, const char * argv[]) {
     std::cout << "Change: " << change << " cents\n";
     
     
-    // modifying variable 'change' after
+    // modifying variable 'change' based on types of coins
     int quarters = change / 25;
     change = change - (quarters * 25);
     int dimes = change / 10;
