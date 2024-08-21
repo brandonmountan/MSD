@@ -9,15 +9,12 @@
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-    
-    int age;
-    
-    std::cout << "please enter your age: \n";
-    std::cin >> age;
-    
-    if (age > 18 && age < 80){
-        std::cout << "hooray, you can vote. \n";
+    for(int i=0; i<5; i++){
+        for (int j=0; j<i; j++)
+            std::cout<<"helloworld";
+        
+        std::cout<<"\n";
     }
-    
     return 0;
 }
+
