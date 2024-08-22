@@ -70,9 +70,9 @@ int main(int argc, const char * argv[]) {
 //    
     int i, j;
     for (i=1; i<=5; i++){
-        std::cout << i << "\n";
+        std::cout << "\n" << i << "x*: ";
         for (j=1; j<=5; j++){
-            std::cout << i*j;
+            std::cout << i*j << ' ';
         }
     }
     return 0;
