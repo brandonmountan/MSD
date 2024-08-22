@@ -73,6 +73,6 @@ int main(int argc, const char * argv[]) {
         std::cout << romanNum + "I";
         num = num - 1;
     }
-    
+    std::cout << "\n";
     return 0;
 }
