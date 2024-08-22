@@ -8,9 +8,9 @@
 #include <iostream>
 
 int main(int argc, const char * argv[]) {
-    // Part 1 (day 2 lab)
+//     Part 1 (day 2 lab)
     
-    // defining initial inputs
+//     defining initial inputs
 //    int itemPrice, moneyInserted;
 //    
 //    // input 1
@@ -37,7 +37,7 @@ int main(int argc, const char * argv[]) {
 //    
 //    std::cout << "Quarters: " << quarters << "\n" << "Dimes: " << dimes << "\n" <<               "Nickels: " << nickels << "\n" << "Pennies: " << pennies << "\n";
     
-    // Part 2 (part 1 of day 3 lab)
+//     Part 2 (part 1 of day 3 lab)
     
 //    int itemPrice, moneyInserted;
 //
