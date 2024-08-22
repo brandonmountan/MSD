@@ -85,57 +85,36 @@ int main(int argc, const char * argv[]) {
     // calculating based on inputs
     int change = moneyInserted - itemPrice;
     
-    int quarters, dimes, nickels, pennies;
-
-    if (moneyInserted > 0 && itemPrice > 0 && change > 0){
+    if (moneyInserted > 0 && itemPrice > 0 && change < 0){
+        std::cout << "insufficient funds \n";
+    } else if (moneyInserted < 0 || itemPrice < 0) {
+        std::cout << "input cannot be negative \n";
+    } else if (moneyInserted > 0 && itemPrice > 0 && change > 0){
         std::cout << "Change: " << change << " cents\n";
         int quarters = change / 25;
-        
         if (quarters > 2){
             quarters = 2;
         }
-        
         change = change - (quarters * 25);
     
         int dimes = change / 10;
-        
         if (dimes > 2){
             dimes = 2;
         }
-        
         change = change - (dimes * 10);
         
         int nickels = change / 5;
         if (nickels > 2){
             nickels = 2;
         }
-        
         change = change - (nickels * 5);
         
         int pennies = change / 1;
-        
-        if (pennies > 2){
-            pennies = 2;
+        if (pennies > 2){            
             std::cout << "unable to return change, out of coins \n";
+        } else {
+            std:: cout << "Quarters: " << quarters << "\n" << "Dimes: " << dimes << "\n" << "Nickels: " << nickels << "\n" << "Pennies: " << pennies << "\n";
         }
-        
- 
-    } else if (moneyInserted > 0 && itemPrice > 0 && change < 0){
-        std::cout << "insufficient funds \n";
-    } else if (moneyInserted < 0 || itemPrice < 0){
-        std::cout << "user inputs cannot be negative \n";
-    } else {
-        std::cout << "Change: " << change << " cents\n";
-
-        int quarters = change / 25;
-        change = change - (quarters * 25);
-        int dimes = change / 10;
-        change = change - (dimes * 10);
-        int nickels = change / 5;
-        change = change - (nickels * 5);
-        int pennies = change / 1;
-        
-        std::cout << "Quarters: " << quarters << "\n" << "Dimes: " << dimes << "\n" << "Nickels: " << nickels << "\n" << "Pennies: " << pennies << "\n";
     }
     
     return 0;
