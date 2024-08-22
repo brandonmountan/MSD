@@ -84,6 +84,8 @@ int main(int argc, const char * argv[]) {
 
     // calculating based on inputs
     int change = moneyInserted - itemPrice;
+    
+    int quarters, dimes, nickels, pennies;
 
     if (moneyInserted > 0 && itemPrice > 0 && change > 0){
         std::cout << "Change: " << change << " cents\n";
@@ -123,6 +125,8 @@ int main(int argc, const char * argv[]) {
     } else if (moneyInserted < 0 || itemPrice < 0){
         std::cout << "user inputs cannot be negative \n";
     } else {
+        std::cout << "Change: " << change << " cents\n";
+
         int quarters = change / 25;
         change = change - (quarters * 25);
         int dimes = change / 10;
@@ -131,7 +135,7 @@ int main(int argc, const char * argv[]) {
         change = change - (nickels * 5);
         int pennies = change / 1;
         
-        std::cout << "Quarters: " << quarters << "\n" << "Dimes: " << dimes << "\n" <<      "Nickels: " << nickels << "\n" << "Pennies: " << pennies << "\n";
+        std::cout << "Quarters: " << quarters << "\n" << "Dimes: " << dimes << "\n" << "Nickels: " << nickels << "\n" << "Pennies: " << pennies << "\n";
     }
     
     return 0;
