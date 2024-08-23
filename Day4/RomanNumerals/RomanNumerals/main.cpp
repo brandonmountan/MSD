@@ -22,57 +22,60 @@ int main(int argc, const char * argv[]) {
     }
     
     while (num >= 1000) {
-        std::cout << romanNum + "M";
+        romanNum += "M";
         num = num - 1000;
     }
+    // 900 can only appear once => if statements => good for programmers
     while (num >= 900) {
-        std::cout << romanNum + "CM";
+        romanNum += "CM";
         num = num - 900;
     }
     while (num >= 500) {
-        std::cout << romanNum + "D";
+        romanNum += "D";
         num = num - 500;
     }
     while (num >= 400) {
-        std::cout << romanNum + "CD";
+        romanNum += "CD";
         num = num - 400;
     }
     while (num >= 100) {
-        std::cout << romanNum + "C";
+        romanNum += "C";
         num = num - 100;
     }
     while (num >= 90) {
-        std::cout << romanNum + "XC";
+        romanNum += "XC";
         num = num - 90;
     }
     while (num >= 50) {
-        std::cout << romanNum + "L";
+        romanNum += "L";
         num = num - 50;
     }
     while (num >= 40) {
-        std::cout << romanNum + "XL";
+        romanNum += "XL";
         num = num - 40;
     }
     while (num >= 10) {
-        std::cout << romanNum + "X";
+        romanNum += "X";
         num = num - 10;
     }
     while (num >= 9) {
-        std::cout << romanNum + "IX";
+        romanNum += "IX";
         num = num - 9;
     }
     while (num >= 5) {
-        std::cout << romanNum + "V";
+        romanNum += "V";
         num = num - 5;
     }
     while (num >= 4) {
-        std::cout << romanNum + "IV";
+        romanNum += "IV";
         num = num -4;
     }
     while (num >= 1) {
-        std::cout << romanNum + "I";
+        romanNum += "I";
         num = num - 1;
     }
-    std::cout << "\n";
+    
+    std::cout << romanNum << "\n";
+    
     return 0;
 }

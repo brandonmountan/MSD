@@ -6,6 +6,35 @@
 //
 
 #include <iostream>
+#include <cassert>
+
+
+// Day 5, functions instead of if/else statements
+
+//bool isPasswordLengthValid(){
+//    
+//}
+//
+//bool containsSpecialCharacter(){
+//    
+//}
+//
+//bool isFirstLetterCapital(){
+//    
+//}
+//
+//bool isValidPassword(std::string password){
+//    if(isPasswordLengthValid()){
+//        
+//    } else if (containsSpecialCharacter()){
+//        
+//    } else if (isFirstLetterCapital()){
+//        
+//    } else {
+//        std::cout << "password is strong" << std::endl;
+//    }
+//}
+//
 
 int main(int argc, const char * argv[]) {
     std::string password;
