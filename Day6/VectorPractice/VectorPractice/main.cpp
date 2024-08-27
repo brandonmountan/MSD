@@ -28,13 +28,11 @@ std::vector<char> stringToVec(std::string s){
     return result;
 }
 
-//std::vector<int> reverse(std::vector<int> nums) {
-//    std::vector<int> results = {};
-//    for (int i = nums.size(); i >= 0; i--){
-//        
-//    }
-//    return results;
-//}
+std::vector<int> reverse(std::vector<int> nums) {
+    std::vector<int> results = {};
+
+    return results;
+}
 
 
 int main(int argc, const char * argv[]) {
