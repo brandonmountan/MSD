@@ -45,6 +45,5 @@ int main(int argc, const char * argv[]) {
     
     stringToVec(test);
     
-    
     return 0;
 }

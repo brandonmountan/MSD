@@ -8,6 +8,22 @@
 #include <iostream>
 #include <vector>
 
+struct Student {
+    std::string name;
+    int idNumber;
+    std::vector<double> grades;
+    double gpa;
+};
+
+double calculateAverage(Student student){
+    std::vector<double> grades = student.grades;
+    int sum = 0;
+    for (int i = 0; i < grades.size(); i++)
+        sum+= grades[i];
+    
+    return sum/grades.size();
+}
+
 int main(int argc, const char * argv[]) {
     // day 7 nested vectors
     
@@ -49,7 +65,26 @@ int main(int argc, const char * argv[]) {
     // grades std::vector<double>
     // gpa double
     
-    std::vector<
+    
+    Student student1;
+    student1.name = "brandon";
+    student1.gpa = 70.1;
+    student1.idNumber = 6033375;
+    student1.grades.push_back(50);
+    student1.grades.push_back(60);
+
+    
+    std::vector<Student> students;
+    //std::vector <int> numbers
+    //number.push_back(4)
+    
+    students.push_back(student1);
+    
+    //function that calculates the averaage grade for a student. return average grade for a student
+    
+    std::cout << "the student average = " << calculateAverage(student1) << std::endl;
+    
+    student1.gpa = calculateAverage(student1);
     
     return 0;
 }
