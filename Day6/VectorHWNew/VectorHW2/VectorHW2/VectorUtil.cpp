@@ -11,13 +11,21 @@
   Compile the tests together with your library using the following command:
   clang++ -std=c++11 VectorTest.cpp VectorUtil.cpp
 
-  Most of the provided tests will fail until you have provided correct 
+  Most of the provided tests will fail until you have provided correct
   implementations for the VectorUtil library functions.
 
   You will need to provide more thorough tests.
 */
 
 #include "VectorUtil.h"
+
+//std::string boolToString( bool trueFalse ){
+//    if (trueFalse == true){
+//        return "true";
+//    } else {
+//        return "false";
+//    }
+//}
 
 /*
  * Determines whether or not a vector contains a certain item.
@@ -32,8 +40,12 @@
 bool Contains( vector<int> input, int lookFor )
 {
   // TODO: Fill in implementation. Do not always return false.
-
-  return false;
+    for (int i = 0; i < input.size(); i++){
+        if (input[i] == lookFor){
+            return true;
+        }
+    }
+    return false;
 }
 
 /*
@@ -50,8 +62,17 @@ bool Contains( vector<int> input, int lookFor )
 int FindMin( vector<int> input )
 {
   // TODO: Fill in implementation. Do not always return 0.
-
-  return 0;
+    
+    // is input.at(0) < input.at(1)? if true keep input.at(0) and if not assign input.at(1) to compare
+    
+    int minValue = input[0];
+    
+    for (int i = 0; i < input.size(); i++){
+        if (minValue > input[i]){
+            minValue = input[i];
+        }
+    }
+  return minValue;
 }
 
 /*
@@ -68,8 +89,16 @@ int FindMin( vector<int> input )
 int FindMax( vector<int> input )
 {
   // TODO: Fill in implementation. Do not always return 0.
-
-  return 0;
+    
+    // is input.at(0) > input.at(1)? if true keep input.at(0) and if not assign input.at(1) to compare
+    
+    int maxValue = input[0];
+    for (int i = 1; i < input.size(); i++){
+        if (maxValue < input[i]){
+            maxValue = input[i];
+        }
+    }
+    return maxValue;
 }
 
 /*
@@ -86,19 +115,22 @@ int FindMax( vector<int> input )
 int Average( vector<int> input )
 {
   // TODO: Fill in implementation. Do not always return 0.
-
-  return 0;
+    
+    int sum = 0;
+    for (int i = 0; i < input.size(); i++)
+        sum += input[i];
+    return sum/input.size() ;
 }
 
 
 /*
  * Determines whether or not the items in a vector are in non-descending order
  *
- * Non-descending order is similar to ascending order, except that it allows for 
+ * Non-descending order is similar to ascending order, except that it allows for
  * duplicate items to appear next to each other.
  * i.e., no item appearing at a lower index than another item is greater than that
  * other item.
- * 
+ *
  * Examples:
  *  {1, 2, 2, 15, 70} is sorted
  *  {2, 3, 0} is not sorted
@@ -114,6 +146,14 @@ int Average( vector<int> input )
 bool IsSorted( vector<int> input )
 {
   // TODO: Fill in implementation. Do not always return false.
-
-  return false;
+    
+    // is input.at(0) < input.at(1) < input.at(2) ...
+    // is input[0] < input [1]? if no, return false
+    // if yes, continue to is input[1] < input[2] and so on
+    if (input.empty()) return true;
+    for (int i = 0; i < input.size(); i++)
+        if (input[i] < input[i-1]){
+            return true;
+        }
+            return false;
 }

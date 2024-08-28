@@ -40,10 +40,6 @@ int main(int argc, const char * argv[]) {
         
     
     for (int i = 0; i < deck.size(); i++){
-        char jack = 'J';
-        if (deck[i].rank == 11){
-            deck[i].rank = jack;
-        }
         std::cout << deck[i].suit << " " << deck[i].rank << "\n";
     }
     
