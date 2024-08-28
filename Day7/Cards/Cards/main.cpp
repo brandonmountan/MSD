@@ -19,8 +19,8 @@ struct Cards {
 
 std::vector<Cards> cardCreator(){
     std::vector<Cards> container = {};
-    for (int rank = 1; rank < 14; rank++){
-        for (int suit = 1; suit < 5; suit++){
+    for (int suit = 1; suit < 5; suit++){
+        for (int rank = 1; rank < 14; rank++){
             Cards card;
             card.rank = rank;
             card.suit = suit;
