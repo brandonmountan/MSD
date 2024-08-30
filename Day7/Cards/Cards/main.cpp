@@ -8,22 +8,34 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cstdlib>
 
-
-// spade = 1, club = 2, heart = 3, diamond = 4
-// rank: 1,2,3,4,5,6,7,8,9,10,11,12,13
 struct Cards {
     int rank;
-    int suit;
+    std::string suit;
 };
 
-std::vector<Cards> cardCreator(){
+std::string intToChar(int test){
+    if (test == 11){
+        return "Jack";
+    } else if (test == 12){
+        return "Queen";
+    } else if (test == 13){
+        return "King";
+    } else if (test == 1){
+        return "Ace";
+    }
+    return std::to_string(test);
+}
+
+std::vector<Cards> deckCreator(){
+    std::string suits[] = {"Spades", "Clubs", "Hearts", "Diamonds"};
     std::vector<Cards> container = {};
-    for (int suit = 1; suit < 5; suit++){
-        for (int rank = 1; rank < 14; rank++){
+    for (std::string i : suits){
+        for (int j = 1; j < 14; j++){
             Cards card;
-            card.rank = rank;
-            card.suit = suit;
+            card.suit = i;
+            card.rank = j;
             container.push_back(card);
         }
     }
@@ -31,18 +43,15 @@ std::vector<Cards> cardCreator(){
 }
 
 int main(int argc, const char * argv[]) {
-
-//    Cards spade1;
-//    spade1.rank = 1;
-//    spade1.suit = 1;
     
-    std::vector<Cards> deck = cardCreator();
-        
-    
+    std::vector<Cards> deck = deckCreator();
+    // printing deck
     for (int i = 0; i < deck.size(); i++){
-        std::cout << deck[i].suit << " " << deck[i].rank << "\n";
+        std::string rank = intToChar(deck[i].rank);
+            
+        std::cout << rank << " of " << deck[i].suit << "\n";
     }
-    
+
     
     return 0;
 }
