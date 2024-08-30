@@ -2,7 +2,7 @@
 // main.cpp
 // Cards
 //
-// Created by Brandon Mountan on 8/27/24.
+// Created by Brandon Mountan, Thomas Ho, Evan Gallagher on 8/27/24.
 //
 #include <iostream>
 #include <vector>
@@ -82,11 +82,12 @@ void sortHand(std::vector<Cards> &hand){
         for (int j = i + 1; j < hand.size(); j++){
             if (hand[i].rank > hand[j].rank){
                 min = j;
-                int temp;
-                temp = hand[min].rank;
-                hand[min].rank = hand[i].rank;
-                hand[i].rank = temp;
+                Cards temp;
+                temp = hand[min];
+                hand[min] = hand[i];
+                hand[i] = temp;
             }
+            // need to swap indexes of array hand and not just hand.rank
         }
     }
 }
@@ -101,7 +102,7 @@ bool isFlush(std::vector<Cards> hand){
     return true;
 }
 
-bool isStraight( std::vector<Cards> hand ){
+bool isStraight(std::vector<Cards> hand){
     sortHand(hand);
     if (hand[0].rank == 2 && hand[1].rank == 3 && hand[2].rank == 4 && hand[3].rank == 5 && hand[4].rank == 14){
         return true;
@@ -116,7 +117,6 @@ bool isStraight( std::vector<Cards> hand ){
 
 
 bool isStraightFlush(std::vector<Cards> hand){
-    sortHand(hand);
     if(isStraight(hand) == true && isFlush(hand) == true){
         return true;
     }
@@ -124,21 +124,50 @@ bool isStraightFlush(std::vector<Cards> hand){
 }
 
 bool isRoyalFlush(std::vector<Cards> hand){
-    sortHand(hand);
     if(isStraightFlush (hand) == true && hand[0].rank == 10){
         return true;
     }
     return false;
 }
 
+
+
+//bool isFullHouse(std::vector<Cards> hand){
+//    sortHand(hand);
+//    if (hand[0].rank == hand[1].rank == hand[2].rank && hand[3].rank == hand[4].rank){
+//        return true;
+//    } else if (hand[0].rank == hand[1].rank && hand[2].rank == hand[3].rank == hand[4].rank){
+//        return true;
+//    }
+//    return false;
+//}
+
 bool isFullHouse(std::vector<Cards> hand){
-    sortHand(hand);
-    if (hand[0].rank == hand[1].rank == hand[2].rank && hand[3].rank == hand[4].rank){
-        return true;
-    } else if (hand[0].rank == hand[1].rank && hand[2].rank == hand[3].rank == hand[4].rank){
-        return true;
+  sortHand(hand);
+  int threeOfKind = 0; //checking three same cards
+  for(int i=0; i < hand.size(); i++ ){
+    int cardsMatch = 0;
+    for(int compareHand = i +1; compareHand < hand.size(); compareHand++ ){
+      if(hand[i].rank == hand[compareHand].rank){
+        cardsMatch++;
+      }
+      if(cardsMatch == 2){
+        threeOfKind = hand[i].rank;
+        break;
+      }
     }
+  }
+  if(threeOfKind == 0){
     return false;
+  }
+  for(int i=0; i < hand.size(); i++ ){ //checking for two same cards
+    for(int compareHand = i +1; compareHand < hand.size(); compareHand++ ){
+      if(hand[i].rank == hand[compareHand].rank && hand[i].rank != threeOfKind){
+        return true;
+      }
+    }
+  }
+  return false;
 }
 
 void analyzeHands(std::vector<Cards> deck){
@@ -148,16 +177,16 @@ void analyzeHands(std::vector<Cards> deck){
     while (runTime <= 100000){
         std::vector<Cards> shuffledDeck = shuffleDeck(deck);
         std::vector<Cards> hand = createOneHand(shuffledDeck);
-        if (isFlush(hand)){
-            flushCount += 1;
-        } else if (isStraight(hand)){
-            straightCount += 1;
-        } else if (isStraightFlush(hand)){
-            straightFlushCount += 1;
-        } else if (isRoyalFlush(hand)){
+        if (isRoyalFlush(hand)){
             royalFlushCount += 1;
         } else if (isFullHouse(hand)){
             fullHouseCount += 1;
+        } else if (isStraightFlush(hand)){
+            straightFlushCount += 1;
+        } else if (isStraight(hand)){
+            straightCount += 1;
+        } else if (isFlush(hand)){
+            flushCount += 1;
         }
         runTime += 1;
     }
@@ -173,6 +202,12 @@ int main(int argc, const char * argv[]) {
     std::vector<Cards> shuffledDeck = shuffleDeck(deck);
     
     std::vector<Cards> createdHand = createOneHand(shuffledDeck);
+    
+//    printHand(createdHand);
+//    
+//    sortHand(createdHand);
+//    
+//    printHand(createdHand);
         
     analyzeHands(shuffledDeck);
     
