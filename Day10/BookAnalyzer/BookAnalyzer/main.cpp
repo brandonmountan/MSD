@@ -15,18 +15,31 @@
 #include <stdlib.h>
 #include <time.h>
 
-//void findMin(std::vector<std::string> vectorOfWords){
-//    std::string strInput{};
-//    vectorOfWords.push_back(strInput);
-//    int minWordLength = std::stoi(vectorOfWords[0].length());
-//    for (int j = 1; j < vectorOfWords.size(); j++){
-//        if (vectorOfWords[j].size() < minWordLength) {
-//            int newMinWordLength = std::stoi(vectorOfWords[j]);
-//            minWordLength = newMinWordLength;
-//        }
-//        std::cout << minWordLength << std::endl;
+struct Words {
+    double length;
+    std::string wordString;
+};
+
+//std::vector<Words> wordAnalyzer(std::vector<std::string> words){
+//    std::vector<Words> container = {};
+//    for (int i = 0; i < words.size(); i ++){
+//        Words word;
+//        word.wordString = words[i];
+//        word.length = words[i].length();
+//        container.push_back(word);
 //    }
+//    return container;
 //}
+
+void findMin(std::vector<Words> containerOfWords){
+    for (int i = 0; i < containerOfWords.size(); i++){
+        int minWordLength = containerOfWords[0].length;
+        if (containerOfWords[i+1].length < containerOfWords[i].length){
+            minWordLength = containerOfWords[i+1].length;
+            std::string shortestWord = containerOfWords[i+1].wordString;
+        }
+    }
+}
 
 
 //void findMax(std::string str){
@@ -37,30 +50,34 @@
 //
 //void findTitle(std::string str) {
 //    
-//    
-//    
-//}
+//    //        std::ifstream inf{ argv[1] };
+//          'Title:' is the key word
+//}         for(int i = 0; i < array.size(); i++)
+//              if (word[i].wordString = "Title:")
+//              std::cout << word[i+1].wordString
+//
 //
 //void findAuthor(std::string str) {
 //    
-//    
-//    
+//    //        std::ifstream inf{ argv[1] };
+//          'Author:' is the key word
+//
 //}
 //
 //void findKeyWord (int argc, const char * argv[]) {
 //    
 //        std::ifstream inf{ argv[1] };
+//          argv[2] is the key word
 //
-//    
 //}
 
 int main(int argc, const char * argv[]) {
     
     // ifstream is used for reading files
-//    std::ifstream inf{ argv[1] };
+    //    std::ifstream inf{ argv[1] };
     std::ifstream inf{ "Sample.txt" };
-
-
+    
+    
     // If we couldn't open the output file stream for reading
     if (!inf)
     {
@@ -68,36 +85,50 @@ int main(int argc, const char * argv[]) {
         std::cerr << "Book not found! Please try another input. \n";
         return 1;
     }
-
+    
     // While there's still stuff left to read
     std::string strInput{};
-    
-    std::vector<std::string> words;
+        
+    std::vector<Words> container = {};
     
     int wordCount = 0, characterCount = 0;
     
-    long minWordLength;
-    
     while (inf >> strInput){
         wordCount++;
-        words.push_back(strInput);
-        long minWordLength = words[0].length();
-        for (int j = 0; j < words[j].length(); j++){
-            if (words[j+1].length() < words[j].length())
-                minWordLength = words[j+1].length();
-        }
+        Words word;
+        word.length = strInput.length();
+        word.wordString = strInput;
+        container.push_back(word);
         for (int i = 0; i < strInput.size(); i++){
             characterCount++;
         }
     }
+        
+    std::string shortestWord;
     
+    std::string longestWord;
+    
+    for (int i = 0; i < container.size(); i++){
+        int minWordLength = container[0].length;
+        if (container[i+1].length < container[i].length){
+            minWordLength = container[i+1].length;
+            shortestWord = container[i+1].wordString;
+        }
+    }
+    
+    for (int i = 0; i < container.size(); i++){
+        int maxWordLength = container[0].length;
+        if (container[i+1].length > container[i].length)
+            maxWordLength = container[i+1].length;
+//            shortestWord = container[i+1].wordString;
+    }
+    
+
+    
+    std::cout << container[1].wordString << std::endl;
     
     std::cout << "Total number of words: " << wordCount << std::endl;
     std::cout << "Total number of characters: " << characterCount << std::endl;
-    
-    return 0;
-    
-    
     
 //    The title of the book (see below)
 //    The author of the book (see below)
@@ -106,9 +137,6 @@ int main(int argc, const char * argv[]) {
 //    The shortest word in the book
 //    The longest word in the book
 //    The number of appearances, and locations of, the users key word (see below)
-
-    // When inf goes out of scope, the ifstream
-    // destructor will close the file
         
     return 0;
 }
