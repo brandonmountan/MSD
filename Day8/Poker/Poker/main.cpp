@@ -82,12 +82,11 @@ void sortHand(std::vector<Cards> &hand){
         for (int j = i + 1; j < hand.size(); j++){
             if (hand[i].rank > hand[j].rank){
                 min = j;
-                Cards temp;
-                temp = hand[min];
-                hand[min] = hand[i];
-                hand[i] = temp;
             }
-            // need to swap indexes of array hand and not just hand.rank
+            Cards temp;
+            temp = hand[min];
+            hand[min] = hand[i];
+            hand[i] = temp;
         }
     }
 }
@@ -124,49 +123,38 @@ bool isStraightFlush(std::vector<Cards> hand){
 }
 
 bool isRoyalFlush(std::vector<Cards> hand){
+    sortHand(hand);
     if(isStraightFlush (hand) == true && hand[0].rank == 10){
         return true;
     }
     return false;
 }
 
-
-
-//bool isFullHouse(std::vector<Cards> hand){
-//    sortHand(hand);
-//    if (hand[0].rank == hand[1].rank == hand[2].rank && hand[3].rank == hand[4].rank){
-//        return true;
-//    } else if (hand[0].rank == hand[1].rank && hand[2].rank == hand[3].rank == hand[4].rank){
-//        return true;
-//    }
-//    return false;
-//}
-
 bool isFullHouse(std::vector<Cards> hand){
-  sortHand(hand);
-  int threeOfKind = 0; //checking three same cards
+ sortHand(hand);
+ int threeOfKind = 0; //checking three same cards
   for(int i=0; i < hand.size(); i++ ){
     int cardsMatch = 0;
     for(int compareHand = i +1; compareHand < hand.size(); compareHand++ ){
       if(hand[i].rank == hand[compareHand].rank){
         cardsMatch++;
-      }
-      if(cardsMatch == 2){
-        threeOfKind = hand[i].rank;
-        break;
-      }
-    }
+}
+  if(cardsMatch == 2){
+  threeOfKind = hand[i].rank;
+    break;
   }
+ }
+ }
   if(threeOfKind == 0){
     return false;
-  }
+ }
   for(int i=0; i < hand.size(); i++ ){ //checking for two same cards
     for(int compareHand = i +1; compareHand < hand.size(); compareHand++ ){
-      if(hand[i].rank == hand[compareHand].rank && hand[i].rank != threeOfKind){
+      if(hand[i].rank == hand[compareHand].rank && hand[i].rank != threeOfKind){ //checking if both are true
         return true;
-      }
-    }
   }
+ }
+ }
   return false;
 }
 
@@ -174,7 +162,7 @@ void analyzeHands(std::vector<Cards> deck){
     int runTime = 1;
     int flushCount = 0, straightCount = 0, straightFlushCount = 0, royalFlushCount = 0, fullHouseCount = 0;
     // counts for flush, straight etc.
-    while (runTime <= 100000){
+    while (runTime <= 1000000){
         std::vector<Cards> shuffledDeck = shuffleDeck(deck);
         std::vector<Cards> hand = createOneHand(shuffledDeck);
         if (isRoyalFlush(hand)){
@@ -201,8 +189,8 @@ int main(int argc, const char * argv[]) {
 
     std::vector<Cards> shuffledDeck = shuffleDeck(deck);
     
-    std::vector<Cards> createdHand = createOneHand(shuffledDeck);
-    
+//    std::vector<Cards> createdHand = createOneHand(shuffledDeck);
+//    
 //    printHand(createdHand);
 //    
 //    sortHand(createdHand);
@@ -216,6 +204,8 @@ int main(int argc, const char * argv[]) {
 //    
 //    std::vector<Cards> straightHand1 = {{2, "Spades"},{4, "Diamonds"},{3, "Hearts"},{5, "Clubs"},{6, "Diamonds"}};
 //    std::vector<Cards> straightHand2 = {{14, "Spades"},{2, "Diamonds"},{3, "Hearts"},{5, "Clubs"},{4, "Diamonds"}};
+//    std::vector<Cards> straightHand3 = {{8, "Spades"},{2, "Diamonds"},{3, "Hearts"},{5, "Clubs"},{4, "Diamonds"}};
+//
 //
 //    std::vector<Cards> straightFlushHand1 = {{9, "Spades"},{10, "Spades"},{11, "Spades"},{12, "Spades"},{13, "Spades"}};
 //    std::vector<Cards> straightFlushHand2 = {{3, "Spades"},{10, "Spades"},{11, "Spades"},{12, "Spades"},{13, "Spades"}};
@@ -233,7 +223,8 @@ int main(int argc, const char * argv[]) {
 //    std::cout<< "Flush test fail(0): " << isFlush(flushHand2) << std::endl;
 //    
 //    std::cout<< "Straight test pass(1): " << isStraight(straightHand1) << std::endl;
-//    std::cout<< "Straight test fail(0): " << isStraight(straightHand2) << std::endl;
+//    std::cout<< "Straight test pass(1): " << isStraight(straightHand2) << std::endl;
+//    std::cout<< "Straight test fail(0): " << isStraight(straightHand3) << std::endl;
 //
 //    std::cout<< "Straight flush test pass(1): " << isStraightFlush(straightFlushHand1) << std::endl;
 //    std::cout<< "Straight flush test fail(0): " << isStraightFlush(straightFlushHand2) << std::endl;
