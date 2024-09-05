@@ -131,32 +131,33 @@ bool isRoyalFlush(std::vector<Cards> hand){
 }
 
 bool isFullHouse(std::vector<Cards> hand){
- sortHand(hand);
- int threeOfKind = 0; //checking three same cards
-  for(int i=0; i < hand.size(); i++ ){
-    int cardsMatch = 0;
-    for(int compareHand = i +1; compareHand < hand.size(); compareHand++ ){
-      if(hand[i].rank == hand[compareHand].rank){
-        cardsMatch++;
-}
-  if(cardsMatch == 2){
-  threeOfKind = hand[i].rank;
-    break;
-  }
- }
- }
-  if(threeOfKind == 0){
+    sortHand(hand);
+    int threeOfKind = 0; //checking three same cards
+    for(int i=0; i < hand.size(); i++ ){
+        int cardsMatch = 0;
+        for(int compareHand = i +1; compareHand < hand.size(); compareHand++ ){
+            if(hand[i].rank == hand[compareHand].rank){
+                cardsMatch++;
+            }
+            if(cardsMatch == 2){
+                threeOfKind = hand[i].rank;
+                break;
+            }
+        }
+    }
+    if(threeOfKind == 0){
+        return false;
+    }
+    for(int i=0; i < hand.size(); i++ ){ //checking for two same cards
+        for(int compareHand = i +1; compareHand < hand.size(); compareHand++ ){
+            if(hand[i].rank == hand[compareHand].rank && hand[i].rank != threeOfKind){ //checking if both are true
+                return true;
+            }
+        }
+    }
     return false;
- }
-  for(int i=0; i < hand.size(); i++ ){ //checking for two same cards
-    for(int compareHand = i +1; compareHand < hand.size(); compareHand++ ){
-      if(hand[i].rank == hand[compareHand].rank && hand[i].rank != threeOfKind){ //checking if both are true
-        return true;
-  }
- }
- }
-  return false;
 }
+
 
 void analyzeHands(std::vector<Cards> deck){
     int runTime = 1;

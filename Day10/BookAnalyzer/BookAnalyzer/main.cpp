@@ -11,58 +11,84 @@
 #include <array>
 #include <string>
 #include <string.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <algorithm>
 
-struct Words {
-    double length;
-    std::string wordString;
+struct Author {
+    int authorStart;
+    int authorEnd;
+    std::string authorStr;
 };
 
-//std::vector<Words> wordAnalyzer(std::vector<std::string> words){
-//    std::vector<Words> container = {};
-//    for (int i = 0; i < words.size(); i ++){
-//        Words word;
-//        word.wordString = words[i];
-//        word.length = words[i].length();
-//        container.push_back(word);
-//    }
-//    return container;
-//}
+struct KeyWord {
+    int keywordStart;
+    int keywordEnd;
+    std::string keywordStr;
+    
+};
 
-void findMin(std::vector<Words> containerOfWords){
+std::string findMin(std::vector<std::string> containerOfWords){
+    std::string shortestWord = containerOfWords[0];
     for (int i = 0; i < containerOfWords.size(); i++){
-        int minWordLength = containerOfWords[0].length;
-        if (containerOfWords[i+1].length < containerOfWords[i].length){
-            minWordLength = containerOfWords[i+1].length;
-            std::string shortestWord = containerOfWords[i+1].wordString;
+        if (shortestWord.size() > containerOfWords[i].size()){
+            shortestWord = containerOfWords[i];
         }
     }
+    return shortestWord;
+}
+
+// try selection sort
+
+std::string findMax(std::vector<std::string> containerOfWords){
+    std::string longestWord = containerOfWords[0];
+    for (int i = 0; i < containerOfWords.size(); i++){
+        if (longestWord.size() < containerOfWords[i].size()){
+            longestWord = containerOfWords[i];
+        }
+    }
+    return longestWord;
 }
 
 
-//void findMax(std::string str){
-//    for (int i = 0; ; i++){
-//        
-//    }
-//}
-//
-//void findTitle(std::string str) {
-//    
-//    //        std::ifstream inf{ argv[1] };
-//          'Title:' is the key word
-//}         for(int i = 0; i < array.size(); i++)
-//              if (word[i].wordString = "Title:")
-//              std::cout << word[i+1].wordString
-//
-//
-//void findAuthor(std::string str) {
-//    
-//    //        std::ifstream inf{ argv[1] };
-//          'Author:' is the key word
-//
-//}
+std::string findTitle(std::vector<std::string> v){
+    
+    std::string title;
+        
+    int x = 0, y = 0;
+    
+    for (int i = 0; i < v.size(); i++){
+        if (v[i] == "Title:"){
+            x = i;
+        }
+        if (v[i] == "Author:"){
+            y = i;
+        }
+    }
+    for (int j = x + 1; j < y; j++) {
+        title += v[j];
+    }
+    return title;
+}
+
+std::string findAuthor(std::vector<std::string> v) {
+    
+    std::string author;
+        
+    int x = 0, y = 0;
+    
+    for (int i = 0; i < v.size(); i++){
+        if (v[i] == "Author:"){
+            x = i;
+        }
+        if (v[i] == "Release"){
+            y = i;
+        }
+    }
+    for (int j = x + 1; j < y; j++) {
+        author += v[j];
+    }
+    return author;
+}
 //
 //void findKeyWord (int argc, const char * argv[]) {
 //    
@@ -74,68 +100,38 @@ void findMin(std::vector<Words> containerOfWords){
 int main(int argc, const char * argv[]) {
     
     // ifstream is used for reading files
-    //    std::ifstream inf{ argv[1] };
-    std::ifstream inf{ "Sample.txt" };
+//        std::ifstream inf{ argv[1] };
+    std::ifstream myFile{ "winniethepooh.txt" };
     
-    
-    // If we couldn't open the output file stream for reading
-    if (!inf)
-    {
-        // Print an error and exit
+    if (!myFile) {
         std::cerr << "Book not found! Please try another input. \n";
         return 1;
     }
     
-    // While there's still stuff left to read
     std::string strInput{};
-        
-    std::vector<Words> container = {};
+
+    std::vector<std::string> container = {};
     
     int wordCount = 0, characterCount = 0;
     
-    while (inf >> strInput){
+    while (myFile >> strInput){
         wordCount++;
-        Words word;
-        word.length = strInput.length();
-        word.wordString = strInput;
-        container.push_back(word);
-        for (int i = 0; i < strInput.size(); i++){
-            characterCount++;
-        }
+        characterCount += strInput.size();
+        container.push_back(strInput);
     }
         
-    std::string shortestWord;
+    std::string shortestWord = findMin(container);
     
-    std::string longestWord;
-    
-    for (int i = 0; i < container.size(); i++){
-        int minWordLength = container[0].length;
-        if (container[i+1].length < container[i].length){
-            minWordLength = container[i+1].length;
-            shortestWord = container[i+1].wordString;
-        }
-    }
-    
-    for (int i = 0; i < container.size(); i++){
-        int maxWordLength = container[0].length;
-        if (container[i+1].length > container[i].length)
-            maxWordLength = container[i+1].length;
-//            shortestWord = container[i+1].wordString;
-    }
-    
+    std::string longestWord = findMax(container);
 
-    
-    std::cout << container[1].wordString << std::endl;
-    
+    std::cout << "The shortest word in the book is: " << shortestWord << std::endl;
+    std::cout << "The longest word in the book is: " << longestWord << std::endl;
     std::cout << "Total number of words: " << wordCount << std::endl;
     std::cout << "Total number of characters: " << characterCount << std::endl;
-    
+    std::cout << "The title of the book is: " << findTitle(container) << std::endl;
+    std::cout << "The author of the book is: " << findAuthor(container) << std::endl;
 //    The title of the book (see below)
 //    The author of the book (see below)
-//    The total number of words in the file
-//    The total number of characters in the file (excluding whitespace).
-//    The shortest word in the book
-//    The longest word in the book
 //    The number of appearances, and locations of, the users key word (see below)
         
     return 0;
