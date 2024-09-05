@@ -26,22 +26,22 @@ double stringToInt(std::string number, double base){
     return result;
 }
 
-std::string intToDecimalString(int number){
+void intToDecimalString(int number){
     
     int base = 10;
     
-    int quotient;
+    int quotient = 0;
     
-    int remainder;
+//    int remainder;
 
     while(number > 0){
         
-        quotient = number / pow(base, numberlength())
+        quotient = number / pow(base, sizeof(number));
         
     }
     
-
-//}
+    std::cout << quotient << std::endl;
+}
 
 //std::string intToBinary(int number){
 //    
@@ -75,7 +75,7 @@ int main(int argc, const char * argv[]) {
     
 //    testStringToInt();
     
-//    std::cout << intToDecimalString(10) << std::endl;
+    intToDecimalString(10);
     
     return 0;
 }

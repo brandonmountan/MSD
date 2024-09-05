@@ -65,7 +65,7 @@ std::string findTitle(std::vector<std::string> v){
         }
     }
     for (int j = x + 1; j < y; j++) {
-        title += v[j];
+        title += v[j] + "\n";
     }
     return title;
 }
@@ -85,23 +85,62 @@ std::string findAuthor(std::vector<std::string> v) {
         }
     }
     for (int j = x + 1; j < y; j++) {
-        author += v[j];
+        author += v[j] + " ";
     }
     return author;
 }
-//
-//void findKeyWord (int argc, const char * argv[]) {
+
+//int analyzer(int argc, const char * argv[]) {
 //    
-//        std::ifstream inf{ argv[1] };
-//          argv[2] is the key word
+//    std::ifstream myFile{ argv[1] };
+//    
+//    std::string keyword = argv[2];
+//        
+//    if (!myFile) {
+//        std::cerr << "Book not found! Please try another input. \n";
+////        return 1;
+//    }
+//    
+//    std::string strInput{};
+//
+//    std::vector<std::string> container = {};
+//    
+//    int keywordCount = 0;
+//        
+//    while (myFile >> strInput){
+//        container.push_back(strInput);
+//    }
+//        
+//    int x = 0;
+//        
+//    for (int i = 0; i < container.size(); i++){
+//        if (container[i] == keyword){
+//            x = i;
+//            keywordCount++;
+//            std::string wordBefore = container[i-1];
+//            std::string wordAfter = container[i+1];
+//            int spotInBook = x / container.size();
+//            std::cout << "Spot"
+//        }
+//    }
+//    
+//    return keywordCount;
+////    number of times;
+////    string will be keyword - 1, keyword, keyword + 1
+////    % will be index at keyword divided by total index
+////    for (int j = x + 1; j < y; j++) {
+////        author += v[j] + "\n";
+////    }
+////    return author;
 //
 //}
 
 int main(int argc, const char * argv[]) {
     
     // ifstream is used for reading files
-//        std::ifstream inf{ argv[1] };
-    std::ifstream myFile{ "winniethepooh.txt" };
+    std::ifstream myFile{ argv[1] };
+    std::string keyword = argv[2];
+//    std::ifstream myFile{ "winniethepooh.txt" };
     
     if (!myFile) {
         std::cerr << "Book not found! Please try another input. \n";
@@ -119,6 +158,24 @@ int main(int argc, const char * argv[]) {
         characterCount += strInput.size();
         container.push_back(strInput);
     }
+    
+    int keywordCount = 0;
+    
+    int x = 0;
+        
+    for (int i = 0; i < container.size(); i++){
+        if (container[i] == keyword){
+            x = i;
+            keywordCount++;
+            std::string wordBefore = container[i-1];
+            std::string wordAfter = container[i+1];
+            double spotInBook = i / container.size() * 100;
+            std::cout << wordBefore << " " << keyword << " " << wordAfter << "\n";
+            std::cout << "Spot in the book as a percent: " << spotInBook << "\n";
+         }
+    }
+    
+    std::cout << "Keyword count: " << keywordCount << std::endl;
         
     std::string shortestWord = findMin(container);
     
@@ -130,9 +187,6 @@ int main(int argc, const char * argv[]) {
     std::cout << "Total number of characters: " << characterCount << std::endl;
     std::cout << "The title of the book is: " << findTitle(container) << std::endl;
     std::cout << "The author of the book is: " << findAuthor(container) << std::endl;
-//    The title of the book (see below)
-//    The author of the book (see below)
-//    The number of appearances, and locations of, the users key word (see below)
         
     return 0;
 }
