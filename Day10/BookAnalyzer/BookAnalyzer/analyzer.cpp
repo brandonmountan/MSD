@@ -30,17 +30,13 @@ int analyzer(int argc, const char * argv[]) {
 
     std::vector<std::string> container = {};
     
-    int wordCount = 0, characterCount = 0;
-    
     while (myFile >> strInput){
-        wordCount++;
-        characterCount += strInput.size();
         container.push_back(strInput);
     }
     
     int keywordCount = 0;
     
-    int x = 0, y = 0;
+    int x = 0;
         
     for (int i = 0; i < container.size(); i++){
         if (container[i] == keyword){

@@ -10,10 +10,12 @@
 #include <string>
 #include <ctype.h>
 #include <assert.h>
+#include <cmath>
+#include <sstream>
 
 double stringToInt(std::string number, double base){
     double result = 0;
-    for (int i = (number.size()-1); i >= 0; i--){
+    for (double i = number.size() - 1; i >= 0; i--){
         if (base == 16){
             char charInt = tolower(number[i]);
             int numericValue = charInt - 'a' + 10;
@@ -26,38 +28,84 @@ double stringToInt(std::string number, double base){
     return result;
 }
 
-void intToDecimalString(int number){
+std::string intToDecimalString(int number){
     
     int base = 10;
     
-    int quotient = 0;
+    int numberRemainder;
     
-//    int remainder;
-
-    while(number > 0){
-        
-        quotient = number / pow(base, sizeof(number));
-        
+    std::string numStr = "";
+    
+    std::string outputString = "";
+    
+    std::string reverseString = "";
+    
+    while (number > 0){
+        numberRemainder = number % base;
+        numStr = numberRemainder + '0';
+        outputString += numStr;
+        number /= base;
     }
-    
-    std::cout << quotient << std::endl;
+    for (int i = 0; i < outputString.size()+1; i++){
+        reverseString += outputString[outputString.size()-i];
+    }
+    return reverseString;
 }
 
-//std::string intToBinary(int number){
-//    
-//    int base = 2;
-//    
-//    
-//    
-//}
-//
-//std::string intToHexidecimalString(int number){
-//    
-//    int base = 16;
-//    
-//    
-//    
-//}
+std::string intToBinary(int number){
+        
+    int base = 2;
+    
+    int numberRemainder;
+    
+    std::string numStr = "";
+    
+    std::string outputString = "";
+    
+    std::string reverseString = "";
+    
+    while (number > 0){
+        numberRemainder = number % base;
+        numStr = numberRemainder + '0';
+        outputString += numStr;
+        number /= base;
+    }
+    for (int i = 0; i < outputString.size()+1; i++){
+        reverseString += outputString[outputString.size()-i];
+    }
+    return reverseString;
+}
+
+std::string intToHexidecimalString(int number){
+    
+    int base = 16;
+    
+    int numberRemainder;
+    
+    std::string numStr = "";
+    
+    std::string outputString = "";
+    
+    std::string reverseString = "";
+    
+    while (number > 0){
+        numberRemainder = number % base;
+        if (numberRemainder >= 0 || numberRemainder <= 9){
+            
+        }
+        numStr = numberRemainder + '0';
+        outputString += numStr;
+        number /= base;
+        std::cout << numberRemainder << std::endl;
+    }
+    
+    for (int i = 0; i < outputString.size()+1; i++){
+        reverseString += outputString[outputString.size()-i];
+    }
+
+    return reverseString;
+    
+}
 //
 //void testStringToInt(){
 //    assert(stringToInt("99", 10) == 99);
@@ -75,7 +123,9 @@ int main(int argc, const char * argv[]) {
     
 //    testStringToInt();
     
-    intToDecimalString(10);
-    
+    std::cout << intToDecimalString(1234) << std::endl;
+    std::cout << intToBinary(1234) << std::endl;
+    std::cout << intToHexidecimalString(1234) << std::endl;
+
     return 0;
 }

@@ -130,32 +130,42 @@ bool isRoyalFlush(std::vector<Cards> hand){
     return false;
 }
 
-bool isFullHouse(std::vector<Cards> hand){
+void isFullHouse(std::vector<Cards> hand){
     sortHand(hand);
-    int threeOfKind = 0; //checking three same cards
-    for(int i=0; i < hand.size(); i++ ){
-        int cardsMatch = 0;
-        for(int compareHand = i +1; compareHand < hand.size(); compareHand++ ){
-            if(hand[i].rank == hand[compareHand].rank){
-                cardsMatch++;
-            }
-            if(cardsMatch == 2){
-                threeOfKind = hand[i].rank;
-                break;
-            }
-        }
-    }
-    if(threeOfKind == 0){
-        return false;
-    }
-    for(int i=0; i < hand.size(); i++ ){ //checking for two same cards
-        for(int compareHand = i +1; compareHand < hand.size(); compareHand++ ){
-            if(hand[i].rank == hand[compareHand].rank && hand[i].rank != threeOfKind){ //checking if both are true
-                return true;
-            }
-        }
-    }
-    return false;
+
+//    int firstCard = hand[0].rank;
+//    int threeCardCounter = 1;
+//    
+//    for (int i = 1; i < hand.size(); i++){
+//        if (firstCard == hand[i].rank){
+//            std::cout << hand[i].rank << std::endl;
+//            threeCardCounter++;
+//        }
+//    }
+//    int threeOfKind = 0; //checking three same cards
+//    for(int i=0; i < hand.size(); i++ ){
+//        int cardsMatch = 0;
+//        for(int compareHand = i + 1; compareHand < hand.size(); compareHand++ ){
+//            if(hand[i].rank == hand[compareHand].rank){
+//                cardsMatch++;
+//            }
+//            if(cardsMatch == 2){
+//                threeOfKind = hand[i].rank;
+//                break;
+//            }
+//        }
+//    }
+//    if(threeOfKind == 0){
+//        return false;
+//    }
+//    for(int i=0; i < hand.size(); i++ ){ //checking for two same cards
+//        for(int compareHand = i +1; compareHand < hand.size(); compareHand++ ){
+//            if(hand[i].rank == hand[compareHand].rank && hand[i].rank != threeOfKind){ //checking if both are true
+//                return true;
+//            }
+//        }
+//    }
+//    return false;
 }
 
 
@@ -168,8 +178,8 @@ void analyzeHands(std::vector<Cards> deck){
         std::vector<Cards> hand = createOneHand(shuffledDeck);
         if (isRoyalFlush(hand)){
             royalFlushCount += 1;
-        } else if (isFullHouse(hand)){
-            fullHouseCount += 1;
+//        } else if (isFullHouse(hand)){
+//            fullHouseCount += 1;
         } else if (isStraightFlush(hand)){
             straightFlushCount += 1;
         } else if (isStraight(hand)){
@@ -198,7 +208,7 @@ int main(int argc, const char * argv[]) {
 //    
 //    printHand(createdHand);
         
-    analyzeHands(shuffledDeck);
+//    analyzeHands(shuffledDeck);
     
 //    std::vector<Cards> flushHand1 = {{2, "Diamonds"},{8, "Diamonds"},{4, "Diamonds"},{9, "Diamonds"},{6, "Diamonds"}};
 //    std::vector<Cards> flushHand2 = {{3, "Hearts"},{10, "Clubs"},{4, "Diamonds"},{9, "Diamonds"},{6, "Diamonds"}};
@@ -216,9 +226,9 @@ int main(int argc, const char * argv[]) {
 //    std::vector<Cards> RoyalFlushHand2 = {{4, "Spades"},{11, "Spades"},{12, "Spades"},{13, "Spades"},{14, "Spades"}};
 //    std::vector<Cards> RoyalFlushHand3 = {{10, "Hearts"},{11, "Diamonds"},{12, "Spades"},{13, "Spades"},{14, "Spades"}};
 //
-//    std::vector<Cards> fullHouseHand1 = {{10, "Spades"},{10, "Hearts"},{10, "Diamonds"},{13, "Spades"},{13, "Hearts"}};
-//    std::vector<Cards> fullHouseHand2 = {{3, "Clubs"},{3, "Hearts"},{6, "Hearts"},{6, "Spades"},{6, "Diamonds"}};
-//    std::vector<Cards> fullHouseHand3 = {{4, "Spades"},{5, "Hearts"},{10, "Diamonds"},{13, "Spades"},{13, "Hearts"}};
+    std::vector<Cards> fullHouseHand1 = {{10, "Spades"},{13, "Hearts"},{10, "Diamonds"},{13, "Spades"},{10, "Hearts"}};
+    std::vector<Cards> fullHouseHand2 = {{6, "Clubs"},{3, "Hearts"},{6, "Hearts"},{3, "Spades"},{6, "Diamonds"}};
+    std::vector<Cards> fullHouseHand3 = {{13, "Spades"},{5, "Hearts"},{10, "Diamonds"},{4, "Spades"},{13, "Hearts"}};
 //
 //    std::cout<< "Flush test pass(1): " << isFlush(flushHand1) << std::endl;
 //    std::cout<< "Flush test fail(0): " << isFlush(flushHand2) << std::endl;
@@ -238,6 +248,11 @@ int main(int argc, const char * argv[]) {
 //    std::cout<< "Full house test pass(1): " << isFullHouse(fullHouseHand1) << std::endl;
 //    std::cout<< "Full house test pass(1): " << isFullHouse(fullHouseHand2) << std::endl;
 //    std::cout<< "Full house test fail(0): " << isFullHouse(fullHouseHand3) << std::endl;
+    
+    isFullHouse(fullHouseHand1);
+    isFullHouse(fullHouseHand2);
+    isFullHouse(fullHouseHand3);
+
     
   return 0;
 }
