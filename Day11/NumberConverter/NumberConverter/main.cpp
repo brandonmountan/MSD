@@ -90,6 +90,9 @@ std::string intToHexidecimalString(int number){
     
     while (number > 0){
         numberRemainder = number % base;
+        if (numberRemainder > 9){
+            
+        }
         if (numberRemainder >= 0 || numberRemainder <= 9){
             
         }
