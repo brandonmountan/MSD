@@ -7,44 +7,45 @@
 
 #include "vector.hpp"
 
-myVector::makeVector(int initialCapacity){
-    myVector theVector;
-    theVector.size = 0;
-    theVector.capacity = initialCapacity;
-//    theVector.arrayPtr = ?
-//    return theVector;
-    //return a vector with the given capacity and a size of 0
+ myVector myVector::makeVector(int initialCapacity){
+    int* createdPtr = new int[initialCapacity];
+    myVector createdVector;
+    createdVector.capacity = initialCapacity;
+    createdVector.size = 0;
+    createdVector.arrayPtr = createdPtr;
+    return createdVector;
+}
+
+void myVector::freeVector(myVector &createdVector){
+    delete[] createdVector.arrayPtr;
+}
+
+void myVector::popBack(myVector &createdVector){
+    createdVector.size = createdVector.size - 1;
 };
 
-myVector::freeVector(myVector){
-    
-    
-    // should deallocate any heap memory used by the myvector object.
+int myVector::get(myVector &createdVector, int index){
+    return createdVector.arrayPtr[index];
 };
 
-myVector::pushBack(myVector, 5){
-    
-    
-    
+void myVector::set(myVector &createdVector, int index, int newValue){
+    createdVector.arrayPtr[index] = newValue;
 };
 
-myVector::popBack(myVector, 5){
-    
-    
-    
+void myVector::grow(myVector &createdVector){
+    int* createdPtrX2 = new int[createdVector.capacity * 2];
+    for (int i = 0; i < createdVector.size; i++){
+        createdPtrX2[i] = createdVector.arrayPtr[i];
+    }
+    delete [] createdVector.arrayPtr;
+    createdVector.arrayPtr = createdPtrX2;
+    createdVector.capacity = createdVector.capacity * 2;
 };
 
-myVector::get(myVec, index){
-    
-    
+void myVector::pushBack(myVector &createdVector, int pushedInt){
+    if (createdVector.size == createdVector.capacity){
+        grow(createdVector);
+    }
+    createdVector.arrayPtr[createdVector.size++] = pushedInt;
 };
 
-myVector::set(myVec, index, newValue){
-    
-    
-};
-
-myVector::grow(myVec){
-    
-    
-};

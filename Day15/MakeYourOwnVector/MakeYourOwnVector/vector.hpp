@@ -12,16 +12,15 @@
 
 #endif /* vector_hpp */
 
-
 struct myVector {
     int capacity;
     int size;
     int* arrayPtr;
-//    makeVector(initialCapacity);
-//    freeVector(MyVec);
-//    pushBack(myVector, 5);
-//    popBack(myVector, 5);
-//    get(myVec, index);
-//    set(myVec, index, newValue);
-//    growVector(myVec);
+    static myVector makeVector(int initialCapacity);
+    static void freeVector(myVector &createdVector);
+    static void popBack(myVector &createdVector);
+    static int get(myVector &createdVector, int index);
+    static void set(myVector &createdVector, int index, int newValue);
+    static void grow(myVector &createdVector);
+    static void pushBack(myVector &createdVector, int pushedInt);
 };
