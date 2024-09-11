@@ -27,6 +27,8 @@ int main(int argc, const char * argv[]) {
     
     std::cout << copy(mainArray, arraySize) << std::endl;
     
+    delete mainArray;
+    
     return 0;
 }
 
