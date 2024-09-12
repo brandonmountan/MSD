@@ -10,7 +10,6 @@
 #include <cassert>
 
 int main(int argc, const char * argv[]) {
-
     
     MyString ms1;
     assert(ms1.size() == 0);
@@ -20,5 +19,33 @@ int main(int argc, const char * argv[]) {
     for(int i = 0; i < size; i++){
         std::cout << ms2[i];
     }
+    std::cout << std::endl;
+    
+    
+    
+    {
+        MyString ms3;
+        ms3 = ms2; //operator =
+        ms3[0] = 'j';
+        
+        int size = ms3.size();
+        for(int i = 0; i < size; i++){
+            std::cout << ms3[i];
+        }
+        std::cout << std::endl;
+        
+        MyString m4 = ms2 + ms3;
+        int m4Size = m4.size();
+        for (int i = 0; i < m4Size; i++){
+            std::cout << m4[i];
+        }
+    }
+    
+    size = ms2.size();
+    for(int i = 0; i < size; i++){
+        std::cout << ms2[i];
+    }
+    std::cout << std::endl;
+    
     return 0;
 }

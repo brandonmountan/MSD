@@ -21,6 +21,7 @@ public:
     
     //rule of 3
     MyString(const MyString& rhs);
+    MyString& operator=(MyString rhs);
     ~MyString();
     
     //+, +=
@@ -29,10 +30,14 @@ public:
     //read only version
     char operator[](int index) const { return data[index];}
     //size is implicit
+    // for str[i] = 'c'
     char& operator[](int index) { return data[index];}
+    
+    int size() const;
 private:
     //null-terminated string (0-terminated)
     //size is implicit, ends where I find a '\0' == 0
     char* data;
-    
 };
+
+MyString operator+(const MyString& lhs, const MyString& rhs);

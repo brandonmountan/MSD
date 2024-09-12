@@ -14,15 +14,16 @@ MyString::MyString(){
 }
 
 MyString::MyString(const char* str){
-    int strSize = strlen(str) + 1;
+    int strSize = (int)strlen(str) + 1;
     data = new char[strSize];
     for (int i = 0; i < strSize; i++){
-        data[i] = str.data[i];
+        data[i] = str[i];
     }
 }
 
+//copy constructor
 MyString::MyString(const MyString& rhs){
-    //fill in 'this' with a copy of this
+    //fill in 'this' with a copy of rhs
     int rhsSize = rhs.size() + 1;
     data = new char[rhsSize];
     for (int i = 0; i < rhsSize; i++){
@@ -30,7 +31,7 @@ MyString::MyString(const MyString& rhs){
     }
 }
 
-MyString& MyString::operator+=(const MyString& rhs){
+MyString& MyString::operator=(MyString rhs){
     //rhs is it's own copy because it's passed by value
     char* tmp = data;
     data = rhs.data;
@@ -40,21 +41,38 @@ MyString& MyString::operator+=(const MyString& rhs){
     //the destructor will delete[] my old data
 }
 
-
+//destructor
 MyString::~MyString(){
     delete [] data;
 }
 
+MyString& MyString::operator+=(const MyString& rhs){
+    //make a new array long enough for this + rhs
+    int lSize = size();
+    int rSize = rhs.size();
+    char* newData = new char[lSize + rSize + 1];
+    //copy lhs and rhs values in
+    for (int i = 0; i < lSize; i++){
+        newData[i] = data[i];
+    }
+    for (int i = 0; i < rSize; i++){
+        newData[lSize + i] = rhs.data[i];
+    }
+    //add a '\0' byte
+    newData[lSize+rSize] = '\0';
+    //delete old array
+    delete [] data;
+    newData = data;
+    
+    return *this;
+};
+
 int MyString::size() const{
-    
-    
+    return (int)strlen(data);
 }
 
-
-//char operator[](int index) const { return data[index];}
-////size is implicit
-//char& operator[](int index) { return data[index];}
-////null-terminated string (0-terminated)
-////size is implicit, ends where I find a '\0' == 0
-//char* data;
-
+MyString operator+(const MyString& lhs, const MyString& rhs){
+    MyString ret = lhs;
+    ret += rhs;
+    return ret;
+};

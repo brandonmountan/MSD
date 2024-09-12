@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		815098B92C923CD800F014EA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 815098B82C923CD800F014EA /* main.cpp */; };
-		815098C12C9241D000F014EA /* VectorWithClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 815098BF2C9241D000F014EA /* VectorWithClass.cpp */; };
+		815098FB2C93466F00F014EA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 815098FA2C93466F00F014EA /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		815098B32C923CD800F014EA /* CopyFiles */ = {
+		815098F52C93466F00F014EA /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -24,14 +23,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		815098B52C923CD800F014EA /* MakeYourOwnVectorWithClass */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MakeYourOwnVectorWithClass; sourceTree = BUILT_PRODUCTS_DIR; };
-		815098B82C923CD800F014EA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		815098BF2C9241D000F014EA /* VectorWithClass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VectorWithClass.cpp; sourceTree = "<group>"; };
-		815098C02C9241D000F014EA /* VectorWithClass.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VectorWithClass.hpp; sourceTree = "<group>"; };
+		815098F72C93466F00F014EA /* TripleTemplate */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TripleTemplate; sourceTree = BUILT_PRODUCTS_DIR; };
+		815098FA2C93466F00F014EA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		815098B22C923CD800F014EA /* Frameworks */ = {
+		815098F42C93466F00F014EA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,67 +38,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		815098AC2C923CD800F014EA = {
+		815098EE2C93466F00F014EA = {
 			isa = PBXGroup;
 			children = (
-				815098B72C923CD800F014EA /* MakeYourOwnVectorWithClass */,
-				815098B62C923CD800F014EA /* Products */,
+				815098F92C93466F00F014EA /* TripleTemplate */,
+				815098F82C93466F00F014EA /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		815098B62C923CD800F014EA /* Products */ = {
+		815098F82C93466F00F014EA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				815098B52C923CD800F014EA /* MakeYourOwnVectorWithClass */,
+				815098F72C93466F00F014EA /* TripleTemplate */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		815098B72C923CD800F014EA /* MakeYourOwnVectorWithClass */ = {
+		815098F92C93466F00F014EA /* TripleTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				815098B82C923CD800F014EA /* main.cpp */,
-				815098BF2C9241D000F014EA /* VectorWithClass.cpp */,
-				815098C02C9241D000F014EA /* VectorWithClass.hpp */,
+				815098FA2C93466F00F014EA /* main.cpp */,
 			);
-			path = MakeYourOwnVectorWithClass;
+			path = TripleTemplate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		815098B42C923CD800F014EA /* MakeYourOwnVectorWithClass */ = {
+		815098F62C93466F00F014EA /* TripleTemplate */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 815098BC2C923CD800F014EA /* Build configuration list for PBXNativeTarget "MakeYourOwnVectorWithClass" */;
+			buildConfigurationList = 815098FE2C93466F00F014EA /* Build configuration list for PBXNativeTarget "TripleTemplate" */;
 			buildPhases = (
-				815098B12C923CD800F014EA /* Sources */,
-				815098B22C923CD800F014EA /* Frameworks */,
-				815098B32C923CD800F014EA /* CopyFiles */,
+				815098F32C93466F00F014EA /* Sources */,
+				815098F42C93466F00F014EA /* Frameworks */,
+				815098F52C93466F00F014EA /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = MakeYourOwnVectorWithClass;
-			productName = MakeYourOwnVectorWithClass;
-			productReference = 815098B52C923CD800F014EA /* MakeYourOwnVectorWithClass */;
+			name = TripleTemplate;
+			productName = TripleTemplate;
+			productReference = 815098F72C93466F00F014EA /* TripleTemplate */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		815098AD2C923CD800F014EA /* Project object */ = {
+		815098EF2C93466F00F014EA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
-					815098B42C923CD800F014EA = {
+					815098F62C93466F00F014EA = {
 						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
-			buildConfigurationList = 815098B02C923CD800F014EA /* Build configuration list for PBXProject "MakeYourOwnVectorWithClass" */;
+			buildConfigurationList = 815098F22C93466F00F014EA /* Build configuration list for PBXProject "TripleTemplate" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -109,30 +104,29 @@
 				en,
 				Base,
 			);
-			mainGroup = 815098AC2C923CD800F014EA;
-			productRefGroup = 815098B62C923CD800F014EA /* Products */;
+			mainGroup = 815098EE2C93466F00F014EA;
+			productRefGroup = 815098F82C93466F00F014EA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				815098B42C923CD800F014EA /* MakeYourOwnVectorWithClass */,
+				815098F62C93466F00F014EA /* TripleTemplate */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		815098B12C923CD800F014EA /* Sources */ = {
+		815098F32C93466F00F014EA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				815098B92C923CD800F014EA /* main.cpp in Sources */,
-				815098C12C9241D000F014EA /* VectorWithClass.cpp in Sources */,
+				815098FB2C93466F00F014EA /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		815098BA2C923CD800F014EA /* Debug */ = {
+		815098FC2C93466F00F014EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -193,7 +187,7 @@
 			};
 			name = Debug;
 		};
-		815098BB2C923CD800F014EA /* Release */ = {
+		815098FD2C93466F00F014EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -247,7 +241,7 @@
 			};
 			name = Release;
 		};
-		815098BD2C923CD800F014EA /* Debug */ = {
+		815098FF2C93466F00F014EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -255,7 +249,7 @@
 			};
 			name = Debug;
 		};
-		815098BE2C923CD800F014EA /* Release */ = {
+		815099002C93466F00F014EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -266,25 +260,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		815098B02C923CD800F014EA /* Build configuration list for PBXProject "MakeYourOwnVectorWithClass" */ = {
+		815098F22C93466F00F014EA /* Build configuration list for PBXProject "TripleTemplate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				815098BA2C923CD800F014EA /* Debug */,
-				815098BB2C923CD800F014EA /* Release */,
+				815098FC2C93466F00F014EA /* Debug */,
+				815098FD2C93466F00F014EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		815098BC2C923CD800F014EA /* Build configuration list for PBXNativeTarget "MakeYourOwnVectorWithClass" */ = {
+		815098FE2C93466F00F014EA /* Build configuration list for PBXNativeTarget "TripleTemplate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				815098BD2C923CD800F014EA /* Debug */,
-				815098BE2C923CD800F014EA /* Release */,
+				815098FF2C93466F00F014EA /* Debug */,
+				815099002C93466F00F014EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 815098AD2C923CD800F014EA /* Project object */;
+	rootObject = 815098EF2C93466F00F014EA /* Project object */;
 }
