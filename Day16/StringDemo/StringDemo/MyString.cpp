@@ -7,12 +7,11 @@
 
 #include "MyString.hpp"
 #include <cstring>
-
+//constructos
 MyString::MyString(){
     data = new char[1];
     data[0] = '\0';
-}
-
+} //empty string (data --> '\0' on the heap)
 MyString::MyString(const char* str){
     int strSize = (int)strlen(str) + 1;
     data = new char[strSize];
@@ -34,7 +33,7 @@ MyString::MyString(const MyString& rhs){
 MyString& MyString::operator=(MyString rhs){
     //rhs is it's own copy because it's passed by value
     char* tmp = data;
-    data = rhs.data;
+    data = rhs.data; // if i just do this it's called a 'shallow' copy.
     rhs.data = tmp;
     
     return *this;
@@ -42,30 +41,32 @@ MyString& MyString::operator=(MyString rhs){
 }
 
 //destructor
-//MyString::~MyString(){
-//    delete [] data;
-//}
+MyString::~MyString(){
+    delete [] data;
+}
 
 MyString& MyString::operator+=(const MyString& rhs){
     //make a new array long enough for this + rhs
     int lSize = size();
     int rSize = rhs.size();
-    char* newData = new char[lSize + rSize + 1];
+    char* newData = new char[lSize + rSize + 1];//+1 because of '0\'
+    
     //copy lhs and rhs values in
-    for (int i = 0; i < lSize; i++){
+    for(int i = 0; i < lSize; i++){
         newData[i] = data[i];
     }
-    for (int i = 0; i < rSize; i++){
+    for(int i = 0; i < rSize; i++){
         newData[lSize + i] = rhs.data[i];
     }
     //add a '\0' byte
-    newData[lSize+rSize] = '\0';
+    newData[lSize + rSize] = '\0';
+    
     //delete old array
     delete [] data;
-    newData = data;
+    data = newData;
     
     return *this;
-};
+}
 
 int MyString::size() const{
     return (int)strlen(data);

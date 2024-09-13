@@ -6,7 +6,14 @@
 //
 
 #include "VectorWithClass.hpp"
-//constructor
+
+//constructors
+myVector::myVector(){
+    capacity = 16;
+    size = 0;
+    arrayPtr[0] = '\0';
+};
+
 myVector::myVector(int initialCapacity){
    int* createdPtr = new int[initialCapacity];
    capacity = initialCapacity;
@@ -14,16 +21,18 @@ myVector::myVector(int initialCapacity){
    arrayPtr = createdPtr;
 }
 
-//copy constructor
-myVector::myVector(myVector& rhs){
+//rule of 3
+//1. copy constructor
+myVector::myVector(const myVector& rhs){
     //fill in 'this' with a copy of rhs
-    int rhsSize = rhs.size;
-    int* arrayPtr = new int[rhsSize];
-    for (int i = 0; i < rhsSize; i++){
-        rhs.arrayPtr[i] = arrayPtr[i];
+    int rhsCapacity = rhs.capacity;
+    int* arrayPtr = new int[rhsCapacity];
+    for (int i = 0; i < rhsCapacity; i++){
+        arrayPtr[i] = rhs.arrayPtr[i];
         ;
     }
 }
+//2. operator=
 myVector& myVector::operator=(myVector rhs){
     //rhs is it's own copy because it's passed by value
     int tmpSize = size;
@@ -36,6 +45,10 @@ myVector& myVector::operator=(myVector rhs){
     
     return *this;
     //the destructor will delete[] my old data
+}
+//3. destructor
+myVector::~myVector(){
+    delete [] arrayPtr;
 }
 
 void myVector::freeVector(){
@@ -71,13 +84,11 @@ void myVector::pushBack(int pushedInt){
    arrayPtr[size++] = pushedInt;
 };
 
-myVector::~myVector(){
-    delete [] arrayPtr;
-}
+
 
 int main(){
     
-    
+    myVector v1;
     
     
 }

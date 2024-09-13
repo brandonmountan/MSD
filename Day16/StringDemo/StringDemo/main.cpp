@@ -24,8 +24,9 @@ int main(int argc, const char * argv[]) {
     
     
     {
-        MyString ms3;
-        ms3 = ms2; //operator =
+//        MyString ms3 = ms2;
+        MyString ms3; //default constructor
+        ms3 = ms2; //operator=
         ms3[0] = 'j';
         
         int size = ms3.size();
@@ -34,11 +35,13 @@ int main(int argc, const char * argv[]) {
         }
         std::cout << std::endl;
         
-        MyString m4 = ms2 + ms3;
-        int m4Size = m4.size();
-        for (int i = 0; i < m4Size; i++){
-            std::cout << m4[i];
+        MyString ms4 = ms2 + ms3;
+        int ms4Size = ms4.size();
+        for(int i = 0; i < ms4Size; i++){
+            std::cout << ms4[i];
         }
+        std::cout << std::endl;
+        
     }
     
     size = ms2.size();

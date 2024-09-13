@@ -10,8 +10,6 @@
 
 #include <stdio.h>
 
-#endif /* MyString_hpp */
-
 class MyString{
     
 public:
@@ -41,3 +39,7 @@ private:
 };
 
 MyString operator+(const MyString& lhs, const MyString& rhs);
+
+
+#endif /* MyString_hpp */
+

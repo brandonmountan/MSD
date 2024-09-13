@@ -7,12 +7,18 @@
 //
 //#include <stdio.h>
 //#include <iostream>
+//#include <cassert>
 //
 //struct myVector {
 //    int capacity;
 //    int size;
 //    int* arrayPtr;
-//    //constructor
+//    //constructors
+//    myVector(){
+//        capacity = 16;
+//        size = 0;
+//        arrayPtr[0] = '\0';
+//    };
 //    myVector(int initialCapacity){
 //        int* createdPtr = new int[initialCapacity];
 //        capacity = initialCapacity;
@@ -24,10 +30,10 @@
 //        //fill in 'this' with a copy of rhs
 //        int rhsCapacity = rhs.capacity;
 //        int* arrayPtr = new int[rhsCapacity];
+//        size = rhs.size;
+//        capacity = rhs.capacity;
 //        for (int i = 0; i < rhsCapacity; i++){
-//            size = rhs.size;
-//            capacity = rhs.capacity;
-//            arrayPtr = rhs.arrayPtr;
+//            arrayPtr[i] = rhs.arrayPtr[i];
 //        }
 //    };
 //    myVector& operator=(myVector rhs){
@@ -71,14 +77,15 @@
 //        arrayPtr[size++] = pushedInt;
 //     };
 //    //destructor
-//    ~myVector(){
-//        delete[] arrayPtr;
-//     };
+////    ~myVector(){
+////        delete[] arrayPtr;
+////     };
 //};
 //
 //int main(){
 //    
 //    myVector v1 = myVector(16);
+//    assert(v1.capacity == 16);
 //
 //    for (int i = 0; i < v1.capacity; i++){
 //        v1.pushBack(i);
@@ -87,11 +94,8 @@
 //    
 //    std::cout << "\n";
 //    
-//    {
-//        ;
-//        v2 = v1;
-//    }
-//    
+//
+//    myVector v2 = myVector(16);
 //    
 //    
 //    v2 = v1;
