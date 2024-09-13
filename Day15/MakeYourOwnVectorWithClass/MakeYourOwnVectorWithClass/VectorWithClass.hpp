@@ -1,38 +1,38 @@
+////
+////  VectorWithClass.hpp
+////  MakeYourOwnVectorWithClass
+////
+////  Created by Brandon Mountan on 9/11/24.
+////
 //
-//  VectorWithClass.hpp
-//  MakeYourOwnVectorWithClass
+//#ifndef VectorWithClass_hpp
+//#define VectorWithClass_hpp
 //
-//  Created by Brandon Mountan on 9/11/24.
+//#include <stdio.h>
 //
-
-#ifndef VectorWithClass_hpp
-#define VectorWithClass_hpp
-
-#include <stdio.h>
-
-#endif /* VectorWithClass_hpp */
-
-class myVector {
-public:
-    //constructors
-    myVector();
-    myVector(int initialCapacity);
-    
-    //rule of 3
-    myVector(const myVector& rhs);
-    myVector& operator=(myVector rhs);
-    ~myVector();
-    
-    void freeVector();
-    void popBack();
-    int get(int index);
-    void set(int index, int newValue);
-    void grow();
-    void pushBack(int pushedInt);
-    
-private:
-    int capacity;
-    int size;
-    int* arrayPtr;
-};
-
+//#endif /* VectorWithClass_hpp */
+//
+//class myVector {
+//public:
+//    //constructors
+//    myVector();
+//    myVector(int initialCapacity);
+//    
+//    //rule of 3
+//    myVector(const myVector& rhs);
+//    myVector& operator=(myVector rhs);
+//    ~myVector();
+//    
+//    void freeVector();
+//    void popBack();
+//    int get(int index);
+//    void set(int index, int newValue);
+//    void grow();
+//    void pushBack(int pushedInt);
+//    
+//private:
+//    int capacity;
+//    int size;
+//    int* arrayPtr;
+//};
+//

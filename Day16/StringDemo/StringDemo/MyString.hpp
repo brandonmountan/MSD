@@ -32,6 +32,9 @@ public:
     char& operator[](int index) { return data[index];}
     
     int size() const;
+    
+    char* begin(){return data; };
+    char* end(){return data + size();};
 private:
     //null-terminated string (0-terminated)
     //size is implicit, ends where I find a '\0' == 0

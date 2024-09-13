@@ -50,5 +50,9 @@ int main(int argc, const char * argv[]) {
     }
     std::cout << std::endl;
     
+    for(char c : ms2){
+        std::cout << c << std::endl;
+    }
+    
     return 0;
 }
