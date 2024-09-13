@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		815098B92C923CD800F014EA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 815098B82C923CD800F014EA /* main.cpp */; };
 		815098C12C9241D000F014EA /* VectorWithClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 815098BF2C9241D000F014EA /* VectorWithClass.cpp */; };
+		815099022C937ED100F014EA /* TestVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 815099012C937ED100F014EA /* TestVector.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,9 +25,9 @@
 
 /* Begin PBXFileReference section */
 		815098B52C923CD800F014EA /* MakeYourOwnVectorWithClass */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MakeYourOwnVectorWithClass; sourceTree = BUILT_PRODUCTS_DIR; };
-		815098B82C923CD800F014EA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		815098BF2C9241D000F014EA /* VectorWithClass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VectorWithClass.cpp; sourceTree = "<group>"; };
 		815098C02C9241D000F014EA /* VectorWithClass.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VectorWithClass.hpp; sourceTree = "<group>"; };
+		815099012C937ED100F014EA /* TestVector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestVector.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +60,8 @@
 		815098B72C923CD800F014EA /* MakeYourOwnVectorWithClass */ = {
 			isa = PBXGroup;
 			children = (
-				815098B82C923CD800F014EA /* main.cpp */,
 				815098BF2C9241D000F014EA /* VectorWithClass.cpp */,
+				815099012C937ED100F014EA /* TestVector.cpp */,
 				815098C02C9241D000F014EA /* VectorWithClass.hpp */,
 			);
 			path = MakeYourOwnVectorWithClass;
@@ -124,7 +124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				815098B92C923CD800F014EA /* main.cpp in Sources */,
+				815099022C937ED100F014EA /* TestVector.cpp in Sources */,
 				815098C12C9241D000F014EA /* VectorWithClass.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

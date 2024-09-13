@@ -42,9 +42,9 @@ MyString& MyString::operator=(MyString rhs){
 }
 
 //destructor
-MyString::~MyString(){
-    delete [] data;
-}
+//MyString::~MyString(){
+//    delete [] data;
+//}
 
 MyString& MyString::operator+=(const MyString& rhs){
     //make a new array long enough for this + rhs

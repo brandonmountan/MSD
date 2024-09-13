@@ -13,16 +13,23 @@
 #endif /* VectorWithClass_hpp */
 
 class myVector {
-private:
-    int capacity;
-    int size;
-    int* arrayPtr;
 public:
+    //constructor
     myVector(int initialCapacity);
+    //copyconstructor
+//    myVector(const myVector& rhs);
+    myVector& operator=(myVector rhs);
     void freeVector();
     void popBack();
     int get(int index);
     void set(int index, int newValue);
     void grow();
     void pushBack(int pushedInt);
+    //destructor
+    ~myVector();
+private:
+    int capacity;
+    int size;
+    int* arrayPtr;
 };
+
