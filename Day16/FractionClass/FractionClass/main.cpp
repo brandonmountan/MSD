@@ -94,12 +94,6 @@ public:
     Fraction operator /(Fraction rhs) const {
         return dividedBy(rhs);
     };
-    bool operator ==(Fraction rhs) const {
-        return (rhs.numerator == numerator && rhs.denominator == denominator);
-    };
-    bool operator !=(Fraction rhs) const {
-        return (rhs.numerator != numerator && rhs.denominator != denominator);
-    };
     Fraction& operator +=(Fraction rhs) {
         numerator += rhs.numerator;
         denominator += rhs.denominator;
@@ -134,4 +128,11 @@ public:
     bool operator >(Fraction rhs) {
         return minus(rhs).numerator > 0;
     };
+};
+
+bool operator ==(Fraction lhs, Fraction rhs) {
+    return (lhs.toDouble() == rhs.toDouble());
+};
+bool operator !=(Fraction lhs, Fraction rhs) {
+    return (lhs.toDouble() != rhs.toDouble());
 };
