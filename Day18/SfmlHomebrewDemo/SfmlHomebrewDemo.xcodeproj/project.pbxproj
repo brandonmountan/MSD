@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		815098C12C9241D000F014EA /* VectorWithClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 815098BF2C9241D000F014EA /* VectorWithClass.cpp */; };
+		815099102C98839B00F014EA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8150990F2C98839B00F014EA /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		815098B32C923CD800F014EA /* CopyFiles */ = {
+		8150990A2C98839B00F014EA /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,13 +23,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		815098B52C923CD800F014EA /* MakeYourOwnVectorWithClass */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MakeYourOwnVectorWithClass; sourceTree = BUILT_PRODUCTS_DIR; };
-		815098BF2C9241D000F014EA /* VectorWithClass.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VectorWithClass.cpp; sourceTree = "<group>"; };
-		815098C02C9241D000F014EA /* VectorWithClass.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VectorWithClass.hpp; sourceTree = "<group>"; };
+		8150990C2C98839B00F014EA /* SfmlHomebrewDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SfmlHomebrewDemo; sourceTree = BUILT_PRODUCTS_DIR; };
+		8150990F2C98839B00F014EA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		815098B22C923CD800F014EA /* Frameworks */ = {
+		815099092C98839B00F014EA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,66 +38,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		815098AC2C923CD800F014EA = {
+		815099032C98839A00F014EA = {
 			isa = PBXGroup;
 			children = (
-				815098B72C923CD800F014EA /* MakeYourOwnVectorWithClass */,
-				815098B62C923CD800F014EA /* Products */,
+				8150990E2C98839B00F014EA /* SfmlHomebrewDemo */,
+				8150990D2C98839B00F014EA /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		815098B62C923CD800F014EA /* Products */ = {
+		8150990D2C98839B00F014EA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				815098B52C923CD800F014EA /* MakeYourOwnVectorWithClass */,
+				8150990C2C98839B00F014EA /* SfmlHomebrewDemo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		815098B72C923CD800F014EA /* MakeYourOwnVectorWithClass */ = {
+		8150990E2C98839B00F014EA /* SfmlHomebrewDemo */ = {
 			isa = PBXGroup;
 			children = (
-				815098BF2C9241D000F014EA /* VectorWithClass.cpp */,
-				815098C02C9241D000F014EA /* VectorWithClass.hpp */,
+				8150990F2C98839B00F014EA /* main.cpp */,
 			);
-			path = MakeYourOwnVectorWithClass;
+			path = SfmlHomebrewDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		815098B42C923CD800F014EA /* MakeYourOwnVectorWithClass */ = {
+		8150990B2C98839B00F014EA /* SfmlHomebrewDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 815098BC2C923CD800F014EA /* Build configuration list for PBXNativeTarget "MakeYourOwnVectorWithClass" */;
+			buildConfigurationList = 815099132C98839B00F014EA /* Build configuration list for PBXNativeTarget "SfmlHomebrewDemo" */;
 			buildPhases = (
-				815098B12C923CD800F014EA /* Sources */,
-				815098B22C923CD800F014EA /* Frameworks */,
-				815098B32C923CD800F014EA /* CopyFiles */,
+				815099082C98839B00F014EA /* Sources */,
+				815099092C98839B00F014EA /* Frameworks */,
+				8150990A2C98839B00F014EA /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = MakeYourOwnVectorWithClass;
-			productName = MakeYourOwnVectorWithClass;
-			productReference = 815098B52C923CD800F014EA /* MakeYourOwnVectorWithClass */;
+			name = SfmlHomebrewDemo;
+			productName = SfmlHomebrewDemo;
+			productReference = 8150990C2C98839B00F014EA /* SfmlHomebrewDemo */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		815098AD2C923CD800F014EA /* Project object */ = {
+		815099042C98839A00F014EA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
-					815098B42C923CD800F014EA = {
+					8150990B2C98839B00F014EA = {
 						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
-			buildConfigurationList = 815098B02C923CD800F014EA /* Build configuration list for PBXProject "MakeYourOwnVectorWithClass" */;
+			buildConfigurationList = 815099072C98839A00F014EA /* Build configuration list for PBXProject "SfmlHomebrewDemo" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -106,29 +104,29 @@
 				en,
 				Base,
 			);
-			mainGroup = 815098AC2C923CD800F014EA;
-			productRefGroup = 815098B62C923CD800F014EA /* Products */;
+			mainGroup = 815099032C98839A00F014EA;
+			productRefGroup = 8150990D2C98839B00F014EA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				815098B42C923CD800F014EA /* MakeYourOwnVectorWithClass */,
+				8150990B2C98839B00F014EA /* SfmlHomebrewDemo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		815098B12C923CD800F014EA /* Sources */ = {
+		815099082C98839B00F014EA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				815098C12C9241D000F014EA /* VectorWithClass.cpp in Sources */,
+				815099102C98839B00F014EA /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		815098BA2C923CD800F014EA /* Debug */ = {
+		815099112C98839B00F014EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -189,7 +187,7 @@
 			};
 			name = Debug;
 		};
-		815098BB2C923CD800F014EA /* Release */ = {
+		815099122C98839B00F014EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -243,7 +241,7 @@
 			};
 			name = Release;
 		};
-		815098BD2C923CD800F014EA /* Debug */ = {
+		815099142C98839B00F014EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -251,7 +249,7 @@
 			};
 			name = Debug;
 		};
-		815098BE2C923CD800F014EA /* Release */ = {
+		815099152C98839B00F014EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -262,25 +260,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		815098B02C923CD800F014EA /* Build configuration list for PBXProject "MakeYourOwnVectorWithClass" */ = {
+		815099072C98839A00F014EA /* Build configuration list for PBXProject "SfmlHomebrewDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				815098BA2C923CD800F014EA /* Debug */,
-				815098BB2C923CD800F014EA /* Release */,
+				815099112C98839B00F014EA /* Debug */,
+				815099122C98839B00F014EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		815098BC2C923CD800F014EA /* Build configuration list for PBXNativeTarget "MakeYourOwnVectorWithClass" */ = {
+		815099132C98839B00F014EA /* Build configuration list for PBXNativeTarget "SfmlHomebrewDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				815098BD2C923CD800F014EA /* Debug */,
-				815098BE2C923CD800F014EA /* Release */,
+				815099142C98839B00F014EA /* Debug */,
+				815099152C98839B00F014EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 815098AD2C923CD800F014EA /* Project object */;
+	rootObject = 815099042C98839A00F014EA /* Project object */;
 }
