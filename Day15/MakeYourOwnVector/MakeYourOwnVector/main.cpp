@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "vector.hpp"
+#include <cassert>
 
 int main(int argc, const char * argv[]) {
     
