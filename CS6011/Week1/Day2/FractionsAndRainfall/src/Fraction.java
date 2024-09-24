@@ -4,6 +4,7 @@ public class Fraction {
     long numerator;
     long denominator;
 
+// Fractions should have the following private methods (along with any other that you need to add):
     long GCD() {
 // Returns the greatest common divisor of this fraction's numerator and denominator. This is a helper method for the reduce method, below.
 // Use the following iterative algorithm to compute the GCD:
@@ -96,7 +97,6 @@ public class Fraction {
         return num / den;
     }
 
-// Fractions should have the following private methods (along with any other that you need to add):
 
     public static void main(String[] args) {
         Fraction myObj = new Fraction();
