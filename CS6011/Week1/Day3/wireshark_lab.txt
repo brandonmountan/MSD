@@ -2,8 +2,6 @@ What data is being sent to the other computer?  Examine the packets in Wireshark
 
 
 
-
-
 Open the "Internet Protocol Version 4" section - what is the source address, the destination address?
 
 For a request:
@@ -20,13 +18,9 @@ Open the Data section - how do the integer values compare with the ASCII that is
 08090a0b0c0d0e0f 1011121314151617 18191a1b1c1d1e1f2 0212223242526272 8292a2b2c2d2e2f3 031323334353637
 
 
-
-
-
 How long does it take a ping packet to travel to your classmate's machine and back?
 
 time=25.302 ms
-
 
 Try ping google.com. How long does it take these ping packets to travel?
 
@@ -35,5 +29,6 @@ time=18.774 ms
 Try ping www.louvre.fr. How long does this take? What do these numbers tell you?
 
 Getting a request timeout by my partners was about 140 ms.
+The French website takes a lot longer so it the time must correlate to distance.
 
 

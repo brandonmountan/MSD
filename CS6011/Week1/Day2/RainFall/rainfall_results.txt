@@ -1,1 +1,12 @@
-Hello world
+The average rainfall for January is 4.30 inches 
+The average rainfall for February is 4.23 inches 
+The average rainfall for March is 4.80 inches 
+The average rainfall for April is 3.58 inches 
+The average rainfall for May is 3.59 inches 
+The average rainfall for June is 4.28 inches 
+The average rainfall for July is 4.36 inches 
+The average rainfall for August is 4.08 inches 
+The average rainfall for September is 3.80 inches 
+The average rainfall for October is 2.76 inches 
+The average rainfall for November is 3.73 inches 
+The average rainfall for December is 4.69 inches 
