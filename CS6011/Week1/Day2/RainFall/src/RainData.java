@@ -1,6 +1,4 @@
 import java.io.File;
-import java.io.FileInputStream;
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner; // Import the Scanner class to read text files

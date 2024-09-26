@@ -32,3 +32,23 @@ Getting a request timeout by my partners was about 140 ms.
 The French website takes a lot longer so it the time must correlate to distance.
 
 
+HTTP
+
+
+Next we'll look at basic web traffic using HTTP. Record with Wireshark while you open example.com in a web browser. Again, examine the network traffic generated. Make sure you can locate the HTTP response, and the HTTP reply in the output. You can hide irrelevant network traffic by using Wireshark's filter bar. For example, adding tcp.port == 80 to the filter bar will hide all packets except the ones on the default HTTP port.
+
+Did you see more than you expected in the output? Can you figure out what other data was sent/received?
+
+I expected to only see one request for example.com and I see GET/favicon.ico HTTP/1.1. There was another request to espn.com which is not open in any of my browsers but has my IP address in the destination.
+
+Try doing the same experiment again, but instead of opening example.com in a web browser, use the command line tool curl. Type man curl at the command prompt - what is the purpose of the curl program? Now run curl example.com while Wireshark is recording.
+
+Curl is used to transfer data to and from a server.
+
+How are your results different / similar?
+
+The code for the website displays in the terminal. The Wireshark data seems to have less stuff.
+
+Finally, try going to http://github.com using Safari or Firefox (not Chrome! It does its own weird thing), and see what happens. (What URL actually show's up when GitHub is loaded? It's not exactly what you typed in.) Can you understand the output from Wireshark? Why can you only read the first couple of messages?
+
+I am not getting the HTTP protocol in Wireshark only TCP
