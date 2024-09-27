@@ -30,7 +30,7 @@ public class RainData {
         try {
             File myFile = new File("rainfall_data.txt");
             Scanner fileReader = new Scanner(myFile);
-            fileReader.useDelimiter("\\s");
+            fileReader.useDelimiter("\\s+");
             while (fileReader.hasNext()) {
                 String data = fileReader.next();
                 test.add(data);

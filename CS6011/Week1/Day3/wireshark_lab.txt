@@ -49,6 +49,10 @@ How are your results different / similar?
 
 The code for the website displays in the terminal. The Wireshark data seems to have less stuff.
 
-Finally, try going to http://github.com using Safari or Firefox (not Chrome! It does its own weird thing), and see what happens. (What URL actually show's up when GitHub is loaded? It's not exactly what you typed in.) Can you understand the output from Wireshark? Why can you only read the first couple of messages?
+Finally, try going to http://github.com using Safari or Firefox (not Chrome! It does its own weird thing), and see what happens. (What URL actually show's up when GitHub is loaded? It's not exactly what you typed in.)
 
-I am not getting the HTTP protocol in Wireshark only TCP
+https://github.com
+
+Can you understand the output from Wireshark? Why can you only read the first couple of messages?
+
+I am not getting the HTTP protocol in Wireshark only TCP.
