@@ -5,6 +5,7 @@ import java.net.Socket;
 public class Server {
     public static void main(String[] args) throws Exception {
         ServerSocket serverSocket = new ServerSocket(8080);
+
         System.out.println("Server started on port 8080");
 
         while (true) {
@@ -18,7 +19,7 @@ public class Server {
             System.out.println("Request: " + requestLine);
 
             if (requestLine.startsWith("GET /index.html HTTP/1.1")) {
-                // Read index.html file
+
                 File indexFile = new File("./resources/index.html");
                 if (indexFile.exists()) {
                     BufferedReader fileReader = new BufferedReader(new FileReader(indexFile));

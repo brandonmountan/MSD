@@ -40,6 +40,12 @@ public class Fraction {
         if (d < 0) {
             denominator = denominator * -1;
             numerator = numerator * -1;
+        } else if (d == 0) {
+            try {
+                System.out.println(n/d);
+            } catch (ArithmeticException e) {
+                System.out.println("Cannot divide by 0!");
+            }
         }
         reduce();
     }
