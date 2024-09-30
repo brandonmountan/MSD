@@ -41,9 +41,9 @@ class FractionTest {
         Assertions.assertEquals( f14.toString(), "-2/1");
         Assertions.assertEquals( f14.toDouble(), -2);
 
-        Fraction f15 = new Fraction( 10, 0 );
+        Fraction f15 = new Fraction( 3453, 0 );
 //        Fraction f16 = f15.reciprocal();
         Assertions.assertEquals( f15.toString(), "1/0");
-//        Assertions.assertEquals( f16.toString(), "0/10");
+//        Assertions.assertEquals( f15.toDouble(), Infinity);
     }
 }
