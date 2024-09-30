@@ -2,7 +2,7 @@ import static java.lang.Math.abs;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Fraction {
+public class Fraction implements Comparable<Fraction> {
     long numerator;
     long denominator;
 
@@ -98,6 +98,21 @@ public class Fraction {
         double num = numerator;
         double den = denominator;
         return num / den;
+    }
+
+    @Override
+    public int compareTo(Fraction o) {
+        double f1 = this.toDouble();
+        double f2 = o.toDouble();
+//        if (f1 < f2) {
+//            return -1;
+//        } else if (f1 > f2) {
+//            return 1;
+//        } else if (f1 == f2) {
+//            return 0;
+//        }
+//        return 0;
+        return Double.compare(f1, f2);
     }
 
 

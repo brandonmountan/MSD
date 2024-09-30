@@ -1,12 +1,18 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 // Test Class
 class FractionTest {
     @Test
     public void runAllTests() {
         // Qualify the assertEquals() with "Assertions." to say that it comes from the Assertions library.
         // Assertions library, as can be seen from the import, is: org.junit.jupiter.api.Assertions.
-//        Assertions.assertEquals(3,3); // Dummy assert... put real code here.
+        // Assertions.assertEquals(3,3); // Dummy assert... put real code here.
         Fraction f0 = new Fraction();
         Fraction f1 = new Fraction(2,4 );
         Fraction f2 = new Fraction( 1, 3 );
@@ -45,5 +51,13 @@ class FractionTest {
 //        Fraction f16 = f15.reciprocal();
         Assertions.assertEquals( f15.toString(), "1/0");
 //        Assertions.assertEquals( f15.toDouble(), Infinity);
+
+        Fraction[] fractions = new Fraction[]{
+               f1, f2, f8, f9
+        };
+        Arrays.sort(fractions);
+        Assertions.assertEquals (fractions[0].toString(), "-1/2");
+
+
     }
 }
