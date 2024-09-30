@@ -44,6 +44,8 @@ public class MyHttpServer {
                                     output.flush(); // flush to make sure data is actually sent out over the network
 
                                     clientSocket.getOutputStream().write(fileData);
+                                } catch (IOException e) {
+                                    System.out.println("Error: " + e);
                                 }
                             } else {
                                 output.println("HTTP/1.1 404 Not Found");
@@ -51,6 +53,8 @@ public class MyHttpServer {
                             }
                         }
                     }
+                } catch (IOException e) {
+                    System.out.println("Error: " + e);
                 }
             }
         }
