@@ -57,7 +57,8 @@ class FractionTest {
         };
         Arrays.sort(fractions);
         Assertions.assertEquals (fractions[0].toString(), "-1/2");
-
-
+        Assertions.assertEquals (fractions[1].toString(), "-1/3");
+        Assertions.assertEquals (fractions[2].toString(), "1/3");
+        Assertions.assertEquals (fractions[3].toString(), "1/2");
     }
 }

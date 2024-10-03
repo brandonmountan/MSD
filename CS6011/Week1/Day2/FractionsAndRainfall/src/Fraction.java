@@ -104,14 +104,6 @@ public class Fraction implements Comparable<Fraction> {
     public int compareTo(Fraction o) {
         double f1 = this.toDouble();
         double f2 = o.toDouble();
-//        if (f1 < f2) {
-//            return -1;
-//        } else if (f1 > f2) {
-//            return 1;
-//        } else if (f1 == f2) {
-//            return 0;
-//        }
-//        return 0;
         return Double.compare(f1, f2);
     }
 
