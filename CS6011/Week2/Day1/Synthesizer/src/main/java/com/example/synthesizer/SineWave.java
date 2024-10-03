@@ -13,7 +13,7 @@ public class SineWave implements AudioComponent {
         // produce sin wave
         // sample[ i ] = maxValue * sine( 2*pi*frequency * i / sampleRate );
         for (int i = 0; i < 88200; i++) {
-            int maxValue = 300;
+            int maxValue = 15000;
             audioclip.setSample(i, (int)(maxValue * Math.sin( 2 * Math.PI * frequency_ * i / 44100 )));
         }
         return audioclip;

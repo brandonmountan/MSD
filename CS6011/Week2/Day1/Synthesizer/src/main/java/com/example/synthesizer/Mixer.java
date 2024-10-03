@@ -4,28 +4,23 @@ import java.util.ArrayList;
 
 public class Mixer implements AudioComponent {
 
-
     @Override
     public AudioClip getClip() {
-//        A mixer is very similar to a filter except it can take multiple
-//        inputs. To use it, you'll the connectInput() method once for each
-//        input you want to add up. You'll need to update the connectInput()
-//        method of your AudioComponent interface to allow specifying which
-//
-//        Create a mixer that creates an audio clip that adds all the input
-//        signals together to produce the output.
-//
-//        Test that you create 2 sine waves of different frequencies
-//        (pitches), make them softer using your volume filter, then
-//        add them together and play the output. Note: if you don't scale
-//        volumes or implement clamping, you'll get really weird sounding
-//        output!
-
         AudioClip mixedClip = new AudioClip();
-        for (int i = 0; i < inputs.size(); i++) {
-            AudioClip loopClip = inputs.get(i).getClip();
-            for (int j = 0; j < 88200; i++){
-                mixedClip.setSample(j, (mixedClip.getSample(j) + loopClip.getSample(j)));
+        ArrayList<AudioClip> clips = new ArrayList<>();
+        for (AudioComponent ac : inputs) {
+            clips.add(ac.getClip());
+        }
+        int sample = 0;
+        for (int i = 0; i < 88200; i++) {
+            for (AudioClip clip : clips) {
+                sample += clip.getSample(i);
+                if (sample > 32000) {
+                    sample = 32000;
+                } else if (sample < -32000) {
+                    sample = -32000;
+                }
+                mixedClip.setSample(i, sample);
             }
         }
         return mixedClip;
@@ -37,8 +32,8 @@ public class Mixer implements AudioComponent {
     }
 
     @Override
-    public void connectInput(AudioComponent ac, int index) {
-        inputs.add(ac);
+    public void connectInput(AudioComponent input, int index) {
+        inputs.add(input);
     }
 
     ArrayList<AudioComponent> inputs = new ArrayList<>();
