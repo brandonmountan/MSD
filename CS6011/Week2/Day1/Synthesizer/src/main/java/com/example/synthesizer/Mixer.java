@@ -32,7 +32,7 @@ public class Mixer implements AudioComponent {
     }
 
     @Override
-    public void connectInput(AudioComponent input, int index) {
+    public void connectInput(AudioComponent input) {
         inputs.add(input);
     }
 

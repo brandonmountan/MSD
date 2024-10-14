@@ -1,0 +1,38 @@
+Display hello world in your HTML page using JavaScript: first use document.writeln(), second use console.log(). What's the difference? Why would you want to use one or the other?
+
+Document.println prints the string "hello world" onto the webpage. console.log prints the string "hello world" to the console of the webpage. You can use console.log to check what things are at a certain point of the code without interfering with the content on the webpage.
+
+Print your array using console.log( myArray ).  Now modify it somehow, then print it again. Examine the console output (try "opening" the print out).  What do you notice? You might see weird stuff happen depending on your browser.
+
+(5) ['hello', true, 4, 2.5, {…}]
+0
+: 
+"hello"
+1
+: 
+true
+2
+: 
+4
+3
+: 
+2.5
+4
+: 
+{gpa: 4}
+length
+: 
+5
+[[Prototype]]
+: 
+Array(0)
+
+It provides the index and what is stored at that index. It provides information about the array like length.
+
+Which syntax do you prefer? Can you detect any difference between the two ways of declaring functions?
+
+It is less typing to declare the function without let so function sum(a, b){...};
+
+Test your functions using ints, floating point numbers, strings, and a mix of these. What do you observe?
+
+I observe the function being able to add any of the variable types together.

@@ -25,7 +25,7 @@ public class SineWave implements AudioComponent {
     }
 
     @Override
-    public void connectInput(AudioComponent ac, int index) {
+    public void connectInput(AudioComponent ac) {
         System.out.println("no connectInput for SineWave");
     }
 

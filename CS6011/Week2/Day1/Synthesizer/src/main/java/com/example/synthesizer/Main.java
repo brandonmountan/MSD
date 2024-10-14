@@ -47,7 +47,7 @@ public class Main {
         // TEST linear ramp vfsine wave
         LinearRamp linearRamp = new LinearRamp(50, 2000);
         VFSineWave vfSineWave = new VFSineWave();
-        vfSineWave.connectInput(linearRamp, 0);
+        vfSineWave.connectInput(linearRamp);
         AudioClip audioClip = vfSineWave.getClip();
 
         c.open( format16, audioClip.getData(), 0, audioClip.getData().length ); // Reads data from our byte array to play it.

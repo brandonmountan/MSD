@@ -17,7 +17,7 @@ public class LinearRamp implements AudioComponent {
     }
 
     @Override
-    public void connectInput(AudioComponent ac, int index) {
+    public void connectInput(AudioComponent ac) {
         assert false;
     }
 

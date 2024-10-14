@@ -16,8 +16,7 @@ public class AudioClip {
     //    You will need to use bitwise operators to perform these conversions! The ints that are passed/returned should
     //    be in the range of shorts. These are the closest thing we can do in Java to overloading operator[].
     int getSample(int index) {
-        int sample = (audioData[index*2 + 1] << 8) | (audioData[index*2] & 0xff);
-        return sample;
+        return (audioData[index*2 + 1] << 8) | (audioData[index*2] & 0xff);
     };
 
     int setSample(int index, int value) {

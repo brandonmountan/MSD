@@ -13,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 
 import javax.sound.sampled.Line;
-import java.awt.*;
 
 public class AudioComponentWidget extends Pane {
 
@@ -38,13 +37,13 @@ public class AudioComponentWidget extends Pane {
         rightSide.getChildren().add(close);
         rightSide.getChildren().add(circle);
 
-        VBox left = new VBox();
+        VBox leftSide = new VBox();
         Label title = new Label(name);
         Slider slider = new Slider();
-        left.getChildren().add(title);
-        left.getChildren().add(slider);
+        leftSide.getChildren().add(title);
+        leftSide.getChildren().add(slider);
 
-        baseLayout.getChildren().add(left);
+        baseLayout.getChildren().add(leftSide);
         baseLayout.getChildren().add(rightSide);
 
         this.setLayoutX(50);
@@ -61,6 +60,6 @@ public class AudioComponentWidget extends Pane {
     private AudioComponentWidget widegetIamSendingOutputTo = null;
     private String name_;
     private Line line_;
-    private Label nameLable_;
+    private Label nameLabel_;
     double mouseStartDragX_, mouseStartDragY_, widgetStartDragX_, widgetStartDragY_;
 }
