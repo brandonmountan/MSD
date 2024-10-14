@@ -20,8 +20,8 @@ public class SineWave implements AudioComponent {
     }
 
     @Override
-    public Boolean hasInputs() {
-        return null;
+    public boolean hasInputs() {
+        return false;
     }
 
     @Override

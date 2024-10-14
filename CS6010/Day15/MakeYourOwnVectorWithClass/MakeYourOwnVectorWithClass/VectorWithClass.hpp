@@ -127,10 +127,10 @@ void myVector<T>::pushBack(T pushedInt){
    arrayPtr[size++] = pushedInt;
 };
 
-template<typename T>
-bool myVector<T>::operator<(myVector rhs){
-    
-};
+//template<typename T>
+//bool myVector<T>::operator<(myVector rhs){
+//    
+//};
 
 
 template<typename T>

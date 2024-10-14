@@ -27,7 +27,7 @@ public class Mixer implements AudioComponent {
     }
 
     @Override
-    public Boolean hasInputs() {
+    public boolean hasInputs() {
         return true;
     }
 

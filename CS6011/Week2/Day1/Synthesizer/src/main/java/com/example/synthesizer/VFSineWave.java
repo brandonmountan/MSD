@@ -13,7 +13,7 @@ public class VFSineWave implements AudioComponent {
     }
 
     @Override
-    public Boolean hasInputs() {
+    public boolean hasInputs() {
         return true;
     }
 

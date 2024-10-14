@@ -12,7 +12,7 @@ public class LinearRamp implements AudioComponent {
     }
 
     @Override
-    public Boolean hasInputs() {
+    public boolean hasInputs() {
         return false;
     }
 

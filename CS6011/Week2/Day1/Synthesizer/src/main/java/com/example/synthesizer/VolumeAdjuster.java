@@ -20,7 +20,7 @@ public class VolumeAdjuster implements AudioComponent {
 
 //    boolean hasInput() - can you connect something to this as an input?
     @Override
-    public Boolean hasInputs() {
+    public boolean hasInputs() {
         return true;
     }
 
