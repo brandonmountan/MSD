@@ -34,5 +34,5 @@ public class VolumeAdjuster implements AudioComponent {
     }
 
     private AudioComponent input; // setInput()
-    private int scale;
+    public int scale;
 }
