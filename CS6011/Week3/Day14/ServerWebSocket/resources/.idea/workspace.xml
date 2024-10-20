@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f969d0ee-9ee1-4c12-ae0e-a7581fc6b3fc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/Cable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Day12/Sorting.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Day12/Sorting/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Day12/Sorting/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Day12/Sorting/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Day12/Sorting/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Day12/Sorting/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/AudioComponentWidget.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/AudioComponentWidget.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/LinearRamp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/LinearRamp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/LinearRampACW.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/LinearRampACW.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/MixerACW.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/MixerACW.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/SineWaveACW.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/SineWaveACW.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/SynthesizeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/SynthesizeApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/VFSineWaveACW.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/VFSineWaveACW.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/VolumeAdjusterACW.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Week2/Day1/Synthesizer/src/main/java/com/example/synthesizer/VolumeAdjusterACW.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2nZVmoJ8v7QDYLkqu3IZRUzxliV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
+    "Node.js.app.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f969d0ee-9ee1-4c12-ae0e-a7581fc6b3fc" name="Changes" comment="" />
+      <created>1729180748477</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729180748477</updated>
+      <workItem from="1729180749472" duration="5634000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -3,6 +3,7 @@ package com.example.synthesizer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Slider;
@@ -15,10 +16,8 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Line;
 
-
 import javax.sound.sampled.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -28,8 +27,9 @@ import javafx.scene.control.Label;
 
 import javafx.event.ActionEvent;
 
+import javafx.scene.input.MouseEvent;
+
 public class SynthesizeApplication extends Application {
-    private Line line = null;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -61,6 +61,10 @@ public class SynthesizeApplication extends Application {
         mainCanvas_ = new AnchorPane();
         mainCanvas_.setStyle("-fx-background-color: darkgrey");
 
+        mainCanvas_.setOnMouseClicked(this::mouseClicked);
+//        mainCanvas_.setOnMouseDragged(this::mouseDragged);
+        mainCanvas_.setOnMouseReleased(this::mouseReleased);
+
         AudioComponent mixer = new Mixer();
         MixerACW mixerAcw = new MixerACW(mixer, mainCanvas_, "Mixer/\nSpeaker");
         mainCanvas_.getChildren().add(mixerAcw);
@@ -70,12 +74,6 @@ public class SynthesizeApplication extends Application {
         Button playBtn = new Button("Play");
         playBtn.setOnAction(e -> play());
         bottomPane.getChildren().add(playBtn);
-
-        for (AudioComponentWidget acw: allWidgets_) {
-            acw.outputJack.setOnMouseClicked(e -> {
-                System.out.println(acw.outputJack.getCenterX());
-            });
-        }
 
         Label title = new Label("Brandon Mountan's Synthesizer");
 
@@ -130,6 +128,7 @@ public class SynthesizeApplication extends Application {
             allWidgets_.add(acw);
         } else if (Objects.equals(name, "VFSineWave")) {
             AudioComponent ac = new VFSineWave();
+            ac.connectInput(allWidgets_.getFirst().getAudioComponent());
             VFSineWaveACW acw = new VFSineWaveACW(ac, mainCanvas_, "VFSineWave");
             mainCanvas_.getChildren().add(acw);
             allWidgets_.add(acw);
@@ -140,11 +139,47 @@ public class SynthesizeApplication extends Application {
         launch();
     }
 
-    public static void removeWidget(AudioComponentWidget ac) {
-        allWidgets_.remove(ac);
+    public static void removeWidget(AudioComponentWidget acw) {
+        allWidgets_.remove(acw);
     }
 
-    public static AnchorPane mainCanvas_;
+    private void mouseClicked(MouseEvent e) {
+        for (AudioComponentWidget acw : allWidgets_) {
+            Point2D mouseLocalPoint = acw.outputJack.sceneToLocal(e.getSceneX(), e.getSceneY());
+            boolean mousePointInJack = acw.outputJack.contains(mouseLocalPoint);
+            if (mousePointInJack) {
+                System.out.println("mouse clicked on output jack");
+            } else {
+                System.out.println("mouse not clicked on output jack");
+            }
+        }
+    }
 
+//    public void mouseDragged(MouseEvent e) {
+//        //
+//    }
+
+
+    public void mouseReleased(MouseEvent e) {
+        for (AudioComponentWidget acw : allWidgets_) {
+            // check if mouse is released within input jack
+            if (acw.inputJack != null) {
+                Point2D mouseLocalPoint = acw.inputJack.sceneToLocal(e.getSceneX(), e.getSceneY());
+                boolean mousePointInJack = acw.inputJack.contains(mouseLocalPoint);
+                if (mousePointInJack) {
+                    System.out.println("mouse released on input jack");
+                } else {
+                    System.out.println("mouse not released in input jack");
+                }
+            } else {
+                System.out.println("input jack is null");
+            }
+        }
+    }
+
+
+    public static AnchorPane mainCanvas_;
     public static ArrayList<AudioComponentWidget> allWidgets_ = new ArrayList<>();
+
+    //    public static ArrayList<Cable> connectedWidgets_ = new ArrayList<>();
 }

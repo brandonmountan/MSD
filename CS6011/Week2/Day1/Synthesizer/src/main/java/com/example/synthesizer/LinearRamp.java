@@ -26,6 +26,6 @@ public class LinearRamp implements AudioComponent {
         this.stop = stop;
     }
 
-    private float start;
-    private float stop;
+    public float start;
+    protected float stop;
 }

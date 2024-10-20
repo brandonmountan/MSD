@@ -25,6 +25,9 @@ public class AudioComponentWidget extends Pane {
         baseLayout.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3");
         this.getChildren().add(baseLayout);
 
+        Label title = new Label(name);
+        baseLayout.getChildren().add(title);
+
         VBox leftSide = new VBox();
         leftSide.setAlignment(Pos.CENTER);
         leftSide.setPadding(new Insets(3));

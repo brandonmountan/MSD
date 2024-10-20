@@ -5,6 +5,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import org.w3c.dom.Text;
 
 public class SineWaveACW extends AudioComponentWidget {
@@ -15,9 +16,6 @@ public class SineWaveACW extends AudioComponentWidget {
 
         VBox rightSide = new VBox();
 
-        Label title = new Label(name);
-        rightSide.getChildren().add(title);
-
         Slider slider = new Slider(0, 1000, 440);
         slider.valueChangingProperty().addListener(e -> handleSlider(slider));
         rightSide.getChildren().add(slider);
@@ -26,6 +24,8 @@ public class SineWaveACW extends AudioComponentWidget {
         outputJack.setFill(Color.STEELBLUE);
         outputJack.setRadius(10);
         baseLayout.getChildren().add(outputJack);
+
+        inputJack = null;
     }
 
     private void handleSlider(Slider slider) {
