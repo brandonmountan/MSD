@@ -2,12 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Calculator</title>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <label style="display:block"> X = <input id="xVal"/></label> <label> Y = <input id="yVal"/></label>
-    <button style="display:block;" id="calculate">Calculate</button>
-    <label  id="result"> result = </label>
-    <script type="text/javascript" src="script.js" defer></script>
+<h1>Simple Calculator</h1>
+<input type="number" id="x" placeholder="Enter x" required>
+<input type="number" id="y" placeholder="Enter y" required>
+<button id="calculateBtn">Calculate</button>
+<div id="result"></div>
+
+<h2>WebSocket Calculator</h2>
+<input type="number" id="wsX" placeholder="X for WS">
+<input type="number" id="wsY" placeholder="Y for WS">
+<button id="wsCalculateBtn">Calculate via WebSocket</button>
+<div id="wsResult"></div>
 </body>
 </html>
