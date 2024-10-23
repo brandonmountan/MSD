@@ -1,71 +1,53 @@
-"use strict";
+window.onload = function() {
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
 
-let thomas = { 'x': 100, 'y': 150, 'speed': Math.floor( Math.random()/2+.5 ) };
-thomas.img = new Image();
-thomas.img.src = "tsticker.png";
+    let mouseX = 0, mouseY = 0;
+    let mainObj = {x: 100, y: 150};
+    mainObj.img = new Image();
+    mainObj.img.src = 'tsticker.png';
 
-let brandon = { 'x': Math.random()*10+10, 'y': 0, 'speed': Math.floor( Math.random()*2+3 ) }
-brandon.img = new Image();
-brandon.img.src = "bsticker.png";
+    // Wait for the main object image to load
+    mainObj.img.onload = function() {
+        // Start updating once the image is loaded
+        update();
+    };
 
-let can = document.getElementById( 'mycanvas' );
-let context = can.getContext( '2d' );
+    document.addEventListener("mousemove", function(event) {
+        mouseX = event.clientX; // Use clientX for relative position
+        mouseY = event.clientY; // Use clientY for relative position
+    });
 
-context.drawImage( thomas.img, thomas.x, thomas.y, 40, 50 );
-context.drawImage( brandon.img, brandon.x, brandon.y, 40, 50 );
+    let chasers = [];
+    for (let i = 0; i < 5; i++) {
+        let chaser = {
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            img: new Image()
+        };
+        chaser.img.src = 'bsticker.png';
 
-// can.style.cursor = "none";
-
-let cursorLocation = { x: 0, y: 0 };
-
-function handleMouseMove( e ) {
-    thomas.x = e.x;
-    thomas.y = e.y;
-    cursorLocation.x = e.x;
-    cursorLocation.y = e.y;
-}
-
-function handleBrandonMoveX() {
-    if ( Math.abs(brandon.x - cursorLocation.x ) < brandon.speed ) {
-        brandon.x = cursorLocation.x;
+        // Wait for each chaser's image to load
+        chaser.img.onload = function() {
+            chasers.push(chaser);
+        };
     }
-    else if ( brandon.x < cursorLocation.x ) {
-        brandon.x += brandon.speed
-    } else {
-        brandon.x -= brandon.speed
+
+    function update() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw the main object centered around the mouse
+        ctx.drawImage(mainObj.img, mouseX - 20, mouseY - 25, 40, 50); // Adjusted to center the image
+
+        chasers.forEach(chaser => {
+            let angle = Math.atan2(mouseY - chaser.y, mouseX - chaser.x);
+            chaser.x += Math.cos(angle) * 2; // Speed of chasers
+            chaser.y += Math.sin(angle) * 2;
+
+            // Draw chasers
+            ctx.drawImage(chaser.img, chaser.x - 20, chaser.y - 25, 40, 50); // Adjusted to center the image
+        });
+
+        requestAnimationFrame(update);
     }
-}
-
-function handleBrandonMoveY() {
-    if ( Math.abs( brandon.y - cursorLocation.y ) < brandon.speed ) {
-        brandon.y = cursorLocation.y
-    } else if ( brandon.y < cursorLocation.y ) {
-        brandon.y += brandon.speed
-    } else {
-        brandon.y -= brandon.speed
-    }
-}
-
-
-function draw() {
-    context.clearRect( 0, 0, 1000, 1000 );
-    context.drawImage( thomas.img, thomas.x, thomas.y, 40, 50 );
-    context.drawImage( brandon.img, brandon.x, brandon.y, 30, 50 );
-    context.drawImage( brandon.img, brandon.x, brandon.y, 30, 50 );
-    context.drawImage( brandon.img, brandon.x, brandon.y, 30, 50 );
-    context.drawImage( brandon.img, brandon.x, brandon.y, 30, 50 );
-
-}
-
-function mainGameLoop() {
-    handleBrandonMoveX();
-    handleBrandonMoveY();
-    draw();
-    window.requestAnimationFrame( mainGameLoop );
-}
-
-mainGameLoop();
-
-can.onmousemove = handleMouseMove;
-
-console.log("brandon speed: " + brandon.speed);
+};
