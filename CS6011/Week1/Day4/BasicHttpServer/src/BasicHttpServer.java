@@ -4,6 +4,7 @@ import java.net.Socket;
 
 public class BasicHttpServer {
     public static void main(String[] args) {
+        // try with resources
         try (ServerSocket serverSocket = new ServerSocket(8080)) {
             System.out.println("Server is listening on port 8080");
             while (true) {
