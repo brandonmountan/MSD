@@ -7,7 +7,8 @@ public class Main {
     public static final String RESOURCE_DIR = "resources/";
 
     public static void main(String[] args) {
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+        try {
+            ServerSocket serverSocket = new ServerSocket(PORT);
             System.out.println("Server is listening on port " + PORT);
             while (true) {
                 try {
