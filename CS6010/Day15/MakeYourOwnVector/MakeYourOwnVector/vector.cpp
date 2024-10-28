@@ -2,50 +2,72 @@
 //  vector.cpp
 //  MakeYourOwnVector
 //
-//  Created by Brandon Mountan on 9/10/24.
+//  Created by Brandon Mountan on 09/10/24.
 //
+
 
 #include "vector.hpp"
 
- myVector myVector::makeVector(int initialCapacity){
-    int* createdPtr = new int[initialCapacity];
-    myVector createdVector;
-    createdVector.capacity = initialCapacity;
-    createdVector.size = 0;
-    createdVector.arrayPtr = createdPtr;
-    return createdVector;
+// Create a vector with given initial capacity
+MyVector makeVector(size_t initialCapacity) {
+    MyVector vec;
+    vec.data = new int[initialCapacity]; // Allocate memory
+    vec.capacity = initialCapacity;
+    vec.size = 0;
+    return vec;
 }
 
-void myVector::freeVector(myVector &createdVector){
-    delete[] createdVector.arrayPtr;
+// Free memory allocated for the vector
+void freeVector(MyVector& myVec) {
+    delete[] myVec.data;
+    myVec.data = nullptr;
+    myVec.size = 0;
+    myVec.capacity = 0;
 }
 
-void myVector::popBack(myVector &createdVector){
-    createdVector.size = createdVector.size - 1;
-};
-
-int myVector::get(myVector &createdVector, int index){
-    return createdVector.arrayPtr[index];
-};
-
-void myVector::set(myVector &createdVector, int index, int newValue){
-    createdVector.arrayPtr[index] = newValue;
-};
-
-void myVector::grow(myVector &createdVector){
-    int* createdPtrX2 = new int[createdVector.capacity * 2];
-    for (int i = 0; i < createdVector.size; i++){
-        createdPtrX2[i] = createdVector.arrayPtr[i];
+// Push back a new element
+void pushBack(MyVector& myVec, int value) {
+    if (myVec.size == myVec.capacity) {
+        growVector(myVec);
     }
-    delete [] createdVector.arrayPtr;
-    createdVector.arrayPtr = createdPtrX2;
-    createdVector.capacity = createdVector.capacity * 2;
-};
+    myVec.data[myVec.size++] = value; // Add the new value and increment size
+}
 
-void myVector::pushBack(myVector &createdVector, int pushedInt){
-    if (createdVector.size == createdVector.capacity){
-        grow(createdVector);
+// Pop back an element
+int popBack(MyVector& myVec) {
+    if (myVec.size == 0) {
+        throw std::out_of_range("Vector is empty.");
     }
-    createdVector.arrayPtr[createdVector.size++] = pushedInt;
-};
+    return myVec.data[--myVec.size]; // Decrement size and return the last element
+}
 
+// Get an element at the specified index
+int get(const MyVector& myVec, size_t index) {
+    if (index >= myVec.size) {
+        throw std::out_of_range("Index out of range.");
+    }
+    return myVec.data[index];
+}
+
+// Set an element at the specified index
+void set(MyVector& myVec, size_t index, int newValue) {
+    if (index >= myVec.size) {
+        throw std::out_of_range("Index out of range.");
+    }
+    myVec.data[index] = newValue;
+}
+
+// Grow the vector by doubling its capacity
+void growVector(MyVector& myVec) {
+    size_t newCapacity = myVec.capacity * 2;
+    int* newData = new int[newCapacity];
+    
+    // Copy old data to new array
+    for (size_t i = 0; i < myVec.size; ++i) {
+        newData[i] = myVec.data[i];
+    }
+    
+    delete[] myVec.data; // Free old array
+    myVec.data = newData; // Update to new array
+    myVec.capacity = newCapacity; // Update capacity
+}

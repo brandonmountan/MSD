@@ -1,36 +1,30 @@
 package com.example.synthesizer;
 
-import java.lang.reflect.Array;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.Arrays;
 
 public class AudioClip {
-//    static constants for the duration, and sample rate (2.0 seconds, and 44100 respectively)
-    public static final double duration = 2.0;
-    public static final double sampleRate = 44100;
-    public static final int TOTAL_SAMPLES = 44100;
-    //    a member variable that contains the actual byte array
-    byte[] audioData = new byte[(int)(duration*sampleRate*2)];
-    //    methods int getSample( index ) and setSample( index, value ) that return/set the sample passed as an int.
-    //    You will need to use bitwise operators to perform these conversions! The ints that are passed/returned should
-    //    be in the range of shorts. These are the closest thing we can do in Java to overloading operator[].
-    int getSample(int index) {
-        return (audioData[index*2 + 1] << 8) | (audioData[index*2] & 0xff);
+    public static final int DURATION = 2;
+    public static final int SAMPLE_RATE = 44100;
+    public static final int TOTAL_SAMPLES = DURATION * SAMPLE_RATE;
+
+    private byte[] data;
+
+    public AudioClip() {
+        data = new byte[TOTAL_SAMPLES * 2];
+    }
+    public int getSample( int index ) {
+        int lowByte = data[2 * index] & 0xff;
+        int highByte = data[2 * index + 1] & 0xff;
+        return (highByte << 8) | lowByte;
     };
 
-    int setSample(int index, int value) {
-        byte leftByte = (byte)value;
-        byte rightByte = (byte)(value >> 8);
-        audioData[index*2 + 1] = rightByte;
-        audioData[index*2] = leftByte;
-        return value;
+    public void setSample( int index, int value ) {
+        value = Math.max( Short.MIN_VALUE, Math.min(Short.MAX_VALUE, value) ); // Clamping
+        data[2 * index] = ( byte ) ( value & 0xFF ); // Low byte
+        data[2 * index + 1] = ( byte ) ( (value >> 8) & 0xFF ); // High byte
     };
 
-//    A method byte[] getData() that returns our array (returning a copy isn't a bad idea to avoid issues of aliasing,
-//    check out Arrays.copyOf). We need this method because the Java library that actually plays sounds expects our data
-//    as an array of bytes.
-    byte[] getData() {
-        return Arrays.copyOf(audioData, (int) (duration*sampleRate*2));
+    public byte[] getData() {
+        return Arrays.copyOf( data, data.length );
     };
 }

@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f33f58a5-12d0-40f3-956b-9dce80d7f631" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WebSocketServer.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebSocket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Day17/MultiThreadedWebServer/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day17/MultiThreadedWebServer/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BasicHttpServer.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ClientHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HTTPRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HTTPResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
-    </list>
+    <list default="true" id="f33f58a5-12d0-40f3-956b-9dce80d7f631" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,7 +77,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1729809027775</updated>
-      <workItem from="1729809028722" duration="14663000" />
+      <workItem from="1729809028722" duration="16677000" />
     </task>
     <servers />
   </component>

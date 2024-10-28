@@ -3,33 +3,31 @@ package com.example.synthesizer;
 import java.lang.Math;
 
 public class SineWave implements AudioComponent {
-    int frequency_;
-    SineWave(int frequency) {
-        this.frequency_ = frequency;
-    }
+    public double frequency;
+    private AudioComponent input;
 
-    public AudioClip getClip() {
-        AudioClip audioclip = new AudioClip();
-        // produce sin wave
-        // sample[ i ] = maxValue * sine( 2*pi*frequency * i / sampleRate );
-        for (int i = 0; i < 88200; i++) {
-            int maxValue = 15000;
-            audioclip.setSample(i, (int)(maxValue * Math.sin( 2 * Math.PI * frequency_ * i / 44100 )));
-        }
-        return audioclip;
+    SineWave(double frequency) {
+        this.frequency = frequency;
     }
 
     @Override
-    public boolean hasInputs() {
+    public AudioClip getClip() {
+        AudioClip clip = new AudioClip();
+        for ( int i = 0; i < AudioClip.TOTAL_SAMPLES; i++ ) {
+            double sampleValue = Short.MAX_VALUE * Math.sin( 2 * Math.PI * frequency * i / AudioClip.SAMPLE_RATE );
+            clip.setSample(i, (int) sampleValue);
+        }
+        return clip;
+    }
+
+    @Override
+    public boolean hasInput() {
         return false;
     }
 
     @Override
     public void connectInput(AudioComponent ac) {
+        assert false;
         System.out.println("no connectInput for SineWave");
     }
-
-    // connectInput() -> throw error
-    // AudioComponent ac = null
-    // set freq()...
 }

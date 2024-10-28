@@ -19,22 +19,22 @@ public class Main {
         AudioComponent audioComponent1 = new SineWave(440);
 
         // TEST sinewave
-//        SineWave sineWave = new SineWave(440);
+        SineWave sineWave = new SineWave(440);
 //        AudioClip audioClip = sineWave.getClip();
 
         // TEST volume adjuster
-        VolumeAdjuster volumeAdjuster = new VolumeAdjuster(2);
-//        volumeAdjuster.connectInput(audioComponent1);
-//        AudioClip audioClip = volumeAdjuster.getClip();
+        VolumeAdjuster volumeAdjuster = new VolumeAdjuster(1);
+        volumeAdjuster.connectInput(audioComponent1);
+        AudioClip audioClip = volumeAdjuster.getClip();
 
         // TEST mixer
         // try turning down volume before playing so using volume adjuster
 //        AudioComponent audioComponent2 = new SineWave(220);
-        Mixer mixer = new Mixer();
-        volumeAdjuster.connectInput(audioComponent1);
-        mixer.connectInput(audioComponent1);
-        mixer.connectInput(volumeAdjuster);
-        AudioClip audioClip = mixer.getClip();
+//        Mixer mixer = new Mixer();
+//        volumeAdjuster.connectInput(audioComponent1);
+//        mixer.connectInput(audioComponent1);
+//        mixer.connectInput(volumeAdjuster);
+//        AudioClip audioClip = mixer.getClip();
 
         // TEST linear ramp vfsine wave
 //        LinearRamp linearRamp = new LinearRamp(50, 2000);

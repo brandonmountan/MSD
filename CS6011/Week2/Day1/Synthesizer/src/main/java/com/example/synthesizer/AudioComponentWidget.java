@@ -15,6 +15,14 @@ import javafx.scene.shape.Line;
 
 public class AudioComponentWidget extends Pane {
 
+    public AudioComponent audioComponent_;
+    private AnchorPane parent_;
+    private String name_;
+
+    public HBox baseLayout;
+    public Circle inputJack = new Circle();
+    public Circle outputJack = new Circle();
+
     AudioComponentWidget(AudioComponent ac, AnchorPane parent, String name) {
 
         audioComponent_ = ac;
@@ -49,11 +57,4 @@ public class AudioComponentWidget extends Pane {
         return audioComponent_;
     }
 
-    public AudioComponent audioComponent_;
-    private AnchorPane parent_;
-    private String name_;
-
-    public HBox baseLayout;
-    public Circle inputJack = new Circle();
-    public Circle outputJack = new Circle();
 }

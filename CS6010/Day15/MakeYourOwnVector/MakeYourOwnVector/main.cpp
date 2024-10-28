@@ -2,33 +2,42 @@
 //  main.cpp
 //  MakeYourOwnVector
 //
-//  Created by Brandon Mountan on 9/10/24.
+//  Created by Brandon Mountan on 09/10/24.
 //
+
 
 #include <iostream>
 #include "vector.hpp"
-#include <cassert>
 
-int main(int argc, const char * argv[]) {
+void testVector() {
+    MyVector vec = makeVector(2); // Initial capacity of 2
+
+    // Test pushBack
+    pushBack(vec, 10);
+    pushBack(vec, 20);
     
-    myVector v1 = myVector::makeVector(16);
-    
-    for (int i = 0; i < v1.capacity; i++){
-        myVector::pushBack(v1, i);
-        std::cout << myVector::get(v1, i) << std::endl;
+    std::cout << "Vector after pushes: ";
+    for (size_t i = 0; i < vec.size; ++i) {
+        std::cout << get(vec, i) << " ";
     }
-    
-    myVector::popBack(v1);
-    
-    for (int i = 0; i < v1.size; i++){
-        std::cout << myVector::get(v1, i) << std::endl;
+    std::cout << std::endl;
+
+    pushBack(vec, 30); // This should trigger a grow
+    std::cout << "Vector after growing: ";
+    for (size_t i = 0; i < vec.size; ++i) {
+        std::cout << get(vec, i) << " ";
     }
-    
-    myVector::set(v1, 5, 27);
-    
-    for (int i = 0; i < v1.size; i++){
-        std::cout << myVector::get(v1, i) << std::endl;
-    }
-    
+    std::cout << std::endl;
+
+    // Test popBack
+    std::cout << "Popped value: " << popBack(vec) << std::endl;
+    std::cout << "Vector size after pop: " << vec.size << std::endl;
+
+    // Cleanup
+    freeVector(vec);
+}
+
+int main() {
+    testVector();
     return 0;
 }

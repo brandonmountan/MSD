@@ -1,18 +1,26 @@
 package com.example.synthesizer;
 
 public class LinearRamp implements AudioComponent {
-    @Override
-    public AudioClip getClip() {
-        AudioClip linearRamp = new AudioClip();
-        for (int i = 0; i < 88200; i++){
-            linearRamp.setSample(i, (int)(( start * ((float)(linearRamp.TOTAL_SAMPLES) - i) + stop * i ) / (float)(linearRamp.TOTAL_SAMPLES)));
-        }
-//        sample[i] = ( start * ( numSamples - i ) + stop * i ) / numSamples
-        return linearRamp;
+    public int start;
+    public int stop;
+
+    public LinearRamp(int start, int stop){
+        this.start = start;
+        this.stop = stop;
     }
 
     @Override
-    public boolean hasInputs() {
+    public AudioClip getClip() {
+        AudioClip clip = new AudioClip();
+        for (int i = 0; i < AudioClip.TOTAL_SAMPLES; i++){
+            float value = ( start * (AudioClip.TOTAL_SAMPLES - i ) + stop * i );
+            clip.setSample(i, Math.round(value));
+        }
+        return clip;
+    }
+
+    @Override
+    public boolean hasInput() {
         return false;
     }
 
@@ -20,12 +28,4 @@ public class LinearRamp implements AudioComponent {
     public void connectInput(AudioComponent ac) {
         assert false;
     }
-
-    LinearRamp(float start, float stop){
-        this.start = start;
-        this.stop = stop;
-    }
-
-    public float start;
-    protected float stop;
 }

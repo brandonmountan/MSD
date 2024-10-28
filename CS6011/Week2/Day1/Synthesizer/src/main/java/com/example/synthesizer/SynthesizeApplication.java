@@ -61,13 +61,12 @@ public class SynthesizeApplication extends Application {
         mainCanvas_ = new AnchorPane();
         mainCanvas_.setStyle("-fx-background-color: darkgrey");
 
+        Speaker speaker = new Speaker();
+        mainCanvas_.getChildren().add(speaker);
+
         mainCanvas_.setOnMouseClicked(this::mouseClicked);
 //        mainCanvas_.setOnMouseDragged(this::mouseDragged);
-        mainCanvas_.setOnMouseReleased(this::mouseReleased);
-
-        AudioComponent mixer = new Mixer();
-        MixerACW mixerAcw = new MixerACW(mixer, mainCanvas_, "Mixer/\nSpeaker");
-        mainCanvas_.getChildren().add(mixerAcw);
+//        mainCanvas_.setOnMouseReleased(this::mouseReleased);
 
         HBox bottomPane = new HBox();
         bottomPane.setAlignment(Pos.CENTER);
@@ -149,6 +148,8 @@ public class SynthesizeApplication extends Application {
             boolean mousePointInJack = acw.outputJack.contains(mouseLocalPoint);
             if (mousePointInJack) {
                 System.out.println("mouse clicked on output jack");
+                Line line = new Line();
+                
             } else {
                 System.out.println("mouse not clicked on output jack");
             }
@@ -160,22 +161,22 @@ public class SynthesizeApplication extends Application {
 //    }
 
 
-    public void mouseReleased(MouseEvent e) {
-        for (AudioComponentWidget acw : allWidgets_) {
-            // check if mouse is released within input jack
-            if (acw.inputJack != null) {
-                Point2D mouseLocalPoint = acw.inputJack.sceneToLocal(e.getSceneX(), e.getSceneY());
-                boolean mousePointInJack = acw.inputJack.contains(mouseLocalPoint);
-                if (mousePointInJack) {
-                    System.out.println("mouse released on input jack");
-                } else {
-                    System.out.println("mouse not released in input jack");
-                }
-            } else {
-                System.out.println("input jack is null");
-            }
-        }
-    }
+//    public void mouseReleased(MouseEvent e) {
+//        for (AudioComponentWidget acw : allWidgets_) {
+//            // check if mouse is released within input jack
+//            if (acw.inputJack != null) {
+//                Point2D mouseLocalPoint = acw.inputJack.sceneToLocal(e.getSceneX(), e.getSceneY());
+//                boolean mousePointInJack = acw.inputJack.contains(mouseLocalPoint);
+//                if (mousePointInJack) {
+//                    System.out.println("mouse released on input jack");
+//                } else {
+//                    System.out.println("mouse not released in input jack");
+//                }
+//            } else {
+//                System.out.println("input jack is null");
+//            }
+//        }
+//    }
 
 
     public static AnchorPane mainCanvas_;

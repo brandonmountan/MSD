@@ -2,25 +2,28 @@
 //  vector.hpp
 //  MakeYourOwnVector
 //
-//  Created by Brandon Mountan on 9/10/24.
+//  Created by Brandon Mountan on 09/10/24.
 //
 
-#ifndef vector_hpp
-#define vector_hpp
+#ifndef VECTOR_H
+#define VECTOR_H
 
-#include <stdio.h>
+#include <iostream>
+#include <stdexcept>
 
-#endif /* vector_hpp */
-
-struct myVector {
-    int capacity;
-    int size;
-    int* arrayPtr;
-    static myVector makeVector(int initialCapacity);
-    static void freeVector(myVector &createdVector);
-    static void popBack(myVector &createdVector);
-    static int get(myVector &createdVector, int index);
-    static void set(myVector &createdVector, int index, int newValue);
-    static void grow(myVector &createdVector);
-    static void pushBack(myVector &createdVector, int pushedInt);
+struct MyVector {
+    int* data;      // Pointer to the beginning of the array
+    size_t capacity; // Total capacity of the vector
+    size_t size;     // Current number of elements in the vector
 };
+
+// Function prototypes
+MyVector makeVector(size_t initialCapacity);
+void freeVector(MyVector& myVec);
+void pushBack(MyVector& myVec, int value);
+int popBack(MyVector& myVec);
+int get(const MyVector& myVec, size_t index);
+void set(MyVector& myVec, size_t index, int newValue);
+void growVector(MyVector& myVec);
+
+#endif // VECTOR_H

@@ -14,13 +14,13 @@ public class MixerACW extends AudioComponentWidget {
         inputJack.setFill(Color.PINK);
         inputJack.setRadius(10);
 
+        outputJack.setFill(Color.STEELBLUE);
+        outputJack.setRadius(10);
+
         baseLayout.getChildren().add(outputJack);
         baseLayout.getChildren().add(inputJack);
 
         baseLayout.setLayoutX(300);
         baseLayout.setLayoutY(200);
     }
-
-//    public Circle inputJack = new Circle();
-//    public Circle outputJack = new Circle();
 }

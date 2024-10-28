@@ -4,30 +4,28 @@ import java.util.ArrayList;
 
 public class Mixer implements AudioComponent {
 
+    public ArrayList<AudioComponent> inputs = new ArrayList<>();
+
     @Override
     public AudioClip getClip() {
         AudioClip mixedClip = new AudioClip();
-        ArrayList<AudioClip> clips = new ArrayList<>();
-        for (AudioComponent ac : inputs) {
-            clips.add(ac.getClip());
-        }
-        int sample = 0;
-        for (int i = 0; i < 88200; i++) {
-            for (AudioClip clip : clips) {
-                sample += clip.getSample(i);
-                if (sample > 32000) {
-                    sample = 32000;
-                } else if (sample < -32000) {
-                    sample = -32000;
+        for (AudioComponent input : inputs) {
+            AudioClip clip = input.getClip();
+            for (int i = 0; i < AudioClip.TOTAL_SAMPLES; i++) {
+                int mixedSample = mixedClip.getSample(i) + clip.getSample(i);
+                if (mixedSample > 32000) {
+                    mixedSample = 32000;
+                } else if (mixedSample > -32000) {
+                    mixedSample = -32000;
                 }
-                mixedClip.setSample(i, sample);
+                mixedClip.setSample(i, mixedSample);
             }
         }
         return mixedClip;
     }
 
     @Override
-    public boolean hasInputs() {
+    public boolean hasInput() {
         return true;
     }
 
@@ -36,5 +34,4 @@ public class Mixer implements AudioComponent {
         inputs.add(input);
     }
 
-    ArrayList<AudioComponent> inputs = new ArrayList<>();
 }

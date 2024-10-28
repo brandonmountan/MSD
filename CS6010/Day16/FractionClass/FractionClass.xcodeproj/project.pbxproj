@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		815098CF2C92530600F014EA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 815098CE2C92530600F014EA /* main.cpp */; };
-		815098D72C92532D00F014EA /* MyFractions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 815098D52C92532D00F014EA /* MyFractions.cpp */; };
 		815098DA2C9285CA00F014EA /* FractionTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 815098D82C9285CA00F014EA /* FractionTest.cpp */; };
 /* End PBXBuildFile section */
 
@@ -26,8 +24,6 @@
 
 /* Begin PBXFileReference section */
 		815098CB2C92530600F014EA /* FractionClass */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FractionClass; sourceTree = BUILT_PRODUCTS_DIR; };
-		815098CE2C92530600F014EA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		815098D52C92532D00F014EA /* MyFractions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyFractions.cpp; sourceTree = "<group>"; };
 		815098D62C92532D00F014EA /* MyFractions.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyFractions.hpp; sourceTree = "<group>"; };
 		815098D82C9285CA00F014EA /* FractionTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FractionTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,8 +58,6 @@
 		815098CD2C92530600F014EA /* FractionClass */ = {
 			isa = PBXGroup;
 			children = (
-				815098CE2C92530600F014EA /* main.cpp */,
-				815098D52C92532D00F014EA /* MyFractions.cpp */,
 				815098D62C92532D00F014EA /* MyFractions.hpp */,
 				815098D82C9285CA00F014EA /* FractionTest.cpp */,
 			);
@@ -127,9 +121,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				815098CF2C92530600F014EA /* main.cpp in Sources */,
 				815098DA2C9285CA00F014EA /* FractionTest.cpp in Sources */,
-				815098D72C92532D00F014EA /* MyFractions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

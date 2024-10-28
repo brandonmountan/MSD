@@ -1,7 +1,7 @@
 package com.example.synthesizer4a;
 
 public class SineWave implements AudioComponent {
-    private final int frequency;
+    private int frequency;
     private AudioClip clip;
 
     public SineWave(int frequency) {
