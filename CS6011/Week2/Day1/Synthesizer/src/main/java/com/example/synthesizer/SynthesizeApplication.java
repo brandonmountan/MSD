@@ -116,7 +116,7 @@ public class SynthesizeApplication extends Application {
             allWidgets_.add(acw);
         } else if (Objects.equals(name, "VolumeAdjuster")) {
             AudioComponent ac = new VolumeAdjuster(1);
-            ac.connectInput(allWidgets_.getFirst().getAudioComponent());
+//            ac.connectInput(allWidgets_.getFirst().getAudioComponent());
             VolumeAdjusterACW acw = new VolumeAdjusterACW(ac, mainCanvas_, "Volume Adjuster");
             mainCanvas_.getChildren().add(acw);
             allWidgets_.add(acw);
@@ -127,7 +127,7 @@ public class SynthesizeApplication extends Application {
             allWidgets_.add(acw);
         } else if (Objects.equals(name, "VFSineWave")) {
             AudioComponent ac = new VFSineWave();
-            ac.connectInput(allWidgets_.getFirst().getAudioComponent());
+//            ac.connectInput(allWidgets_.getFirst().getAudioComponent());
             VFSineWaveACW acw = new VFSineWaveACW(ac, mainCanvas_, "VFSineWave");
             mainCanvas_.getChildren().add(acw);
             allWidgets_.add(acw);
@@ -148,8 +148,8 @@ public class SynthesizeApplication extends Application {
             boolean mousePointInJack = acw.outputJack.contains(mouseLocalPoint);
             if (mousePointInJack) {
                 System.out.println("mouse clicked on output jack");
-                Line line = new Line();
-                
+                Line line = new Line(mouseLocalPoint.getX(), mouseLocalPoint.getY(), mouseLocalPoint.getX(), mouseLocalPoint.getY());
+
             } else {
                 System.out.println("mouse not clicked on output jack");
             }

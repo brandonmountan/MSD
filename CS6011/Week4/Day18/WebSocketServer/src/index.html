@@ -12,7 +12,7 @@
 
 <script>
     document.getElementById('connect').onclick = function() {
-        const socket = new WebSocket('ws://127.0.0.1:80/');
+        const socket = new WebSocket('ws://localhost:8080/');
 
         socket.onopen = function() {
             console.log('WebSocket connection established.');

@@ -1,0 +1,53 @@
+html, body {
+  height: 95%;
+  background-color: #3741ff;
+}
+
+.lightText {
+  color: white;
+}
+
+#header {
+  margin: 5px;
+}
+
+.App {
+  padding: 0px 5px 0px 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 95vh;
+}
+
+#inputDiv {
+  padding: 10px 0px 5px 0px; /* Top, Right, Bottom, Left */
+  display: flex;
+  flex-direction: row;
+  flex: 0;
+  gap: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#toDoListDiv {
+  background-color: lightskyblue;
+  border-radius: 7px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.item {
+  display: flex;
+  width: 100%;
+  user-select: none;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+

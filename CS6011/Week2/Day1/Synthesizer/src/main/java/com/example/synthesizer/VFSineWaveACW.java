@@ -10,6 +10,9 @@ public class VFSineWaveACW extends AudioComponentWidget {
     VFSineWaveACW(AudioComponent ac, AnchorPane parent, String name) {
         super(ac, parent, name);
 
+        outputJack.setFill(Color.STEELBLUE);
+        outputJack.setRadius(10);
+
         inputJack.setFill(Color.PINK);
         inputJack.setRadius(10);
 
@@ -17,8 +20,6 @@ public class VFSineWaveACW extends AudioComponentWidget {
         baseLayout.getChildren().add(inputJack);
 
         baseLayout.setLayoutX(0);
-        baseLayout.setLayoutY(240);
+        baseLayout.setLayoutY(200);
     }
-//    public Circle inputJack = new Circle();
-//    public Circle outputJack = new Circle();
 }

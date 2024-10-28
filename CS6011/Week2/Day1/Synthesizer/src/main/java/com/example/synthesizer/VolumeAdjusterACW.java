@@ -23,8 +23,10 @@ public class VolumeAdjusterACW extends AudioComponentWidget {
 
         outputJack.setFill(Color.STEELBLUE);
         outputJack.setRadius(10);
+
         inputJack.setFill(Color.PINK);
         inputJack.setRadius(10);
+
         farRightSide.getChildren().add(outputJack);
         farRightSide.getChildren().add(inputJack);
 

@@ -29,28 +29,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.SimpleWebSocketServer (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.SimpleWebSocketServer (2).executor&quot;: &quot;Run&quot;,
-    &quot;Application.SimpleWebSocketServer (3).executor&quot;: &quot;Run&quot;,
-    &quot;Application.SimpleWebSocketServer.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebSocket.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebSocketServer.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/brandonmountan/MSD/CS6011/Week4/Day18/WebSocketServer/src/Main.java&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.SimpleWebSocketServer (1).executor": "Run",
+    "Application.SimpleWebSocketServer (2).executor": "Run",
+    "Application.SimpleWebSocketServer (3).executor": "Run",
+    "Application.SimpleWebSocketServer.executor": "Run",
+    "Application.WebSocket.executor": "Run",
+    "Application.WebSocketChatServer.executor": "Run",
+    "Application.WebSocketServer.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.index.html.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/brandonmountan/MSD/CS6011/Week4/Day19/ChatApp",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/brandonmountan/MSD/CS6011/Week4/Day18/WebSocketServer/src/Main.java",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/WebSocketServer/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
@@ -78,7 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1729809027775</updated>
       <workItem from="1729809028722" duration="16677000" />
-      <workItem from="1730123873203" duration="818000" />
+      <workItem from="1730124558698" duration="3851000" />
     </task>
     <servers />
   </component>

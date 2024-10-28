@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
 
 public class WebSocket {
     public static void main(String[] args) throws IOException {
-        ServerSocket server = new ServerSocket(80);
+        ServerSocket server = new ServerSocket(8080);
         try {
-            System.out.println("Server has started on 127.0.0.1:80.\r\nWaiting for connections…");
+            System.out.println("Server has started on localhost:8080.\r\nWaiting for connections…");
             while (true) {
                 Socket client = server.accept();
                 System.out.println("A client connected.");

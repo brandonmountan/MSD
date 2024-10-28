@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        #chatLog { border: 1px solid #ccc; height: 300px; overflow-y: scroll; margin-bottom: 10px; padding: 10px; }
+        #message { width: 80%; }
+        #sendButton { width: 15%; }
+    </style>
+</head>
+<body>
+<h1>Chat Room</h1>
+<div>
+    <input type="text" id="username" placeholder="Enter your username" />
+    <input type="text" id="room" placeholder="Enter room name" />
+    <button id="joinButton">Join Room</button>
+</div>
+<div id="chatLog"></div>
+<input type="text" id="message" placeholder="Enter your message" />
+<button id="sendButton">Send</button>
+
+<script>
+    let socket;
+
+    document.getElementById('joinButton').onclick = function() {
+        const username = document.getElementById('username').value;
+        const room = document.getElementById('room').value;
+        if (username && room) {
+            socket = new WebSocket(`ws://localhost:8080`);
+
+            socket.onopen = function() {
+                socket.send(`join ${username} ${room}`);
+                document.getElementById('chatLog').innerHTML += "<div>You joined the room: " + room + "</div>";
+            };
+
+            socket.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                if (data.type === "message") {
+                    document.getElementById('chatLog').innerHTML += `<div>${data.user}: ${data.message}</div>`;
+                } else if (data.type === "join" || data.type === "leave") {
+                    document.getElementById('chatLog').innerHTML += `<div>${data.user} has ${data.type}ed the room.</div>`;
+                }
+            };
+
+            socket.onclose = function() {
+                document.getElementById('chatLog').innerHTML += "<div>Disconnected from the server.</div>";
+            };
+        } else {
+            alert("Please enter both username and room name.");
+        }
+    };
+
+    document.getElementById('sendButton').onclick = function() {
+        const message = document.getElementById('message').value;
+        if (message && socket) {
+            socket.send(`message ${message}`);
+            document.getElementById('message').value = ""; // Clear input
+        }
+    };
+</script>
+</body>
+</html>
