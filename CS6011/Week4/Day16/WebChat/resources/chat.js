@@ -1,6 +1,7 @@
 // let and const provide Block Scope in javascript.
 // Variables declared inside a block using let or const are only
 // accessible within that block and any nested blocks.
+// let can be redefined, const cannot
 let socket;
 const messagesDiv = document.getElementById('messages');
 const usernameInput = document.getElementById('username');

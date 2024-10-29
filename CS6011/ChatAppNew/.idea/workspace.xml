@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f33f58a5-12d0-40f3-956b-9dce80d7f631" name="Changes" comment="" />
+    <list default="true" id="6d81ba4a-01cc-44d4-b406-4cf4f1776037" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,65 +14,48 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 5
-}</component>
-  <component name="ProjectId" id="2nu3FCCovNGT7xZ9K8jbujYoQuV" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2o7jacRkdhM3hjtopD7rvCIgd1Y" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.SimpleWebSocketServer (1).executor": "Run",
-    "Application.SimpleWebSocketServer (2).executor": "Run",
-    "Application.SimpleWebSocketServer (3).executor": "Run",
-    "Application.SimpleWebSocketServer.executor": "Run",
-    "Application.WebSocket.executor": "Run",
-    "Application.WebSocketChatServer.executor": "Run",
-    "Application.WebSocketServer.executor": "Run",
+    "Application.SimpleHttpServer.executor": "Run",
     "DefaultHtmlFileTemplate": "HTML File",
-    "JavaScript Debug.index.html (1).executor": "Run",
-    "JavaScript Debug.index.html.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/brandonmountan/MSD/CS6011/Week4/Day19/ChatApp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "/Users/brandonmountan/MSD/CS6011/Week4/Day18/WebSocketServer/src/Main.java",
+    "onboarding.tips.debug.path": "/Users/brandonmountan/MSD/CS6011/ChatAppNew/src/Main.java",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.WebSocketChatServer">
-    <configuration name="WebSocketChatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="WebSocketChatServer" />
-      <module name="WebSocketServer" />
+  <component name="RunManager">
+    <configuration name="SimpleHttpServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SimpleHttpServer" />
+      <module name="ChatAppNew" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ChatApp/WebSocketServer/index.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/WebSocketServer/index.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.WebSocketChatServer" />
-        <item itemvalue="JavaScript Debug.index.html (1)" />
-        <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="Application.SimpleHttpServer" />
       </list>
     </recent_temporary>
   </component>
@@ -87,14 +70,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f33f58a5-12d0-40f3-956b-9dce80d7f631" name="Changes" comment="" />
-      <created>1729809027775</created>
+      <changelist id="6d81ba4a-01cc-44d4-b406-4cf4f1776037" name="Changes" comment="" />
+      <created>1730227573400</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1729809027775</updated>
-      <workItem from="1729809028722" duration="16677000" />
-      <workItem from="1730124558698" duration="6983000" />
-      <workItem from="1730226998192" duration="2757000" />
+      <updated>1730227573400</updated>
+      <workItem from="1730227574391" duration="1890000" />
     </task>
     <servers />
   </component>
