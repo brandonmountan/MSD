@@ -3,34 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebSocket Client</title>
+    <title>WebSocket Test</title>
 </head>
 <body>
-<h1>WebSocket Client</h1>
-<button id="connect">Connect</button>
-<div id="messages"></div>
-
+<h1>Chat App</h1>
 <script>
-    document.getElementById('connect').onclick = function() {
-        const socket = new WebSocket('ws://localhost:8080/');
+    const socket = new WebSocket("ws://localhost:8080/index.html");
+    console.log("made it to script");
+    socket.onopen = () => {
+        console.log("made it to onopen");
+        console.log('WebSocket connection opened');
+        socket.send('Hello, WebSocket!');
+    };
 
-        socket.onopen = function() {
-            console.log('WebSocket connection established.');
-            socket.send('Hello, server!');
-        };
+    socket.onmessage = (event) => {
+        console.log("made it to on message");
+        console.log('Message from server:', event.data);
+    };
 
-        socket.onmessage = function(event) {
-            console.log('Message from server:', event.data);
-            document.getElementById('messages').innerHTML += '<p>' + event.data + '</p>';
-        };
-
-        socket.onclose = function() {
-            console.log('WebSocket connection closed.');
-        };
-
-        socket.onerror = function(error) {
-            console.error('WebSocket error:', error);
-        };
+    socket.onclose = () => {
+        console.log('WebSocket connection closed');
     };
 </script>
 </body>

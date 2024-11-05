@@ -4,7 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f33f58a5-12d0-40f3-956b-9dce80d7f631" name="Changes" comment="" />
+    <list default="true" id="f33f58a5-12d0-40f3-956b-9dce80d7f631" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/ChatRoom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/HTTPRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/HTTPResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/RequestHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/resources/index2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Week5/day3/ChatApp/ChatPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Week5/day3/ChatApp/LoginPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Week5/day3/ChatAppNew/ChatPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Week5/day3/ChatAppNew/LoginPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Week5/day3/myFirstApp/ChatPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../Week5/day3/myFirstApp/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../BasicHTTPServer/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../BasicHTTPServer/src/SimpleHttpServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ChatAppNew/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Week1/Day4/BasicHttpServer/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Week1/Day4/BasicHttpServer/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Week1/Day4/BasicHttpServer/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Week1/Day4/BasicHttpServer/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Week1/Day4/BasicHttpServer/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Week1/Day4/BasicHttpServer/resources/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Week1/Day4/BasicHttpServer/src/BasicHttpServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Day16/WebChat/resources/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day16/WebChat/resources/chat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Day16/WebChat/resources/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day16/WebChat/resources/chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Day17/MultiThreadedWebServer/src/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day17/MultiThreadedWebServer/src/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Day17/MultiThreadedWebServer/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day17/MultiThreadedWebServer/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Day17/MultithreadedWebServerNew/src/WebserverRefractoring.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day17/MultithreadedWebServerNew/src/MultiThreadedWebServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MultithreadedWebServer/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WebSocket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Day19/ChatApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day19/ChatApp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/ChatRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/ChatRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/HTTPRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/HTTPRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/HTTPResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/HTTPResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/RequestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/SimpleHttpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/SimpleHttpServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/resources/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +51,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -42,6 +80,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/brandonmountan/MSD/CS6011/Week4/Day18/WebSocketServer&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -51,12 +90,20 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.WebSocket">
+    <configuration name="WebSocket" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="WebSocket" />
+      <module name="WebSocketServer" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/WebSocketServer/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.WebSocket" />
         <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
@@ -79,6 +126,8 @@
       <updated>1729809027775</updated>
       <workItem from="1729809028722" duration="16677000" />
       <workItem from="1730123873203" duration="818000" />
+      <workItem from="1730313009678" duration="18000" />
+      <workItem from="1730327460508" duration="40054000" />
     </task>
     <servers />
   </component>

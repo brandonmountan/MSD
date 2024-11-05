@@ -10,8 +10,9 @@ public class ClientHandler implements Runnable {
 
     @Override
     public void run() {
-        try (InputStream inputStream = clientSocket.getInputStream();
-             OutputStream outputStream = clientSocket.getOutputStream()) {
+        try {
+            InputStream inputStream = clientSocket.getInputStream();
+            OutputStream outputStream = clientSocket.getOutputStream();
 
             HTTPRequest request = new HTTPRequest(inputStream);
             File file = new File(Main.RESOURCE_DIR + request.getRequestedFile());

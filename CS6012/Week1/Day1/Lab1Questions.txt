@@ -1,0 +1,65 @@
+1. Where is the assertEquals method defined?
+import static org.junit.jupiter.api.Assertions.assertEquals;
+https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/Assertions.html
+What does it do?
+public static void assertEquals( int expected, int actual, @Nullable String message );
+Assert that expected and actual are equal and return a string message that describes that test
+Can we use assertEquals for more than just int types?
+Yes, in the library, there are lots more type including: longs, shorts, objects, floats, etc.
+
+2. Briefly describe what each of the three tests is checking.
+@Test
+public void emptyArray() {
+  assertEquals(-1, DiffUtil.findSmallestDiff(arr1));
+}
+
+This will return -1 if the inputed array is empty, which is true for arr1.
+
+@Test
+public void allArrayElementsEqual() {
+  assertEquals(0, DiffUtil.findSmallestDiff(arr2));
+}
+
+This will return 0 if all the elements in the array are equal, which is true for arr2.
+
+@Test
+public void smallRandomArrayElements() {
+  assertEquals(4, DiffUtil.findSmallestDiff(arr3));
+}
+
+This will return 4, which is the smallest difference in arr3.
+
+3. Why is our unimplemented findSmallestDiff method passing one of the tests?
+
+Because the unimplemented version still needs to return something in order for the program to run and we are returning 0 by default.
+
+4. Why are we failing the third test?
+
+It's returning a negative number but the smallest difference should only be greater than or equal to zero
+
+How should our method be modified to correct this?
+
+Take the absolute value of the difference AFTER the two elements in the array have been subtracted
+
+5. What is the appropriate call to assertEquals for your new test (test 4)?
+
+@Test
+public void testArrayWithTwoElements() {
+	assertEquals(20, DiffUtil.findSmallestDiff(arr4), "Expected 20 for the difference 		between 10 and -10.");
+}
+
+6. Provide one more test (test 5) for the findSmallestDiff method. Briefly describe your test and write the call to assertEquals here.
+
+@Test
+public void testArrayWithPositiveAndNegativeElements() {
+        assertEquals(3, DiffUtil.findSmallestDiff(arr5), "Expected 3 for the smallest difference 	in array [-7, -3, 2, 5, 9].");
+}
+
+7. Briefly describe your unit tests for Assignment 1.
+
+// Empty Array
+// Identical elements
+// Small random array
+// Only two elements
+// Positive and negative elements
+// Consecutive integers

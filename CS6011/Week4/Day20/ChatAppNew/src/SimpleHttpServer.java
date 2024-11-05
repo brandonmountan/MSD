@@ -1,12 +1,19 @@
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 
+/**
+ * SimpleHttpServer is a multithreaded HTTP server that supports WebSocket
+ * connections for a real-time chat application. It listens for incoming
+ * connections and delegates handling to RequestHandler instances.
+ */
 public class SimpleHttpServer {
     private static final int PORT = 8080;
 
     public static void main(String[] args) {
         ChatRoom chatRoom = new ChatRoom(); // Shared chat room instance
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+        try {
+            ServerSocket serverSocket = new ServerSocket(PORT);
             System.out.println("Server is listening on port " + PORT);
             while (true) {
                 try {

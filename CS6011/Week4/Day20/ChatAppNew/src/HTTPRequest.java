@@ -1,51 +1,39 @@
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
+/**
+ * HTTPRequest represents an incoming HTTP request. It parses the request
+ * line and headers to determine the method, path, and headers.
+ */
 public class HTTPRequest {
     private String method;
-    private String path;
-    private Map<String, String> headers = new HashMap<>();
+    private String fileRequested;
+    private boolean isWebSocket;
 
-    public HTTPRequest(BufferedReader reader) throws IOException {
-        parseRequest(reader);
-    }
-
-    private void parseRequest(BufferedReader reader) throws IOException {
-        // Read the request line
-        String requestLine = reader.readLine();
-        if (requestLine != null) {
-            String[] requestParts = requestLine.split(" ");
-            method = requestParts[0];
-            path = requestParts[1];
-        }
-
-        // Read headers
-        String headerLine;
-        while (!(headerLine = reader.readLine()).isEmpty()) {
-            String[] headerParts = headerLine.split(": ");
-            headers.put(headerParts[0], headerParts[1]);
+    public HTTPRequest(Scanner scanner) throws IOException {
+        if (scanner.hasNextLine()) {
+            String requestLine = scanner.nextLine();
+            String[] tokens = requestLine.split(" ");
+            this.method = tokens[0];
+            this.fileRequested = tokens[1].equals("/") ? "/index.html" : tokens[1];
+            this.isWebSocket = requestLine.contains("Upgrade: websocket");
+        } else {
+            throw new IOException("Empty request line");
         }
     }
 
-    public boolean isWebSocketUpgrade() {
-        return "GET".equalsIgnoreCase(method) &&
-                "websocket".equalsIgnoreCase(headers.get("Upgrade")) &&
-                headers.containsKey("Connection") &&
-                headers.get("Connection").toLowerCase().contains("upgrade");
+    public String getFileRequested() {
+        return fileRequested;
     }
 
     public String getMethod() {
         return method;
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    // New method to retrieve headers
-    public Map<String, String> getHeaders() {
-        return headers;
+    public boolean isWebSocket() {
+        return isWebSocket;
     }
 }
