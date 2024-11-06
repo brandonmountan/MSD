@@ -1,0 +1,79 @@
+TimingExperiment01.java
+Run the program. Did the millisecond timer advance in one millisecond steps? Is the continue statement ever executed?
+
+We print the difference (currentTime - lasttime) each time there is a change.
+It advanced in one millisecond steps except for the second step was 3-5 milliseconds, which means timer does not advance in precision 1 ms increments. Continues statement is executed 100 times, which occurs when the currentTime remains the same as lastTime. Ideally, if the timer updated every millisecond without delay, continue would rarely be executed.
+
+TimingExperiment02.java
+Is one iteration of the loop more or less than one millisecond?
+Less than one second. The line "The loop tested the time 69000000 times" indicates the loop executed over 69 million times in one second.
+Is one second long enough to get an accurate answer?
+Running the experiment for a longer duration would reduce any minor inconsistencies or timing overhead and proved a more stable estimate. So, changing duration to 10 would show if timer still updates at an average of 1000 times
+
+
+1. On your computer, how many times per second does the millisecond timer update?
+
+1000
+
+2. Is it possible to determine how many times per second the nanosecond timer updates? If so, how many? If not, why not?
+
+It's difficult because of the print statement. The System.out.println() calls take much longer than a nanosecond and can vary on other factors like system load, console handling, etc.. This slows down the loop making it seem long when it actually isn't. The output of this file is more reflective of output delays than of the timer's true resolution
+
+3. Judging by experiment 4, how long does it appear to take to compute System.nanoTime()?
+
+Time advancements cluster around 41-42 nanoseconds with occasional longer advancements. This indicates that a single call to System.nanoTime() typically takes about 41-42 nanoseconds
+
+Is the continue statement ever executed?
+
+Continue statement is executed when currentTime is equal to lastTime, which indicates that System.nanoTime() has not advanced since the last check. This happens occasionally because System.nanoTime() does not always update every nanosecond, resulting in identical values on consecutive clocks.
+
+4. Estimate the precision of your answer above (+/- how many nanoseconds?)
+
+41-42 nanoseconds
+
+What is the difference between the nanosecond timer granularity, and the loop run time granularity?
+
+Nanosecond timer granularity has high precision and granularity, typically advancing every 41-42 nanoseconds.
+
+The granularity of the loop run-time is larger because it includes not only the time it takes for System.nanoTime() to advance but also the time spent performing the loop logic.
+
+The output of 05 states the loop funs 2.39 x 10^7 times per second which means on average, each call to System.nanoTime() happens once every 42ish nanoseconds
+
+Do the code changes pay off? Compare the results of experiment 6 with the results of experiment 5. 
+
+In 06, the check and assignment of currentTime happen in a more direct way, reducing redundancy.
+Specifically, the check if((currentTime = System.nanoTime()) != lastTime)) performs the comparison and assignment in one line, reducing the number of operations per iteration
+
+Results are similar in terms of advances per second. System.nanoTime() is a low level system call and its granularity doesn't change with the code structure.
+
+Granularity refers to the level of detail or precision with which a particular system or process operates. It describes how small the measurable time unit is for a given timekeeping mechanism.
+
+5. How long does it take to compute the square root of the numbers 1 through 10?
+
+Output from 07: 24583 nanoseconds
+Output from 08: 51.0 nanoseconds
+
+6. Estimate the precision of your answer above (+/- how many nanoseconds?)
+
+Repetition: running the experiment multiple times and averaging the results help smooth out inconsistancies.
+Stabilization: Stabilizing the system before starting the timing also reduces the initial instabilities.
+
+7. If you repeat the square root test 100x as many times, does the precision improve?
+
+Yes. When you repeat a test more times, the average of those runs better reflects the true performance, reducing impact of occasional outliers or fluctuations.
+Reduced noise: the systems variability (due to background processes, CPU cache, etc.) can be averaged out over many runs.
+
+8. How could you improve the results (get a more accurate estimate of elapsed time)?
+
+Increase number of repetitions.
+Warm-up JVM meaning run some preliminary code before timing the actual operation
+Measure and subtract loop overhead
+Optimize code further
+Ensure system stability
+
+
+Add the following main() method to your class and run it get CSV formatted results for your experiment. Do your results match your expectations?
+
+Growth of time: As the size of the list grows (as n increases), the time taken to remove the first element (time) should increase, and it should roughly follow an increasing pattern.
+Consistency: Since we are averaging the time over multiple runs (timesToLoop), the results should be stable and consistent for each n.
+In the results, you see that the larger the list (n), the more time it takes to remove the first element.

@@ -103,16 +103,17 @@ public class GrayscaleImage {
      */
     @Override
     public boolean equals(Object other){
+        // first check if other object is instance of GreyscaleImage
         if(!(other instanceof GrayscaleImage)){
             return false;
         }
-
+        // cast other to GreyscaleImage so we can access its imageData
         GrayscaleImage otherImage = (GrayscaleImage)other;
-
+        // checking if the two images have different dimensions
         if (imageData.length != otherImage.imageData.length || imageData[0].length != otherImage.imageData[0].length) {
             return false;
         }
-
+        // iterate over each pixel
         for (int row = 0; row < imageData.length; row++) {
             for (int col = 0; col < imageData[0].length; col++) {
                 if (imageData[row][col] != otherImage.imageData[row][col]) {
@@ -132,8 +133,9 @@ public class GrayscaleImage {
     public double averageBrightness(){
         double sum = 0.0;
         int pixelCount = 0;
-
+        // iterate over each row
         for (double[] row : imageData) {
+            // add each pixel value to sum and increase pixel count
             for (double value : row) {
                 sum += value;
                 pixelCount++;
@@ -157,7 +159,9 @@ public class GrayscaleImage {
         double[][] newImageData = new double[imageData.length][imageData[0].length];
         for (int row = 0; row < imageData.length; row++) {
             for (int col = 0; col < imageData[0].length; col++) {
+                // apply scaling factor
                 newImageData[row][col] = imageData[row][col] * scaleFactor;
+                // clamping
                 newImageData[row][col] = Math.max(0, Math.min(255, newImageData[row][col]));
             }
         }
@@ -173,7 +177,7 @@ public class GrayscaleImage {
      */
     public GrayscaleImage mirrored(){
         double[][] mirroredData = new double[imageData.length][imageData[0].length];
-
+        // set pixels in reverse order
         for (int row = 0; row < imageData.length; row++) {
             for (int col = 0; col < imageData[0].length; col++) {
                 mirroredData[row][col] = imageData[row][imageData[0].length - 1 - col];
@@ -194,11 +198,13 @@ public class GrayscaleImage {
      * @throws IllegalArgumentException if the specified rectangle goes outside the bounds of the original image
      */
     public GrayscaleImage cropped(int startRow, int startCol, int width, int height){
+        // check bounds
         if (startRow < 0 || startCol < 0 || startRow + height > imageData.length || startCol + width > imageData[0].length) {
             throw new IllegalArgumentException("Cropping area is out of bounds.");
         }
-
+        // initialize croppedData to desired height and width
         double[][] croppedData = new double[height][width];
+        // fill croppedData with pixels from imageData starting at (startRow, startCol)
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
                 croppedData[row][col] = imageData[startRow + row][startCol + col];
@@ -218,19 +224,19 @@ public class GrayscaleImage {
      * @return a new, square, GrayscaleImage
      */
     public GrayscaleImage squarified(){
+        // dimensions of the image
         int width = imageData[0].length;
         int height = imageData.length;
-
+        // return if already square
         if (width == height) {
             return new GrayscaleImage(imageData);
         }
-
+        // squareSize is set to smaller dimension
+        // startRow and startCol calculate the center crop position
         int squareSize = Math.min(width, height);
         int startRow = (height - squareSize) / 2;
         int startCol = (width - squareSize) / 2;
-
+        // uses cropped method to return a square image centered on the original
         return cropped(startRow, startCol, squareSize, squareSize);
     }
-
-
 }

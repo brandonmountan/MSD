@@ -77,4 +77,48 @@ class GrayscaleImageTest {
     void testGetPixelThrowsOnNegativeX(){
         assertThrows(IllegalArgumentException.class, () -> { smallSquare.getPixel(-1,0);});
     }
+
+    @Test
+    void testEqualsWithDifferentDimensions() {
+        var differentSize = new GrayscaleImage(new double[][]{{1, 2, 3}, {4, 5, 6}});
+        assertNotEquals(smallSquare, differentSize);
+    }
+
+    @Test
+    void testEqualsWithDifferentPixelValues() {
+        var differentValues = new GrayscaleImage(new double[][]{{1, 2}, {3, 5}});
+        assertNotEquals(smallSquare, differentValues);
+    }
+
+    @Test
+    void testAverageBrightnessWithNonUniformValues() {
+        var variedImage = new GrayscaleImage(new double[][]{{10, 20}, {30, 40}});
+        assertEquals(25, variedImage.averageBrightness(), 0.001);
+    }
+
+    @Test
+    void testMirroredWithOddWidth() {
+        var oddWidthImage = new GrayscaleImage(new double[][]{{1, 2, 3}, {4, 5, 6}});
+        var expectedMirrored = new GrayscaleImage(new double[][]{{3, 2, 1}, {6, 5, 4}});
+        assertEquals(expectedMirrored, oddWidthImage.mirrored());
+    }
+
+    @Test
+    void testCroppedAtBoundary() {
+        var croppedEdge = smallSquare.cropped(0, 0, 2, 2);
+        assertEquals(smallSquare, croppedEdge);
+    }
+
+    @Test
+    void testSquarifiedOnSquareImage() {
+        var squared = smallSquare.squarified();
+        assertEquals(smallSquare, squared);
+    }
+
+    @Test
+    void testGetPixelOutOfBounds() {
+        assertThrows(IllegalArgumentException.class, () -> smallSquare.getPixel(2, 2));
+        assertThrows(IllegalArgumentException.class, () -> smallSquare.getPixel(0, -1));
+        assertThrows(IllegalArgumentException.class, () -> smallSquare.getPixel(-1, 0));
+    }
 }
