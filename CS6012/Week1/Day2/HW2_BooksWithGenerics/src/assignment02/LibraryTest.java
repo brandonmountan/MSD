@@ -154,4 +154,51 @@ class LibraryTest {
 
     }
 
+    @Test
+    public void testGetInventoryList() {
+        Library<String> lib = new Library<>();
+        lib.add(9780374292799L, "Thomas L. Friedman", "The World is Flat");
+        lib.add(9780330351690L, "Jon Krakauer", "Into the Wild");
+        lib.add(9780446580342L, "David Baldacci", "Simple Genius");
+
+        ArrayList<LibraryBook<String>> inventoryList = lib.getInventoryList();
+        assertEquals(3, inventoryList.size());
+        assertEquals(9780330351690L, inventoryList.get(0).getIsbn());
+        assertEquals(9780374292799L, inventoryList.get(1).getIsbn());
+        assertEquals(9780446580342L, inventoryList.get(2).getIsbn());
+    }
+
+    @Test
+    public void testGetOrderedByAuthor() {
+        Library<String> lib = new Library<>();
+        lib.add(9780374292799L, "Jon Krakauer", "Into the Wild");
+        lib.add(9780330351690L, "David Baldacci", "Simple Genius");
+        lib.add(9780446580342L, "Jon Krakauer", "Under the Banner of Heaven");
+
+        ArrayList<LibraryBook<String>> orderedByAuthor = lib.getOrderedByAuthor();
+        assertEquals("David Baldacci", orderedByAuthor.get(0).getAuthor());
+        assertEquals("Jon Krakauer", orderedByAuthor.get(1).getAuthor());
+        assertEquals("Jon Krakauer", orderedByAuthor.get(2).getAuthor());
+
+        // Check tie-breaker by title
+        assertEquals("Into the Wild", orderedByAuthor.get(1).getTitle());
+        assertEquals("Under the Banner of Heaven", orderedByAuthor.get(2).getTitle());
+    }
+
+    @Test
+    public void testGetOverdueList() {
+        Library<String> lib = new Library<>();
+        lib.add(9780374292799L, "Thomas L. Friedman", "The World is Flat");
+        lib.add(9780330351690L, "Jon Krakauer", "Into the Wild");
+        lib.add(9780446580342L, "David Baldacci", "Simple Genius");
+
+        GregorianCalendar dueDate = new GregorianCalendar(2008, 1, 1);
+        lib.checkout(9780374292799L, "Patron 1", 1, 1, 2008);
+        lib.checkout(9780330351690L, "Patron 2", 1, 1, 2008);
+
+        ArrayList<LibraryBook<String>> overdueBooks = lib.getOverdueList(12, 1, 2008);
+        assertEquals(2, overdueBooks.size());
+        assertEquals(9780374292799L, overdueBooks.get(0).getIsbn());
+        assertEquals(9780330351690L, overdueBooks.get(1).getIsbn());
+    }
 }
