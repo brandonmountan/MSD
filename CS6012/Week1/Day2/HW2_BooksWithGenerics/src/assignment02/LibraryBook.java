@@ -8,8 +8,6 @@ public class LibraryBook extends Book {
 
     public LibraryBook(long isbn, String author, String title) {
         super(isbn, author, title);
-        this.holder = null;
-        this.dueDate = null;
     }
 
     public String getHolder() {
@@ -36,7 +34,4 @@ public class LibraryBook extends Book {
         return true;
     }
 
-    public void setDueDate(GregorianCalendar dueDate) {
-        this.dueDate = dueDate;
-    }
 }

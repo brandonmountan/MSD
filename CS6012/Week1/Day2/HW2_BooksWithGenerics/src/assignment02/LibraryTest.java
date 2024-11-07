@@ -1,7 +1,5 @@
 package assignment02;
 
-import assignment02.Library;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -38,22 +36,85 @@ class LibraryTest {
         assertTrue(res);
         var booksCheckedOut = lib.lookup("Jane Doe");
         assertEquals(booksCheckedOut.size(), 1);
-        assertEquals(booksCheckedOut.get(0),new Book(9780330351690L, "Jon Krakauer", "Into the Wild"));
+        System.out.println(new Book(9780330351690L, "Jon Krakauer", "Into the Wild"));
+        assertEquals(booksCheckedOut.get(0), new Book(9780330351690L, "Jon Krakauer", "Into the Wild"));
         assertEquals(booksCheckedOut.get(0).getHolder(), "Jane Doe");
-        assertEquals(booksCheckedOut.get(0).getDueDate(),new GregorianCalendar(2008, 1, 1));
+        assertEquals(booksCheckedOut.get(0).getDueDate(), new GregorianCalendar(2008, 1, 1));
         res = lib.checkin(9780330351690L);
         assertTrue(res);
         res = lib.checkin("Jane Doe");
         assertFalse(res);
     }
-
     @Test
     public void testLargeLibrary(){
         // test a medium library
         var lib = new Library();
         lib.addAll("Mushroom_Publishing.txt");
 
-        // FILL IN MORE TESTS HERE!
+        // Initial check for a specific book that should not be checked out
+        assertNull(lib.lookup(9781843190004L)); // Not checked out initially
+
+        // Check out a book and validate holder and due date information
+        var res = lib.checkout(9781843190004L, "Brandon Mountan", 2, 1, 2008);
+        assertTrue(res);
+        var booksCheckedOut = lib.lookup("Brandon Mountan");
+        assertEquals(1, booksCheckedOut.size());
+        assertEquals(booksCheckedOut.get(0), new Book(9781843190004L, "Moyra Caldecott", "Weapons of the Wolfhound"));
+        assertEquals("Brandon Mountan", booksCheckedOut.get(0).getHolder());
+        assertEquals(new GregorianCalendar(2008, 2, 1), booksCheckedOut.get(0).getDueDate());
+
+        // Check out another book to a different person and confirm details
+        res = lib.checkout(9781843190011L, "Emily Stone", 5, 15, 2023);
+        assertTrue(res);
+        booksCheckedOut = lib.lookup("Emily Stone");
+        assertEquals(1, booksCheckedOut.size());
+        assertEquals(booksCheckedOut.get(0), new Book(9781843190011L, "Moyra Caldecott", "The Eye of Callanish"));
+        assertEquals("Emily Stone", booksCheckedOut.get(0).getHolder());
+        assertEquals(new GregorianCalendar(2023, 5, 15), booksCheckedOut.get(0).getDueDate());
+
+        // Attempt to check out a book already checked out
+        res = lib.checkout(9781843190004L, "John Doe", 3, 1, 2023);
+        assertFalse(res); // Should fail as it is already checked out by Brandon Mountan
+
+        // Check in a book by ISBN and verify it’s no longer checked out
+        boolean checkinResult = lib.checkin(9781843190004L);
+        assertTrue(checkinResult);
+        assertNull(lib.lookup(9781843190004L)); // Should return null after check-in
+
+        // Check that "Brandon Mountan" has no books checked out after the check-in
+        booksCheckedOut = lib.lookup("Brandon Mountan");
+        assertEquals(0, booksCheckedOut.size());
+
+        // Attempt to check in a non-checked-out book by ISBN (should return false)
+        checkinResult = lib.checkin(9781843190349L);
+        assertFalse(checkinResult, "Check-in should fail for a book not checked out.");
+
+        // Attempt to check in by holder name, confirm it returns correct results
+        checkinResult = lib.checkin("Emily Stone");
+        assertTrue(checkinResult);
+        booksCheckedOut = lib.lookup("Emily Stone");
+        assertEquals(0, booksCheckedOut.size(), "Emily should have no checked out books after check-in.");
+        assertNull(lib.lookup(9781843190011L)); // Confirm the book is now available
+
+        // Verify a non-existent ISBN cannot be looked up or checked in
+        assertNull(lib.lookup(9999999999999L), "Lookup should return null for non-existent ISBN.");
+        assertFalse(lib.checkin(9999999999999L), "Check-in should return false for non-existent ISBN.");
     }
+
+//    @Test
+//    public void testLargeLibrary(){
+//        // test a medium library
+//        var lib = new Library();
+//        lib.addAll("Mushroom_Publishing.txt");
+//
+//        // FILL IN MORE TESTS HERE!
+//        assertNull(lib.lookup(9781843190004L)); //not checked out
+//        var res = lib.checkout(9781843190004L, "Brandon Mountan", 2, 1, 2008);
+//        assertTrue(res);
+//        var booksCheckedOut = lib.lookup("Brandon Mountan");
+//        assertEquals(booksCheckedOut.size(), 1);
+//        assertEquals(booksCheckedOut.get(0), new Book(9781843190004L, "Moyra Caldecott", "Weapons of the Wolfhound"));
+//
+//    }
 
 }

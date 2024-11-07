@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class Library {
 
-  private ArrayList<LibraryBook> library;
+  ArrayList<LibraryBook> library;
 
   public Library() {
     library = new ArrayList<LibraryBook>();
@@ -104,12 +104,12 @@ public class Library {
    */
   public String lookup(long isbn) {
     // FILL IN -- do not return null unless appropriate
-      for (LibraryBook book : library) {
-        if (book.getIsbn() == isbn) {
-          return book.getHolder(); // return holder if found
-        }
+    for (LibraryBook book : library) {
+      if (book.getIsbn() == isbn) {
+        return book.getHolder(); // Return holder if found
       }
-    return null; // return null of the book is not found
+    }
+    return null; // Return null if the book is not found
   }
 
   /**
@@ -160,7 +160,7 @@ public class Library {
           return false; // book is already check out
         }
         // Set due date and holder for checkout
-        GregorianCalendar dueDate = new GregorianCalendar(year, month - 1, day);
+        GregorianCalendar dueDate = new GregorianCalendar(year, month, day);
         book.checkBookOut(holder, dueDate);
         return true; // successfully checked out
       }
@@ -185,15 +185,14 @@ public class Library {
     for (LibraryBook book : library) {
       if (book.getIsbn() == isbn) {
         if (book.getHolder() != null) {
-          return false; // book is already checked out
+          book.checkBookIn(); // check the book in and sets holder and due date to null
+          return true; // successfully checked in        }
         }
-        book.checkBookIn(); // check the book in
-        return true; // successfully checked in
       }
     }
     return false; // this means book not found in the library
-  }
 
+  }
   /**
    * Unsets the holder and due date for all library books checked out be the
    * specified holder.

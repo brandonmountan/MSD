@@ -37,7 +37,7 @@ Nanosecond timer granularity has high precision and granularity, typically advan
 
 The granularity of the loop run-time is larger because it includes not only the time it takes for System.nanoTime() to advance but also the time spent performing the loop logic.
 
-The output of 05 states the loop funs 2.39 x 10^7 times per second which means on average, each call to System.nanoTime() happens once every 42ish nanoseconds
+The output of 05 states the loop runs 2.39 x 10^7 times per second which means on average, each call to System.nanoTime() happens once every 42ish nanoseconds
 
 Do the code changes pay off? Compare the results of experiment 6 with the results of experiment 5. 
 

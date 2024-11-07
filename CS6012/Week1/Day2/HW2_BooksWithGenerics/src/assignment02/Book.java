@@ -51,10 +51,12 @@ public class Book {
    */
   public boolean equals(Object other) {
     // FILL IN -- do not return false unless appropriate
-    if (other instanceof Book && this.isbn == ((Book) other).isbn) {
-      return true;
+    if (!(other instanceof Book otherBook)) {
+      return false;
     }
-    return false;
+    return this.isbn == otherBook.isbn &&
+            this.author.equals(otherBook.author) &&
+            this.title.equals(otherBook.title);
   }
 
   /**

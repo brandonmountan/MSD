@@ -34,7 +34,7 @@ public class RemoveFrontTimer extends TimerTemplate {
      * After removing, we add a new element to the end to maintain the size of the list.
      */
     @Override
-    protected void timingIteration(int n) {
+        protected void timingIteration(int n) {
         list.remove(0);  // Remove the first element
         list.add(n);  // Add a new element to the end to maintain the list size
     }
