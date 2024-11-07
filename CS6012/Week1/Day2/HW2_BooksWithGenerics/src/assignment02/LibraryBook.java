@@ -2,15 +2,15 @@ package assignment02;
 
 import java.util.GregorianCalendar;
 
-public class LibraryBook extends Book {
-    String holder;
+public class LibraryBook<Type> extends Book {
+    Type holder;
     GregorianCalendar dueDate;
 
     public LibraryBook(long isbn, String author, String title) {
         super(isbn, author, title);
     }
 
-    public String getHolder() {
+    public Type getHolder() {
         return holder;
     }
 
@@ -24,7 +24,7 @@ public class LibraryBook extends Book {
         this.dueDate = null;
     }
 
-    public boolean checkBookOut(String holder, GregorianCalendar dueDate) {
+    public boolean checkBookOut(Type holder, GregorianCalendar dueDate) {
         // first, ensure book isn't already checked out
         if (this.holder != null) {
             return false; // the book is already checked out

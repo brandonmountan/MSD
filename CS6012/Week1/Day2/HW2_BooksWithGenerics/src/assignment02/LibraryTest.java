@@ -25,7 +25,7 @@ class LibraryTest {
     @Test
     public void testNonEmpty() {
 
-        var lib = new Library();
+        var lib = new Library<String>();
         // test a small library
         lib.add(9780374292799L, "Thomas L. Friedman", "The World is Flat");
         lib.add(9780330351690L, "Jon Krakauer", "Into the Wild");
@@ -48,7 +48,7 @@ class LibraryTest {
     @Test
     public void testLargeLibrary(){
         // test a medium library
-        var lib = new Library();
+        var lib = new Library<String>();
         lib.addAll("Mushroom_Publishing.txt");
 
         // Initial check for a specific book that should not be checked out
@@ -101,20 +101,57 @@ class LibraryTest {
         assertFalse(lib.checkin(9999999999999L), "Check-in should return false for non-existent ISBN.");
     }
 
-//    @Test
-//    public void testLargeLibrary(){
-//        // test a medium library
-//        var lib = new Library();
-//        lib.addAll("Mushroom_Publishing.txt");
-//
-//        // FILL IN MORE TESTS HERE!
-//        assertNull(lib.lookup(9781843190004L)); //not checked out
-//        var res = lib.checkout(9781843190004L, "Brandon Mountan", 2, 1, 2008);
-//        assertTrue(res);
-//        var booksCheckedOut = lib.lookup("Brandon Mountan");
-//        assertEquals(booksCheckedOut.size(), 1);
-//        assertEquals(booksCheckedOut.get(0), new Book(9781843190004L, "Moyra Caldecott", "Weapons of the Wolfhound"));
-//
-//    }
+    @Test
+    public void stringLibraryTest() {
+        // test a library that uses names (String) to id patrons
+        Library<String> lib = new Library<>();
+        lib.add(9780374292799L, "Thomas L. Friedman", "The World is Flat");
+        lib.add(9780330351690L, "Jon Krakauer", "Into the Wild");
+        lib.add(9780446580342L, "David Baldacci", "Simple Genius");
+
+        String patron1 = "Jane Doe";
+
+        assertTrue(lib.checkout(9780330351690L, patron1, 1, 1, 2008));
+        assertTrue(lib.checkout(9780374292799L, patron1, 1, 1, 2008));
+
+        var booksCheckedOut1 = lib.lookup(patron1);
+        assertEquals(booksCheckedOut1.size(), 2);
+        assertTrue(booksCheckedOut1.contains(new Book(9780330351690L, "Jon Krakauer", "Into the Wild")));
+        assertTrue(booksCheckedOut1.contains(new Book(9780374292799L, "Thomas L. Friedman", "The World is Flat")));
+        assertEquals(booksCheckedOut1.get(0).getHolder(), patron1);
+        assertEquals(booksCheckedOut1.get(0).getDueDate(), new GregorianCalendar(2008, 1, 1));
+        assertEquals(booksCheckedOut1.get(1).getHolder(),patron1);
+        assertEquals(booksCheckedOut1.get(1).getDueDate(),new GregorianCalendar(2008, 1, 1));
+
+        assertTrue(lib.checkin(patron1));
+
+    }
+
+    @Test
+    public void phoneNumberTest(){
+        // test a library that uses phone numbers (PhoneNumber) to id patrons
+        var lib = new Library<PhoneNumber>();
+        lib.add(9780374292799L, "Thomas L. Friedman", "The World is Flat");
+        lib.add(9780330351690L, "Jon Krakauer", "Into the Wild");
+        lib.add(9780446580342L, "David Baldacci", "Simple Genius");
+
+        PhoneNumber patron2 = new PhoneNumber("801.555.1234");
+
+        assertTrue(lib.checkout(9780330351690L, patron2, 1, 1, 2008));
+        assertTrue(lib.checkout(9780374292799L, patron2, 1, 1, 2008));
+
+        ArrayList<LibraryBook<PhoneNumber>> booksCheckedOut2 = lib.lookup(patron2);
+
+        assertEquals(booksCheckedOut2.size(), 2);
+        assertTrue(booksCheckedOut2.contains(new Book(9780330351690L, "Jon Krakauer", "Into the Wild")));
+        assertTrue(booksCheckedOut2.contains(new Book(9780374292799L, "Thomas L. Friedman", "The World is Flat")));
+        assertEquals(booksCheckedOut2.get(0).getHolder(),patron2);
+        assertEquals(booksCheckedOut2.get(0).getDueDate(),new GregorianCalendar(2008, 1, 1));
+        assertEquals(booksCheckedOut2.get(1).getHolder(), patron2);
+        assertEquals(booksCheckedOut2.get(1).getDueDate(), new GregorianCalendar(2008, 1, 1));
+
+        assertTrue(lib.checkin(patron2));
+
+    }
 
 }

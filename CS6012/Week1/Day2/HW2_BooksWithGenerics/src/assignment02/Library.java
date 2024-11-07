@@ -11,12 +11,12 @@ import java.util.Scanner;
  * Class representation of a library (a collection of library books).
  * 
  */
-public class Library {
+public class Library<Type> {
 
-  ArrayList<LibraryBook> library;
+  ArrayList<LibraryBook<Type>> library;
 
   public Library() {
-    library = new ArrayList<LibraryBook>();
+    library = new ArrayList<LibraryBook<Type>>();
   }
 
   /**
@@ -39,7 +39,7 @@ public class Library {
    * @param list
    *          -- list of library books to be added
    */
-  public void addAll(ArrayList<LibraryBook> list) {
+  public void addAll(ArrayList<LibraryBook<Type>> list) {
     library.addAll(list);
   }
 
@@ -52,7 +52,7 @@ public class Library {
    * @param filename
    */
   public void addAll(String filename) {
-    ArrayList<LibraryBook> toBeAdded = new ArrayList<LibraryBook>();
+    ArrayList<LibraryBook<Type>> toBeAdded = new ArrayList<LibraryBook<Type>>();
 
     try (Scanner fileIn = new Scanner(new File(filename))) {
 
@@ -102,9 +102,9 @@ public class Library {
    * @param isbn
    *          -- ISBN of the book to be looked up
    */
-  public String lookup(long isbn) {
+  public Type lookup(long isbn) {
     // FILL IN -- do not return null unless appropriate
-    for (LibraryBook book : library) {
+    for (LibraryBook<Type> book : library) {
       if (book.getIsbn() == isbn) {
         return book.getHolder(); // Return holder if found
       }
@@ -120,10 +120,10 @@ public class Library {
    * @param holder
    *          -- holder whose checked out books are returned
    */
-  public ArrayList<LibraryBook> lookup(String holder) {
+  public ArrayList<LibraryBook<Type>> lookup(Type holder) {
     // FILL IN -- do not return null
-    ArrayList<LibraryBook> checkedOutBooks = new ArrayList<>();
-    for (LibraryBook book : library) {
+    ArrayList<LibraryBook<Type>> checkedOutBooks = new ArrayList<>();
+    for (LibraryBook<Type> book : library) {
       if (holder.equals(book.getHolder())) {
         checkedOutBooks.add(book); // add book to list if holder matches
       }
@@ -152,7 +152,7 @@ public class Library {
    *          -- year of the new due date of the library book
    * 
    */
-  public boolean checkout(long isbn, String holder, int month, int day, int year) {
+  public boolean checkout(long isbn, Type holder, int month, int day, int year) {
     // FILL IN -- do not return false unless appropriate
     for (LibraryBook book : library) {
       if (book.getIsbn() == isbn) {
@@ -182,7 +182,7 @@ public class Library {
    */
   public boolean checkin(long isbn) {
     // FILL IN -- do not return false unless appropriate
-    for (LibraryBook book : library) {
+    for (LibraryBook<Type> book : library) {
       if (book.getIsbn() == isbn) {
         if (book.getHolder() != null) {
           book.checkBookIn(); // check the book in and sets holder and due date to null
@@ -204,10 +204,10 @@ public class Library {
    * @param holder
    *          -- holder of the library books to be checked in
    */
-  public boolean checkin(String holder) {
+  public boolean checkin(Type holder) {
     // FILL IN -- do not return false unless appropriate
     boolean anyCheckedIn = false;
-    for (LibraryBook book : library) {
+    for (LibraryBook<Type> book : library) {
       if (holder.equals(book.getHolder())) {
         book.checkBookIn(); // check the book in
         anyCheckedIn = true;
