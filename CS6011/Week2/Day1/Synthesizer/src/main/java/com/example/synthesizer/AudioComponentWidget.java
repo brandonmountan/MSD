@@ -56,5 +56,4 @@ public class AudioComponentWidget extends Pane {
     public AudioComponent getAudioComponent() {
         return audioComponent_;
     }
-
 }

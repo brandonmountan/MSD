@@ -1,0 +1,24 @@
+What activities did you do as the driver? What activities did you do as the navigator?
+
+The driver is typing the code. The navigator is talking about the code
+
+What are the advantages and disadvantages of serving in each role?
+
+Less advantageous in terms of looking things up and debugging because one person might do it one way and the other might do it another way. More advantageous in terms of combining knowledge to write a program.
+
+How often did you and your partner switch roles? Did you switch often enough?
+
+The way we set up our coding was with the 'Code With Me' thing IntelliJ has so we could code on our own laptops. I talked through the first getMedian method, while Owen coded. Then the next getMedian method was basically the same except there was a comparator implementation. I think switching more would've been better because it would've slowed things down for me personally. I would like to go line by line and see how that goes.
+
+Which is your preferred role and why?
+
+I prefer navigating I guess because I feel like I have a better understanding of the code than I do writing the code.
+
+Explain why this is a BAD test case for your method: assertEquals("bird", MedianSolver.median(new String[]{"bird", "cat", "dog", "ant"}))
+
+In our median methods, if the array was an even number, the median would round up from the middle so actually the expected would be cat
+
+Explain how you could change the test to make it "valid" and explain how you could change the specification so that this is considered a "good" test
+
+assertEquals("cat", MedianSolver.median(new String[]{"bird", "cat", "dog", "ant"}))
+This test will pass

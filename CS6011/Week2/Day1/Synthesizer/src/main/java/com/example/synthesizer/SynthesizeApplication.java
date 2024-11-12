@@ -147,9 +147,8 @@ public class SynthesizeApplication extends Application {
             Point2D mouseLocalPoint = acw.outputJack.sceneToLocal(e.getSceneX(), e.getSceneY());
             boolean mousePointInJack = acw.outputJack.contains(mouseLocalPoint);
             if (mousePointInJack) {
-                System.out.println("mouse clicked on output jack");
-                Line line = new Line(mouseLocalPoint.getX(), mouseLocalPoint.getY(), mouseLocalPoint.getX(), mouseLocalPoint.getY());
 
+                System.out.println("mouse clicked on output jack");
             } else {
                 System.out.println("mouse not clicked on output jack");
             }

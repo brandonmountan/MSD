@@ -5,6 +5,3 @@ public interface AudioComponent {
     boolean hasInput();
     void connectInput( AudioComponent input );
 }
-
-
-
