@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f33f58a5-12d0-40f3-956b-9dce80d7f631" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../BasicHTTPServer/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../BasicHTTPServer/src/SimpleHttpServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ChatAppNew/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Week1/Day4/BasicHttpServer/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Week1/Day4/BasicHttpServer/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Week1/Day4/BasicHttpServer/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Week1/Day4/BasicHttpServer/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Week1/Day4/BasicHttpServer/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Week1/Day4/BasicHttpServer/resources/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Week1/Day4/BasicHttpServer/src/BasicHttpServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Day16/WebChat/resources/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day16/WebChat/resources/chat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Day18/MultithreadedWebServer/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/HTTPRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/HTTPRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/HTTPResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/HTTPResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/RequestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Day20/ChatAppNew/src/resources/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../CS6012/Week2/Day8/hw06_BinarySearchTree/src/assignment06/BinarySearchTree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../CS6012/Week2/Day8/hw06_BinarySearchTree/src/assignment06/SortedSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../CS6012/Week2/Day8/hw06_BinarySearchTree/src/assignment06/SpellChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../CS6012/Week2/Day8/hw06_BinarySearchTree/src/assignment06/SpellCheckerDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../CS6012/Week2/Day8/hw06_BinarySearchTree/src/assignment06/dictionary.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../CS6012/Week2/Day8/hw06_BinarySearchTree/src/assignment06/good_luck.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../CS6012/Week2/Day8/hw06_BinarySearchTree/src/assignment06/hello_world.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Week5/day3/ChatAppNew/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Week5/day3/ChatAppNew/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../CS6012/Week2/Day8/~$05_analysis.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +106,7 @@
       <workItem from="1730124558698" duration="6983000" />
       <workItem from="1730226998192" duration="2757000" />
       <workItem from="1730299580523" duration="631000" />
+      <workItem from="1732132698676" duration="685000" />
     </task>
     <servers />
   </component>
