@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="448a43be-3561-4ee9-bef7-cd409afcd92a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/InputArea.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/ToDoList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/setupTests.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2pRp0ul0cLefsfwATmoO1De9CGn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/brandonmountan/MSD/CS6011/labs/lab10_react_to_do_list",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="448a43be-3561-4ee9-bef7-cd409afcd92a" name="Changes" comment="" />
+      <created>1732738522632</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732738522632</updated>
+      <workItem from="1732738523924" duration="78000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
