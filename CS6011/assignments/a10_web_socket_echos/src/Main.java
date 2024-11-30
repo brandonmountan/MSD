@@ -3,18 +3,25 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Main {
-    public static void main(String[] args) {
-        int port = 8080;
-        try (ServerSocket serverSocket = new ServerSocket(port)) {
-            System.out.println("HTTP server started on port " + port);
+    public static final int PORT = 8080;
+    public static final String RESOURCE_DIR = "resources/";
 
+    public static void main(String[] args) {
+        try {
+            ServerSocket serverSocket = new ServerSocket(PORT);
+            System.out.println("Server is listening on port " + PORT);
             while (true) {
-                Socket clientSocket = serverSocket.accept();
-                System.out.println("Client connected.");
-                new Thread(new RequestHandler(clientSocket)).start();
+                try {
+                    Socket clientSocket = serverSocket.accept();
+                    // Handle each client in a new thread
+                    new Thread(new RequestHandler(clientSocket)).start();
+                } catch (IOException e) {
+                    System.err.println("Error accepting client connection: " + e.getMessage());
+                }
             }
         } catch (IOException e) {
             System.err.println("Server error: " + e.getMessage());
+            System.exit(1);
         }
     }
 }

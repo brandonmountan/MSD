@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #messages {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+        #input {
+            display: flex;
+            gap: 10px;
+        }
+        #input input {
+            flex: 1;
+            padding: 8px;
+        }
+        #input button {
+            padding: 8px 12px;
+        }
+    </style>
+</head>
+<body>
+<h1>WebSocket Demo</h1>
+<div id="messages"></div>
+<div id="input">
+    <input type="text" id="messageInput" placeholder="Type your message here...">
+    <button id="sendButton">Send</button>
+</div>
+
+<script>
+    // Connect to the WebSocket server
+    const ws = new WebSocket('ws://localhost:8080/index.html');
+
+    const messagesDiv = document.getElementById('messages');
+    const messageInput = document.getElementById('messageInput');
+    const sendButton = document.getElementById('sendButton');
+
+    // Add messages to the display
+    function addMessage(message, type = 'received') {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = `${type === 'sent' ? 'You: ' : 'Server: '}${message}`;
+        messagesDiv.appendChild(messageElement);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    // WebSocket event listeners
+    ws.onopen = () => {
+        addMessage('Connected to the server.', 'system');
+    };
+
+    ws.onmessage = (event) => {
+        addMessage(event.data);
+    };
+
+    ws.onclose = () => {
+        addMessage('Disconnected from the server.', 'system');
+    };
+
+    ws.onerror = (error) => {
+        console.error('WebSocket error:', error);
+        addMessage('An error occurred.', 'system');
+    };
+
+    // Send a message when the button is clicked
+    sendButton.addEventListener('click', () => {
+        const message = messageInput.value.trim();
+        if (message) {
+            ws.send(message);
+            addMessage(message, 'sent');
+            messageInput.value = '';
+        }
+    });
+
+    // Send a message when pressing Enter
+    messageInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            sendButton.click();
+        }
+    });
+</script>
+</body>
+</html>

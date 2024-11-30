@@ -16,6 +16,7 @@ public class ClientHandler implements Runnable {
 
             HTTPRequest request = new HTTPRequest(inputStream);
             File file = new File(Main.RESOURCE_DIR + request.getRequestedFile());
+            System.out.println(file);
             HTTPResponse response = new HTTPResponse(outputStream);
 
             if (file.exists() && !file.isDirectory()) {
