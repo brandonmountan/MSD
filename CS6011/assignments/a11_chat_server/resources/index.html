@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        form {
+            display: inline-block;
+            text-align: left;
+        }
+        input {
+            display: block;
+            margin-bottom: 15px;
+            padding: 10px;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to ChatApp</h1>
+<form id="loginForm">
+    <input type="text" id="username" placeholder="Enter your username" required />
+    <input type="text" id="roomName" placeholder="Enter room name" required />
+    <button type="submit">Join Room</button>
+</form>
+<script>
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value.trim();
+        const roomName = document.getElementById('roomName').value.trim();
+
+        if (username && roomName) {
+            // Save data to sessionStorage and redirect
+            sessionStorage.setItem('username', username);
+            sessionStorage.setItem('roomName', roomName);
+            window.location.href = `index.html?room=${encodeURIComponent(roomName)}`;
+        }
+    });
+</script>
+</body>
+</html>

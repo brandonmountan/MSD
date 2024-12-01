@@ -5,11 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f33f58a5-12d0-40f3-956b-9dce80d7f631" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WebSocketServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WebSocketChatServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ChatAppNew/resources/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ChatAppNew/resources/websocket_index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ChatAppNew/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WebSocketChatServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WebSocketServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatAppNew/src/ChatRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatAppNew/src/ChatRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatAppNew/src/HTTPRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatAppNew/src/HTTPRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatAppNew/src/HTTPResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatAppNew/src/HTTPResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatAppNew/src/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatAppNew/src/RequestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatAppNew/src/SimpleHttpServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatAppNew/src/resources/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatAppNew/src/resources/index2.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +74,7 @@
       <recent name="$PROJECT_DIR$/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.WebSocketServer">
+  <component name="RunManager" selected="Application.WebSocketChatServer">
     <configuration name="WebSocketChatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="WebSocketChatServer" />
       <module name="WebSocketServer" />
@@ -88,9 +97,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.WebSocketServer" />
         <item itemvalue="Application.WebSocketChatServer" />
-        <item itemvalue="JavaScript Debug.index.html (1)" />
+        <item itemvalue="Application.WebSocketServer" />
         <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
@@ -120,6 +128,7 @@
       <workItem from="1732896171674" duration="5388000" />
       <workItem from="1732906107454" duration="43000" />
       <workItem from="1732918411128" duration="2470000" />
+      <workItem from="1733006563714" duration="641000" />
     </task>
     <servers />
   </component>
