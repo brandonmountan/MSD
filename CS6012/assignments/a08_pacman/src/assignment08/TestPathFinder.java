@@ -14,4 +14,3 @@ public class TestPathFinder {
     PathFinder.solveMaze("tinyMaze.txt", "tinyMazeOutput.txt");
   }
 }
-

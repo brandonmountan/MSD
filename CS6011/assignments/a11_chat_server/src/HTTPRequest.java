@@ -24,7 +24,7 @@ public class HTTPRequest {
             String[] tokens = line.split(" ");
             method = tokens[0];
             System.out.println("method: " + method);
-            requestedFile = tokens[1].equals("/") ? "websocket_index.html" : "index.html";
+            requestedFile = "websocket_index.html";
             System.out.println("requestedFile: " + requestedFile);
         }
     }

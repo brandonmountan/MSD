@@ -1,21 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Chat Room</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Chat Room</title>
     <style>
-        #chatPage {
-            display: none;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
         }
-        #loginPage {
+        #loginPage, #chatPage {
+            display: none;
             text-align: center;
             margin-top: 50px;
+        }
+        #loginPage {
+            display: block;
         }
         #chatContainer {
             margin: 20px auto;
             width: 500px;
             border: 1px solid #ccc;
             padding: 10px;
-            background-color: #f9f9f9;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         #messages {
             height: 300px;
@@ -23,71 +33,141 @@
             border: 1px solid #ddd;
             margin-bottom: 10px;
             padding: 5px;
+            background-color: #fafafa;
+        }
+        .message {
+            margin-bottom: 5px;
+        }
+        .timestamp {
+            font-size: 0.8em;
+            color: #666;
+            margin-left: 10px;
         }
         #input {
             width: calc(100% - 20px);
             padding: 5px;
         }
+        .header {
+            margin: 20px;
+            font-size: 1.5em;
+        }
+        button {
+            padding: 5px 10px;
+            margin-left: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+
     </style>
 </head>
 <body>
+<!-- Login Page -->
 <div id="loginPage">
     <h2>Enter Your Username and Room Name</h2>
-    <input type="text" id="username" placeholder="Username" required /><br/><br/>
-    <input type="text" id="room" placeholder="Room Name" required /><br/><br/>
+    <input type="text" id="username" placeholder="Username" required /><br /><br />
+    <input type="text" id="room" placeholder="Room Name" required /><br /><br />
     <button onclick="joinChat()">Join Room</button>
 </div>
 
+<!-- Chat Page -->
 <div id="chatPage">
-    <h2>Chat Room</h2>
+    <h2 class="header">Chat Room</h2>
+    <h2 id="title"></h2>
     <div id="chatContainer">
         <div id="messages"></div>
-        <input type="text" id="input" placeholder="Type a message..." onkeydown="if(event.key === 'Enter'){sendMessage()}"/>
+        <input
+                type="text"
+                id="input"
+                placeholder="Type a message..."
+                onkeydown="if(event.key === 'Enter') { sendMessage(); }"
+        />
+        <button onclick="sendMessage()">Send</button>
+
     </div>
 </div>
 
 <script>
     let ws;
 
+    /**
+     * Function to join a chat room.
+     * Validates input and establishes a WebSocket connection.
+     */
     function joinChat() {
-        const username = document.getElementById('username').value;
-        const room = document.getElementById('room').value;
+
+        const usernameInput = document.getElementById('username');
+        const roomInput = document.getElementById('room');
+        const username = usernameInput.value.trim();
+        const room = roomInput.value.trim();
+
         if (!username || !room) {
             alert('Please fill in both fields.');
             return;
         }
 
-        // Establish a WebSocket connection
-        ws = new WebSocket(`ws://${window.location.host}/chat?username=${encodeURIComponent(username)}&room=${encodeURIComponent(room)}`);
+        try {
+            // Establish a WebSocket connection
+            ws = new WebSocket(`ws://${window.location.host}/chat?username=${encodeURIComponent(username)}&room=${encodeURIComponent(room)}`);
 
-        ws.onopen = () => {
-            console.log('Connected to chat server');
-            document.getElementById('loginPage').style.display = 'none';
-            document.getElementById('chatPage').style.display = 'block';
-        };
+            ws.onopen = () => {
+                console.log('Connected to chat server as: ', username, 'in room: ', room);
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('chatPage').style.display = 'block';
+            };
 
-        ws.onmessage = (event) => {
-            const messageDiv = document.createElement('div');
-            messageDiv.textContent = event.data;
-            document.getElementById('messages').appendChild(messageDiv);
-            document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
-        };
+            ws.onmessage = (event) => {
+                const {room, username, message, timestamp} = JSON.parse(event.data);
+                const titleDiv = document.getElementById('title')
+                titleDiv.textContent = `Room: ${room}`;
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message';
+                messageDiv.textContent = `${username}: ${message}`;
+                const timeSpan = document.createElement('span');
+                timeSpan.className = 'timestamp';
+                timeSpan.textContent = `(${new Date(timestamp).toLocaleTimeString()})`;
+                messageDiv.appendChild(timeSpan);
+                document.getElementById('messages').appendChild(messageDiv);
+                document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+            };
 
-        ws.onerror = (error) => {
-            console.error('WebSocket error:', error);
-        };
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error);
+            };
 
-        ws.onclose = () => {
-            console.log('Disconnected from chat server');
-            alert('You have been disconnected from the chat.');
-        };
+            ws.onclose = () => {
+                console.log('Disconnected from chat server');
+                alert('You have been disconnected from the chat.');
+            };
+        } catch (error) {
+            console.error('Websocket error: ', error)
+        }
     }
 
+    /**
+     * Function to send a message.
+     * Sends a JSON string with the message content.
+     */
     function sendMessage() {
+        const roomInput = document.getElementById('room');
+        const room = roomInput.value.trim();
         const input = document.getElementById('input');
         const message = input.value.trim();
+        const usernameInput = document.getElementById('username');
+        const username = usernameInput.value.trim();
         if (message !== '') {
-            ws.send(message);
+            const payload = {
+                room: room,
+                username: username,
+                message: message,
+                timestamp: Date.now()
+            };
+            ws.send(JSON.stringify(payload));
             input.value = '';
         }
     }

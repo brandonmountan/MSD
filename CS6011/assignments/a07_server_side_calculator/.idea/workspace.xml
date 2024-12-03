@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f83ad5e-bee2-4acb-8155-2b13b7d22fba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../Week4/Day17/Synthesizer4a/src/main/java/com/example/synthesizer4a/AudioClip.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/a08_web_chat_client.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/libraries/RoomChatServer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a11_chat_server/src/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../a10_web_socket_echos/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../a10_web_socket_echos/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../a11_chat_server/resources/websocket_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../a11_chat_server/resources/websocket_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../a11_chat_server/src/HTTPRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../a11_chat_server/src/HTTPRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../a11_chat_server/src/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../a11_chat_server/src/RequestHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,12 +25,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2nov1USlAaYC1t4llI3H0EBl2Jb" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -29,7 +41,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/brandonmountan/MSD/CS6011/Week3/Day14/Calculator",
+    "last_opened_file_path": "/Users/brandonmountan/MSD/CS6011/assignments/a07_server_side_calculator",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -38,11 +50,16 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
       </set>
     </attachedChunks>
   </component>
@@ -55,6 +72,7 @@
       <option name="presentableId" value="Default" />
       <updated>1729652027449</updated>
       <workItem from="1729652028453" duration="1065000" />
+      <workItem from="1733168288355" duration="901000" />
     </task>
     <servers />
   </component>

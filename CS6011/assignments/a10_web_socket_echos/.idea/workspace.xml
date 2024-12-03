@@ -5,26 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f33f58a5-12d0-40f3-956b-9dce80d7f631" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../ChatApp/src/WebSocketChatServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatApp/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../ChatApp/resources/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatApp/src/WebSocketServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatAppNew/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatAppNew/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatAppNew/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatAppNew/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatAppNew/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatAppNew/ChatAppNew.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatAppNew/src/ChatRoom.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatAppNew/src/HTTPRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatAppNew/src/HTTPResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatAppNew/src/RequestHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatAppNew/src/SimpleHttpServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatAppNew/src/resources/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ChatAppNew/src/resources/index2.html" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/a08_web_chat_client.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/libraries/RoomChatServer.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a11_chat_server/src/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../a07_server_side_calculator/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../a07_server_side_calculator/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../a07_server_side_calculator/resources/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../a07_server_side_calculator/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/websocket_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/websocket_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../a11_chat_server/resources/websocket_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../a11_chat_server/resources/websocket_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../a11_chat_server/src/HTTPRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../a11_chat_server/src/HTTPRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../a11_chat_server/src/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../a11_chat_server/src/RequestHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,30 +44,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SimpleWebSocketServer (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.SimpleWebSocketServer (2).executor&quot;: &quot;Run&quot;,
-    &quot;Application.SimpleWebSocketServer (3).executor&quot;: &quot;Run&quot;,
-    &quot;Application.SimpleWebSocketServer.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebSocket.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebSocketServer.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/brandonmountan/MSD/CS6011/assignments/a10_web_socket_echos&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/brandonmountan/MSD/CS6011/Week4/Day18/WebSocketServer/src/Main.java&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.SimpleWebSocketServer (1).executor": "Run",
+    "Application.SimpleWebSocketServer (2).executor": "Run",
+    "Application.SimpleWebSocketServer (3).executor": "Run",
+    "Application.SimpleWebSocketServer.executor": "Run",
+    "Application.WebSocket.executor": "Run",
+    "Application.WebSocketServer.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.index.html.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/brandonmountan/MSD/CS6011/assignments/a10_web_socket_echos",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/brandonmountan/MSD/CS6011/Week4/Day18/WebSocketServer/src/Main.java",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources" />
@@ -131,7 +125,7 @@
       <workItem from="1732743650403" duration="4855000" />
       <workItem from="1732906107841" duration="1497000" />
       <workItem from="1732982726524" duration="9793000" />
-      <workItem from="1733066315100" duration="2045000" />
+      <workItem from="1733066315100" duration="5205000" />
     </task>
     <servers />
   </component>
