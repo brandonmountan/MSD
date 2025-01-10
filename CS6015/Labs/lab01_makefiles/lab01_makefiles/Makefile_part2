@@ -1,0 +1,29 @@
+
+# Makefile - builds Makefile lab
+#
+# To build a target, enter:
+# make <target>
+#
+# Targets:
+# all - buildseverything
+# clean - deletes all.o, .a, binaries, etc.
+
+CXXSOURCE = Clothing.cpp Caps.cpp Pants.cpp main.cpp
+HEADERS = Clothing.h Caps.h Pants.h
+
+all: program
+program: Caps.o Clothing.o Pants.o main.o
+	$(CXX) $(CFLAGS) $^ -o $@
+Caps.o: Caps.cpp Caps.h Clothing.cpp Clothing.h
+	$(CXX) $(CFLAGS) -c Caps.cpp
+Clothing.o: Clothing.cpp Clothing.h
+	$(CXX) $(CFLAGS) -c Clothing.cpp
+Pants.o: Pants.cpp Pants.h Clothing.cpp Clothing.h
+	$(CXX) $(CFLAGS) -c Pants.cpp
+main.o: $(CXXSOURCE) $(HEADERS)
+	$(CXX) $(CFLAGS) -c $(CXXSOURCE)
+clean:
+	rm -f *.o *.out program
+printM:
+	echo "CXXSOURCE =" $(CXXSOURCE) "HEADERS =" $(HEADERS)
+.PHONY: clean

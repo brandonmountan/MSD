@@ -22,9 +22,11 @@ public class SineWaveACW extends AudioComponentWidget {
         baseLayout.getChildren().add(rightSide);
         outputJack.setFill(Color.STEELBLUE);
         outputJack.setRadius(10);
+        inputJack.setFill(Color.WHITE);
+        inputJack.setRadius(10);
         baseLayout.getChildren().add(outputJack);
 
-        inputJack = null;
+//        inputJack = null;
     }
 
     private void handleSlider(Slider slider) {

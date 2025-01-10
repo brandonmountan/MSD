@@ -19,7 +19,7 @@ public class PacmanApp {
     static double scale = 1.0;
     public static void main(String[] args) throws IOException {
 
-        var mazeFile = "bigMazeSol.txt";
+        var mazeFile = "/Users/brandonmountan/MSD/CS6012/assignments/a08_pacman/src/mazes/randomMazeSol.txt";
         var maze = readMaze(mazeFile);
 
         SwingUtilities.invokeLater(new Runnable() {

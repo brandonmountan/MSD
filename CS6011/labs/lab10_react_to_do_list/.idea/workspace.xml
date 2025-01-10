@@ -1,27 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="448a43be-3561-4ee9-bef7-cd409afcd92a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/public/logo512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/InputArea.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/ToDoList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/reportWebVitals.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Week5/day1/src/setupTests.js" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../assignments/a04_synthesizer/src/main/java/com/example/synthesizer/Cable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a08_pacman/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/a09_bsp_tree.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/src/assignment09/BSPTree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/src/assignment09/BSPTreeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/src/assignment09/Renderer2D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/src/assignment09/Renderer3D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/src/assignment09/Segment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/src/assignment09/SegmentCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/src/assignment09/Vec2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatApp/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatApp/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatApp/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatApp/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatApp/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatApp/WebSocketServer.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatApp/resources/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ChatApp/src/WebSocketChatServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assignments/a04_synthesizer/src/main/java/com/example/synthesizer/AudioComponentWidget.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../assignments/a04_synthesizer/src/main/java/com/example/synthesizer/AudioComponentWidget.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assignments/a04_synthesizer/src/main/java/com/example/synthesizer/SineWaveACW.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../assignments/a04_synthesizer/src/main/java/com/example/synthesizer/SineWaveACW.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assignments/a04_synthesizer/src/main/java/com/example/synthesizer/SynthesizeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../assignments/a04_synthesizer/src/main/java/com/example/synthesizer/SynthesizeApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assignments/a07_server_side_calculator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../assignments/a07_server_side_calculator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assignments/a07_server_side_calculator/SimpleCalcServer.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../../assignments/a07_server_side_calculator/src/SimpleCalcServer.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assignments/a07_server_side_calculator/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../assignments/a07_server_side_calculator/src/resources/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assignments/a07_server_side_calculator/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../assignments/a07_server_side_calculator/src/resources/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CS6012/assignments/a08_pacman/src/assignment08/PacmanApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a08_pacman/src/assignment08/PacmanApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,9 +45,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2pRp0ul0cLefsfwATmoO1De9CGn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -46,7 +60,9 @@
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/brandonmountan/MSD/CS6011/labs/lab10_react_to_do_list",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -68,6 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1732738522632</updated>
       <workItem from="1732738523924" duration="78000" />
+      <workItem from="1733421255510" duration="387000" />
     </task>
     <servers />
   </component>

@@ -5,19 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f83ad5e-bee2-4acb-8155-2b13b7d22fba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/a08_web_chat_client.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/libraries/RoomChatServer.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../a08_web_chat_client/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../a11_chat_server/src/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../a10_web_socket_echos/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../a10_web_socket_echos/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../a11_chat_server/resources/websocket_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../a11_chat_server/resources/websocket_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../a11_chat_server/src/HTTPRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../a11_chat_server/src/HTTPRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../a11_chat_server/src/RequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../a11_chat_server/src/RequestHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a04_synthesizer/src/main/java/com/example/synthesizer/Cable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a08_pacman/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/a09_bsp_tree.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/src/assignment09/BSPTree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/src/assignment09/Renderer2D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/src/assignment09/Renderer3D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/src/assignment09/Segment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/src/assignment09/SegmentCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a09_bsp_tree/src/assignment09/Vec2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../a04_synthesizer/src/main/java/com/example/synthesizer/AudioComponentWidget.java" beforeDir="false" afterPath="$PROJECT_DIR$/../a04_synthesizer/src/main/java/com/example/synthesizer/AudioComponentWidget.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../a04_synthesizer/src/main/java/com/example/synthesizer/SineWaveACW.java" beforeDir="false" afterPath="$PROJECT_DIR$/../a04_synthesizer/src/main/java/com/example/synthesizer/SineWaveACW.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../a04_synthesizer/src/main/java/com/example/synthesizer/SynthesizeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../a04_synthesizer/src/main/java/com/example/synthesizer/SynthesizeApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleCalcServer.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleCalcServer.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../CS6012/assignments/a08_pacman/src/assignment08/PacmanApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../CS6012/assignments/a08_pacman/src/assignment08/PacmanApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,22 +43,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/brandonmountan/MSD/CS6011/assignments/a07_server_side_calculator",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/brandonmountan/MSD/CS6011/assignments/a07_server_side_calculator&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/resources" />
+      <recent name="$PROJECT_DIR$/resources" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -73,6 +83,7 @@
       <updated>1729652027449</updated>
       <workItem from="1729652028453" duration="1065000" />
       <workItem from="1733168288355" duration="901000" />
+      <workItem from="1733332742209" duration="557000" />
     </task>
     <servers />
   </component>

@@ -49,11 +49,19 @@ public class AudioComponentWidget extends Pane {
         baseLayout.getChildren().add(leftSide);
 
         makeDraggable();
-
     };
 
     private void makeDraggable() {
+
         this.setOnMousePressed(event -> {
+//            Point2D point2DInputJack = inputJack.sceneToLocal(event.getSceneX(), event.getSceneY());
+//            Point2D point2DOutputJack = outputJack.sceneToLocal(event.getSceneX(), event.getSceneY());
+//            boolean mousePressedInInputJack = inputJack.contains(point2DInputJack);
+//            boolean mousePressedInOutputJack = outputJack.contains(point2DOutputJack);
+//            if (!mousePressedInInputJack || !mousePressedInOutputJack) {
+//                System.out.println("mouse clicked in output/input jack returning");
+//                return;
+//            }
             this.setUserData(new Point2D(event.getSceneX(), event.getSceneY()));
         });
 

@@ -12,17 +12,22 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.shape.Line;
 
 import javax.sound.sampled.*;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class SynthesizeApplication extends Application {
 
     public static AnchorPane mainCanvas_; // Canvas for placing widgets
     public static ArrayList<AudioComponentWidget> allWidgets_ = new ArrayList<>(); // Track all widgets
+    public static ArrayList<AudioComponentWidget> connectedWidgets_ = new ArrayList<>(); // Track all widgets
+    public int audioComponentCounter;
+    private Mixer mixer_ = new Mixer();
+    private boolean mixerConnected_ = false;
+    private Line line;
+    private double startX, startY, endX, endY;
 
     @Override
     public void start(Stage stage) {
@@ -85,7 +90,11 @@ public class SynthesizeApplication extends Application {
     private AnchorPane createMainCanvas() {
         AnchorPane canvas = new AnchorPane();
         canvas.setStyle("-fx-background-color: #808080;");
-        canvas.setOnMouseClicked(this::handleCanvasClick);
+        canvas.setOnMouseClicked(this::handleMouseClick);
+        canvas.setOnMouseDragged(this::handleMouseDrag);
+        canvas.setOnMouseReleased(this::handleMouseRelease);
+        MixerACW mixerACW = new MixerACW(mixer_, mainCanvas_, "Mixer");
+        canvas.getChildren().add(mixerACW);
         return canvas;
     }
 
@@ -113,12 +122,12 @@ public class SynthesizeApplication extends Application {
             AudioListener listener = new AudioListener(clip);
             AudioFormat format16 = new AudioFormat(44100, 16, 1, true, false);
 
-            Mixer mixer = new Mixer();
+            // need to connect input to mixer only once
             for (AudioComponentWidget acw : allWidgets_) {
-                mixer.connectInput(acw.getAudioComponent());
+                mixer_.connectInput(acw.getAudioComponent());
             }
 
-            AudioClip audioClip = mixer.getClip();
+            AudioClip audioClip = mixer_.getClip();
             clip.open(format16, audioClip.getData(), 0, audioClip.getData().length);
             clip.start();
             clip.addLineListener(listener);
@@ -145,19 +154,49 @@ public class SynthesizeApplication extends Application {
         if (widget != null) {
             mainCanvas_.getChildren().add(widget);
             allWidgets_.add(widget);
+            audioComponentCounter++;
+            System.out.println("audioComponentCounter: " + audioComponentCounter);
+            System.out.println(allWidgets_);
         }
     }
 
     /**
      * Handles clicks on the main canvas, such as for jack connections.
      */
-    private void handleCanvasClick(MouseEvent e) {
+    private void handleMouseClick(MouseEvent e) {
+        System.out.println("mouse event: " + e);
         for (AudioComponentWidget widget : allWidgets_) {
             Point2D mouseLocalPoint = widget.outputJack.sceneToLocal(e.getSceneX(), e.getSceneY());
             if (widget.outputJack.contains(mouseLocalPoint)) {
                 System.out.println("Output jack clicked on widget: " + widget.getClass().getSimpleName());
+                startX = widget.outputJack.getLayoutX();
+                startY = widget.outputJack.getLayoutY();
+                endX = 100;
+                endY = 100;
+                line =  new Line(startX, startY, endX, endY);
+                mainCanvas_.getChildren().add(line);
             }
         }
+    }
+
+    private void handleMouseDrag(MouseEvent e) {
+        endX = e.getX();
+        endY = e.getY();
+    }
+
+    private void handleMouseRelease(MouseEvent e) {
+        for (AudioComponentWidget widget : allWidgets_) {
+            Point2D mouseLocalPoint = widget.inputJack.sceneToLocal(e.getSceneX(), e.getSceneY());
+            if (widget.inputJack.contains(mouseLocalPoint)) {
+                System.out.println("Output jack released on widget: " + widget.getClass().getSimpleName());
+                endX = e.getX();
+                endY = e.getY();
+            }
+        }
+    }
+
+    public static void populateWidgets() {
+
     }
 
     /**
