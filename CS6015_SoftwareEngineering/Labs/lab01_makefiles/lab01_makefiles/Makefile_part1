@@ -1,0 +1,25 @@
+# Makefile - builds the program
+#
+# To build a target, enter:
+# make <target>
+#
+# Targets:
+# all - builds everything
+# clean - deletes all.o, .a, binaries, etc.
+#
+
+all: program
+program: Caps.o Clothing.o Pants.o main.o
+	c++ Caps.o Clothing.o Pants.o main.o -o program
+Caps.o: Caps.cpp Caps.h Clothing.cpp Clothing.h
+	c++ -c Caps.cpp
+Clothing.o: Clothing.cpp Clothing.h
+	c++ -c Clothing.cpp
+Pants.o: Pants.cpp Pants.h Clothing.cpp Clothing.h
+	c++ -c Pants.cpp
+main.o: main.cpp Pants.cpp Pants.h Clothing.cpp Clothing.h Caps.cpp Caps.h
+	c++ -c main.cpp Caps.cpp Clothing.cpp Pants.cpp
+clean:
+	rm -f *.o *.out program
+run:
+	./program

@@ -1,3 +1,0 @@
-/Users/brandonmountan/MSD/CS6013/Assignments/cmake-build-debug/CMakeFiles/Assignments.dir
-/Users/brandonmountan/MSD/CS6013/Assignments/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/brandonmountan/MSD/CS6013/Assignments/cmake-build-debug/CMakeFiles/rebuild_cache.dir
