@@ -1,0 +1,13 @@
+Part B (3 points): Suppose one of the three traceroute
+delay values between the source and a given router hop
+turns out to be unusually high. What are two possible causes
+for this unusually high delay?
+
+Network Congestion
+    The router or one of the links between the end points could
+    be experiencing high traffic volume which can cause delays
+    in processing or forwarding packets.
+
+Packet Routing or Queuing Issues
+    A router could briefly prioritize other traffic or place the
+    packet in a queue while handling other tasks

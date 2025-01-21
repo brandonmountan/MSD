@@ -1,0 +1,3 @@
+/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Practice/Shapes/cmake-build-debug/CMakeFiles/Shapes.dir
+/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Practice/Shapes/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Practice/Shapes/cmake-build-debug/CMakeFiles/rebuild_cache.dir

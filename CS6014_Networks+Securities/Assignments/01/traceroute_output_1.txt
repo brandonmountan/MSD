@@ -1,0 +1,24 @@
+ 1  10.16.0.3 (10.16.0.3)  6.656 ms  4.768 ms  4.481 ms
+ 2  155.99.130.77 (155.99.130.77)  4.416 ms  4.118 ms  4.905 ms
+ 3  155.99.130.64 (155.99.130.64)  4.544 ms  5.261 ms
+    155.99.130.56 (155.99.130.56)  4.615 ms
+ 4  fw-border-trust.net.utah.edu (199.104.93.34)  4.278 ms
+    fw-border-trust.net.utah.edu (199.104.93.30)  4.457 ms  4.417 ms
+ 5  * * *
+ 6  140.197.253.138 (140.197.253.138)  6.713 ms  4.966 ms  5.758 ms
+ 7  lv3-beibr-a-184-int.uen.net (140.197.253.22)  5.738 ms  7.017 ms  5.297 ms
+ 8  lv3-beibr-b-182-int.uen.net (140.197.249.116)  5.831 ms  6.567 ms  5.675 ms
+ 9  fourhundredge-0-0-0-8.703.core1.salt.net.internet2.edu (198.71.47.124)  13.793 ms  15.421 ms  13.900 ms
+10  fourhundredge-0-0-0-21.4079.core2.salt.net.internet2.edu (163.253.1.29)  20.576 ms
+    fourhundredge-0-0-0-23.4079.core2.salt.net.internet2.edu (163.253.1.33)  21.283 ms
+    fourhundredge-0-0-0-21.4079.core2.salt.net.internet2.edu (163.253.1.29)  20.352 ms
+11  fourhundredge-0-0-0-8.4079.core1.losa.net.internet2.edu (163.253.1.114)  20.038 ms  19.363 ms  21.674 ms
+12  fourhundredge-0-0-0-48.4079.agg1.losa2.net.internet2.edu (163.253.1.197)  19.191 ms
+    fourhundredge-0-0-0-48.4079.agg2.losa2.net.internet2.edu (163.253.1.19)  19.288 ms
+    fourhundredge-0-0-0-48.4079.agg1.losa2.net.internet2.edu (163.253.1.197)  19.351 ms
+13  72.14.216.178 (72.14.216.178)  17.713 ms  17.346 ms  17.521 ms
+14  142.251.226.191 (142.251.226.191)  17.904 ms  17.283 ms
+    74.125.253.15 (74.125.253.15)  17.233 ms
+15  142.250.226.107 (142.250.226.107)  20.433 ms
+    108.170.230.137 (108.170.230.137)  18.536 ms  17.825 ms
+16  52.234.144.34.bc.googleusercontent.com (34.144.234.52)  17.875 ms  17.279 ms  16.849 ms
