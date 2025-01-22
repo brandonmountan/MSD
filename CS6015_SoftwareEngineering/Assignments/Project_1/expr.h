@@ -1,73 +1,54 @@
 //
 // Created by Brandon Mountan on 1/20/25.
 //
+
 #ifndef EXPR_H
 #define EXPR_H
 
-// Include necessary libraries
-#include <string>  // For std::string to represent variable names
-#include <memory>  // For std::shared_ptr to manage expression objects dynamically
+#include <string>
 
 // Abstract base class for expressions
 class Expr {
 public:
-  // Virtual destructor to ensure proper cleanup of derived class objects
-  virtual ~Expr() {}
-
-  // Pure virtual method for checking equality between expressions
-  // Each subclass must implement this method
-  virtual bool equals(std::shared_ptr<Expr> e) const = 0;
+  virtual bool equals(const Expr* e) = 0; // Pure virtual method for equality check
 };
 
-// Class representing a numeric expression (e.g., a single integer value)
+// Number expression
 class NumExpr : public Expr {
-  int value;  // The numeric value of the expression
+  int value; // Stores the numeric value of this expression
 
 public:
-  // Constructor to initialize the numeric value
-  explicit NumExpr(int value);
-
-  // Implementation of the equals method to compare numeric expressions
-  bool equals(std::shared_ptr<Expr> e) const override;
+  NumExpr(int value); // Constructor to initialize the numeric value
+  bool equals(const Expr* e); // Overridden equals method
 };
 
-// Class representing an addition expression (e.g., lhs + rhs)
+// Addition expression
 class AddExpr : public Expr {
-  // Shared pointers to the left-hand side and right-hand side expressions
-  std::shared_ptr<Expr> lhs, rhs;
+  Expr* lhs; // Left-hand side expression
+  Expr* rhs; // Right-hand side expression
 
 public:
-  // Constructor to initialize the left and right expressions
-  AddExpr(std::shared_ptr<Expr> lhs, std::shared_ptr<Expr> rhs);
-
-  // Implementation of the equals method to compare addition expressions
-  bool equals(std::shared_ptr<Expr> e) const override;
+  AddExpr(Expr* lhs, Expr* rhs); // Constructor to initialize the operands
+  bool equals(const Expr* e); // Overridden equals method
 };
 
-// Class representing a multiplication expression (e.g., lhs * rhs)
+// Multiplication expression
 class MultExpr : public Expr {
-  // Shared pointers to the left-hand side and right-hand side expressions
-  std::shared_ptr<Expr> lhs, rhs;
+  Expr* lhs; // Left-hand side expression
+  Expr* rhs; // Right-hand side expression
 
 public:
-  // Constructor to initialize the left and right expressions
-  MultExpr(std::shared_ptr<Expr> lhs, std::shared_ptr<Expr> rhs);
-
-  // Implementation of the equals method to compare multiplication expressions
-  bool equals(std::shared_ptr<Expr> e) const override;
+  MultExpr(Expr* lhs, Expr* rhs); // Constructor to initialize the operands
+  bool equals(const Expr* e); // Overridden equals method
 };
 
-// Class representing a variable expression (e.g., a variable like "x" or "y")
+// Variable expression
 class VarExpr : public Expr {
-  std::string name;  // Name of the variable
+  std::string name; // Stores the name of the variable
 
 public:
-  // Constructor to initialize the variable's name
-  explicit VarExpr(const std::string &name);
-
-  // Implementation of the equals method to compare variable expressions
-  bool equals(std::shared_ptr<Expr> e) const override;
+  VarExpr(const std::string& name); // Constructor to initialize the variable name
+  bool equals(const Expr* e); // Overridden equals method
 };
 
-// End of include guard
 #endif // EXPR_H

@@ -1,60 +1,46 @@
 //
 // Created by Brandon Mountan on 1/20/25.
 //
-#include "expr.h" // Include the header file where the class declarations are located
+#include "expr.h"
 
-// Implementation of NumExpr
-
-// Constructor: Initializes the NumExpr with a given integer value
-NumExpr::NumExpr(int value) : value(value) {}
-
-// Implementation of the equals method for NumExpr
-// Compares this NumExpr with another expression to check if they are equal
-bool NumExpr::equals(std::shared_ptr<Expr> e) const {
-    // Attempt to cast the input expression to a NumExpr
-    auto numExpr = std::dynamic_pointer_cast<NumExpr>(e);
-    // Return true if the cast is successful and the values are equal
-    return numExpr && this->value == numExpr->value;
+// Implementation for NumExpr
+NumExpr::NumExpr(int value){
+  this->value = value;
 }
 
-// Implementation of AddExpr
-
-// Constructor: Initializes AddExpr with left-hand side (lhs) and right-hand side (rhs) expressions
-AddExpr::AddExpr(std::shared_ptr<Expr> lhs, std::shared_ptr<Expr> rhs) : lhs(lhs), rhs(rhs) {}
-
-// Implementation of the equals method for AddExpr
-// Compares this AddExpr with another expression to check if they are equal
-bool AddExpr::equals(std::shared_ptr<Expr> e) const {
-    // Attempt to cast the input expression to an AddExpr
-    auto addExpr = std::dynamic_pointer_cast<AddExpr>(e);
-    // Return true if the cast is successful and both lhs and rhs are equal
-    return addExpr && lhs->equals(addExpr->lhs) && rhs->equals(addExpr->rhs);
+bool NumExpr::equals(const Expr* e) {
+    const NumExpr* numExpr = dynamic_cast<const NumExpr*>(e); // Check if e is a NumExpr
+    return numExpr && this->value == numExpr->value; // Compare values if cast is successful
 }
 
-// Implementation of MultExpr
-
-// Constructor: Initializes MultExpr with left-hand side (lhs) and right-hand side (rhs) expressions
-MultExpr::MultExpr(std::shared_ptr<Expr> lhs, std::shared_ptr<Expr> rhs) : lhs(lhs), rhs(rhs) {}
-
-// Implementation of the equals method for MultExpr
-// Compares this MultExpr with another expression to check if they are equal
-bool MultExpr::equals(std::shared_ptr<Expr> e) const {
-    // Attempt to cast the input expression to a MultExpr
-    auto multExpr = std::dynamic_pointer_cast<MultExpr>(e);
-    // Return true if the cast is successful and both lhs and rhs are equal
-    return multExpr && lhs->equals(multExpr->lhs) && rhs->equals(multExpr->rhs);
+// Implementation for AddExpr
+AddExpr::AddExpr(Expr* lhs, Expr* rhs) {
+    this->lhs = lhs; // Assign the left-hand side expression to the member variable
+    this->rhs = rhs; // Assign the right-hand side expression to the member variable
 }
 
-// Implementation of VarExpr
+bool AddExpr::equals(const Expr* e) {
+    const AddExpr* addExpr = dynamic_cast<const AddExpr*>(e); // Check if e is an AddExpr
+    return addExpr && lhs->equals(addExpr->lhs) && rhs->equals(addExpr->rhs); // Compare operands
+}
 
-// Constructor: Initializes VarExpr with a given variable name
-VarExpr::VarExpr(const std::string &name) : name(name) {}
+// Implementation for MultExpr
+MultExpr::MultExpr(Expr* lhs, Expr* rhs){
+  this->lhs = lhs;
+  this->rhs = rhs;
+}
 
-// Implementation of the equals method for VarExpr
-// Compares this VarExpr with another expression to check if they are equal
-bool VarExpr::equals(std::shared_ptr<Expr> e) const {
-    // Attempt to cast the input expression to a VarExpr
-    auto varExpr = std::dynamic_pointer_cast<VarExpr>(e);
-    // Return true if the cast is successful and the variable names are equal
-    return varExpr && this->name == varExpr->name;
+bool MultExpr::equals(const Expr* e) {
+    const MultExpr* multExpr = dynamic_cast<const MultExpr*>(e); // Check if e is a MultExpr
+    return multExpr && lhs->equals(multExpr->lhs) && rhs->equals(multExpr->rhs); // Compare operands
+}
+
+// Implementation for VarExpr
+VarExpr::VarExpr(const std::string& name){
+  this->name = name;
+}
+
+bool VarExpr::equals(const Expr* e) {
+    const VarExpr* varExpr = dynamic_cast<const VarExpr*>(e); // Check if e is a VarExpr
+    return varExpr && this->name == varExpr->name; // Compare variable names
 }
