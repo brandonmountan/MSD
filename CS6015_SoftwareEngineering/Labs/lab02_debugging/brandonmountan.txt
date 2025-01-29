@@ -1,0 +1,1765 @@
+Script started on Thu Jan 23 10:16:07 2025
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hcclang++ *.cpp =0  -o program[?2004l
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hlls = -l[?2004l
+total 560
+-rw-r--r--@ 1 brandonmountan  staff     132 Jan 23 10:09 CMakeLists.txt
+-rwxrwxrwx@ 1 brandonmountan  staff    4128 Jan  4  2024 Department.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff    1486 Oct  8  2018 Department.h
+-rw-r--r--@ 1 brandonmountan  staff   15076 Jan 23 10:07 Expected_Output.docx
+-rw-r--r--@ 1 brandonmountan  staff   13541 Jan 23 10:11 Report.docx
+-rw-r--r--  1 brandonmountan  staff     331 Jan 23 10:16 brandonmountan.txt
+drwxr-xr-x@ 8 brandonmountan  staff     256 Jan 23 10:09 cmake-build-debug
+-rwxrwxrwx@ 1 brandonmountan  staff    1018 Jan  4  2024 employeeClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff     621 Jan  4  2024 employeeClass.h
+-rwxrwxrwx@ 1 brandonmountan  staff    5085 Jan  4  2024 main.cpp
+-rwxr-xr-x  1 brandonmountan  staff  189432 Jan 23 10:16 program
+-rwxrwxrwx@ 1 brandonmountan  staff     955 Mar 15  2018 programmerClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff     595 Mar 15  2018 programmerClass.h
+-rwxrwxrwx@ 1 brandonmountan  staff    1072 Mar 15  2018 softwarearchitectClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff     633 Mar 15  2018 softwarearchitectClass.h
+-rw-r--r--@ 1 brandonmountan  staff     162 Jan 23 10:10 ~$Report.docx
+-rw-r--r--@ 1 brandonmountan  staff     162 Jan 23 10:10 ~$pected_Output.docx
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hlls -l[?2004l
+total 480
+-rw-r--r--@ 1 brandonmountan  staff     132 Jan 23 10:09 CMakeLists.txt
+-rwxrwxrwx@ 1 brandonmountan  staff    4128 Jan  4  2024 Department.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff    1486 Oct  8  2018 Department.h
+-rw-r--r--  1 brandonmountan  staff    2260 Jan 23 10:17 brandonmountan.txt
+drwxr-xr-x@ 8 brandonmountan  staff     256 Jan 23 10:09 cmake-build-debug
+-rwxrwxrwx@ 1 brandonmountan  staff    1018 Jan  4  2024 employeeClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff     621 Jan  4  2024 employeeClass.h
+-rwxrwxrwx@ 1 brandonmountan  staff    5085 Jan  4  2024 main.cpp
+-rwxr-xr-x  1 brandonmountan  staff  189432 Jan 23 10:16 program
+-rwxrwxrwx@ 1 brandonmountan  staff     955 Mar 15  2018 programmerClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff     595 Mar 15  2018 programmerClass.h
+-rwxrwxrwx@ 1 brandonmountan  staff    1072 Mar 15  2018 softwarearchitectClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff     633 Mar 15  2018 softwarearchitectClass.h
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hcclang++ *.cpp -g -O0 -o prgoram [K[A[79C[K[1B[K[A[79C    ogram [K[K[?2004l
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hlls -l[?2004l
+total 576
+-rw-r--r--@ 1 brandonmountan  staff     132 Jan 23 10:09 CMakeLists.txt
+-rwxrwxrwx@ 1 brandonmountan  staff    4128 Jan  4  2024 Department.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff    1486 Oct  8  2018 Department.h
+-rw-r--r--  1 brandonmountan  staff    3582 Jan 23 10:25 brandonmountan.txt
+drwxr-xr-x@ 8 brandonmountan  staff     256 Jan 23 10:09 cmake-build-debug
+-rwxrwxrwx@ 1 brandonmountan  staff    1018 Jan  4  2024 employeeClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff     621 Jan  4  2024 employeeClass.h
+-rwxrwxrwx@ 1 brandonmountan  staff    5085 Jan  4  2024 main.cpp
+-rwxr-xr-x  1 brandonmountan  staff  239224 Jan 23 10:25 program
+drwxr-xr-x  3 brandonmountan  staff      96 Jan 23 10:25 program.dSYM
+-rwxrwxrwx@ 1 brandonmountan  staff     955 Mar 15  2018 programmerClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff     595 Mar 15  2018 programmerClass.h
+-rwxrwxrwx@ 1 brandonmountan  staff    1072 Mar 15  2018 softwarearchitectClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff     633 Mar 15  2018 softwarearchitectClass.h
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hls -lclang++ *.cpp -g -O0 -o program [K[K[A[79C[1C[P[11C[K[1B[K[A[68C1 -o program [K[A[69C[1B[K[A[69C[?2004l[1B
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hlls -l[?2004l
+total 256
+-rw-r--r--@ 1 brandonmountan  staff    132 Jan 23 10:09 CMakeLists.txt
+-rwxrwxrwx@ 1 brandonmountan  staff   4128 Jan  4  2024 Department.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff   1486 Oct  8  2018 Department.h
+-rw-r--r--  1 brandonmountan  staff   5304 Jan 23 10:25 brandonmountan.txt
+drwxr-xr-x@ 8 brandonmountan  staff    256 Jan 23 10:09 cmake-build-debug
+-rwxrwxrwx@ 1 brandonmountan  staff   1018 Jan  4  2024 employeeClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff    621 Jan  4  2024 employeeClass.h
+-rwxrwxrwx@ 1 brandonmountan  staff   5085 Jan  4  2024 main.cpp
+-rwxr-xr-x  1 brandonmountan  staff  70456 Jan 23 10:25 program
+drwxr-xr-x  3 brandonmountan  staff     96 Jan 23 10:25 program.dSYM
+-rwxrwxrwx@ 1 brandonmountan  staff    955 Mar 15  2018 programmerClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff    595 Mar 15  2018 programmerClass.h
+-rwxrwxrwx@ 1 brandonmountan  staff   1072 Mar 15  2018 softwarearchitectClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff    633 Mar 15  2018 softwarearchitectClass.h
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hls -lclang++ *.cpp -g -O1 -o program [K[K[A[79C[P[11C[K[1B[K[A[68C2 -o program [K[A[69C[1B[K[A[69C[?2004l[1B
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hlls -l[?2004l
+total 256
+-rw-r--r--@ 1 brandonmountan  staff    132 Jan 23 10:09 CMakeLists.txt
+-rwxrwxrwx@ 1 brandonmountan  staff   4128 Jan  4  2024 Department.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff   1486 Oct  8  2018 Department.h
+-rw-r--r--  1 brandonmountan  staff   7097 Jan 23 10:26 brandonmountan.txt
+drwxr-xr-x@ 8 brandonmountan  staff    256 Jan 23 10:09 cmake-build-debug
+-rwxrwxrwx@ 1 brandonmountan  staff   1018 Jan  4  2024 employeeClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff    621 Jan  4  2024 employeeClass.h
+-rwxrwxrwx@ 1 brandonmountan  staff   5085 Jan  4  2024 main.cpp
+-rwxr-xr-x  1 brandonmountan  staff  69768 Jan 23 10:26 program
+drwxr-xr-x  3 brandonmountan  staff     96 Jan 23 10:25 program.dSYM
+-rwxrwxrwx@ 1 brandonmountan  staff    955 Mar 15  2018 programmerClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff    595 Mar 15  2018 programmerClass.h
+-rwxrwxrwx@ 1 brandonmountan  staff   1072 Mar 15  2018 softwarearchitectClass.cpp
+-rwxrwxrwx@ 1 brandonmountan  staff    633 Mar 15  2018 softwarearchitectClass.h
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hlls[?2004l
+CMakeLists.txt			main.cpp
+Department.cpp			program
+Department.h			program.dSYM
+brandonmountan.txt		programmerClass.cpp
+cmake-build-debug		programmerClass.h
+employeeClass.cpp		softwarearchitectClass.cpp
+employeeClass.h			softwarearchitectClass.h
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004h.... ./program[?2004l
+  Here is the List of all the Staff in the R&D Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Josh   0   Technology Specialist   3000.00      2015
+
+   Mary   0         Project Manager   5500.00      2010
+
+   Marc   0    Research Team Leader   8000.00      2007
+
+   Mike   0        Multimedia Prog.   2500.00      2014
+
+  Julie   0     Mainframe Sys.Prog.   2150.00      2013
+
+ Albert   0                OS Prog.   2300.00      2015
+
+   John   0    Senior Software Eng.   4899.00      2011
+
+ Connor   0      Software Developer   1900.00      2017
+  Here is the List of all the Staff in the IT Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+    Roy   0           Network Prog.   1900.00      2016
+
+   Jane   0                  Tester   1500.00      2018
+
+ Removing Mike from the company: Succeeded
+ -------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Mary   0         Project Manager   5500.00      2010
+
+  Julie   0     Mainframe Sys.Prog.   2150.00      2013
+
+ Connor   0      Software Developer   1900.00      2017
+
+  Here is the List of all the Programmers who know C++ in the R&D Department: 
+  ---------------------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+  Julie   0     Mainframe Sys.Prog.   2150.00      2013      Mary         5         C++
+
+ Listing All Project IDs:  5 8
+-------------------------
+The Highest R&D Employee Salary is: 5500.00
+The Highest R&D Programmer Salary is: 2150.00
+The Highest R&D Software Architect Salary is: 1900.00
+
+The Average R&D Employee Salary is: 5500
+The Average R&D Programmer Salary is: 2150
+The Average R&D Software Architect Salary is: 1900
+
+The Average IT Employee Salary is: 0
+The Average IT Programmer Salary is: 750
+The Average IT Software Architect Salary is: 0
+
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hllldb program[?2004l
+(lldb) target create "program"
+[2mLocating external symbol file: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2K[2mLoading DWARF5 index: program...[0m[K[2K[2mLocating external symbol file: dyld...[0m[K[2K[2mLocating external symbol file: dyld...[0m[K[2K[2mParsing symbol table: dyld...[0m[K[2K[2mLocating external symbol file: libc++.1.dylib...[0m[K[2K[2mLocating external symbol file: libc++.1.dylib...[0m[K[2K[2mParsing symbol table: libc++.1.dylib...[0m[K[2K[2mLocating external symbol file: libSystem.B.dylib...[0m[K[2K[2mLocating external symbol file: libSystem.B.dylib...[0m[K[2K[2mParsing symbol table: libSystem.B.dylib...[0m[K[2K[2mLocating external symbol file: libc++abi.dylib...[0m[K[2K[2mLocating external symbol file: libc++abi.dylib...[0m[K[2K[2mParsing symbol table: libc++abi.dylib...[0m[K[2K[2mLocating external symbol file: libcache.dylib...[0m[K[2K[2mLocating external symbol file: libcache.dylib...[0m[K[2K[2mParsing symbol table: libcache.dylib...[0m[K[2K[2mLocating external symbol file: libcommonCrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcommonCrypto.dylib...[0m[K[2K[2mParsing symbol table: libcommonCrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcompiler_rt.dylib...[0m[K[2K[2mLocating external symbol file: libcompiler_rt.dylib...[0m[K[2K[2mParsing symbol table: libcompiler_rt.dylib...[0m[K[2K[2mLocating external symbol file: libcopyfile.dylib...[0m[K[2K[2mLocating external symbol file: libcopyfile.dylib...[0m[K[2K[2mParsing symbol table: libcopyfile.dylib...[0m[K[2K[2mLocating external symbol file: libcorecrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcorecrypto.dylib...[0m[K[2K[2mParsing symbol table: libcorecrypto.dylib...[0m[K[2K[2mLocating external symbol file: libdispatch.dylib...[0m[K[2K[2mLocating external symbol file: libdispatch.dylib...[0m[K[2K[2mParsing symbol table: libdispatch.dylib...[0m[K[2K[2mLocating external symbol file: libdyld.dylib...[0m[K[2K[2mLocating external symbol file: libdyld.dylib...[0m[K[2K[2mParsing symbol table: libdyld.dylib...[0m[K[2K[2mLocating external symbol file: libkeymgr.dylib...[0m[K[2K[2mLocating external symbol file: libkeymgr.dylib...[0m[K[2K[2mParsing symbol table: libkeymgr.dylib...[0m[K[2K[2mLocating external symbol file: libmacho.dylib...[0m[K[2K[2mLocating external symbol file: libmacho.dylib...[0m[K[2K[2mParsing symbol table: libmacho.dylib...[0m[K[2K[2mLocating external symbol file: libquarantine.dylib...[0m[K[2K[2mLocating external symbol file: libquarantine.dylib...[0m[K[2K[2mParsing symbol table: libquarantine.dylib...[0m[K[2K[2mLocating external symbol file: libremovefile.dylib...[0m[K[2K[2mLocating external symbol file: libremovefile.dylib...[0m[K[2K[2mParsing symbol table: libremovefile.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_asl.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_asl.dylib...[0m[K[2K[2mParsing symbol table: libsystem_asl.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_blocks.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_blocks.dylib...[0m[K[2K[2mParsing symbol table: libsystem_blocks.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_c.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_c.dylib...[0m[K[2K[2mParsing symbol table: libsystem_c.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_collections.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_collections.dylib...[0m[K[2K[2mParsing symbol table: libsystem_collections.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_configuration.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_configuration.dylib...[0m[K[2K[2mParsing symbol table: libsystem_configuration.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_containermanager.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_containermanager.dylib...[0m[K[2K[2mParsing symbol table: libsystem_containermanager.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_coreservices.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_coreservices.dylib...[0m[K[2K[2mParsing symbol table: libsystem_coreservices.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwin.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwin.dylib...[0m[K[2K[2mParsing symbol table: libsystem_darwin.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwindirectory.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwindirectory.dylib...[0m[K[2K[2mParsing symbol table: libsystem_darwindirectory.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_dnssd.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_dnssd.dylib...[0m[K[2K[2mParsing symbol table: libsystem_dnssd.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_eligibility.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_eligibility.dylib...[0m[K[2K[2mParsing symbol table: libsystem_eligibility.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_featureflags.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_featureflags.dylib...[0m[K[2K[2mParsing symbol table: libsystem_featureflags.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_info.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_info.dylib...[0m[K[2K[2mParsing symbol table: libsystem_info.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_m.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_m.dylib...[0m[K[2K[2mParsing symbol table: libsystem_m.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_malloc.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_malloc.dylib...[0m[K[2K[2mParsing symbol table: libsystem_malloc.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_networkextension.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_networkextension.dylib...[0m[K[2K[2mParsing symbol table: libsystem_networkextension.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_notify.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_notify.dylib...[0m[K[2K[2mParsing symbol table: libsystem_notify.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sandbox.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sandbox.dylib...[0m[K[2K[2mParsing symbol table: libsystem_sandbox.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sanitizers.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sanitizers.dylib...[0m[K[2K[2mParsing symbol table: libsystem_sanitizers.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_secinit.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_secinit.dylib...[0m[K[2K[2mParsing symbol table: libsystem_secinit.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_kernel.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_kernel.dylib...[0m[K[2K[2mParsing symbol table: libsystem_kernel.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_platform.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_platform.dylib...[0m[K[2K[2mParsing symbol table: libsystem_platform.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_pthread.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_pthread.dylib...[0m[K[2K[2mParsing symbol table: libsystem_pthread.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_symptoms.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_symptoms.dylib...[0m[K[2K[2mParsing symbol table: libsystem_symptoms.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_trace.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_trace.dylib...[0m[K[2K[2mParsing symbol table: libsystem_trace.dylib...[0m[K[2K[2mLocating external symbol file: libunwind.dylib...[0m[K[2K[2mLocating external symbol file: libunwind.dylib...[0m[K[2K[2mParsing symbol table: libunwind.dylib...[0m[K[2K[2mLocating external symbol file: libxpc.dylib...[0m[K[2K[2mLocating external symbol file: libxpc.dylib...[0m[K[2K[2mParsing symbol table: libxpc.dylib...[0m[K[2K[2mLocating external symbol file: libobjc.A.dylib...[0m[K[2K[2mLocating external symbol file: libobjc.A.dylib...[0m[K[2K[2mParsing symbol table: libobjc.A.dylib...[0m[K[2K[2mLocating external symbol file: liboah.dylib...[0m[K[2K[2mLocating external symbol file: liboah.dylib...[0m[K[2K[2mParsing symbol table: liboah.dylib...[0m[K[2K[2mParsing symbol table: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2KCurrent executable set to '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64).
+(lldb) [1G[2m(lldb) [0m[8Grun
+Process 12484 launched: '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64)
+  Here is the List of all the Staff in the R&D Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Josh   0   Technology Specialist   3000.00      2015
+
+   Mary   0         Project Manager   5500.00      2010
+
+   Marc   0    Research Team Leader   8000.00      2007
+
+   Mike   0        Multimedia Prog.   2500.00      2014
+
+  Julie   0     Mainframe Sys.Prog.   2150.00      2013
+
+ Albert   0                OS Prog.   2300.00      2015
+
+   John   0    Senior Software Eng.   4899.00      2011
+
+ Connor   0      Software Developer   1900.00      2017
+  Here is the List of all the Staff in the IT Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+    Roy   0           Network Prog.   1900.00      2016
+
+   Jane   0                  Tester   1500.00      2018
+
+ Removing Mike from the company: Succeeded
+ -------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Mary   0         Project Manager   5500.00      2010
+
+  Julie   0     Mainframe Sys.Prog.   2150.00      2013
+
+ Connor   0      Software Developer   1900.00      2017
+
+  Here is the List of all the Programmers who know C++ in the R&D Department: 
+  ---------------------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+  Julie   0     Mainframe Sys.Prog.   2150.00      2013      Mary         5         C++
+
+ Listing All Project IDs:  5 8
+-------------------------
+The Highest R&D Employee Salary is: 5500.00
+The Highest R&D Programmer Salary is: 2150.00
+The Highest R&D Software Architect Salary is: 1900.00
+
+The Average R&D Employee Salary is: 5500
+The Average R&D Programmer Salary is: 2150
+The Average R&D Software Architect Salary is: 1900
+
+The Average IT Employee Salary is: 0
+The Average IT Programmer Salary is: 750
+The Average IT Software Architect Salary is: 0
+
+Process 12484 exited with status = 0 (0x00000000) 
+(lldb) [1G[2m(lldb) [0m[8Gbreakpoint list
+No breakpoints currently set.
+(lldb) [1G[2m(lldb) [0m[8Gb f[K[1G[2m(lldb) [0m[10GemployeeClass.cpp:12
+Breakpoint 1: 2 locations.
+(lldb) [1G[2m(lldb) [0m[8Grun
+Process 12581 launched: '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64)
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.2[0m
+    frame #0: [33m0x00000001000032f0[0m program`Employee::Employee(this=0x000000016fdff220, nme="Josh", id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m13[0m:[33m76[0m [opt]
+[33m  [0m 10  	}
+[33m  [0m 11  	
+[33m  [0m 12  	[35m/* Constructor w/ parameters */[0m
+[33m->[0m 13  	Employee::Employee(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) [4m{[0m
+[33m  [0m 14  		name = nme;
+[33m  [0m 15  	
+[33m  [0m 16  	    [32mif[0m (id > [31m0[0m)
+Target 0: (program) stopped.
+[0;1;35mwarning[0m: program was compiled with optimization - stepping may behave oddly; variables may not be available.
+[2mParsing type in program: '__wrap_iter<char *>'...[0m[K[2K[2mParsing type in program: '__wrap_iter<const char *>'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<char *> >'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<const char *...[0m[K[2K(lldb) [1G[2m(lldb) [0m[8Gfram v[K[1G[2m(lldb) [0m[13G[1G[2m(lldb) [0m[12Ge variable
+(Employee *) this = 0x000000016fdff220
+(std::string) nme = "Josh"
+(int) id = 1
+(std::string) jbTtle = "Technology Specialist"
+(double) slry = 3000
+(int) yr = 2015
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.1[0m
+    frame #0: [33m0x000000010000325c[0m program`Employee::Employee(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, double, int) [inlined] std::__1::__compressed_pair_elem<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__rep, 0, false>::__compressed_pair_elem[abi:ne180100](this=0x000000016fdff220, (null)=<unavailable>) at [36mcompressed_pair.h[0m:[33m50[0m:[33m95[0m [opt]
+[33m  [0m 47  	  [32musing[0m const_reference = [32mconst[0m _Tp&;
+[33m  [0m 48  	
+[33m  [0m 49  	  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR [32mexplicit[0m __compressed_pair_elem(__default_init_tag) {}
+[33m->[0m 50  	  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR [32mexplicit[0m __compressed_pair_elem(__value_init_tag) : [4m__value_[0m() {}
+[33m  [0m 51  	
+[33m  [0m 52  	  [32mtemplate[0m <[32mclass[0m _Up, [32mclass[0m = __enable_if_t<!is_same<__compressed_pair_elem, __decay_t<_Up> >::value> >
+[33m  [0m 53  	  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR [32mexplicit[0m __compressed_pair_elem(_Up&& __u)
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x000000010000326c[0m program`Employee::Employee(this=0x000000016fdff220, nme="Josh", id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m13[0m:[33m11[0m [opt]
+[33m  [0m 10  	}
+[33m  [0m 11  	
+[33m  [0m 12  	[35m/* Constructor w/ parameters */[0m
+[33m->[0m 13  	Employee::[4mEmployee[0m(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) {
+[33m  [0m 14  		name = nme;
+[33m  [0m 15  	
+[33m  [0m 16  	    [32mif[0m (id > [31m0[0m)
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x0000000100003278[0m program`Employee::Employee(this=0x000000016fdff220, nme="Josh", id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m14[0m:[33m7[0m [opt]
+[33m  [0m 11  	
+[33m  [0m 12  	[35m/* Constructor w/ parameters */[0m
+[33m  [0m 13  	Employee::Employee(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) {
+[33m->[0m 14  		name [4m=[0m nme;
+[33m  [0m 15  	
+[33m  [0m 16  	    [32mif[0m (id > [31m0[0m)
+[33m  [0m 17  	        ID = [31m0[0m;
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x000000010000327c[0m program`Employee::Employee(this=0x000000016fdff220, nme=<unavailable>, id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m16[0m:[33m9[0m [opt]
+[33m  [0m 13  	Employee::Employee(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) {
+[33m  [0m 14  		name = nme;
+[33m  [0m 15  	
+[33m->[0m 16  	    [32mif[0m ([4mid[0m > [31m0[0m)
+[33m  [0m 17  	        ID = [31m0[0m;
+[33m  [0m 18  	    [32melse[0m
+[33m  [0m 19  	        ID = id;
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x0000000100003284[0m program`Employee::Employee(this=0x000000016fdff220, nme=<unavailable>, id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m21[0m:[33m11[0m [opt]
+[33m  [0m 18  	    [32melse[0m
+[33m  [0m 19  	        ID = id;
+[33m  [0m 20  	
+[33m->[0m 21  		jobTitle [4m=[0m jbTtle;
+[33m  [0m 22  	
+[33m  [0m 23  		(slry > [31m0[0m) ? salary = slry : salary = [31m0.00[0m;
+[33m  [0m 24  		(yr > [31m0[0m) ? HireYear = yr : HireYear = [31m2018[0m;
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x0000000100003294[0m program`Employee::Employee(this=0x000000016fdff220, nme=<unavailable>, id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m23[0m:[33m2[0m [opt]
+[33m  [0m 20  	
+[33m  [0m 21  		jobTitle = jbTtle;
+[33m  [0m 22  	
+[33m->[0m 23  		[4m([0mslry > [31m0[0m) ? salary = slry : salary = [31m0.00[0m;
+[33m  [0m 24  		(yr > [31m0[0m) ? HireYear = yr : HireYear = [31m2018[0m;
+[33m  [0m 25  	
+[33m  [0m 26  	}
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x00000001000032a0[0m program`Employee::Employee(this=0x000000016fdff220, nme=<unavailable>, id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m24[0m:[33m2[0m [opt]
+[33m  [0m 21  		jobTitle = jbTtle;
+[33m  [0m 22  	
+[33m  [0m 23  		(slry > [31m0[0m) ? salary = slry : salary = [31m0.00[0m;
+[33m->[0m 24  		[4m([0myr > [31m0[0m) ? HireYear = yr : HireYear = [31m2018[0m;
+[33m  [0m 25  	
+[33m  [0m 26  	}
+[33m  [0m 27  	
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x00000001000032ac[0m program`Employee::Employee(this=0x000000016fdff220, nme=<unavailable>, id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m26[0m:[33m1[0m [opt]
+[33m  [0m 23  		(slry > [31m0[0m) ? salary = slry : salary = [31m0.00[0m;
+[33m  [0m 24  		(yr > [31m0[0m) ? HireYear = yr : HireYear = [31m2018[0m;
+[33m  [0m 25  	
+[33m->[0m 26  	[4m}[0m
+[33m  [0m 27  	
+[33m  [0m 28  	[35m/* Accessor Functions */[0m
+[33m  [0m 29  	string Employee::getName() [32mconst[0m {
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x000000010000399c[0m program`main at [36mmain.cpp[0m:[33m20[0m:[33m11[0m [opt]
+[33m  [0m 17  		Department RnD("Research and Development", [31m1[0m);
+[33m  [0m 18  		Department IT("Info And Tech", [31m2[0m);
+[33m  [0m 19  		[35m//creating new Employees[0m
+[33m->[0m 20  		Employee [4mE1[0m("Josh", [31m1[0m, "Technology Specialist", [31m3000[0m, [31m2015[0m);
+[33m  [0m 21  		Employee E2("Mary", [31m2[0m, "Project Manager", [31m5500[0m, [31m2010[0m);
+[33m  [0m 22  		Employee E3("Marc", [31m3[0m, "Research Team Leader", [31m8000[0m, [31m2007[0m);
+[33m  [0m 23  		[35m//adding the employees to the appropriate vector[0m
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x00000001000039b0[0m program`main at [36mmain.cpp[0m:[33m21[0m:[33m14[0m [opt]
+[33m  [0m 18  		Department IT("Info And Tech", [31m2[0m);
+[33m  [0m 19  		[35m//creating new Employees[0m
+[33m  [0m 20  		Employee E1("Josh", [31m1[0m, "Technology Specialist", [31m3000[0m, [31m2015[0m);
+[33m->[0m 21  		Employee E2([4m"Mary"[0m, [31m2[0m, "Project Manager", [31m5500[0m, [31m2010[0m);
+[33m  [0m 22  		Employee E3("Marc", [31m3[0m, "Research Team Leader", [31m8000[0m, [31m2007[0m);
+[33m  [0m 23  		[35m//adding the employees to the appropriate vector[0m
+[33m  [0m 24  		RnD.Employees->push_back(E1);
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.2[0m
+    frame #0: [33m0x00000001000032f0[0m program`Employee::Employee(this=0x000000016fdff188, nme="Mary", id=2, jbTtle="Project Manager", slry=5500, yr=2010) at [36memployeeClass.cpp[0m:[33m13[0m:[33m76[0m [opt]
+[33m  [0m 10  	}
+[33m  [0m 11  	
+[33m  [0m 12  	[35m/* Constructor w/ parameters */[0m
+[33m->[0m 13  	Employee::Employee(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) [4m{[0m
+[33m  [0m 14  		name = nme;
+[33m  [0m 15  	
+[33m  [0m 16  	    [32mif[0m (id > [31m0[0m)
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.1[0m
+    frame #0: [33m0x000000010000325c[0m program`Employee::Employee(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, double, int) [inlined] std::__1::__compressed_pair_elem<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__rep, 0, false>::__compressed_pair_elem[abi:ne180100](this=0x000000016fdff188, (null)=<unavailable>) at [36mcompressed_pair.h[0m:[33m50[0m:[33m95[0m [opt]
+[33m  [0m 47  	  [32musing[0m const_reference = [32mconst[0m _Tp&;
+[33m  [0m 48  	
+[33m  [0m 49  	  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR [32mexplicit[0m __compressed_pair_elem(__default_init_tag) {}
+[33m->[0m 50  	  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR [32mexplicit[0m __compressed_pair_elem(__value_init_tag) : [4m__value_[0m() {}
+[33m  [0m 51  	
+[33m  [0m 52  	  [32mtemplate[0m <[32mclass[0m _Up, [32mclass[0m = __enable_if_t<!is_same<__compressed_pair_elem, __decay_t<_Up> >::value> >
+[33m  [0m 53  	  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR [32mexplicit[0m __compressed_pair_elem(_Up&& __u)
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x000000010000326c[0m program`Employee::Employee(this=0x000000016fdff188, nme="Mary", id=2, jbTtle="Project Manager", slry=5500, yr=2010) at [36memployeeClass.cpp[0m:[33m13[0m:[33m11[0m [opt]
+[33m  [0m 10  	}
+[33m  [0m 11  	
+[33m  [0m 12  	[35m/* Constructor w/ parameters */[0m
+[33m->[0m 13  	Employee::[4mEmployee[0m(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) {
+[33m  [0m 14  		name = nme;
+[33m  [0m 15  	
+[33m  [0m 16  	    [32mif[0m (id > [31m0[0m)
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x0000000100003278[0m program`Employee::Employee(this=0x000000016fdff188, nme="Mary", id=2, jbTtle="Project Manager", slry=5500, yr=2010) at [36memployeeClass.cpp[0m:[33m14[0m:[33m7[0m [opt]
+[33m  [0m 11  	
+[33m  [0m 12  	[35m/* Constructor w/ parameters */[0m
+[33m  [0m 13  	Employee::Employee(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) {
+[33m->[0m 14  		name [4m=[0m nme;
+[33m  [0m 15  	
+[33m  [0m 16  	    [32mif[0m (id > [31m0[0m)
+[33m  [0m 17  	        ID = [31m0[0m;
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12581 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x000000010000327c[0m program`Employee::Employee(this=0x000000016fdff188, nme=<unavailable>, id=2, jbTtle="Project Manager", slry=5500, yr=2010) at [36memployeeClass.cpp[0m:[33m16[0m:[33m9[0m [opt]
+[33m  [0m 13  	Employee::Employee(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) {
+[33m  [0m 14  		name = nme;
+[33m  [0m 15  	
+[33m->[0m 16  	    [32mif[0m ([4mid[0m > [31m0[0m)
+[33m  [0m 17  	        ID = [31m0[0m;
+[33m  [0m 18  	    [32melse[0m
+[33m  [0m 19  	        ID = id;
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gp ID
+(int) 0
+(lldb) [1G[2m(lldb) [0m[8Grun
+There is a running process, kill it and restart?: [Y/n] Y
+Process 12581 exited with status = 9 (0x00000009) killed
+Process 12594 launched: '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64)
+Process 12594 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.2[0m
+    frame #0: [33m0x00000001000032f0[0m program`Employee::Employee(this=0x000000016fdff220, nme="Josh", id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m13[0m:[33m76[0m [opt]
+[33m  [0m 10  	}
+[33m  [0m 11  	
+[33m  [0m 12  	[35m/* Constructor w/ parameters */[0m
+[33m->[0m 13  	Employee::Employee(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) [4m{[0m
+[33m  [0m 14  		name = nme;
+[33m  [0m 15  	
+[33m  [0m 16  	    [32mif[0m (id > [31m0[0m)
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12594 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.1[0m
+    frame #0: [33m0x000000010000325c[0m program`Employee::Employee(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, double, int) [inlined] std::__1::__compressed_pair_elem<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__rep, 0, false>::__compressed_pair_elem[abi:ne180100](this=0x000000016fdff220, (null)=<unavailable>) at [36mcompressed_pair.h[0m:[33m50[0m:[33m95[0m [opt]
+[33m  [0m 47  	  [32musing[0m const_reference = [32mconst[0m _Tp&;
+[33m  [0m 48  	
+[33m  [0m 49  	  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR [32mexplicit[0m __compressed_pair_elem(__default_init_tag) {}
+[33m->[0m 50  	  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR [32mexplicit[0m __compressed_pair_elem(__value_init_tag) : [4m__value_[0m() {}
+[33m  [0m 51  	
+[33m  [0m 52  	  [32mtemplate[0m <[32mclass[0m _Up, [32mclass[0m = __enable_if_t<!is_same<__compressed_pair_elem, __decay_t<_Up> >::value> >
+[33m  [0m 53  	  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR [32mexplicit[0m __compressed_pair_elem(_Up&& __u)
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12594 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x000000010000326c[0m program`Employee::Employee(this=0x000000016fdff220, nme="Josh", id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m13[0m:[33m11[0m [opt]
+[33m  [0m 10  	}
+[33m  [0m 11  	
+[33m  [0m 12  	[35m/* Constructor w/ parameters */[0m
+[33m->[0m 13  	Employee::[4mEmployee[0m(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) {
+[33m  [0m 14  		name = nme;
+[33m  [0m 15  	
+[33m  [0m 16  	    [32mif[0m (id > [31m0[0m)
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12594 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x0000000100003278[0m program`Employee::Employee(this=0x000000016fdff220, nme="Josh", id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m14[0m:[33m7[0m [opt]
+[33m  [0m 11  	
+[33m  [0m 12  	[35m/* Constructor w/ parameters */[0m
+[33m  [0m 13  	Employee::Employee(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) {
+[33m->[0m 14  		name [4m=[0m nme;
+[33m  [0m 15  	
+[33m  [0m 16  	    [32mif[0m (id > [31m0[0m)
+[33m  [0m 17  	        ID = [31m0[0m;
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12594 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x000000010000327c[0m program`Employee::Employee(this=0x000000016fdff220, nme=<unavailable>, id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m16[0m:[33m9[0m [opt]
+[33m  [0m 13  	Employee::Employee(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) {
+[33m  [0m 14  		name = nme;
+[33m  [0m 15  	
+[33m->[0m 16  	    [32mif[0m ([4mid[0m > [31m0[0m)
+[33m  [0m 17  	        ID = [31m0[0m;
+[33m  [0m 18  	    [32melse[0m
+[33m  [0m 19  	        ID = id;
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gp ID
+(int) 0
+(lldb) [1G[2m(lldb) [0m[8Gemac[K[1G[2m(lldb) [0m[11G[K[1G[2m(lldb) [0m[10G[K[1G[2m(lldb) [0m[9G[K[1G[2m(lldb) [0m[8Gemacs empl[K[1G[2m(lldb) [0m[17G[K[1G[2m(lldb) [0m[16G[K[1G[2m(lldb) [0m[15G[K[1G[2m(lldb) [0m[14G[1G[2m(lldb) [0m[13G[K[1G[2m(lldb) [0m[12G[K[1G[2m(lldb) [0m[11G[K[1G[2m(lldb) [0m[10G[K[1G[2m(lldb) [0m[9G[K[1G[2m(lldb) [0m[8Grun
+There is a running process, kill it and restart?: [Y/n] Y
+Process 12594 exited with status = 9 (0x00000009) killed
+Process 12724 launched: '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64)
+Process 12724 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.2[0m
+    frame #0: [33m0x00000001000032f0[0m program`Employee::Employee(this=0x000000016fdff220, nme="Josh", id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m13[0m:[33m76[0m [opt]
+[33m  [0m 10  	}
+[33m  [0m 11  	
+[33m  [0m 12  	[35m/* Constructor w/ parameters */[0m
+[33m->[0m 13  	Employee::Employee(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) [4m{[0m
+[33m  [0m 14  		name = nme;
+[33m  [0m 15  	
+[33m  [0m 16  	    [32mif[0m (id < [31m0[0m)
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gexit
+Quitting LLDB will kill one or more processes. Do you really want to proceed: [Y /n] Y
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hlls[?2004l
+CMakeLists.txt			main.cpp
+Department.cpp			program
+Department.h			program.dSYM
+brandonmountan.txt		programmerClass.cpp
+cmake-build-debug		programmerClass.h
+employeeClass.cpp		softwarearchitectClass.cpp
+employeeClass.h			softwarearchitectClass.h
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hrrun[?2004l
+zsh: command not found: run
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hk ../ro  program[?2004l
+  Here is the List of all the Staff in the R&D Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Josh   0   Technology Specialist   3000.00      2015
+
+   Mary   0         Project Manager   5500.00      2010
+
+   Marc   0    Research Team Leader   8000.00      2007
+
+   Mike   0        Multimedia Prog.   2500.00      2014
+
+  Julie   0     Mainframe Sys.Prog.   2150.00      2013
+
+ Albert   0                OS Prog.   2300.00      2015
+
+   John   0    Senior Software Eng.   4899.00      2011
+
+ Connor   0      Software Developer   1900.00      2017
+  Here is the List of all the Staff in the IT Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+    Roy   0           Network Prog.   1900.00      2016
+
+   Jane   0                  Tester   1500.00      2018
+
+ Removing Mike from the company: Succeeded
+ -------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Mary   0         Project Manager   5500.00      2010
+
+  Julie   0     Mainframe Sys.Prog.   2150.00      2013
+
+ Connor   0      Software Developer   1900.00      2017
+
+  Here is the List of all the Programmers who know C++ in the R&D Department: 
+  ---------------------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+  Julie   0     Mainframe Sys.Prog.   2150.00      2013      Mary         5         C++
+
+ Listing All Project IDs:  5 8
+-------------------------
+The Highest R&D Employee Salary is: 5500.00
+The Highest R&D Programmer Salary is: 2150.00
+The Highest R&D Software Architect Salary is: 1900.00
+
+The Average R&D Employee Salary is: 5500
+The Average R&D Programmer Salary is: 2150
+The Average R&D Software Architect Salary is: 1900
+
+The Average IT Employee Salary is: 0
+The Average IT Programmer Salary is: 750
+The Average IT Software Architect Salary is: 0
+
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hlllsd  db[?2004l
+(lldb) [1G[2m(lldb) [0m[8Grn[K[1G[2m(lldb) [0m[9Gun
+[0;1;31merror: [0minvalid target, create a target using the 'target create' command
+(lldb) [1G[2m(lldb) [0m[8Gbreakb[K[1G[2m(lldb) [0m[13Gpoint list
+No breakpoints currently set.
+(lldb) [1G[2m(lldb) [0m[8Gb empol[K[1G[2m(lldb) [0m[14G[K[1G[2m(lldb) [0m[13GloyeeClass.cpp:12
+Breakpoint 1: no locations (pending).
+Breakpoint set in dummy target, will get copied into future targets.
+(lldb) [1G[2m(lldb) [0m[8Gexit
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hllldb program[?2004l
+(lldb) target create "program"
+[2mLocating external symbol file: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2K[2mLoading DWARF5 index: program...[0m[K[2K[2mLocating external symbol file: dyld...[0m[K[2K[2mLocating external symbol file: dyld...[0m[K[2K[2mParsing symbol table: dyld...[0m[K[2K[2mLocating external symbol file: libc++.1.dylib...[0m[K[2K[2mLocating external symbol file: libc++.1.dylib...[0m[K[2K[2mParsing symbol table: libc++.1.dylib...[0m[K[2K[2mLocating external symbol file: libSystem.B.dylib...[0m[K[2K[2mLocating external symbol file: libSystem.B.dylib...[0m[K[2K[2mParsing symbol table: libSystem.B.dylib...[0m[K[2K[2mLocating external symbol file: libc++abi.dylib...[0m[K[2K[2mLocating external symbol file: libc++abi.dylib...[0m[K[2K[2mParsing symbol table: libc++abi.dylib...[0m[K[2K[2mLocating external symbol file: libcache.dylib...[0m[K[2K[2mLocating external symbol file: libcache.dylib...[0m[K[2K[2mParsing symbol table: libcache.dylib...[0m[K[2K[2mLocating external symbol file: libcommonCrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcommonCrypto.dylib...[0m[K[2K[2mParsing symbol table: libcommonCrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcompiler_rt.dylib...[0m[K[2K[2mLocating external symbol file: libcompiler_rt.dylib...[0m[K[2K[2mParsing symbol table: libcompiler_rt.dylib...[0m[K[2K[2mLocating external symbol file: libcopyfile.dylib...[0m[K[2K[2mLocating external symbol file: libcopyfile.dylib...[0m[K[2K[2mParsing symbol table: libcopyfile.dylib...[0m[K[2K[2mLocating external symbol file: libcorecrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcorecrypto.dylib...[0m[K[2K[2mParsing symbol table: libcorecrypto.dylib...[0m[K[2K[2mLocating external symbol file: libdispatch.dylib...[0m[K[2K[2mLocating external symbol file: libdispatch.dylib...[0m[K[2K[2mParsing symbol table: libdispatch.dylib...[0m[K[2K[2mLocating external symbol file: libdyld.dylib...[0m[K[2K[2mLocating external symbol file: libdyld.dylib...[0m[K[2K[2mParsing symbol table: libdyld.dylib...[0m[K[2K[2mLocating external symbol file: libkeymgr.dylib...[0m[K[2K[2mLocating external symbol file: libkeymgr.dylib...[0m[K[2K[2mParsing symbol table: libkeymgr.dylib...[0m[K[2K[2mLocating external symbol file: libmacho.dylib...[0m[K[2K[2mLocating external symbol file: libmacho.dylib...[0m[K[2K[2mParsing symbol table: libmacho.dylib...[0m[K[2K[2mLocating external symbol file: libquarantine.dylib...[0m[K[2K[2mLocating external symbol file: libquarantine.dylib...[0m[K[2K[2mParsing symbol table: libquarantine.dylib...[0m[K[2K[2mLocating external symbol file: libremovefile.dylib...[0m[K[2K[2mLocating external symbol file: libremovefile.dylib...[0m[K[2K[2mParsing symbol table: libremovefile.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_asl.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_asl.dylib...[0m[K[2K[2mParsing symbol table: libsystem_asl.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_blocks.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_blocks.dylib...[0m[K[2K[2mParsing symbol table: libsystem_blocks.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_c.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_c.dylib...[0m[K[2K[2mParsing symbol table: libsystem_c.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_collections.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_collections.dylib...[0m[K[2K[2mParsing symbol table: libsystem_collections.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_configuration.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_configuration.dylib...[0m[K[2K[2mParsing symbol table: libsystem_configuration.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_containermanager.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_containermanager.dylib...[0m[K[2K[2mParsing symbol table: libsystem_containermanager.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_coreservices.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_coreservices.dylib...[0m[K[2K[2mParsing symbol table: libsystem_coreservices.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwin.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwin.dylib...[0m[K[2K[2mParsing symbol table: libsystem_darwin.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwindirectory.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwindirectory.dylib...[0m[K[2K[2mParsing symbol table: libsystem_darwindirectory.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_dnssd.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_dnssd.dylib...[0m[K[2K[2mParsing symbol table: libsystem_dnssd.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_eligibility.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_eligibility.dylib...[0m[K[2K[2mParsing symbol table: libsystem_eligibility.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_featureflags.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_featureflags.dylib...[0m[K[2K[2mParsing symbol table: libsystem_featureflags.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_info.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_info.dylib...[0m[K[2K[2mParsing symbol table: libsystem_info.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_m.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_m.dylib...[0m[K[2K[2mParsing symbol table: libsystem_m.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_malloc.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_malloc.dylib...[0m[K[2K[2mParsing symbol table: libsystem_malloc.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_networkextension.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_networkextension.dylib...[0m[K[2K[2mParsing symbol table: libsystem_networkextension.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_notify.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_notify.dylib...[0m[K[2K[2mParsing symbol table: libsystem_notify.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sandbox.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sandbox.dylib...[0m[K[2K[2mParsing symbol table: libsystem_sandbox.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sanitizers.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sanitizers.dylib...[0m[K[2K[2mParsing symbol table: libsystem_sanitizers.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_secinit.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_secinit.dylib...[0m[K[2K[2mParsing symbol table: libsystem_secinit.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_kernel.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_kernel.dylib...[0m[K[2K[2mParsing symbol table: libsystem_kernel.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_platform.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_platform.dylib...[0m[K[2K[2mParsing symbol table: libsystem_platform.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_pthread.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_pthread.dylib...[0m[K[2K[2mParsing symbol table: libsystem_pthread.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_symptoms.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_symptoms.dylib...[0m[K[2K[2mParsing symbol table: libsystem_symptoms.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_trace.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_trace.dylib...[0m[K[2K[2mParsing symbol table: libsystem_trace.dylib...[0m[K[2K[2mLocating external symbol file: libunwind.dylib...[0m[K[2K[2mLocating external symbol file: libunwind.dylib...[0m[K[2K[2mParsing symbol table: libunwind.dylib...[0m[K[2K[2mLocating external symbol file: libxpc.dylib...[0m[K[2K[2mLocating external symbol file: libxpc.dylib...[0m[K[2K[2mParsing symbol table: libxpc.dylib...[0m[K[2K[2mLocating external symbol file: libobjc.A.dylib...[0m[K[2K[2mLocating external symbol file: libobjc.A.dylib...[0m[K[2K[2mParsing symbol table: libobjc.A.dylib...[0m[K[2K[2mLocating external symbol file: liboah.dylib...[0m[K[2K[2mLocating external symbol file: liboah.dylib...[0m[K[2K[2mParsing symbol table: liboah.dylib...[0m[K[2K[2mParsing symbol table: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2KCurrent executable set to '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64).
+(lldb) [1G[2m(lldb) [0m[8Gbreakbp[K[1G[2m(lldb) [0m[14G[K[1G[2m(lldb) [0m[13Gpoint list
+No breakpoints currently set.
+(lldb) [1G[2m(lldb) [0m[8Gb employeeClass.cpp:12
+Breakpoint 1: 2 locations.
+(lldb) [1G[2m(lldb) [0m[8Gl[K[1G[2m(lldb) [0m[8Grun
+Process 12750 launched: '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64)
+Process 12750 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.2[0m
+    frame #0: [33m0x00000001000032f0[0m program`Employee::Employee(this=0x000000016fdff220, nme="Josh", id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m13[0m:[33m76[0m [opt]
+[33m  [0m 10  	}
+[33m  [0m 11  	
+[33m  [0m 12  	[35m/* Constructor w/ parameters */[0m
+[33m->[0m 13  	Employee::Employee(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) [4m{[0m
+[33m  [0m 14  		name = nme;
+[33m  [0m 15  	
+[33m  [0m 16  	    [32mif[0m (id < [31m0[0m)
+Target 0: (program) stopped.
+[0;1;35mwarning[0m: program was compiled with optimization - stepping may behave oddly; variables may not be available.
+[2mParsing type in program: '__wrap_iter<char *>'...[0m[K[2K[2mParsing type in program: '__wrap_iter<const char *>'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<char *> >'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<const char *...[0m[K[2K(lldb) [1G[2m(lldb) [0m[8Gframe varia[K[1G[2m(lldb) [0m[18Galb[K[1G[2m(lldb) [0m[20G[K[1G[2m(lldb) [0m[19Gble
+(Employee *) this = 0x000000016fdff220
+(std::string) nme = "Josh"
+(int) id = 1
+(std::string) jbTtle = "Technology Specialist"
+(double) slry = 3000
+(int) yr = 2015
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12750 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.1[0m
+    frame #0: [33m0x000000010000325c[0m program`Employee::Employee(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, double, int) [inlined] std::__1::__compressed_pair_elem<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__rep, 0, false>::__compressed_pair_elem[abi:ne180100](this=0x000000016fdff220, (null)=<unavailable>) at [36mcompressed_pair.h[0m:[33m50[0m:[33m95[0m [opt]
+[33m  [0m 47  	  [32musing[0m const_reference = [32mconst[0m _Tp&;
+[33m  [0m 48  	
+[33m  [0m 49  	  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR [32mexplicit[0m __compressed_pair_elem(__default_init_tag) {}
+[33m->[0m 50  	  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR [32mexplicit[0m __compressed_pair_elem(__value_init_tag) : [4m__value_[0m() {}
+[33m  [0m 51  	
+[33m  [0m 52  	  [32mtemplate[0m <[32mclass[0m _Up, [32mclass[0m = __enable_if_t<!is_same<__compressed_pair_elem, __decay_t<_Up> >::value> >
+[33m  [0m 53  	  _LIBCPP_HIDE_FROM_ABI _LIBCPP_CONSTEXPR [32mexplicit[0m __compressed_pair_elem(_Up&& __u)
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12750 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x000000010000326c[0m program`Employee::Employee(this=0x000000016fdff220, nme="Josh", id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m13[0m:[33m11[0m [opt]
+[33m  [0m 10  	}
+[33m  [0m 11  	
+[33m  [0m 12  	[35m/* Constructor w/ parameters */[0m
+[33m->[0m 13  	Employee::[4mEmployee[0m(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) {
+[33m  [0m 14  		name = nme;
+[33m  [0m 15  	
+[33m  [0m 16  	    [32mif[0m (id < [31m0[0m)
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12750 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x0000000100003278[0m program`Employee::Employee(this=0x000000016fdff220, nme="Josh", id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m14[0m:[33m7[0m [opt]
+[33m  [0m 11  	
+[33m  [0m 12  	[35m/* Constructor w/ parameters */[0m
+[33m  [0m 13  	Employee::Employee(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) {
+[33m->[0m 14  		name [4m=[0m nme;
+[33m  [0m 15  	
+[33m  [0m 16  	    [32mif[0m (id < [31m0[0m)
+[33m  [0m 17  	        ID = [31m0[0m;
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12750 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x000000010000327c[0m program`Employee::Employee(this=0x000000016fdff220, nme=<unavailable>, id=1, jbTtle="Technology Specialist", slry=3000, yr=2015) at [36memployeeClass.cpp[0m:[33m16[0m:[33m9[0m [opt]
+[33m  [0m 13  	Employee::Employee(string nme, [32mint[0m id, string jbTtle, [32mdouble[0m slry, [32mint[0m yr) {
+[33m  [0m 14  		name = nme;
+[33m  [0m 15  	
+[33m->[0m 16  	    [32mif[0m ([4mid[0m < [31m0[0m)
+[33m  [0m 17  	        ID = [31m0[0m;
+[33m  [0m 18  	    [32melse[0m
+[33m  [0m 19  	        ID = id;
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gexit
+Quitting LLDB will kill one or more processes. Do you really want to proceed: [Y /n] Y
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004h[7mclang++ *.cpp -g -O0  -o progra[7mm[27m[K[A[48C[27mc[27ml[27ma[27mn[27mg[27m+[27m+[27m [27m*[27m.[27mc[27mp[27mp[27m [27m-[27mg[27m [27m-[27mO[27m0[27m [27m [27m-[27mo[27m [27mp[27mr[27mo[27mg[27mr[27mam[1C[A[79Cm [K[A[78Cm[K[1B[K[A[78Cm m m m m m m m m m m m m m m m m m m m m m m m m m m cm m cmclmemamrm[?2004l[1Bzsh: command not found: clearm
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hlls[?2004l
+CMakeLists.txt			main.cpp
+Department.cpp			program
+Department.h			program.dSYM
+brandonmountan.txt		programmerClass.cpp
+cmake-build-debug		programmerClass.h
+employeeClass.cpp		softwarearchitectClass.cpp
+employeeClass.h			softwarearchitectClass.h
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hcclang++ *.cpp -g -O2 -o program [K[K[?2004l
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hlls[?2004l
+CMakeLists.txt			main.cpp
+Department.cpp			program
+Department.h			program.dSYM
+brandonmountan.txt		programmerClass.cpp
+cmake-build-debug		programmerClass.h
+employeeClass.cpp		softwarearchitectClass.cpp
+employeeClass.h			softwarearchitectClass.h
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hcclear[?2004l
+[3J[H[2J[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hcclang++ *.cpp -g -O2 -o prgoram [K[A[79C[K[1B[K[A[79C                       c  cclear[?2004l[1B[3J[H[2J[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hcclang++ *.cpp -g -O2 -o program [K[K[?2004l
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004h../program[?2004l
+  Here is the List of all the Staff in the R&D Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Josh   1   Technology Specialist   3000.00      2015
+
+   Mary   2         Project Manager   5500.00      2010
+
+   Marc   3    Research Team Leader   8000.00      2007
+
+   Mike  11        Multimedia Prog.   2500.00      2014
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013
+
+ Albert  13                OS Prog.   2300.00      2015
+
+   John  21    Senior Software Eng.   4899.00      2011
+
+ Connor  24      Software Developer   1900.00      2017
+  Here is the List of all the Staff in the IT Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+    Roy  32           Network Prog.   1900.00      2016
+
+   Jane  35                  Tester   1500.00      2018
+
+ Removing Mike from the company: Succeeded
+ -------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Josh   1   Technology Specialist   3000.00      2015
+
+   Mary   2         Project Manager   5500.00      2010
+
+   Marc   3    Research Team Leader   8000.00      2007
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013
+
+ Albert  13                OS Prog.   2300.00      2015
+
+   John  21    Senior Software Eng.   4899.00      2011
+
+ Connor  24      Software Developer   1900.00      2017
+
+  Here is the List of all the Programmers who know C++ in the R&D Department: 
+  ---------------------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013      Mary         5         C++
+
+ Albert  13                OS Prog.   2300.00      2015      Mary         9         C++
+
+ Listing All Project IDs:  5 9 6 8
+-------------------------
+The Highest R&D Employee Salary is: 8000.00
+The Highest R&D Programmer Salary is: 2300.00
+The Highest R&D Software Architect Salary is: 1900.00
+
+The Average R&D Employee Salary is: 2666
+The Average R&D Programmer Salary is: 1150
+The Average R&D Software Architect Salary is: 3399
+
+The Average IT Employee Salary is: 0
+The Average IT Programmer Salary is: 750
+The Average IT Software Architect Salary is: 0
+
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hllldb[?2004l
+(lldb) [1G[2m(lldb) [0m[8Gbreakb[K[1G[2m(lldb) [0m[13Gpoint list
+No breakpoints currently set.
+(lldb) [1G[2m(lldb) [0m[8Gb programmerClass.cpp:14
+Breakpoint 1: no locations (pending).
+Breakpoint set in dummy target, will get copied into future targets.
+(lldb) [1G[2m(lldb) [0m[8Grun
+[0;1;31merror: [0minvalid target, create a target using the 'target create' command
+(lldb) [1G[2m(lldb) [0m[8Gfra[K[1G[2m(lldb) [0m[10G[K[1G[2m(lldb) [0m[9G[K[1G[2m(lldb) [0m[8Ga[K[1G[2m(lldb) [0m[8Gexit
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hllcl  cclear[?2004l
+[3J[H[2J[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hllldb ./program[?2004l
+(lldb) target create "./program"
+[2mLocating external symbol file: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2K[2mLoading DWARF5 index: program...[0m[K[2K[2mLocating external symbol file: dyld...[0m[K[2K[2mLocating external symbol file: dyld...[0m[K[2K[2mParsing symbol table: dyld...[0m[K[2K[2mLocating external symbol file: libc++.1.dylib...[0m[K[2K[2mLocating external symbol file: libc++.1.dylib...[0m[K[2K[2mParsing symbol table: libc++.1.dylib...[0m[K[2K[2mLocating external symbol file: libSystem.B.dylib...[0m[K[2K[2mLocating external symbol file: libSystem.B.dylib...[0m[K[2K[2mParsing symbol table: libSystem.B.dylib...[0m[K[2K[2mLocating external symbol file: libc++abi.dylib...[0m[K[2K[2mLocating external symbol file: libc++abi.dylib...[0m[K[2K[2mParsing symbol table: libc++abi.dylib...[0m[K[2K[2mLocating external symbol file: libcache.dylib...[0m[K[2K[2mLocating external symbol file: libcache.dylib...[0m[K[2K[2mParsing symbol table: libcache.dylib...[0m[K[2K[2mLocating external symbol file: libcommonCrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcommonCrypto.dylib...[0m[K[2K[2mParsing symbol table: libcommonCrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcompiler_rt.dylib...[0m[K[2K[2mLocating external symbol file: libcompiler_rt.dylib...[0m[K[2K[2mParsing symbol table: libcompiler_rt.dylib...[0m[K[2K[2mLocating external symbol file: libcopyfile.dylib...[0m[K[2K[2mLocating external symbol file: libcopyfile.dylib...[0m[K[2K[2mParsing symbol table: libcopyfile.dylib...[0m[K[2K[2mLocating external symbol file: libcorecrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcorecrypto.dylib...[0m[K[2K[2mParsing symbol table: libcorecrypto.dylib...[0m[K[2K[2mLocating external symbol file: libdispatch.dylib...[0m[K[2K[2mLocating external symbol file: libdispatch.dylib...[0m[K[2K[2mParsing symbol table: libdispatch.dylib...[0m[K[2K[2mLocating external symbol file: libdyld.dylib...[0m[K[2K[2mLocating external symbol file: libdyld.dylib...[0m[K[2K[2mParsing symbol table: libdyld.dylib...[0m[K[2K[2mLocating external symbol file: libkeymgr.dylib...[0m[K[2K[2mLocating external symbol file: libkeymgr.dylib...[0m[K[2K[2mParsing symbol table: libkeymgr.dylib...[0m[K[2K[2mLocating external symbol file: libmacho.dylib...[0m[K[2K[2mLocating external symbol file: libmacho.dylib...[0m[K[2K[2mParsing symbol table: libmacho.dylib...[0m[K[2K[2mLocating external symbol file: libquarantine.dylib...[0m[K[2K[2mLocating external symbol file: libquarantine.dylib...[0m[K[2K[2mParsing symbol table: libquarantine.dylib...[0m[K[2K[2mLocating external symbol file: libremovefile.dylib...[0m[K[2K[2mLocating external symbol file: libremovefile.dylib...[0m[K[2K[2mParsing symbol table: libremovefile.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_asl.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_asl.dylib...[0m[K[2K[2mParsing symbol table: libsystem_asl.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_blocks.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_blocks.dylib...[0m[K[2K[2mParsing symbol table: libsystem_blocks.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_c.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_c.dylib...[0m[K[2K[2mParsing symbol table: libsystem_c.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_collections.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_collections.dylib...[0m[K[2K[2mParsing symbol table: libsystem_collections.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_configuration.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_configuration.dylib...[0m[K[2K[2mParsing symbol table: libsystem_configuration.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_containermanager.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_containermanager.dylib...[0m[K[2K[2mParsing symbol table: libsystem_containermanager.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_coreservices.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_coreservices.dylib...[0m[K[2K[2mParsing symbol table: libsystem_coreservices.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwin.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwin.dylib...[0m[K[2K[2mParsing symbol table: libsystem_darwin.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwindirectory.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwindirectory.dylib...[0m[K[2K[2mParsing symbol table: libsystem_darwindirectory.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_dnssd.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_dnssd.dylib...[0m[K[2K[2mParsing symbol table: libsystem_dnssd.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_eligibility.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_eligibility.dylib...[0m[K[2K[2mParsing symbol table: libsystem_eligibility.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_featureflags.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_featureflags.dylib...[0m[K[2K[2mParsing symbol table: libsystem_featureflags.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_info.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_info.dylib...[0m[K[2K[2mParsing symbol table: libsystem_info.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_m.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_m.dylib...[0m[K[2K[2mParsing symbol table: libsystem_m.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_malloc.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_malloc.dylib...[0m[K[2K[2mParsing symbol table: libsystem_malloc.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_networkextension.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_networkextension.dylib...[0m[K[2K[2mParsing symbol table: libsystem_networkextension.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_notify.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_notify.dylib...[0m[K[2K[2mParsing symbol table: libsystem_notify.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sandbox.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sandbox.dylib...[0m[K[2K[2mParsing symbol table: libsystem_sandbox.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sanitizers.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sanitizers.dylib...[0m[K[2K[2mParsing symbol table: libsystem_sanitizers.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_secinit.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_secinit.dylib...[0m[K[2K[2mParsing symbol table: libsystem_secinit.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_kernel.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_kernel.dylib...[0m[K[2K[2mParsing symbol table: libsystem_kernel.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_platform.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_platform.dylib...[0m[K[2K[2mParsing symbol table: libsystem_platform.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_pthread.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_pthread.dylib...[0m[K[2K[2mParsing symbol table: libsystem_pthread.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_symptoms.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_symptoms.dylib...[0m[K[2K[2mParsing symbol table: libsystem_symptoms.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_trace.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_trace.dylib...[0m[K[2K[2mParsing symbol table: libsystem_trace.dylib...[0m[K[2K[2mLocating external symbol file: libunwind.dylib...[0m[K[2K[2mLocating external symbol file: libunwind.dylib...[0m[K[2K[2mParsing symbol table: libunwind.dylib...[0m[K[2K[2mLocating external symbol file: libxpc.dylib...[0m[K[2K[2mLocating external symbol file: libxpc.dylib...[0m[K[2K[2mParsing symbol table: libxpc.dylib...[0m[K[2K[2mLocating external symbol file: libobjc.A.dylib...[0m[K[2K[2mLocating external symbol file: libobjc.A.dylib...[0m[K[2K[2mParsing symbol table: libobjc.A.dylib...[0m[K[2K[2mLocating external symbol file: liboah.dylib...[0m[K[2K[2mLocating external symbol file: liboah.dylib...[0m[K[2K[2mParsing symbol table: liboah.dylib...[0m[K[2K[2mParsing symbol table: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2KCurrent executable set to '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64).
+(lldb) [1G[2m(lldb) [0m[8Gb programmerClass.cpp:14
+Breakpoint 1: where = program`Programmer::Programmer(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, long, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, double, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>) + 220 at programmerClass.cpp:14:17, address = 0x0000000100006380
+(lldb) [1G[2m(lldb) [0m[8Grun\[K[1G[2m(lldb) [0m[11G
+Process 12824 launched: '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64)
+Process 12824 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.1[0m
+    frame #0: [33m0x0000000100006380[0m program`Programmer::Programmer(this=0x000000016fdff020, nme=<unavailable>, id=<unavailable>, jobTtle="Multimedia Prog.", slry=2500, yr=<unavailable>, superName="Mary", projctid=5, PrgLang="CSS") at [36mprogrammerClass.cpp[0m:[33m14[0m:[33m17[0m [opt]
+[33m  [0m 11  	
+[33m  [0m 12  						   : Employee(nme, id, jobTtle, slry, yr) {
+[33m  [0m 13  	
+[33m->[0m 14  		supervisorName [4m=[0m superName;
+[33m  [0m 15  	
+[33m  [0m 16  		(projctid > [31m0[0m) ? ProjectID = projctid : ProjectID = [31m0[0m;
+[33m  [0m 17  		
+Target 0: (program) stopped.
+[0;1;35mwarning[0m: program was compiled with optimization - stepping may behave oddly; variables may not be available.
+[2mParsing type in program: '__wrap_iter<char *>'...[0m[K[2K[2mParsing type in program: '__wrap_iter<const char *>'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<char *> >'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<const char *...[0m[K[2K(lldb) [1G[2m(lldb) [0m[8Gframe vai[K[1G[2m(lldb) [0m[16Griable
+(Programmer *) this = 0x000000016fdff020
+(std::string) nme = <variable not available>
+
+(long) id = <Could not evaluate DW_OP_entry_value.>
+
+(std::string) jobTtle = "Multimedia Prog."
+(double) slry = 2500
+(int) yr = <variable not available>
+
+(std::string) superName = "Mary"
+(int) projctid = 5
+(std::string) PrgLang = "CSS"
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12824 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x000000010000638c[0m program`Programmer::Programmer(this=0x000000016fdff020, nme=<unavailable>, id=<unavailable>, jobTtle="Multimedia Prog.", slry=2500, yr=<unavailable>, superName="Mary", projctid=5, PrgLang="CSS") at [36mprogrammerClass.cpp[0m:[33m16[0m:[33m2[0m [opt]
+[33m  [0m 13  	
+[33m  [0m 14  		supervisorName = superName;
+[33m  [0m 15  	
+[33m->[0m 16  		[4m([0mprojctid > [31m0[0m) ? ProjectID = projctid : ProjectID = [31m0[0m;
+[33m  [0m 17  		
+[33m  [0m 18  		Language = PrgLang;
+[33m  [0m 19  	}
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn[1G[2m(lldb) [0m[9Gframe variable[1G[2m(lldb) [0m[22G
+(Programmer *) this = 0x000000016fdff020
+(std::string) nme = <variable not available>
+
+(long) id = <Could not evaluate DW_OP_entry_value.>
+
+(std::string) jobTtle = "Multimedia Prog."
+(double) slry = 2500
+(int) yr = <variable not available>
+
+(std::string) superName = "Mary"
+(int) projctid = 5
+(std::string) PrgLang = "CSS"
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12824 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x0000000100006394[0m program`Programmer::Programmer(this=0x000000016fdff020, nme=<unavailable>, id=<unavailable>, jobTtle="Multimedia Prog.", slry=2500, yr=<unavailable>, superName="Mary", projctid=5, PrgLang="CSS") at [36mprogrammerClass.cpp[0m:[33m18[0m:[33m11[0m [opt]
+[33m  [0m 15  	
+[33m  [0m 16  		(projctid > [31m0[0m) ? ProjectID = projctid : ProjectID = [31m0[0m;
+[33m  [0m 17  		
+[33m->[0m 18  		Language [4m=[0m PrgLang;
+[33m  [0m 19  	}
+[33m  [0m 20  	
+[33m  [0m 21  	[35m/* Accessor Functions */[0m
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12824 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x00000001000063a0[0m program`Programmer::Programmer(this=0x000000016fdff020, nme=<unavailable>, id=<unavailable>, jobTtle="Multimedia Prog.", slry=2500, yr=<unavailable>, superName="Mary", projctid=5, PrgLang="CSS") at [36mprogrammerClass.cpp[0m:[33m19[0m:[33m1[0m [opt]
+[33m  [0m 16  		(projctid > [31m0[0m) ? ProjectID = projctid : ProjectID = [31m0[0m;
+[33m  [0m 17  		
+[33m  [0m 18  		Language = PrgLang;
+[33m->[0m 19  	[4m}[0m
+[33m  [0m 20  	
+[33m  [0m 21  	[35m/* Accessor Functions */[0m
+[33m  [0m 22  	
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gframe variable
+(Programmer *) this = 0x000000016fdff020
+(std::string) nme = <variable not available>
+
+(long) id = <Could not evaluate DW_OP_entry_value.>
+
+(std::string) jobTtle = "Multimedia Prog."
+(double) slry = 2500
+(int) yr = <variable not available>
+
+(std::string) superName = "Mary"
+(int) projctid = 5
+(std::string) PrgLang = "CSS"
+(lldb) [1G[2m(lldb) [0m[8Grunj
+[0;1;31merror: [0m'runj' is not a valid command.
+(lldb) [1G[2m(lldb) [0m[8Grun
+There is a running process, kill it and restart?: [Y/n] Y
+Process 12824 exited with status = 9 (0x00000009) killed
+Process 12858 launched: '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64)
+Process 12858 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.1[0m
+    frame #0: [33m0x0000000100006380[0m program`Programmer::Programmer(this=0x000000016fdff020, nme=<unavailable>, id=<unavailable>, jobTtle="Multimedia Prog.", slry=2500, yr=<unavailable>, superName="Mary", projctid=5, PrgLang="CSS") at [36mprogrammerClass.cpp[0m:[33m14[0m:[33m17[0m [opt]
+[33m  [0m 11  	
+[33m  [0m 12  						   : Employee(nme, id, jobTtle, slry, yr) {
+[33m  [0m 13  	
+[33m->[0m 14  		supervisorName [4m=[0m superName;
+[33m  [0m 15  	
+[33m  [0m 16  		(projctid > [31m0[0m) ? ProjectID = projctid : ProjectID = [31m0[0m;
+[33m  [0m 17  		
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gdel[K[1G[2m(lldb) [0m[10G[K[1G[2m(lldb) [0m[9G[K[1G[2m(lldb) [0m[8Gbr del 12[K[1G[2m(lldb) [0m[16G4
+[0;1;31merror: [0m'14' is not a currently valid breakpoint ID.
+(lldb) [1G[2m(lldb) [0m[8Gexitk[K[1G[2m(lldb) [0m[12G
+Quitting LLDB will kill one or more processes. Do you really want to proceed: [Y /n] Y
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hcclear[?2004l
+[3J[H[2J[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hllldb .? /program[?2004l
+(lldb) target create "./program"
+[2mLocating external symbol file: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2K[2mLoading DWARF5 index: program...[0m[K[2K[2mLocating external symbol file: dyld...[0m[K[2K[2mLocating external symbol file: dyld...[0m[K[2K[2mParsing symbol table: dyld...[0m[K[2K[2mLocating external symbol file: libc++.1.dylib...[0m[K[2K[2mLocating external symbol file: libc++.1.dylib...[0m[K[2K[2mParsing symbol table: libc++.1.dylib...[0m[K[2K[2mLocating external symbol file: libSystem.B.dylib...[0m[K[2K[2mLocating external symbol file: libSystem.B.dylib...[0m[K[2K[2mParsing symbol table: libSystem.B.dylib...[0m[K[2K[2mLocating external symbol file: libc++abi.dylib...[0m[K[2K[2mLocating external symbol file: libc++abi.dylib...[0m[K[2K[2mParsing symbol table: libc++abi.dylib...[0m[K[2K[2mLocating external symbol file: libcache.dylib...[0m[K[2K[2mLocating external symbol file: libcache.dylib...[0m[K[2K[2mParsing symbol table: libcache.dylib...[0m[K[2K[2mLocating external symbol file: libcommonCrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcommonCrypto.dylib...[0m[K[2K[2mParsing symbol table: libcommonCrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcompiler_rt.dylib...[0m[K[2K[2mLocating external symbol file: libcompiler_rt.dylib...[0m[K[2K[2mParsing symbol table: libcompiler_rt.dylib...[0m[K[2K[2mLocating external symbol file: libcopyfile.dylib...[0m[K[2K[2mLocating external symbol file: libcopyfile.dylib...[0m[K[2K[2mParsing symbol table: libcopyfile.dylib...[0m[K[2K[2mLocating external symbol file: libcorecrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcorecrypto.dylib...[0m[K[2K[2mParsing symbol table: libcorecrypto.dylib...[0m[K[2K[2mLocating external symbol file: libdispatch.dylib...[0m[K[2K[2mLocating external symbol file: libdispatch.dylib...[0m[K[2K[2mParsing symbol table: libdispatch.dylib...[0m[K[2K[2mLocating external symbol file: libdyld.dylib...[0m[K[2K[2mLocating external symbol file: libdyld.dylib...[0m[K[2K[2mParsing symbol table: libdyld.dylib...[0m[K[2K[2mLocating external symbol file: libkeymgr.dylib...[0m[K[2K[2mLocating external symbol file: libkeymgr.dylib...[0m[K[2K[2mParsing symbol table: libkeymgr.dylib...[0m[K[2K[2mLocating external symbol file: libmacho.dylib...[0m[K[2K[2mLocating external symbol file: libmacho.dylib...[0m[K[2K[2mParsing symbol table: libmacho.dylib...[0m[K[2K[2mLocating external symbol file: libquarantine.dylib...[0m[K[2K[2mLocating external symbol file: libquarantine.dylib...[0m[K[2K[2mParsing symbol table: libquarantine.dylib...[0m[K[2K[2mLocating external symbol file: libremovefile.dylib...[0m[K[2K[2mLocating external symbol file: libremovefile.dylib...[0m[K[2K[2mParsing symbol table: libremovefile.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_asl.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_asl.dylib...[0m[K[2K[2mParsing symbol table: libsystem_asl.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_blocks.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_blocks.dylib...[0m[K[2K[2mParsing symbol table: libsystem_blocks.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_c.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_c.dylib...[0m[K[2K[2mParsing symbol table: libsystem_c.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_collections.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_collections.dylib...[0m[K[2K[2mParsing symbol table: libsystem_collections.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_configuration.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_configuration.dylib...[0m[K[2K[2mParsing symbol table: libsystem_configuration.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_containermanager.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_containermanager.dylib...[0m[K[2K[2mParsing symbol table: libsystem_containermanager.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_coreservices.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_coreservices.dylib...[0m[K[2K[2mParsing symbol table: libsystem_coreservices.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwin.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwin.dylib...[0m[K[2K[2mParsing symbol table: libsystem_darwin.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwindirectory.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwindirectory.dylib...[0m[K[2K[2mParsing symbol table: libsystem_darwindirectory.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_dnssd.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_dnssd.dylib...[0m[K[2K[2mParsing symbol table: libsystem_dnssd.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_eligibility.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_eligibility.dylib...[0m[K[2K[2mParsing symbol table: libsystem_eligibility.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_featureflags.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_featureflags.dylib...[0m[K[2K[2mParsing symbol table: libsystem_featureflags.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_info.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_info.dylib...[0m[K[2K[2mParsing symbol table: libsystem_info.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_m.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_m.dylib...[0m[K[2K[2mParsing symbol table: libsystem_m.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_malloc.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_malloc.dylib...[0m[K[2K[2mParsing symbol table: libsystem_malloc.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_networkextension.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_networkextension.dylib...[0m[K[2K[2mParsing symbol table: libsystem_networkextension.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_notify.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_notify.dylib...[0m[K[2K[2mParsing symbol table: libsystem_notify.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sandbox.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sandbox.dylib...[0m[K[2K[2mParsing symbol table: libsystem_sandbox.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sanitizers.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sanitizers.dylib...[0m[K[2K[2mParsing symbol table: libsystem_sanitizers.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_secinit.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_secinit.dylib...[0m[K[2K[2mParsing symbol table: libsystem_secinit.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_kernel.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_kernel.dylib...[0m[K[2K[2mParsing symbol table: libsystem_kernel.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_platform.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_platform.dylib...[0m[K[2K[2mParsing symbol table: libsystem_platform.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_pthread.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_pthread.dylib...[0m[K[2K[2mParsing symbol table: libsystem_pthread.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_symptoms.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_symptoms.dylib...[0m[K[2K[2mParsing symbol table: libsystem_symptoms.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_trace.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_trace.dylib...[0m[K[2K[2mParsing symbol table: libsystem_trace.dylib...[0m[K[2K[2mLocating external symbol file: libunwind.dylib...[0m[K[2K[2mLocating external symbol file: libunwind.dylib...[0m[K[2K[2mParsing symbol table: libunwind.dylib...[0m[K[2K[2mLocating external symbol file: libxpc.dylib...[0m[K[2K[2mLocating external symbol file: libxpc.dylib...[0m[K[2K[2mParsing symbol table: libxpc.dylib...[0m[K[2K[2mLocating external symbol file: libobjc.A.dylib...[0m[K[2K[2mLocating external symbol file: libobjc.A.dylib...[0m[K[2K[2mParsing symbol table: libobjc.A.dylib...[0m[K[2K[2mLocating external symbol file: liboah.dylib...[0m[K[2K[2mLocating external symbol file: liboah.dylib...[0m[K[2K[2mParsing symbol table: liboah.dylib...[0m[K[2K[2mParsing symbol table: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2KCurrent executable set to '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64).
+(lldb) [1G[2m(lldb) [0m[8Gb e[K[1G[2m(lldb) [0m[10Gs[K[1G[2m(lldb) [0m[10Gmain.cpp:53
+Breakpoint 1: where = program`main + 2352 at main.cpp:53:47, address = 0x00000001000041b0
+(lldb) [1G[2m(lldb) [0m[8Grun
+Process 12947 launched: '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64)
+  Here is the List of all the Staff in the R&D Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+Process 12947 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.1[0m
+    frame #0: [33m0x00000001000041b0[0m program`main at [36mmain.cpp[0m:[33m53[0m:[33m47[0m [opt]
+[33m  [0m 50  		cout << "  ------------------------------------------------------------\n";
+[33m  [0m 51  		printHeader();
+[33m  [0m 52  		[35m//a Employee Vector that holds all types of staff[0m
+[33m->[0m 53  	    vector<Employee*> *AllRnDEmployees1 = RnD.[4mgetAllStaff[0m();
+[33m  [0m 54  	
+[33m  [0m 55  	    [32mfor[0m ([32munsigned[0m i = [31m0[0m; i < AllRnDEmployees1->size(); i++)
+[33m  [0m 56  		{
+Target 0: (program) stopped.
+[0;1;35mwarning[0m: program was compiled with optimization - stepping may behave oddly; variables may not be available.
+(lldb) [1G[2m(lldb) [0m[8Gframe variable
+[2mParsing type in program: '__wrap_iter<char *>'...[0m[K[2K[2mParsing type in program: '__wrap_iter<const char *>'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<char *> >'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<const char *...[0m[K[2K[2mParsing type in program: '__wrap_iter<Employee *>'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<Employee *> ...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<const Employ...[0m[K[2K[2mParsing type in program: '__wrap_iter<Programmer *>'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<Programmer *...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<const Progra...[0m[K[2K[2mParsing type in program: '__wrap_iter<SoftwareArchitect *>'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<SoftwareArch...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<const Softwa...[0m[K[2K(Department) RnD = {
+  Name = "Research and Development"
+  ID = -1
+  Employees = 0x00006000038400e0 size=3
+  Programmers = 0x0000600003840100 size=3
+  SoftwareArchitects = 0x0000600003840120 size=2
+}
+(Department) IT = {
+  Name = "Info And Tech"
+  ID = -1
+  Employees = 0x00006000038400c0 size=0
+  Programmers = 0x0000600003840140 size=2
+  SoftwareArchitects = 0x0000600003840160 size=0
+}
+(Employee) E1 = (name = "Josh", age = 0, gender = '\0', ID = 1, phoneNumber = "", jobTitle = "Technology Specialist", salary = 3000, HireYear = 2015)
+(Employee) E2 = (name = "Mary", age = 0, gender = '\0', ID = 2, phoneNumber = "", jobTitle = "Project Manager", salary = 5500, HireYear = 2010)
+(Employee) E3 = (name = "Marc", age = 0, gender = '\0', ID = 3, phoneNumber = "", jobTitle = "Research Team Leader", salary = 8000, HireYear = 2007)
+(Programmer) P1 = {
+  Employee = (name = "Mike", age = 0, gender = '\0', ID = 11, phoneNumber = "", jobTitle = "Multimedia Prog.", salary = 2500, HireYear = 2014)
+  supervisorName = "Mary"
+  ProjectID = 5
+  Language = "CSS"
+}
+(Programmer) P2 = {
+  Employee = (name = "Julie", age = 0, gender = '\0', ID = 12, phoneNumber = "", jobTitle = "Mainframe Sys.Prog.", salary = 2150, HireYear = 2013)
+  supervisorName = "Mary"
+  ProjectID = 5
+  Language = "C++"
+}
+(Programmer) P3 = {
+  Employee = (name = "Albert", age = 0, gender = '\0', ID = 13, phoneNumber = "", jobTitle = "OS Prog.", salary = 2300, HireYear = 2015)
+  supervisorName = "Mary"
+  ProjectID = 9
+  Language = "C++"
+}
+(SoftwareArchitect) SA1 = {
+  Employee = (name = "John", age = 0, gender = '\0', ID = 21, phoneNumber = "", jobTitle = "Senior Software Eng.", salary = 4899, HireYear = 2011)
+  supervisorName = "Marc"
+  ProjectID = 6
+  experienceYears = 7
+}
+(SoftwareArchitect) SA2 = {
+  Employee = (name = "Connor", age = 0, gender = '\0', ID = 24, phoneNumber = "", jobTitle = "Software Developer", salary = 1900, HireYear = 2017)
+  supervisorName = "John"
+  ProjectID = 8
+  experienceYears = 0
+}
+(Programmer) P4 = {
+  Employee = (name = "Roy", age = 0, gender = '\0', ID = 32, phoneNumber = "", jobTitle = "Network Prog.", salary = 1900, HireYear = 2016)
+  supervisorName = "N/A"
+  ProjectID = 7
+  Language = "JAVA"
+}
+(Programmer) P5 = {
+  Employee = (name = "Jane", age = 0, gender = '\0', ID = 35, phoneNumber = "", jobTitle = "Tester", salary = 1500, HireYear = 2018)
+  supervisorName = "Roy"
+  ProjectID = 7
+  Language = "JAVA"
+}
+(std::vector<Employee *> *) AllRnDEmployees1 = <no location, value may have been optimized out>
+
+(std::vector<Employee *> *) AllITEmployees = <no location, value may have been optimized out>
+
+(std::vector<Employee *> *) AllRnDEmployees2 = <no location, value may have been optimized out>
+
+(std::vector<Programmer> *) CppProgrammers = <no location, value may have been optimized out>
+
+(std::vector<int> *) AllProjects = <no location, value may have been optimized out>
+
+(lldb) [1G[2m(lldb) [0m[8Gbr del 1.1
+0 breakpoints deleted; 1 breakpoint locations disabled.
+(lldb) [1G[2m(lldb) [0m[8Gbreakpoint list
+Current breakpoints:
+1: file = 'main.cpp', line = 53, exact_match = 0, locations = 1
+  1.1: where = program`main + 2352 at main.cpp:53:47, address = 0x00000001000041b0, unresolved, hit count = 1  Options: disabled 
+
+(lldb) [1G[2m(lldb) [0m[8Gbreakpoint[K[1G[2m(lldb) [0m[17G[K[1G[2m(lldb) [0m[16G[K[1G[2m(lldb) [0m[15G[K[1G[2m(lldb) [0m[14G[K[1G[2m(lldb) [0m[13G[K[1G[2m(lldb) [0m[12G[K[1G[2m(lldb) [0m[11G[K[1G[2m(lldb) [0m[10G del 1
+1 breakpoints deleted; 0 breakpoint locations disabled.
+(lldb) [1G[2m(lldb) [0m[8Gb main.cpp [1G[2m(lldb) [0m[18G:59
+Breakpoint 2: where = program`main + 2432 at main.cpp:59:27, address = 0x0000000100004200
+(lldb) [1G[2m(lldb) [0m[8Grun
+There is a running process, kill it and restart?: [Y/n] Y
+Process 12947 exited with status = 9 (0x00000009) killed
+Process 12982 launched: '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64)
+  Here is the List of all the Staff in the R&D Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+Process 12982 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 2.1[0m
+    frame #0: [33m0x0000000100004200[0m program`main at [36mmain.cpp[0m:[33m59[0m:[33m27[0m [opt]
+[33m  [0m 56  		{
+[33m  [0m 57  			cout << "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+[33m->[0m 59  	        AllRnDEmployees1->[4mat[0m(i)->print();
+[33m  [0m 60  		}
+[33m  [0m 61  	
+[33m  [0m 62  		cout << "  Here is the List of all the Staff in the IT Department: \n";
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gk[K[1G[2m(lldb) [0m[8Gfram [1G[2m(lldb) [0m[12Ge variable
+(Department) RnD = {
+  Name = "Research and Development"
+  ID = -1
+  Employees = 0x0000600000ab1260 size=3
+  Programmers = 0x0000600000ab1280 size=3
+  SoftwareArchitects = 0x0000600000ab12a0 size=2
+}
+(Department) IT = {
+  Name = "Info And Tech"
+  ID = -1
+  Employees = 0x0000600000ab1240 size=0
+  Programmers = 0x0000600000ab12c0 size=2
+  SoftwareArchitects = 0x0000600000ab12e0 size=0
+}
+(Employee) E1 = (name = "Josh", age = 0, gender = '\0', ID = 1, phoneNumber = "", jobTitle = "Technology Specialist", salary = 3000, HireYear = 2015)
+(Employee) E2 = (name = "Mary", age = 0, gender = '\0', ID = 2, phoneNumber = "", jobTitle = "Project Manager", salary = 5500, HireYear = 2010)
+(Employee) E3 = (name = "Marc", age = 0, gender = '\0', ID = 3, phoneNumber = "", jobTitle = "Research Team Leader", salary = 8000, HireYear = 2007)
+(Programmer) P1 = {
+  Employee = (name = "Mike", age = 0, gender = '\0', ID = 11, phoneNumber = "", jobTitle = "Multimedia Prog.", salary = 2500, HireYear = 2014)
+  supervisorName = "Mary"
+  ProjectID = 5
+  Language = "CSS"
+}
+(Programmer) P2 = {
+  Employee = (name = "Julie", age = 0, gender = '\0', ID = 12, phoneNumber = "", jobTitle = "Mainframe Sys.Prog.", salary = 2150, HireYear = 2013)
+  supervisorName = "Mary"
+  ProjectID = 5
+  Language = "C++"
+}
+(Programmer) P3 = {
+  Employee = (name = "Albert", age = 0, gender = '\0', ID = 13, phoneNumber = "", jobTitle = "OS Prog.", salary = 2300, HireYear = 2015)
+  supervisorName = "Mary"
+  ProjectID = 9
+  Language = "C++"
+}
+(SoftwareArchitect) SA1 = {
+  Employee = (name = "John", age = 0, gender = '\0', ID = 21, phoneNumber = "", jobTitle = "Senior Software Eng.", salary = 4899, HireYear = 2011)
+  supervisorName = "Marc"
+  ProjectID = 6
+  experienceYears = 7
+}
+(SoftwareArchitect) SA2 = {
+  Employee = (name = "Connor", age = 0, gender = '\0', ID = 24, phoneNumber = "", jobTitle = "Software Developer", salary = 1900, HireYear = 2017)
+  supervisorName = "John"
+  ProjectID = 8
+  experienceYears = 0
+}
+(Programmer) P4 = {
+  Employee = (name = "Roy", age = 0, gender = '\0', ID = 32, phoneNumber = "", jobTitle = "Network Prog.", salary = 1900, HireYear = 2016)
+  supervisorName = "N/A"
+  ProjectID = 7
+  Language = "JAVA"
+}
+(Programmer) P5 = {
+  Employee = (name = "Jane", age = 0, gender = '\0', ID = 35, phoneNumber = "", jobTitle = "Tester", salary = 1500, HireYear = 2018)
+  supervisorName = "Roy"
+  ProjectID = 7
+  Language = "JAVA"
+}
+(std::vector<Employee *> *) AllRnDEmployees1 = <no location, value may have been optimized out>
+
+(std::vector<Employee *> *) AllITEmployees = <no location, value may have been optimized out>
+
+(std::vector<Employee *> *) AllRnDEmployees2 = <no location, value may have been optimized out>
+
+(std::vector<Programmer> *) CppProgrammers = <no location, value may have been optimized out>
+
+(std::vector<int> *) AllProjects = <no location, value may have been optimized out>
+
+(unsigned int) i = 0
+(lldb) [1G[2m(lldb) [0m[8Gn
+   Josh   1   Technology Specialist   3000.00      2015
+Process 12982 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x0000000100004208[0m program`main at [36mmain.cpp[0m:[33m55[0m:[33m26[0m [opt]
+[33m  [0m 52  		[35m//a Employee Vector that holds all types of staff[0m
+[33m  [0m 53  	    vector<Employee*> *AllRnDEmployees1 = RnD.getAllStaff();
+[33m  [0m 54  	
+[33m->[0m 55  	    [32mfor[0m ([32munsigned[0m i = [31m0[0m; [4mi[0m < AllRnDEmployees1->size(); i++)
+[33m  [0m 56  		{
+[33m  [0m 57  			cout << "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12982 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x00000001000041e0[0m program`main at [36mmain.cpp[0m:[33m57[0m:[33m8[0m [opt]
+[33m  [0m 54  	
+[33m  [0m 55  	    [32mfor[0m ([32munsigned[0m i = [31m0[0m; i < AllRnDEmployees1->size(); i++)
+[33m  [0m 56  		{
+[33m->[0m 57  			cout [4m<<[0m "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+[33m  [0m 59  	        AllRnDEmployees1->at(i)->print();
+[33m  [0m 60  		}
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+
+Process 12982 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x00000001000041f0[0m program`main at [36mmain.cpp[0m:[33m59[0m:[33m27[0m [opt]
+[33m  [0m 56  		{
+[33m  [0m 57  			cout << "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+[33m->[0m 59  	        AllRnDEmployees1->[4mat[0m(i)->print();
+[33m  [0m 60  		}
+[33m  [0m 61  	
+[33m  [0m 62  		cout << "  Here is the List of all the Staff in the IT Department: \n";
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12982 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 2.1[0m
+    frame #0: [33m0x0000000100004200[0m program`main at [36mmain.cpp[0m:[33m59[0m:[33m27[0m [opt]
+[33m  [0m 56  		{
+[33m  [0m 57  			cout << "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+[33m->[0m 59  	        AllRnDEmployees1->[4mat[0m(i)->print();
+[33m  [0m 60  		}
+[33m  [0m 61  	
+[33m  [0m 62  		cout << "  Here is the List of all the Staff in the IT Department: \n";
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+   Mary   2         Project Manager   5500.00      2010
+Process 12982 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x0000000100004208[0m program`main at [36mmain.cpp[0m:[33m55[0m:[33m26[0m [opt]
+[33m  [0m 52  		[35m//a Employee Vector that holds all types of staff[0m
+[33m  [0m 53  	    vector<Employee*> *AllRnDEmployees1 = RnD.getAllStaff();
+[33m  [0m 54  	
+[33m->[0m 55  	    [32mfor[0m ([32munsigned[0m i = [31m0[0m; [4mi[0m < AllRnDEmployees1->size(); i++)
+[33m  [0m 56  		{
+[33m  [0m 57  			cout << "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 12982 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x00000001000041e0[0m program`main at [36mmain.cpp[0m:[33m57[0m:[33m8[0m [opt]
+[33m  [0m 54  	
+[33m  [0m 55  	    [32mfor[0m ([32munsigned[0m i = [31m0[0m; i < AllRnDEmployees1->size(); i++)
+[33m  [0m 56  		{
+[33m->[0m 57  			cout [4m<<[0m "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+[33m  [0m 59  	        AllRnDEmployees1->at(i)->print();
+[33m  [0m 60  		}
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+
+Process 12982 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x00000001000041f0[0m program`main at [36mmain.cpp[0m:[33m59[0m:[33m27[0m [opt]
+[33m  [0m 56  		{
+[33m  [0m 57  			cout << "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+[33m->[0m 59  	        AllRnDEmployees1->[4mat[0m(i)->print();
+[33m  [0m 60  		}
+[33m  [0m 61  	
+[33m  [0m 62  		cout << "  Here is the List of all the Staff in the IT Department: \n";
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gfram v[K[1G[2m(lldb) [0m[13G[1G[2m(lldb) [0m[12Ge variable
+(Department) RnD = {
+  Name = "Research and Development"
+  ID = -1
+  Employees = 0x0000600000ab1260 size=3
+  Programmers = 0x0000600000ab1280 size=3
+  SoftwareArchitects = 0x0000600000ab12a0 size=2
+}
+(Department) IT = {
+  Name = "Info And Tech"
+  ID = -1
+  Employees = 0x0000600000ab1240 size=0
+  Programmers = 0x0000600000ab12c0 size=2
+  SoftwareArchitects = 0x0000600000ab12e0 size=0
+}
+(Employee) E1 = (name = "Josh", age = 0, gender = '\0', ID = 1, phoneNumber = "", jobTitle = "Technology Specialist", salary = 3000, HireYear = 2015)
+(Employee) E2 = (name = "Mary", age = 0, gender = '\0', ID = 2, phoneNumber = "", jobTitle = "Project Manager", salary = 5500, HireYear = 2010)
+(Employee) E3 = (name = "Marc", age = 0, gender = '\0', ID = 3, phoneNumber = "", jobTitle = "Research Team Leader", salary = 8000, HireYear = 2007)
+(Programmer) P1 = {
+  Employee = (name = "Mike", age = 0, gender = '\0', ID = 11, phoneNumber = "", jobTitle = "Multimedia Prog.", salary = 2500, HireYear = 2014)
+  supervisorName = "Mary"
+  ProjectID = 5
+  Language = "CSS"
+}
+(Programmer) P2 = {
+  Employee = (name = "Julie", age = 0, gender = '\0', ID = 12, phoneNumber = "", jobTitle = "Mainframe Sys.Prog.", salary = 2150, HireYear = 2013)
+  supervisorName = "Mary"
+  ProjectID = 5
+  Language = "C++"
+}
+(Programmer) P3 = {
+  Employee = (name = "Albert", age = 0, gender = '\0', ID = 13, phoneNumber = "", jobTitle = "OS Prog.", salary = 2300, HireYear = 2015)
+  supervisorName = "Mary"
+  ProjectID = 9
+  Language = "C++"
+}
+(SoftwareArchitect) SA1 = {
+  Employee = (name = "John", age = 0, gender = '\0', ID = 21, phoneNumber = "", jobTitle = "Senior Software Eng.", salary = 4899, HireYear = 2011)
+  supervisorName = "Marc"
+  ProjectID = 6
+  experienceYears = 7
+}
+(SoftwareArchitect) SA2 = {
+  Employee = (name = "Connor", age = 0, gender = '\0', ID = 24, phoneNumber = "", jobTitle = "Software Developer", salary = 1900, HireYear = 2017)
+  supervisorName = "John"
+  ProjectID = 8
+  experienceYears = 0
+}
+(Programmer) P4 = {
+  Employee = (name = "Roy", age = 0, gender = '\0', ID = 32, phoneNumber = "", jobTitle = "Network Prog.", salary = 1900, HireYear = 2016)
+  supervisorName = "N/A"
+  ProjectID = 7
+  Language = "JAVA"
+}
+(Programmer) P5 = {
+  Employee = (name = "Jane", age = 0, gender = '\0', ID = 35, phoneNumber = "", jobTitle = "Tester", salary = 1500, HireYear = 2018)
+  supervisorName = "Roy"
+  ProjectID = 7
+  Language = "JAVA"
+}
+(std::vector<Employee *> *) AllRnDEmployees1 = <no location, value may have been optimized out>
+
+(std::vector<Employee *> *) AllITEmployees = <no location, value may have been optimized out>
+
+(std::vector<Employee *> *) AllRnDEmployees2 = <no location, value may have been optimized out>
+
+(std::vector<Programmer> *) CppProgrammers = <no location, value may have been optimized out>
+
+(std::vector<int> *) AllProjects = <no location, value may have been optimized out>
+
+(unsigned int) i = 2
+(lldb) [1G[2m(lldb) [0m[8Gexit
+Quitting LLDB will kill one or more processes. Do you really want to proceed: [Y /n] Y
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hcclear[?2004l
+[3J[H[2J[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004h../program[?2004l
+  Here is the List of all the Staff in the R&D Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Josh   1   Technology Specialist   3000.00      2015
+
+   Mary   2         Project Manager   5500.00      2010
+
+   Marc   3    Research Team Leader   8000.00      2007
+
+   Mike  11        Multimedia Prog.   2500.00      2014
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013
+
+ Albert  13                OS Prog.   2300.00      2015
+
+   John  21    Senior Software Eng.   4899.00      2011
+
+ Connor  24      Software Developer   1900.00      2017
+  Here is the List of all the Staff in the IT Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+    Roy  32           Network Prog.   1900.00      2016
+
+   Jane  35                  Tester   1500.00      2018
+
+ Removing Mike from the company: Succeeded
+ -------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Josh   1   Technology Specialist   3000.00      2015
+
+   Mary   2         Project Manager   5500.00      2010
+
+   Marc   3    Research Team Leader   8000.00      2007
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013
+
+ Albert  13                OS Prog.   2300.00      2015
+
+   John  21    Senior Software Eng.   4899.00      2011
+
+ Connor  24      Software Developer   1900.00      2017
+
+  Here is the List of all the Programmers who know C++ in the R&D Department: 
+  ---------------------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013      Mary         5         C++
+
+ Albert  13                OS Prog.   2300.00      2015      Mary         9         C++
+
+ Listing All Project IDs:  5 9 6 8
+-------------------------
+The Highest R&D Employee Salary is: 8000.00
+The Highest R&D Programmer Salary is: 2300.00
+The Highest R&D Software Architect Salary is: 1900.00
+
+The Average R&D Employee Salary is: 2666
+The Average R&D Programmer Salary is: 1150
+The Average R&D Software Architect Salary is: 3399
+
+The Average IT Employee Salary is: 0
+The Average IT Programmer Salary is: 750
+The Average IT Software Architect Salary is: 0
+
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004h. cclang g++ *.cpp -g -O2 -o program [K[K[?2004l
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004h../pro ogram[?2004l
+  Here is the List of all the Staff in the R&D Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Josh   1   Technology Specialist   3000.00      2015
+
+   Mary   2         Project Manager   5500.00      2010
+
+   Marc   3    Research Team Leader   8000.00      2007
+
+   Mike  11        Multimedia Prog.   2500.00      2014
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013
+
+ Albert  13                OS Prog.   2300.00      2015
+
+   John  21    Senior Software Eng.   4899.00      2011
+
+ Connor  24      Software Developer   1900.00      2017
+  Here is the List of all the Staff in the IT Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+    Roy  32           Network Prog.   1900.00      2016
+
+   Jane  35                  Tester   1500.00      2018
+
+ Removing Mike from the company: Succeeded
+ -------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Josh   1   Technology Specialist   3000.00      2015
+
+   Mary   2         Project Manager   5500.00      2010
+
+   Marc   3    Research Team Leader   8000.00      2007
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013
+
+ Albert  13                OS Prog.   2300.00      2015
+
+   John  21    Senior Software Eng.   4899.00      2011
+
+ Connor  24      Software Developer   1900.00      2017
+
+  Here is the List of all the Programmers who know C++ in the R&D Department: 
+  ---------------------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013      Mary         5         C++
+
+ Albert  13                OS Prog.   2300.00      2015      Mary         9         C++
+
+ Listing All Project IDs:  5 9 6 8
+-------------------------
+The Highest R&D Employee Salary is: 8000.00
+The Highest R&D Programmer Salary is: 2300.00
+The Highest R&D Software Architect Salary is: 4899.00
+
+The Average R&D Employee Salary is: 2666
+The Average R&D Programmer Salary is: 1150
+The Average R&D Software Architect Salary is: 3399
+
+The Average IT Employee Salary is: 0
+The Average IT Programmer Salary is: 750
+The Average IT Software Architect Salary is: 0
+
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004h./program[9Dclang++ *.cpp -g -O2 -o program [K[A[49C./program[K[1B[K[A[58C[9Dclang++ *.cpp -g -O2 -o program [K[K[?2004l
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004h../prgor   ogram[?2004l
+  Here is the List of all the Staff in the R&D Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Josh   1   Technology Specialist   3000.00      2015
+
+   Mary   2         Project Manager   5500.00      2010
+
+   Marc   3    Research Team Leader   8000.00      2007
+
+   Mike  11        Multimedia Prog.   2500.00      2014
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013
+
+ Albert  13                OS Prog.   2300.00      2015
+
+   John  21    Senior Software Eng.   4899.00      2011
+
+ Connor  24      Software Developer   1900.00      2017
+  Here is the List of all the Staff in the IT Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+    Roy  32           Network Prog.   1900.00      2016
+
+   Jane  35                  Tester   1500.00      2018
+
+ Removing Mike from the company: Succeeded
+ -------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Josh   1   Technology Specialist   3000.00      2015
+
+   Mary   2         Project Manager   5500.00      2010
+
+   Marc   3    Research Team Leader   8000.00      2007
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013
+
+ Albert  13                OS Prog.   2300.00      2015
+
+   John  21    Senior Software Eng.   4899.00      2011
+
+ Connor  24      Software Developer   1900.00      2017
+
+  Here is the List of all the Programmers who know C++ in the R&D Department: 
+  ---------------------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013      Mary         5         C++
+
+ Albert  13                OS Prog.   2300.00      2015      Mary         9         C++
+
+ Listing All Project IDs:  5 9 6 8
+-------------------------
+The Highest R&D Employee Salary is: 8000.00
+The Highest R&D Programmer Salary is: 2300.00
+The Highest R&D Software Architect Salary is: 4899.00
+
+The Average R&D Employee Salary is: 5500
+The Average R&D Programmer Salary is: 2225
+The Average R&D Software Architect Salary is: 3399
+
+The Average IT Employee Salary is: 0
+The Average IT Programmer Salary is: 1700
+The Average IT Software Architect Salary is: 0
+
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hllldb ./prog      program[?2004l
+(lldb) target create "program"
+[2mLocating external symbol file: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2K[2mLoading DWARF5 index: program...[0m[K[2K[2mLocating external symbol file: dyld...[0m[K[2K[2mLocating external symbol file: dyld...[0m[K[2K[2mParsing symbol table: dyld...[0m[K[2K[2mLocating external symbol file: libc++.1.dylib...[0m[K[2K[2mLocating external symbol file: libc++.1.dylib...[0m[K[2K[2mParsing symbol table: libc++.1.dylib...[0m[K[2K[2mLocating external symbol file: libSystem.B.dylib...[0m[K[2K[2mLocating external symbol file: libSystem.B.dylib...[0m[K[2K[2mParsing symbol table: libSystem.B.dylib...[0m[K[2K[2mLocating external symbol file: libc++abi.dylib...[0m[K[2K[2mLocating external symbol file: libc++abi.dylib...[0m[K[2K[2mParsing symbol table: libc++abi.dylib...[0m[K[2K[2mLocating external symbol file: libcache.dylib...[0m[K[2K[2mLocating external symbol file: libcache.dylib...[0m[K[2K[2mParsing symbol table: libcache.dylib...[0m[K[2K[2mLocating external symbol file: libcommonCrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcommonCrypto.dylib...[0m[K[2K[2mParsing symbol table: libcommonCrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcompiler_rt.dylib...[0m[K[2K[2mLocating external symbol file: libcompiler_rt.dylib...[0m[K[2K[2mParsing symbol table: libcompiler_rt.dylib...[0m[K[2K[2mLocating external symbol file: libcopyfile.dylib...[0m[K[2K[2mLocating external symbol file: libcopyfile.dylib...[0m[K[2K[2mParsing symbol table: libcopyfile.dylib...[0m[K[2K[2mLocating external symbol file: libcorecrypto.dylib...[0m[K[2K[2mLocating external symbol file: libcorecrypto.dylib...[0m[K[2K[2mParsing symbol table: libcorecrypto.dylib...[0m[K[2K[2mLocating external symbol file: libdispatch.dylib...[0m[K[2K[2mLocating external symbol file: libdispatch.dylib...[0m[K[2K[2mParsing symbol table: libdispatch.dylib...[0m[K[2K[2mLocating external symbol file: libdyld.dylib...[0m[K[2K[2mLocating external symbol file: libdyld.dylib...[0m[K[2K[2mParsing symbol table: libdyld.dylib...[0m[K[2K[2mLocating external symbol file: libkeymgr.dylib...[0m[K[2K[2mLocating external symbol file: libkeymgr.dylib...[0m[K[2K[2mParsing symbol table: libkeymgr.dylib...[0m[K[2K[2mLocating external symbol file: libmacho.dylib...[0m[K[2K[2mLocating external symbol file: libmacho.dylib...[0m[K[2K[2mParsing symbol table: libmacho.dylib...[0m[K[2K[2mLocating external symbol file: libquarantine.dylib...[0m[K[2K[2mLocating external symbol file: libquarantine.dylib...[0m[K[2K[2mParsing symbol table: libquarantine.dylib...[0m[K[2K[2mLocating external symbol file: libremovefile.dylib...[0m[K[2K[2mLocating external symbol file: libremovefile.dylib...[0m[K[2K[2mParsing symbol table: libremovefile.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_asl.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_asl.dylib...[0m[K[2K[2mParsing symbol table: libsystem_asl.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_blocks.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_blocks.dylib...[0m[K[2K[2mParsing symbol table: libsystem_blocks.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_c.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_c.dylib...[0m[K[2K[2mParsing symbol table: libsystem_c.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_collections.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_collections.dylib...[0m[K[2K[2mParsing symbol table: libsystem_collections.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_configuration.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_configuration.dylib...[0m[K[2K[2mParsing symbol table: libsystem_configuration.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_containermanager.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_containermanager.dylib...[0m[K[2K[2mParsing symbol table: libsystem_containermanager.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_coreservices.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_coreservices.dylib...[0m[K[2K[2mParsing symbol table: libsystem_coreservices.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwin.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwin.dylib...[0m[K[2K[2mParsing symbol table: libsystem_darwin.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwindirectory.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_darwindirectory.dylib...[0m[K[2K[2mParsing symbol table: libsystem_darwindirectory.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_dnssd.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_dnssd.dylib...[0m[K[2K[2mParsing symbol table: libsystem_dnssd.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_eligibility.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_eligibility.dylib...[0m[K[2K[2mParsing symbol table: libsystem_eligibility.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_featureflags.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_featureflags.dylib...[0m[K[2K[2mParsing symbol table: libsystem_featureflags.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_info.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_info.dylib...[0m[K[2K[2mParsing symbol table: libsystem_info.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_m.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_m.dylib...[0m[K[2K[2mParsing symbol table: libsystem_m.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_malloc.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_malloc.dylib...[0m[K[2K[2mParsing symbol table: libsystem_malloc.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_networkextension.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_networkextension.dylib...[0m[K[2K[2mParsing symbol table: libsystem_networkextension.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_notify.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_notify.dylib...[0m[K[2K[2mParsing symbol table: libsystem_notify.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sandbox.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sandbox.dylib...[0m[K[2K[2mParsing symbol table: libsystem_sandbox.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sanitizers.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_sanitizers.dylib...[0m[K[2K[2mParsing symbol table: libsystem_sanitizers.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_secinit.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_secinit.dylib...[0m[K[2K[2mParsing symbol table: libsystem_secinit.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_kernel.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_kernel.dylib...[0m[K[2K[2mParsing symbol table: libsystem_kernel.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_platform.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_platform.dylib...[0m[K[2K[2mParsing symbol table: libsystem_platform.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_pthread.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_pthread.dylib...[0m[K[2K[2mParsing symbol table: libsystem_pthread.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_symptoms.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_symptoms.dylib...[0m[K[2K[2mParsing symbol table: libsystem_symptoms.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_trace.dylib...[0m[K[2K[2mLocating external symbol file: libsystem_trace.dylib...[0m[K[2K[2mParsing symbol table: libsystem_trace.dylib...[0m[K[2K[2mLocating external symbol file: libunwind.dylib...[0m[K[2K[2mLocating external symbol file: libunwind.dylib...[0m[K[2K[2mParsing symbol table: libunwind.dylib...[0m[K[2K[2mLocating external symbol file: libxpc.dylib...[0m[K[2K[2mLocating external symbol file: libxpc.dylib...[0m[K[2K[2mParsing symbol table: libxpc.dylib...[0m[K[2K[2mLocating external symbol file: libobjc.A.dylib...[0m[K[2K[2mLocating external symbol file: libobjc.A.dylib...[0m[K[2K[2mParsing symbol table: libobjc.A.dylib...[0m[K[2K[2mLocating external symbol file: liboah.dylib...[0m[K[2K[2mLocating external symbol file: liboah.dylib...[0m[K[2K[2mParsing symbol table: liboah.dylib...[0m[K[2K[2mParsing symbol table: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2K[2mLocating external symbol file: program...[0m[K[2KCurrent executable set to '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64).
+(lldb) [1G[2m(lldb) [0m[8Gb main.cpp:59
+Breakpoint 1: where = program`main + 2432 at main.cpp:59:27, address = 0x0000000100004200
+(lldb) [1G[2m(lldb) [0m[8Grun
+j Process 13172 launched: '/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging/program' (arm64)
+  Here is the List of all the Staff in the R&D Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+Process 13172 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.1[0m
+    frame #0: [33m0x0000000100004200[0m program`main at [36mmain.cpp[0m:[33m59[0m:[33m27[0m [opt]
+[33m  [0m 56  		{
+[33m  [0m 57  			cout << "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+[33m->[0m 59  	        AllRnDEmployees1->[4mat[0m(i)->print();
+[33m  [0m 60  		}
+[33m  [0m 61  	
+[33m  [0m 62  		cout << "  Here is the List of all the Staff in the IT Department: \n";
+Target 0: (program) stopped.
+[0;1;35mwarning[0m: program was compiled with optimization - stepping may behave oddly; variables may not be available.
+(lldb) [1G[2m(lldb) [0m[8Gn
+   Josh   1   Technology Specialist   3000.00      2015
+Process 13172 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x0000000100004208[0m program`main at [36mmain.cpp[0m:[33m55[0m:[33m26[0m [opt]
+[33m  [0m 52  		[35m//a Employee Vector that holds all types of staff[0m
+[33m  [0m 53  	    vector<Employee*> *AllRnDEmployees1 = RnD.getAllStaff();
+[33m  [0m 54  	
+[33m->[0m 55  	    [32mfor[0m ([32munsigned[0m i = [31m0[0m; [4mi[0m < AllRnDEmployees1->size(); i++)
+[33m  [0m 56  		{
+[33m  [0m 57  			cout << "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 13172 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x00000001000041e0[0m program`main at [36mmain.cpp[0m:[33m57[0m:[33m8[0m [opt]
+[33m  [0m 54  	
+[33m  [0m 55  	    [32mfor[0m ([32munsigned[0m i = [31m0[0m; i < AllRnDEmployees1->size(); i++)
+[33m  [0m 56  		{
+[33m->[0m 57  			cout [4m<<[0m "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+[33m  [0m 59  	        AllRnDEmployees1->at(i)->print();
+[33m  [0m 60  		}
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+
+Process 13172 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x00000001000041f0[0m program`main at [36mmain.cpp[0m:[33m59[0m:[33m27[0m [opt]
+[33m  [0m 56  		{
+[33m  [0m 57  			cout << "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+[33m->[0m 59  	        AllRnDEmployees1->[4mat[0m(i)->print();
+[33m  [0m 60  		}
+[33m  [0m 61  	
+[33m  [0m 62  		cout << "  Here is the List of all the Staff in the IT Department: \n";
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 13172 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.1[0m
+    frame #0: [33m0x0000000100004200[0m program`main at [36mmain.cpp[0m:[33m59[0m:[33m27[0m [opt]
+[33m  [0m 56  		{
+[33m  [0m 57  			cout << "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+[33m->[0m 59  	        AllRnDEmployees1->[4mat[0m(i)->print();
+[33m  [0m 60  		}
+[33m  [0m 61  	
+[33m  [0m 62  		cout << "  Here is the List of all the Staff in the IT Department: \n";
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+   Mary   2         Project Manager   5500.00      2010
+Process 13172 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x0000000100004208[0m program`main at [36mmain.cpp[0m:[33m55[0m:[33m26[0m [opt]
+[33m  [0m 52  		[35m//a Employee Vector that holds all types of staff[0m
+[33m  [0m 53  	    vector<Employee*> *AllRnDEmployees1 = RnD.getAllStaff();
+[33m  [0m 54  	
+[33m->[0m 55  	    [32mfor[0m ([32munsigned[0m i = [31m0[0m; [4mi[0m < AllRnDEmployees1->size(); i++)
+[33m  [0m 56  		{
+[33m  [0m 57  			cout << "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 13172 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x00000001000041e0[0m program`main at [36mmain.cpp[0m:[33m57[0m:[33m8[0m [opt]
+[33m  [0m 54  	
+[33m  [0m 55  	    [32mfor[0m ([32munsigned[0m i = [31m0[0m; i < AllRnDEmployees1->size(); i++)
+[33m  [0m 56  		{
+[33m->[0m 57  			cout [4m<<[0m "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+[33m  [0m 59  	        AllRnDEmployees1->at(i)->print();
+[33m  [0m 60  		}
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+
+Process 13172 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x00000001000041f0[0m program`main at [36mmain.cpp[0m:[33m59[0m:[33m27[0m [opt]
+[33m  [0m 56  		{
+[33m  [0m 57  			cout << "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+[33m->[0m 59  	        AllRnDEmployees1->[4mat[0m(i)->print();
+[33m  [0m 60  		}
+[33m  [0m 61  	
+[33m  [0m 62  		cout << "  Here is the List of all the Staff in the IT Department: \n";
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 13172 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mbreakpoint 1.1[0m
+    frame #0: [33m0x0000000100004200[0m program`main at [36mmain.cpp[0m:[33m59[0m:[33m27[0m [opt]
+[33m  [0m 56  		{
+[33m  [0m 57  			cout << "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+[33m->[0m 59  	        AllRnDEmployees1->[4mat[0m(i)->print();
+[33m  [0m 60  		}
+[33m  [0m 61  	
+[33m  [0m 62  		cout << "  Here is the List of all the Staff in the IT Department: \n";
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+   Marc   3    Research Team Leader   8000.00      2007
+Process 13172 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x0000000100004208[0m program`main at [36mmain.cpp[0m:[33m55[0m:[33m26[0m [opt]
+[33m  [0m 52  		[35m//a Employee Vector that holds all types of staff[0m
+[33m  [0m 53  	    vector<Employee*> *AllRnDEmployees1 = RnD.getAllStaff();
+[33m  [0m 54  	
+[33m->[0m 55  	    [32mfor[0m ([32munsigned[0m i = [31m0[0m; [4mi[0m < AllRnDEmployees1->size(); i++)
+[33m  [0m 56  		{
+[33m  [0m 57  			cout << "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gn
+Process 13172 stopped
+* thread #1, queue = [32m'com.apple.main-thread'[0m, stop reason = [31mstep over[0m
+    frame #0: [33m0x00000001000041e0[0m program`main at [36mmain.cpp[0m:[33m57[0m:[33m8[0m [opt]
+[33m  [0m 54  	
+[33m  [0m 55  	    [32mfor[0m ([32munsigned[0m i = [31m0[0m; i < AllRnDEmployees1->size(); i++)
+[33m  [0m 56  		{
+[33m->[0m 57  			cout [4m<<[0m "\n";
+[33m  [0m 58  			[35m//using Base Class Pointers to Call the print function if each Type[0m
+[33m  [0m 59  	        AllRnDEmployees1->at(i)->print();
+[33m  [0m 60  		}
+Target 0: (program) stopped.
+(lldb) [1G[2m(lldb) [0m[8Gframe variable
+[2mParsing type in program: '__wrap_iter<char *>'...[0m[K[2K[2mParsing type in program: '__wrap_iter<const char *>'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<char *> >'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<const char *...[0m[K[2K[2mParsing type in program: '__wrap_iter<Employee *>'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<Employee *> ...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<const Employ...[0m[K[2K[2mParsing type in program: '__wrap_iter<Programmer *>'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<Programmer *...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<const Progra...[0m[K[2K[2mParsing type in program: '__wrap_iter<SoftwareArchitect *>'...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<SoftwareArch...[0m[K[2K[2mParsing type in program: 'reverse_iterator<std::__1::__wrap_iter<const Softwa...[0m[K[2K(Department) RnD = {
+  Name = "Research and Development"
+  ID = -1
+  Employees = 0x0000600003b98060 size=3
+  Programmers = 0x0000600003b98080 size=3
+  SoftwareArchitects = 0x0000600003b980a0 size=2
+}
+(Department) IT = {
+  Name = "Info And Tech"
+  ID = -1
+  Employees = 0x0000600003b98040 size=0
+  Programmers = 0x0000600003b980c0 size=2
+  SoftwareArchitects = 0x0000600003b980e0 size=0
+}
+(Employee) E1 = (name = "Josh", age = 0, gender = '\0', ID = 1, phoneNumber = "", jobTitle = "Technology Specialist", salary = 3000, HireYear = 2015)
+(Employee) E2 = (name = "Mary", age = 0, gender = '\0', ID = 2, phoneNumber = "", jobTitle = "Project Manager", salary = 5500, HireYear = 2010)
+(Employee) E3 = (name = "Marc", age = 0, gender = '\0', ID = 3, phoneNumber = "", jobTitle = "Research Team Leader", salary = 8000, HireYear = 2007)
+(Programmer) P1 = {
+  Employee = (name = "Mike", age = 0, gender = '\0', ID = 11, phoneNumber = "", jobTitle = "Multimedia Prog.", salary = 2500, HireYear = 2014)
+  supervisorName = "Mary"
+  ProjectID = 5
+  Language = "CSS"
+}
+(Programmer) P2 = {
+  Employee = (name = "Julie", age = 0, gender = '\0', ID = 12, phoneNumber = "", jobTitle = "Mainframe Sys.Prog.", salary = 2150, HireYear = 2013)
+  supervisorName = "Mary"
+  ProjectID = 5
+  Language = "C++"
+}
+(Programmer) P3 = {
+  Employee = (name = "Albert", age = 0, gender = '\0', ID = 13, phoneNumber = "", jobTitle = "OS Prog.", salary = 2300, HireYear = 2015)
+  supervisorName = "Mary"
+  ProjectID = 9
+  Language = "C++"
+}
+(SoftwareArchitect) SA1 = {
+  Employee = (name = "John", age = 0, gender = '\0', ID = 21, phoneNumber = "", jobTitle = "Senior Software Eng.", salary = 4899, HireYear = 2011)
+  supervisorName = "Marc"
+  ProjectID = 6
+  experienceYears = 7
+}
+(SoftwareArchitect) SA2 = {
+  Employee = (name = "Connor", age = 0, gender = '\0', ID = 24, phoneNumber = "", jobTitle = "Software Developer", salary = 1900, HireYear = 2017)
+  supervisorName = "John"
+  ProjectID = 8
+  experienceYears = 0
+}
+(Programmer) P4 = {
+  Employee = (name = "Roy", age = 0, gender = '\0', ID = 32, phoneNumber = "", jobTitle = "Network Prog.", salary = 1900, HireYear = 2016)
+  supervisorName = "N/A"
+  ProjectID = 7
+  Language = "JAVA"
+}
+(Programmer) P5 = {
+  Employee = (name = "Jane", age = 0, gender = '\0', ID = 35, phoneNumber = "", jobTitle = "Tester", salary = 1500, HireYear = 2018)
+  supervisorName = "Roy"
+  ProjectID = 7
+  Language = "JAVA"
+}
+(std::vector<Employee *> *) AllRnDEmployees1 = <no location, value may have been optimized out>
+
+(std::vector<Employee *> *) AllITEmployees = <no location, value may have been optimized out>
+
+(std::vector<Employee *> *) AllRnDEmployees2 = <no location, value may have been optimized out>
+
+(std::vector<Programmer> *) CppProgrammers = <no location, value may have been optimized out>
+
+(std::vector<int> *) AllProjects = <no location, value may have been optimized out>
+
+(unsigned int) i = 3
+(lldb) [1G[2m(lldb) [0m[8Gexit
+Quitting LLDB will kill one or more processes. Do you really want to proceed: [Y /n] Y
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004hcclang++ *.cpp -g -O2 -o program [K[K[?2004l
+In file included from Department.cpp:1:
+In file included from ./Department.h:5:
+[1m./programmerClass.h:21:15: [0m[0;1;35mwarning: [0m[1m'override' keyword is a C++11 extension [-Wc++11-extensions][0m
+   21 |         void print() override;[0m
+      | [0;1;32m                     ^
+[0mIn file included from Department.cpp:1:
+In file included from ./Department.h:6:
+[1m./softwarearchitectClass.h:22:15: [0m[0;1;35mwarning: [0m[1m'override' keyword is a C++11 extension [-Wc++11-extensions][0m
+   22 |         void print() override;[0m
+      | [0;1;32m                     ^
+[0m2 warnings generated.
+In file included from main.cpp:1:
+In file included from ./Department.h:5:
+[1m./programmerClass.h:21:15: [0m[0;1;35mwarning: [0m[1m'override' keyword is a C++11 extension [-Wc++11-extensions][0m
+   21 |         void print() override;[0m
+      | [0;1;32m                     ^
+[0mIn file included from main.cpp:1:
+In file included from ./Department.h:6:
+[1m./softwarearchitectClass.h:22:15: [0m[0;1;35mwarning: [0m[1m'override' keyword is a C++11 extension [-Wc++11-extensions][0m
+   22 |         void print() override;[0m
+      | [0;1;32m                     ^
+[0m2 warnings generated.
+In file included from programmerClass.cpp:1:
+[1m./programmerClass.h:21:15: [0m[0;1;35mwarning: [0m[1m'override' keyword is a C++11 extension [-Wc++11-extensions][0m
+   21 |         void print() override;[0m
+      | [0;1;32m                     ^
+[0m1 warning generated.
+In file included from softwarearchitectClass.cpp:1:
+[1m./softwarearchitectClass.h:22:15: [0m[0;1;35mwarning: [0m[1m'override' keyword is a C++11 extension [-Wc++11-extensions][0m
+   22 |         void print() override;[0m
+      | [0;1;32m                     ^
+[0m1 warning generated.
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004h../program[?2004l
+  Here is the List of all the Staff in the R&D Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Josh   1   Technology Specialist   3000.00      2015
+
+   Mary   2         Project Manager   5500.00      2010
+
+   Marc   3    Research Team Leader   8000.00      2007
+
+   Mike  11        Multimedia Prog.   2500.00      2014      Mary         5         CSS
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013      Mary         5         C++
+
+ Albert  13                OS Prog.   2300.00      2015      Mary         9         C++
+
+   John  21    Senior Software Eng.   4899.00      2011      Marc         6                    7
+
+ Connor  24      Software Developer   1900.00      2017      John         8                    0
+  Here is the List of all the Staff in the IT Department: 
+  ------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+    Roy  32           Network Prog.   1900.00      2016       N/A         7        JAVA
+
+   Jane  35                  Tester   1500.00      2018       Roy         7        JAVA
+
+ Removing Mike from the company: Succeeded
+ -------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+   Josh   1   Technology Specialist   3000.00      2015
+
+   Mary   2         Project Manager   5500.00      2010
+
+   Marc   3    Research Team Leader   8000.00      2007
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013      Mary         5         C++
+
+ Albert  13                OS Prog.   2300.00      2015      Mary         9         C++
+
+   John  21    Senior Software Eng.   4899.00      2011      Marc         6                    7
+
+ Connor  24      Software Developer   1900.00      2017      John         8                    0
+
+  Here is the List of all the Programmers who know C++ in the R&D Department: 
+  ---------------------------------------------------------------------------
+   Name  ID          Title            Salary   Year Hired  Supervisor  ProjectID Prog.Lang. #Exp Years
+
+  Julie  12     Mainframe Sys.Prog.   2150.00      2013      Mary         5         C++
+
+ Albert  13                OS Prog.   2300.00      2015      Mary         9         C++
+
+ Listing All Project IDs:  5 9 6 8
+-------------------------
+The Highest R&D Employee Salary is: 8000.00
+The Highest R&D Programmer Salary is: 2300.00
+The Highest R&D Software Architect Salary is: 4899.00
+
+The Average R&D Employee Salary is: 5500
+The Average R&D Programmer Salary is: 2225
+The Average R&D Software Architect Salary is: 3399
+
+The Average IT Employee Salary is: 0
+The Average IT Programmer Salary is: 1700
+The Average IT Software Architect Salary is: 0
+
+[1m[7m%[27m[1m[0m                                                                                ]7;file://Brandons-Laptop.local/Users/brandonmountan/MSD/CS6015_SoftwareEngineering/Labs/lab02_debugging[0m[27m[24m[Jbrandonmountan@Brandons-Laptop lab02_debugging % [K[?2004heexit[?2004l
+
+Saving session...
+...copying shared history...
+...saving history...truncating history files...
+...completed.
+
+Script done on Thu Jan 23 12:00:08 2025
