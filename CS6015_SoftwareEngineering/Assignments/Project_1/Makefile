@@ -13,4 +13,7 @@ $(TARGET): $(OBJS)
 clean:
 	rm -f $(OBJS) $(TARGET)
 
-.PHONY: all clean
+.PHONY: all clean test
+
+test: $(TARGET)  # Ensure msdscript is built before running tests
+	./msdscript --test
