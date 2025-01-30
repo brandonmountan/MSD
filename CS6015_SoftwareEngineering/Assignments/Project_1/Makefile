@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++17
+CXXFLAGS = -Wall -Wextra -std=c++17 -g  # Added -g for debugging
 
 TARGET = msdscript
 SRCS = main.cpp expr.cpp tests.cpp
@@ -10,10 +10,15 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 clean:
 	rm -f $(OBJS) $(TARGET)
 
 .PHONY: all clean test
 
-test: $(TARGET)  # Ensure msdscript is built before running tests
-	./msdscript --test
+test: $(TARGET)
+	@echo "Running tests..."
+	@ls -la $(TARGET)  # Debugging: Ensure the binary exists
+	@./msdscript --test
