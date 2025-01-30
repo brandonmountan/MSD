@@ -5,8 +5,7 @@ TARGET = msdscript
 SRCS = main.cpp expr.cpp tests.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-all: $(TARGET)
-
+# Default target (runs when you type 'make' in the terminal)
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
@@ -16,7 +15,7 @@ $(TARGET): $(OBJS)
 clean:
 	rm -f $(OBJS) $(TARGET)
 
-.PHONY: all clean test
+.PHONY: clean test
 
 test: $(TARGET)
 	@echo "Running tests..."
