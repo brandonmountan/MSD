@@ -6,7 +6,7 @@ CXXFLAGS = -Wall -std=c++20 -g
 # output executable file name
 TARGET = msdscript
 # source files
-CXXSRC = main.cpp cmdline.cpp expr.cpp
+CXXSRC = main.cpp cmdline.cpp expr.cpp test.cpp
 # ALL object files
 CXXOBJS = $(CXXSRC:.cpp=.o)
 #Rule to create executable program
