@@ -1,48 +1,19 @@
-#Macros
-# gnu c++ compiler
 CXX = g++
-# C++ version, include warnings, run in debug
-CXXFLAGS = -Wall -std=c++20 -g
-# output executable file name
+CXXFLAGS = -Wall -Wextra -std=c++17
+
 TARGET = msdscript
-# source files
-CXXSRC = main.cpp cmdline.cpp expr.cpp test.cpp
-# ALL object files
-CXXOBJS = $(CXXSRC:.cpp=.o)
-#Rule to create executable program
-build:$(TARGET)
-$(TARGET): $(CXXOBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(CXXOBJS)
-# Rule to make all .cpp into .o files
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-	
-# Rule to clean .o files and executable
+SRCS = main.cpp expr.cpp tests.cpp
+OBJS = $(SRCS:.cpp=.o)
+
+build: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
 clean:
-	rm -f $(CXXOBJS) $(TARGET)
-	
-# Rule to run tests
-test: $(TARGET)
-	./$(TARGET) --test
-.PHONY: clean build test
+	rm -f $(OBJS) $(TARGET)
 
+.PHONY: all clean test
 
-
-
-
-
-
-
-
-
-
-Message Jason Ablott
-
-
-
-
-
-
-
-
-
+test: $(TARGET)  # Ensure msdscript is built before running tests
+	./msdscript --test
