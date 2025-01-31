@@ -5,9 +5,7 @@ TARGET = msdscript
 SRCS = main.cpp expr.cpp tests.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-all: build test
-
-build: $(TARGET)
+all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
@@ -15,7 +13,4 @@ $(TARGET): $(OBJS)
 clean:
 	rm -f $(OBJS) $(TARGET)
 
-.PHONY: all clean test
-
-test: $(TARGET)  # Ensure msdscript is built before running tests
-	./msdscript --test
+.PHONY: all clean
