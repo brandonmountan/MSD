@@ -1,29 +1,11 @@
-name: MSD
-
+name: msd
 on:
   push:
-    branches:
-      - main  # Run on pushes to the main branch
-  pull_request:
-    branches:
-      - main  # Run on pull requests to main
-
 jobs:
   build:
     runs-on: macos-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2  # Use latest v2 instead of v1
-
-    - name: Install dependencies (if needed)
-      run: |
-        brew install g++ || echo "g++ already installed"
-    - name: Debug File Listing
-      run: ls -la  # Check if Makefile and source files exist
-
-    - name: Build project
-      run: make all  # Ensure msdscript is built before running tests
-
-    - name: Run tests
-      run: ./msdscript --test
+      - name: Checkout v1
+        uses: actions/checkout@v1
+      - name: Run test
+        run: make test
