@@ -24,7 +24,7 @@ jobs:
       run: ls -la  # Check if Makefile and source files exist
 
     - name: Build project
-      run: make  # Ensure msdscript is built before running tests
+      run: make all  # Ensure msdscript is built before running tests
 
     - name: Run tests
-      run: make test
+      run: ./msdscript --test
