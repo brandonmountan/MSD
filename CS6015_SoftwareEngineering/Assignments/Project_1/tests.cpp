@@ -98,6 +98,7 @@ TEST_CASE("Complex nested expressions") {
     Expr* expr = new AddExpr(
         new MultExpr(new NumExpr(2), new VarExpr("x")),
         new NumExpr(5)
+        
     );
 
     // Test has_variable()
