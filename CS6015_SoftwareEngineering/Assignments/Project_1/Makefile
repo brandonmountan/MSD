@@ -5,6 +5,8 @@ TARGET = msdscript
 SRCS = main.cpp expr.cpp tests.cpp
 OBJS = $(SRCS:.cpp=.o)
 
+all: build test
+
 build: $(TARGET)
 
 $(TARGET): $(OBJS)
