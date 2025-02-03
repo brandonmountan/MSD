@@ -1,0 +1,101 @@
+Brandon Mountan
+CS6013
+Assignment 2 - Reading Vocabulary Assignment
+
+Hz
+	how many times something happens in 1 second
+	unit of frequency
+	1 Hz = 1 cycle per second
+	
+Kilo-, Mega-, Giga-, Tera- (byte, Hz, etc)
+	1000, 1 million, 1 billion, 1 trillion
+
+elf (in terms of Unix programs)
+	special "recipe" file that tells your computer how to run a program
+	file format that Unix programs use for executables, object code, and shared libraries
+
+Thrashing
+	when a computer is too busy swapping things in/out of memory, slowing performance
+	hamster running too fast on a wheel
+	
+Virtual
+	something that does not physically exist but is represented in a way to make it appear real
+	usually that something is memory, storage, or hardware
+	Something that's not real but looks real
+	
+Memory
+	hardware component in a computer that stores data and instructions temporarily or permanently for processing
+	RAM (Random Access Memory) - temporary storage
+	ROM (Read-Only Memory) - permanent storage
+	
+Address Space
+	all the "rooms" a program can use in the computer's memory
+	range of memory addresses program or process can use
+
+Address
+	a specific "room number" in memory
+	unique identifier for a location in memory
+
+Machine
+	fancy word for the computer itself
+	general term for computer or computing device
+
+Time Sharing
+	A system where multiple users or processes share a computer's resources by taking turns
+
+Digital (Discrete) vs Analog
+	Digital: data that is represented by discrete values (binary)
+		counting with numbers, turn light on (1) or off (0)
+	Analog: data represented in continuous signals (sound waves)
+		smooth changes, like dimming a light
+
+Kernel vs OS
+	Kernel: core pare of an OS, managing hardware and system resources
+		the boss
+	OS (Operating System): FULL software that include the kernel and other tools for managing the computer
+		the whole team
+
+Von Neumann
+	Von Neumann Architecture: Computer design where programs and data share the same memory
+		Instructions and data live in the same place
+
+Integrated Circuit (IC)
+	Tiny chip containing tiny electronic components like transistors that help the computer "think"
+
+State Machine (FSA - Finite State Automaton)
+	Model that represents a system with a finite number of states and transitions between them
+	A pretend robot that can only be in one "mood" at at time and changes based on what you tell it to do
+
+Hardware (or program) privilege level
+	Security feature that restricts access to certain system resources based on levels of privilege
+	Security guard
+
+Context Switch
+	When a CPU switches from one task or process to another, saving and restoring states
+
+Lazy loading (of program, of memory, etc)
+	Delaying the loading of data or code until it's actually needed
+	waiting to do something until you really need it
+
+PID - Process ID
+	unique number assigned to a running process in an operating system
+	"name tag"
+
+DMA - direct memory access
+	feature that allows hardware to access memory directly, bypassing the CPU
+	shortcut that lets parts of the computer talk to each other without bothering the boss
+
+MMU (Memory Management Unit)/ TLB (Translation Lookaside Buffer)
+	MMU: hardware that handles memory access and translation
+		helper that keeps track of where things are stored in the computer's memory
+	TLB: A cache used by the MMU to speed up virtual-to-physical address translation
+		Super-fast cheat sheet the MMU uses to remember where things are
+Daemon
+	Background process in Unix-like systems that handles tasks without user interaction
+
+Symbol (with respect to Code, object files, assembly)
+	A reference to a function, variable, object in code, often used in linking and debugging
+	A name for something in a program
+
+Shared Library
+	Collection of code and data that multiple programs can use simultaneously, reducing redundancy
