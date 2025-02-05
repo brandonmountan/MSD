@@ -98,7 +98,6 @@ TEST_CASE("Complex nested expressions") {
     Expr* expr = new AddExpr(
         new MultExpr(new NumExpr(2), new VarExpr("x")),
         new NumExpr(5)
-        
     );
 
     // Test has_variable()
@@ -118,3 +117,18 @@ TEST_CASE("Complex nested expressions") {
     substituted = expr->subst("x", new NumExpr(3));
     CHECK(substituted->interp() == 11);  // (2 * 3) + 5 = 11
 }
+
+TEST_CASE("Pretty print tests") {
+    // Test pretty printing with proper spacing and minimal parentheses
+    CHECK((new MultExpr(new NumExpr(1), new AddExpr(new NumExpr(2), new NumExpr(3))))->to_string() == "(1*(2+3))");
+    CHECK((new MultExpr(new MultExpr(new NumExpr(8), new NumExpr(1)), new VarExpr("y")))->to_string() == "((8*1)*y)");
+    CHECK((new MultExpr(new AddExpr(new NumExpr(3), new NumExpr(5)), new MultExpr(new NumExpr(6), new NumExpr(1))))->to_string() == "((3+5)*(6*1))");
+    CHECK((new MultExpr(new MultExpr(new NumExpr(7), new NumExpr(7)), new AddExpr(new NumExpr(9), new NumExpr(2))))->to_string() == "((7*7)*(9+2))");
+
+    // Test pretty printing with spaces and minimal parentheses
+    CHECK((new MultExpr(new NumExpr(1), new AddExpr(new NumExpr(2), new NumExpr(3))))->to_pretty_string() == "1 * (2 + 3)");
+    CHECK((new MultExpr(new MultExpr(new NumExpr(8), new NumExpr(1)), new VarExpr("y")))->to_pretty_string() == "(8 * 1) * y");
+    CHECK((new MultExpr(new AddExpr(new NumExpr(3), new NumExpr(5)), new MultExpr(new NumExpr(6), new NumExpr(1))))->to_pretty_string() == "(3 + 5) * 6 * 1");
+    CHECK((new MultExpr(new MultExpr(new NumExpr(7), new NumExpr(7)), new AddExpr(new NumExpr(9), new NumExpr(2))))->to_pretty_string() == "(7 * 7) * (9 + 2)");
+}
+
