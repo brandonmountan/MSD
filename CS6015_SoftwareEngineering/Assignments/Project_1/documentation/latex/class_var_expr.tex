@@ -1,0 +1,195 @@
+\doxysection{Var\+Expr Class Reference}
+\hypertarget{class_var_expr}{}\label{class_var_expr}\index{VarExpr@{VarExpr}}
+
+
+Represents a variable expression.  
+
+
+
+
+{\ttfamily \#include $<$expr.\+h$>$}
+
+Inheritance diagram for Var\+Expr\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_var_expr}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_var_expr_a0312fbfa49477062d3b4ef97a925fe47}{Var\+Expr}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Constructs a variable expression. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_var_expr_a67f0303bb59f73fb989f0f013a719a03}{equals}} (const \mbox{\hyperlink{class_expr}{Expr}} \texorpdfstring{$\ast$}{*}e) override
+\begin{DoxyCompactList}\small\item\em Checks if this variable expression is equal to another expression. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_var_expr_aaa180a72599f869c4f0081a36f421c71}{interp}} () override
+\begin{DoxyCompactList}\small\item\em Evaluates the variable expression (throws an exception since variables have no value). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_var_expr_a133fe646e53039829a89ad73dad88ef6}{has\+\_\+variable}} () override
+\begin{DoxyCompactList}\small\item\em Checks if the variable expression contains a variable. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_expr}{Expr}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_var_expr_ad649ba47f3368aff89778193937b0bcb}{subst}} (const std\+::string \&var, \mbox{\hyperlink{class_expr}{Expr}} \texorpdfstring{$\ast$}{*}replacement) override
+\begin{DoxyCompactList}\small\item\em Substitutes a variable with another expression in the variable expression. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_var_expr_a7ae0b7e26ffcfb5cd4dd2687831fce3f}{print\+Exp}} (std\+::ostream \&ot) override
+\begin{DoxyCompactList}\small\item\em Prints the variable expression to an output stream. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_var_expr_a9c498ac0acf5656cd9d4765cb33c2e69}{pretty\+\_\+print}} (std\+::ostream \&ot, precedence\+\_\+t prec) override
+\begin{DoxyCompactList}\small\item\em Pretty-\/prints the variable expression to an output stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_expr}{Expr}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_expr_abe130f37bd185ec13c5113de16fc7bf7}{to\+\_\+string}} ()
+\begin{DoxyCompactList}\small\item\em Converts the expression to a string. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_expr_a6ad7c18234f22d96d6917089b5bd7caa}{to\+\_\+pretty\+\_\+string}} ()
+\begin{DoxyCompactList}\small\item\em Converts the expression to a pretty-\/printed string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a variable expression. 
+
+This class represents an expression that consists of a variable. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_var_expr_a0312fbfa49477062d3b4ef97a925fe47}\index{VarExpr@{VarExpr}!VarExpr@{VarExpr}}
+\index{VarExpr@{VarExpr}!VarExpr@{VarExpr}}
+\doxysubsubsection{\texorpdfstring{VarExpr()}{VarExpr()}}
+{\footnotesize\ttfamily \label{class_var_expr_a0312fbfa49477062d3b4ef97a925fe47} 
+Var\+Expr\+::\+Var\+Expr (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a variable expression. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the variable. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_var_expr_a67f0303bb59f73fb989f0f013a719a03}\index{VarExpr@{VarExpr}!equals@{equals}}
+\index{equals@{equals}!VarExpr@{VarExpr}}
+\doxysubsubsection{\texorpdfstring{equals()}{equals()}}
+{\footnotesize\ttfamily \label{class_var_expr_a67f0303bb59f73fb989f0f013a719a03} 
+bool Var\+Expr\+::equals (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_expr}{Expr}} \texorpdfstring{$\ast$}{*}}]{e}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Checks if this variable expression is equal to another expression. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The expression to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the expressions are equal, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_expr_a3ca7c707e94e443eecd9f1611d882da4}{Expr}}.
+
+\Hypertarget{class_var_expr_a133fe646e53039829a89ad73dad88ef6}\index{VarExpr@{VarExpr}!has\_variable@{has\_variable}}
+\index{has\_variable@{has\_variable}!VarExpr@{VarExpr}}
+\doxysubsubsection{\texorpdfstring{has\_variable()}{has\_variable()}}
+{\footnotesize\ttfamily \label{class_var_expr_a133fe646e53039829a89ad73dad88ef6} 
+bool Var\+Expr\+::has\+\_\+variable (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Checks if the variable expression contains a variable. 
+
+\begin{DoxyReturn}{Returns}
+true (variable expressions always contain a variable). 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_expr_a92dc26078993a4b9721ea732274a435c}{Expr}}.
+
+\Hypertarget{class_var_expr_aaa180a72599f869c4f0081a36f421c71}\index{VarExpr@{VarExpr}!interp@{interp}}
+\index{interp@{interp}!VarExpr@{VarExpr}}
+\doxysubsubsection{\texorpdfstring{interp()}{interp()}}
+{\footnotesize\ttfamily \label{class_var_expr_aaa180a72599f869c4f0081a36f421c71} 
+int Var\+Expr\+::interp (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Evaluates the variable expression (throws an exception since variables have no value). 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & Always throws an exception. \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{class_expr_aeba8585d8225419d49166371306542c1}{Expr}}.
+
+\Hypertarget{class_var_expr_a9c498ac0acf5656cd9d4765cb33c2e69}\index{VarExpr@{VarExpr}!pretty\_print@{pretty\_print}}
+\index{pretty\_print@{pretty\_print}!VarExpr@{VarExpr}}
+\doxysubsubsection{\texorpdfstring{pretty\_print()}{pretty\_print()}}
+{\footnotesize\ttfamily \label{class_var_expr_a9c498ac0acf5656cd9d4765cb33c2e69} 
+void Var\+Expr\+::pretty\+\_\+print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{ot}{, }\item[{precedence\+\_\+t}]{prec}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Pretty-\/prints the variable expression to an output stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ot} & The output stream to print to. \\
+\hline
+{\em prec} & The precedence level of the parent expression. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_expr_a02a3a4230ed4972345fbbb60381af8cd}{Expr}}.
+
+\Hypertarget{class_var_expr_a7ae0b7e26ffcfb5cd4dd2687831fce3f}\index{VarExpr@{VarExpr}!printExp@{printExp}}
+\index{printExp@{printExp}!VarExpr@{VarExpr}}
+\doxysubsubsection{\texorpdfstring{printExp()}{printExp()}}
+{\footnotesize\ttfamily \label{class_var_expr_a7ae0b7e26ffcfb5cd4dd2687831fce3f} 
+void Var\+Expr\+::print\+Exp (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{ot}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Prints the variable expression to an output stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ot} & The output stream to print to. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_expr_addcf135f59a05b0912ba72aa65d82f45}{Expr}}.
+
+\Hypertarget{class_var_expr_ad649ba47f3368aff89778193937b0bcb}\index{VarExpr@{VarExpr}!subst@{subst}}
+\index{subst@{subst}!VarExpr@{VarExpr}}
+\doxysubsubsection{\texorpdfstring{subst()}{subst()}}
+{\footnotesize\ttfamily \label{class_var_expr_ad649ba47f3368aff89778193937b0bcb} 
+\mbox{\hyperlink{class_expr}{Expr}} \texorpdfstring{$\ast$}{*} Var\+Expr\+::subst (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{var}{, }\item[{\mbox{\hyperlink{class_expr}{Expr}} \texorpdfstring{$\ast$}{*}}]{replacement}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Substitutes a variable with another expression in the variable expression. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var} & The variable to substitute. \\
+\hline
+{\em replacement} & The expression to replace the variable with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The replacement expression if the variable matches, otherwise this variable expression. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_expr_af13bf7824daf6cee0d5f4de0475a9767}{Expr}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/brandonmountan/\+MSD/\+CS6015\+\_\+\+Software\+Engineering/\+Assignments/\+Project\+\_\+1/expr.\+h\item 
+/\+Users/brandonmountan/\+MSD/\+CS6015\+\_\+\+Software\+Engineering/\+Assignments/\+Project\+\_\+1/expr.\+cpp\end{DoxyCompactItemize}

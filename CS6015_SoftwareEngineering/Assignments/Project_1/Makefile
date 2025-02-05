@@ -17,3 +17,6 @@ clean:
 
 test: $(TARGET)
 	./$(TARGET) --test
+
+doc: msdscript
+	cd documentation && doxygen

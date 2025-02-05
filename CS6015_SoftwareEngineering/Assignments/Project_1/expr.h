@@ -9,93 +9,195 @@
 #include <stdexcept> // For std::runtime_error
 #include <sstream>   // For std::stringstream
 
-// Enum for precedence levels in pretty printing
+/**
+ * @enum precedence_t
+ * @brief Enumeration for precedence levels in pretty printing.
+ *
+ * This enumeration defines the precedence levels used to determine the order of operations
+ * when pretty-printing expressions.
+ */
 typedef enum {
-    prec_none,      // = 0
-    prec_add,       // = 1
-    prec_mult       // = 2
+    prec_none,      ///< No precedence (default).
+    prec_add,       ///< Precedence level for addition.
+    prec_mult       ///< Precedence level for multiplication.
 } precedence_t;
 
-// Abstract base class for expressions
+/**
+ * @class Expr
+ * @brief Abstract base class for expressions.
+ *
+ * This class defines the interface for all expression types. It includes pure virtual methods
+ * that must be implemented by derived classes.
+ */
 class Expr {
 public:
-    virtual bool equals(const Expr* e) = 0; // Pure virtual method for equality check
-    virtual int interp() = 0;              // Pure virtual method to evaluate the expression
-    virtual bool has_variable() = 0;       // Pure virtual method to check for variables
-    virtual Expr* subst(const std::string& var, Expr* replacement) = 0; // Pure virtual method for substitution
+    /**
+     * @brief Checks if this expression is equal to another expression.
+     *
+     * @param e The expression to compare with.
+     * @return true if the expressions are equal, false otherwise.
+     */
+    virtual bool equals(const Expr* e) = 0;
 
-    // New methods
-    virtual void printExp(std::ostream& ot) = 0; // Pure virtual method to print the expression
-    std::string to_string();                     // Non-virtual method to convert expression to string
-    virtual void pretty_print(std::ostream& ot, precedence_t prec) = 0; // Virtual method for pretty printing
+    /**
+     * @brief Evaluates the expression to an integer value.
+     *
+     * @return The result of evaluating the expression.
+     */
+    virtual int interp() = 0;
+
+    /**
+     * @brief Checks if the expression contains a variable.
+     *
+     * @return true if the expression contains a variable, false otherwise.
+     */
+    virtual bool has_variable() = 0;
+
+    /**
+     * @brief Substitutes a variable with another expression.
+     *
+     * @param var The variable to substitute.
+     * @param replacement The expression to replace the variable with.
+     * @return A new expression with the substitution applied.
+     */
+    virtual Expr* subst(const std::string& var, Expr* replacement) = 0;
+
+    /**
+     * @brief Prints the expression to an output stream.
+     *
+     * @param ot The output stream to print to.
+     */
+    virtual void printExp(std::ostream& ot) = 0;
+
+    /**
+     * @brief Converts the expression to a string.
+     *
+     * @return A string representation of the expression.
+     */
+    std::string to_string();
+
+    /**
+     * @brief Pretty-prints the expression to an output stream with proper precedence handling.
+     *
+     * @param ot The output stream to print to.
+     * @param prec The precedence level of the parent expression.
+     */
+    virtual void pretty_print(std::ostream& ot, precedence_t prec) = 0;
+
+    /**
+     * @brief Converts the expression to a pretty-printed string.
+     *
+     * @return A pretty-printed string representation of the expression.
+     */
     std::string to_pretty_string();
-
 };
 
-// Number expression
+/**
+ * @class NumExpr
+ * @brief Represents a numeric expression.
+ *
+ * This class represents an expression that consists of a single numeric value.
+ */
 class NumExpr : public Expr {
-    int value; // Stores the numeric value of this expression
+    int value; ///< The numeric value of this expression.
 
 public:
-    NumExpr(int value); // Constructor to initialize the numeric value
-    bool equals(const Expr* e); // Overridden equals method
-    int interp();               // Overridden interp method
-    bool has_variable();        // Overridden has_variable method
-    Expr* subst(const std::string& var, Expr* replacement); // Overridden subst method
+    /**
+     * @brief Constructs a numeric expression.
+     *
+     * @param value The numeric value.
+     */
+    NumExpr(int value);
 
-    // New methods
-    void printExp(std::ostream& ot); // Overridden printExp method
-    void pretty_print(std::ostream& ot, precedence_t prec);      // Overridden pretty_print method
+    bool equals(const Expr* e) override;
+    int interp() override;
+    bool has_variable() override;
+    Expr* subst(const std::string& var, Expr* replacement) override;
+
+    void printExp(std::ostream& ot) override;
+    void pretty_print(std::ostream& ot, precedence_t prec) override;
 };
 
-// Addition expression
+/**
+ * @class AddExpr
+ * @brief Represents an addition expression.
+ *
+ * This class represents an expression that adds two sub-expressions.
+ */
 class AddExpr : public Expr {
-    Expr* lhs; // Left-hand side expression
-    Expr* rhs; // Right-hand side expression
+    Expr* lhs; ///< The left-hand side expression.
+    Expr* rhs; ///< The right-hand side expression.
 
 public:
-    AddExpr(Expr* lhs, Expr* rhs); // Constructor to initialize the operands
-    bool equals(const Expr* e); // Overridden equals method
-    int interp();               // Overridden interp method
-    bool has_variable();        // Overridden has_variable method
-    Expr* subst(const std::string& var, Expr* replacement); // Overridden subst method
+    /**
+     * @brief Constructs an addition expression.
+     *
+     * @param lhs The left-hand side expression.
+     * @param rhs The right-hand side expression.
+     */
+    AddExpr(Expr* lhs, Expr* rhs);
 
-    // New methods
-    void printExp(std::ostream& ot); // Overridden printExp method
-    void pretty_print(std::ostream& ot, precedence_t prec);
+    bool equals(const Expr* e) override;
+    int interp() override;
+    bool has_variable() override;
+    Expr* subst(const std::string& var, Expr* replacement) override;
+
+    void printExp(std::ostream& ot) override;
+    void pretty_print(std::ostream& ot, precedence_t prec) override;
 };
 
-// Multiplication expression
+/**
+ * @class MultExpr
+ * @brief Represents a multiplication expression.
+ *
+ * This class represents an expression that multiplies two sub-expressions.
+ */
 class MultExpr : public Expr {
-    Expr* lhs; // Left-hand side expression
-    Expr* rhs; // Right-hand side expression
+    Expr* lhs; ///< The left-hand side expression.
+    Expr* rhs; ///< The right-hand side expression.
 
 public:
-    MultExpr(Expr* lhs, Expr* rhs); // Constructor to initialize the operands
-    bool equals(const Expr* e); // Overridden equals method
-    int interp();               // Overridden interp method
-    bool has_variable();        // Overridden has_variable method
-    Expr* subst(const std::string& var, Expr* replacement); // Overridden subst method
+    /**
+     * @brief Constructs a multiplication expression.
+     *
+     * @param lhs The left-hand side expression.
+     * @param rhs The right-hand side expression.
+     */
+    MultExpr(Expr* lhs, Expr* rhs);
 
-    // New methods
-    void printExp(std::ostream& ot); // Overridden printExp method
-	void pretty_print(std::ostream& ot, precedence_t prec);
+    bool equals(const Expr* e) override;
+    int interp() override;
+    bool has_variable() override;
+    Expr* subst(const std::string& var, Expr* replacement) override;
+
+    void printExp(std::ostream& ot) override;
+    void pretty_print(std::ostream& ot, precedence_t prec) override;
 };
 
-// Variable expression
+/**
+ * @class VarExpr
+ * @brief Represents a variable expression.
+ *
+ * This class represents an expression that consists of a variable.
+ */
 class VarExpr : public Expr {
-    std::string name; // Stores the name of the variable
+    std::string name; ///< The name of the variable.
 
 public:
-    VarExpr(const std::string& name); // Constructor to initialize the variable name
-    bool equals(const Expr* e); // Overridden equals method
-    int interp();               // Overridden interp method (throws an exception)
-    bool has_variable() ;        // Overridden has_variable method
-    Expr* subst(const std::string& var, Expr* replacement); // Overridden subst method
+    /**
+     * @brief Constructs a variable expression.
+     *
+     * @param name The name of the variable.
+     */
+    VarExpr(const std::string& name);
 
-    // New methods
-    void printExp(std::ostream& ot); // Overridden printExp method
-    void pretty_print(std::ostream& ot, precedence_t prec);      // Overridden pretty_print method
+    bool equals(const Expr* e) override;
+    int interp() override;
+    bool has_variable() override;
+    Expr* subst(const std::string& var, Expr* replacement) override;
+
+    void printExp(std::ostream& ot) override;
+    void pretty_print(std::ostream& ot, precedence_t prec) override;
 };
 
 #endif // EXPR_H
