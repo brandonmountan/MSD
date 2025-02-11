@@ -1,13 +1,10 @@
-//
-// Created by Brandon Mountan on 1/20/25.
-//
-
 #ifndef EXPR_H
 #define EXPR_H
 
 #include <string>
 #include <stdexcept> // For std::runtime_error
 #include <sstream>   // For std::stringstream
+#include <iostream>  // For std::ostream
 
 /**
  * @enum precedence_t
@@ -19,7 +16,8 @@
 typedef enum {
     prec_none,      ///< No precedence (default).
     prec_add,       ///< Precedence level for addition.
-    prec_mult       ///< Precedence level for multiplication.
+    prec_mult,      ///< Precedence level for multiplication.
+    prec_let        ///< Precedence level for _let expressions.
 } precedence_t;
 
 /**
@@ -81,8 +79,9 @@ public:
      *
      * @param ot The output stream to print to.
      * @param prec The precedence level of the parent expression.
+     * @param newline_pos The position of the last newline in the output stream.
      */
-    virtual void pretty_print(std::ostream& ot, precedence_t prec) = 0;
+    virtual void pretty_print(std::ostream& ot, precedence_t prec, std::streampos& newline_pos) = 0;
 
     /**
      * @brief Converts the expression to a pretty-printed string.
@@ -115,7 +114,7 @@ public:
     Expr* subst(const std::string& var, Expr* replacement) override;
 
     void printExp(std::ostream& ot) override;
-    void pretty_print(std::ostream& ot, precedence_t prec) override;
+    void pretty_print(std::ostream& ot, precedence_t prec, std::streampos& newline_pos) override;
 };
 
 /**
@@ -143,7 +142,7 @@ public:
     Expr* subst(const std::string& var, Expr* replacement) override;
 
     void printExp(std::ostream& ot) override;
-    void pretty_print(std::ostream& ot, precedence_t prec) override;
+    void pretty_print(std::ostream& ot, precedence_t prec, std::streampos& newline_pos) override;
 };
 
 /**
@@ -171,7 +170,7 @@ public:
     Expr* subst(const std::string& var, Expr* replacement) override;
 
     void printExp(std::ostream& ot) override;
-    void pretty_print(std::ostream& ot, precedence_t prec) override;
+    void pretty_print(std::ostream& ot, precedence_t prec, std::streampos& newline_pos) override;
 };
 
 /**
@@ -197,7 +196,38 @@ public:
     Expr* subst(const std::string& var, Expr* replacement) override;
 
     void printExp(std::ostream& ot) override;
-    void pretty_print(std::ostream& ot, precedence_t prec) override;
+    void pretty_print(std::ostream& ot, precedence_t prec, std::streampos& newline_pos) override;
+};
+
+/**
+ * @class LetExpr
+ * @brief Represents a _let expression.
+ *
+ * This class represents an expression that binds a variable to a value and evaluates a body expression
+ * in the context of that binding.
+ */
+class LetExpr : public Expr {
+    std::string var; ///< The variable to bind.
+    Expr* rhs;       ///< The right-hand side expression.
+    Expr* body;      ///< The body expression.
+
+public:
+    /**
+     * @brief Constructs a _let expression.
+     *
+     * @param var The variable to bind.
+     * @param rhs The right-hand side expression.
+     * @param body The body expression.
+     */
+    LetExpr(const std::string& var, Expr* rhs, Expr* body);
+
+    bool equals(const Expr* e) override;
+    int interp() override;
+    bool has_variable() override;
+    Expr* subst(const std::string& var, Expr* replacement) override;
+
+    void printExp(std::ostream& ot) override;
+    void pretty_print(std::ostream& ot, precedence_t prec, std::streampos& newline_pos) override;
 };
 
 #endif // EXPR_H
