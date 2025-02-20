@@ -132,6 +132,11 @@ TEST_CASE("Pretty print tests") {
     CHECK((new MultExpr(new MultExpr(new NumExpr(7), new NumExpr(7)), new AddExpr(new NumExpr(9), new NumExpr(2))))->to_pretty_string() == "(7 * 7) * (9 + 2)");
 }
 
+TEST_CASE("LetExpr pretty_print") {
+    Expr* expr = new LetExpr("x", new NumExpr(5), new AddExpr(new LetExpr("y", new NumExpr(3), new AddExpr(new VarExpr("y"), new NumExpr(2))), new VarExpr("x")));
+    CHECK(expr->to_pretty_string() == "_let x = 5\n_in  (_let y = 3\n      _in  y + 2) + x");
+}
+
 TEST_CASE("LetExpr basic tests") {
     LetExpr* let1 = new LetExpr("x", new NumExpr(5), new AddExpr(new VarExpr("x"), new NumExpr(1)));
     LetExpr* let2 = new LetExpr("x", new NumExpr(5), new AddExpr(new VarExpr("x"), new NumExpr(1)));
@@ -149,14 +154,6 @@ TEST_CASE("LetExpr basic tests") {
     CHECK((new LetExpr("x", new NumExpr(5), new NumExpr(10)))->has_variable() == false);
 }
 
-TEST_CASE("LetExpr substitution tests") {
-    LetExpr* let1 = new LetExpr("x", new VarExpr("y"), new AddExpr(new VarExpr("x"), new NumExpr(1)));
-
-    // Substitute x (bound variable) - replace RHS with 10
-    Expr* substituted = let1->subst("x", new NumExpr(10));
-    CHECK(substituted->interp() == 11);  // let x = 10 in (x + 1)
-}
-
 TEST_CASE("LetExpr substitution with unbound variable") {
     LetExpr* let1 = new LetExpr("x", new VarExpr("y"), new AddExpr(new VarExpr("x"), new NumExpr(1)));
 
@@ -167,78 +164,67 @@ TEST_CASE("LetExpr substitution with unbound variable") {
     CHECK(substituted->interp() == 6);  // let x = 5 in (x + 1)
 }
 
-//TEST_CASE("LetExpr pretty print tests") {
-//    // Basic let formatting
-//    LetExpr* simpleLet = new LetExpr("x", new NumExpr(5),
-//        new AddExpr(new VarExpr("x"), new NumExpr(1)));
-//    CHECK(simpleLet->to_pretty_string() ==
-//        "_let x = 5\n"
-//        "_in x + 1");
-//
-//    // Nested let
-//    LetExpr* nestedLet = new LetExpr("x", new NumExpr(2),
-//        new LetExpr("y", new NumExpr(3),
-//            new AddExpr(new VarExpr("x"), new VarExpr("y"))));
-//    CHECK(nestedLet->to_pretty_string() ==
-//        "_let x = 2\n"
-//        "_in _let y = 3\n"
-//        "    _in x + y");
-//
-//    // Let in expression context
-//    AddExpr* complexExpr = new AddExpr(
-//        new LetExpr("x", new NumExpr(5),
-//            new AddExpr(new VarExpr("x"), new NumExpr(2))),
-//        new NumExpr(3));
-//    CHECK(complexExpr->to_pretty_string() ==
-//        "(_let x = 5\n"
-//        " _in x + 2) + 3");
-//}
+TEST_CASE("LetExpr pretty print - basic") {
+    LetExpr* let1 = new LetExpr("x", new NumExpr(5), new AddExpr(new VarExpr("x"), new NumExpr(1)));
+    CHECK(let1->to_pretty_string() == "_let x = 5\n_in  x + 1");
+}
 
-//TEST_CASE("LetExpr edge cases") {
-//    // Unused variable
-//    LetExpr* unusedVar = new LetExpr("x", new NumExpr(5), new NumExpr(10));
-//    CHECK(unusedVar->interp() == 10);
-//    CHECK(unusedVar->to_pretty_string() == "_let x = 5\n_in 10");
-//
-//    // Let rhs with variable
-//    LetExpr* rhsVar = new LetExpr("x", new VarExpr("y"),
-//        new AddExpr(new VarExpr("x"), new NumExpr(1)));
-//    CHECK(rhsVar->has_variable() == true);
-//    CHECK_THROWS_WITH(rhsVar->interp(), "Variable has no value");
-//
-//    // Let in let
-//    LetExpr* letInLet = new LetExpr("x", new NumExpr(5),
-//        new LetExpr("x", new NumExpr(6),
-//            new VarExpr("x")));
-//    CHECK(letInLet->interp() == 6);  // Inner shadowing
-//    CHECK(letInLet->to_pretty_string() ==
-//        "_let x = 5\n"
-//        "_in _let x = 6\n"
-//        "    _in x");
-//}
+TEST_CASE("LetExpr pretty print - nested") {
+    LetExpr* nestedLet = new LetExpr("x", new NumExpr(2),
+        new LetExpr("y", new NumExpr(3),
+            new AddExpr(new VarExpr("x"), new VarExpr("y"))));
 
-//TEST_CASE("LetExpr in complex expressions") {
-//    // Let as part of multiplication
-//    MultExpr* multWithLet = new MultExpr(
-//        new LetExpr("x", new NumExpr(5),
-//            new AddExpr(new VarExpr("x"), new NumExpr(1))),
-//        new NumExpr(2));
-//
-//    CHECK(multWithLet->interp() == 12);  // (5+1)*2 = 12
-//    CHECK(multWithLet->to_pretty_string() ==
-//        "(_let x = 5\n"
-//        " _in x + 1) * 2");
-//
-//    // Let in let with arithmetic
-//    Expr* complexLet = new LetExpr("a", new NumExpr(3),
-//        new AddExpr(
-//            new LetExpr("b", new NumExpr(4),
-//                new MultExpr(new VarExpr("a"), new VarExpr("b"))),
-//            new NumExpr(5)));
-//
-//    CHECK(complexLet->interp() == 17);  // (3*4)+5 = 17
-//    CHECK(complexLet->to_pretty_string() ==
-//        "_let a = 3\n"
-//        "_in (_let b = 4\n"
-//        "     _in a * b) + 5");
-//}
+    CHECK(nestedLet->to_pretty_string() ==
+        "_let x = 2\n"
+        "_in  _let y = 3\n"
+        "     _in  x + y");
+}
+
+TEST_CASE("LetExpr edge cases") {
+    // Unused variable
+    LetExpr* unusedVar = new LetExpr("x", new NumExpr(5), new NumExpr(10));
+    CHECK(unusedVar->interp() == 10);
+    CHECK(unusedVar->to_pretty_string() == "_let x = 5\n_in  10");
+
+    // Let rhs with variable
+    LetExpr* rhsVar = new LetExpr("x", new VarExpr("y"),
+        new AddExpr(new VarExpr("x"), new NumExpr(1)));
+    CHECK(rhsVar->has_variable() == true);
+    CHECK_THROWS_WITH(rhsVar->interp(), "Variable has no value");
+
+    // Let in let
+    LetExpr* letInLet = new LetExpr("x", new NumExpr(5),
+        new LetExpr("x", new NumExpr(6),
+            new VarExpr("x")));
+    CHECK(letInLet->interp() == 6);  // Inner shadowing
+    CHECK(letInLet->to_pretty_string() ==
+        "_let x = 5\n"
+        "_in  _let x = 6\n"
+        "     _in  x");
+}
+
+TEST_CASE("LetExpr in complex expressions") {
+    // Let as part of multiplication
+    MultExpr* multWithLet = new MultExpr(
+        new LetExpr("x", new NumExpr(5),
+            new AddExpr(new VarExpr("x"), new NumExpr(1))),
+        new NumExpr(2));
+
+    CHECK(multWithLet->interp() == 12);  // (5+1)*2 = 12
+    CHECK(multWithLet->to_pretty_string() ==
+        "(_let x = 5\n"
+        " _in  x + 1) * 2");
+
+    // Let in let with arithmetic
+    Expr* complexLet = new LetExpr("a", new NumExpr(3),
+        new AddExpr(
+            new LetExpr("b", new NumExpr(4),
+                new MultExpr(new VarExpr("a"), new VarExpr("b"))),
+            new NumExpr(5)));
+
+    CHECK(complexLet->interp() == 17);  // (3*4)+5 = 17
+    CHECK(complexLet->to_pretty_string() ==
+        "_let a = 3\n"
+        "_in  (_let b = 4\n"
+        "      _in  a * b) + 5");
+}

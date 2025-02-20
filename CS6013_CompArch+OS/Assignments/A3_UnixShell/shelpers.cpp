@@ -143,92 +143,133 @@ ostream& operator<<( ostream& outs, const Command& c )
 // at the end.  Note, most of the gaps contain "assert( false )".
 //
 
-vector<Command> getCommands( const vector<string> & tokens )
-{
-   vector<Command> commands( count( tokens.begin(), tokens.end(), "|") + 1 ); // 1 + num |'s commands
+vector<Command> getCommands(const vector<string>& tokens) {
+    // Step 1: Determine the number of commands
+    // Count the number of pipe symbols ("|") in the tokens and add 1 to get the total number of commands.
+    // For example, "ls | grep foo | wc" has 2 pipes and 3 commands.
+    vector<Command> commands(count(tokens.begin(), tokens.end(), "|") + 1);
 
-   int first = 0;
-   int last = find( tokens.begin(), tokens.end(), "|" ) - tokens.begin();
+    // Step 2: Initialize indices for parsing tokens
+    int first = 0; // Index of the first token for the current command
+    int last = find(tokens.begin(), tokens.end(), "|") - tokens.begin(); // Index of the next pipe or end of tokens
 
-   bool error = false;
+    // Step 3: Track errors during parsing
+    bool error = false;
 
-   for( int cmdNumber = 0; cmdNumber < commands.size(); ++cmdNumber ){
-      const string & token = tokens[ first ];
+    // Step 4: Loop through each command
+    for (int cmdNumber = 0; cmdNumber < commands.size(); ++cmdNumber) {
+        // Get the first token of the current command
+        const string& token = tokens[first];
 
-      if( token == "&" || token == "<" || token == ">" || token == "|" ) {
-         error = true;
-         break;
-      }
+        // Step 5: Check for invalid starting tokens
+        // If the first token is a special symbol (&, <, >, |), it's an error.
+        if (token == "&" || token == "<" || token == ">" || token == "|") {
+            error = true;
+            break;
+        }
 
-      Command & command = commands[ cmdNumber ]; // Get reference to current Command struct.
-      command.execName = token;
+        // Step 6: Initialize the current Command struct
+        Command& command = commands[cmdNumber]; // Get a reference to the current Command
+        command.execName = token; // Set the executable name (e.g., "ls")
 
-      // Must _copy_ the token's string (otherwise, if token goes out of scope (anywhere)
-      // this pointer would become bad...) Note, this fixes a security hole in this code
-      // that had been here for quite a while.
+        // Step 7: Copy the token into argv
+        // argv[0] should be the program name (e.g., "ls").
+        // strdup() creates a copy of the string to avoid issues with scope.
+        command.argv.push_back(strdup(token.c_str()));
 
-      command.argv.push_back( strdup( token.c_str() ) ); // argv0 == program name
+        // Step 8: Initialize file descriptors
+        // By default, input comes from STDIN and output goes to STDOUT.
+        command.inputFd = STDIN_FILENO;
+        command.outputFd = STDOUT_FILENO;
 
-      command.inputFd  = STDIN_FILENO;
-      command.outputFd = STDOUT_FILENO;
+        // Step 9: Initialize background flag
+        // By default, commands run in the foreground.
+        command.background = false;
 
-      command.background = false;
-	
-      for( int j = first + 1; j < last; ++j ) {
+        // Step 10: Process the remaining tokens for the current command
+        for (int j = first + 1; j < last; ++j) {
+            if (tokens[j] == ">" || tokens[j] == "<") {
+                // Handle I/O redirection tokens
+                const string& filename = tokens[j + 1]; // The next token is the filename
 
-         if( tokens[j] == ">" || tokens[j] == "<" ) {
-            // Handle I/O redirection tokens
-            //
-            // Note, that only the FIRST command can take input redirection
-            // (all others get input from a pipe)
-            // Only the LAST command can have output redirection!
-         
-            assert( false );
-         }
-         else if( tokens[j] == "&" ){
-            // Fill this in if you choose to do the optional "background command" part.
-            assert(false);
-         }
-         else {
-            // Otherwise this is a normal command line argument! Add to argv.
-            command.argv.push_back( tokens[j].c_str() );
-         }
-      }
+                if (tokens[j] == "<") {
+                    // Input redirection (e.g., "cat < file.txt")
+                    if (cmdNumber != 0) {
+                        // Only the first command can have input redirection
+                        error = true;
+                        break;
+                    }
+                    // Open the file for reading
+                    command.inputFd = open(filename.c_str(), O_RDONLY);
+                    if (command.inputFd == -1) {
+                        perror("open input file"); // Print an error if the file cannot be opened
+                        error = true;
+                        break;
+                    }
+                } else if (tokens[j] == ">") {
+                    // Output redirection (e.g., "ls > output.txt")
+                    if (cmdNumber != commands.size() - 1) {
+                        // Only the last command can have output redirection
+                        error = true;
+                        break;
+                    }
+                    // Open the file for writing, create it if it doesn't exist, and truncate it if it does
+                    command.outputFd = open(filename.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0666);
+                    if (command.outputFd == -1) {
+                        perror("open output file"); // Print an error if the file cannot be opened
+                        error = true;
+                        break;
+                    }
+                }
+                ++j; // Skip the filename token since we've already processed it
+            } else if (tokens[j] == "&") {
+                // Background command (e.g., "sleep 10 &")
+                command.background = true;
+            } else {
+                // Normal command argument (e.g., "-l" in "ls -l")
+                command.argv.push_back(strdup(tokens[j].c_str()));
+            }
+        }
 
-      if( !error ) {
+        // Step 11: Handle pipes between commands
+        if (!error) {
+            if (cmdNumber > 0) {
+                // There are multiple commands. Open a pipe to connect them.
+                int pipefd[2]; // Array to hold the pipe file descriptors
+                if (pipe(pipefd) == -1) {
+                    perror("pipe"); // Print an error if the pipe cannot be created
+                    error = true;
+                    break;
+                }
+                // Set up the pipe:
+                // - The previous command writes to the pipe (outputFd = pipefd[1])
+                // - The current command reads from the pipe (inputFd = pipefd[0])
+                commands[cmdNumber - 1].outputFd = pipefd[1];
+                commands[cmdNumber].inputFd = pipefd[0];
+            }
 
-         if( cmdNumber > 0 ){
-            // There are multiple commands.  Open a pipe and
-            // connect the ends to the fd's for the commands!
+            // Step 12: Null-terminate the argv array
+            // execvp() requires the argument list to end with a nullptr.
+            command.argv.push_back(nullptr);
 
-            assert( false );
-         }
+            // Step 13: Find the next pipe character
+            first = last + 1; // Move to the token after the current pipe
+            if (first < tokens.size()) {
+                last = find(tokens.begin() + first, tokens.end(), "|") - tokens.begin();
+            }
+        } // end if !error
+    } // end for( cmdNumber = 0 to commands.size )
 
-         // Exec wants argv to have a nullptr at the end!
-         command.argv.push_back( nullptr );
+    // Step 14: Handle errors
+    if (error) {
+        // Close any open file descriptors to avoid resource leaks
+        for (auto& cmd : commands) {
+            if (cmd.inputFd != STDIN_FILENO) close(cmd.inputFd);
+            if (cmd.outputFd != STDOUT_FILENO) close(cmd.outputFd);
+        }
+        return {}; // Return an empty vector to indicate an error
+    }
 
-         // Find the next pipe character
-         first = last + 1;
-
-         if( first < tokens.size() ){
-            last = find( tokens.begin() + first, tokens.end(), "|" ) - tokens.begin();
-         }
-      } // end if !error
-   } // end for( cmdNumber = 0 to commands.size )
-
-   if( error ){
-
-      // Close any file descriptors you opened in this function and return the appropriate data!
-
-      // Note, an error can happen while parsing any command. However, the "commands" vector is
-      // pre-populated with a set of "empty" commands and filled in as we go.  Because
-      // of this, a "command" name can be blank (the default for a command struct that has not
-      // yet been filled in).  (Note, it has not been filled in yet because the processing
-      // has not gotten to it when the error (in a previous command) occurred.
-
-      assert(false);
-   }
-
-   return commands;
-
+    // Step 15: Return the parsed commands
+    return commands;
 } // end getCommands()
