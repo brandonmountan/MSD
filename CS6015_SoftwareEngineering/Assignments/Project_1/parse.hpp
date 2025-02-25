@@ -1,12 +1,18 @@
+#ifndef PARSE_HPP
+#define PARSE_HPP
 
-#ifndef parse_hpp
 #include "expr.h"
-#define parse_hpp
+#include <istream>
+#include <string>
 
-#include <stdio.h>
+// Function declarations
+static void consume(std::istream& in, int expect);
+void skip_whitespace(std::istream& in);
+Expr* parse_num(std::istream& in);
+Expr* parse_var(std::istream& in);
+Expr* parse_addend(std::istream& in);
+Expr* parse_multicand(std::istream& in);
+Expr* parse_expr(std::istream& in);
+Expr* parse_str(const std::string& s);
 
-#endif
-
-Expr *parse_num(std::istream &in);
-// parse_expr
-// void whitespace
+#endif // PARSE_HPP

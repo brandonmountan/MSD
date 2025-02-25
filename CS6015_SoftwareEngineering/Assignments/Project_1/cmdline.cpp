@@ -1,32 +1,28 @@
 //
 // Created by Brandon Mountan on 1/13/25.
 //
+#include "cmdline.h"
 #include <iostream>
-#include <string>
 #include <cstdlib> // For exit()
 
-void use_arguments(int argc, char* argv[]) {
-    bool test_seen = false;
+run_mode_t use_arguments(int argc, char **argv) {
+    if (argc != 2) {
+        std::cerr << "Usage: msdscript [--test | --interp | --print | --pretty-print]\n";
+        exit(1);
+    }
 
-    for (int i = 1; i < argc; ++i) {
-        std::string arg = argv[i];
+    std::string flag = argv[1];
 
-        if (arg == "--help") {
-            std::cout << "Usage:\n"
-                      << "  ./msdscript --help       Show this help message\n"
-                      << "  ./msdscript --test       Run the tests\n"
-                      << "  [other arguments]        Not allowed\n";
-            exit(0);
-        } else if (arg == "--test") {
-            if (test_seen) {
-                std::cerr << "Error: '--test' argument provided more than once.\n";
-                exit(1);
-            }
-            std::cout << "Tests passed\n";
-            test_seen = true;
-        } else {
-            std::cerr << "Error: Unknown argument '" << arg << "'.\n";
-            exit(1);
-        }
+    if (flag == "--test") {
+        return do_test;
+    } else if (flag == "--interp") {
+        return do_interp;
+    } else if (flag == "--print") {
+        return do_print;
+    } else if (flag == "--pretty-print") {
+        return do_pretty_print;
+    } else {
+        std::cerr << "Invalid flag. Use --test, --interp, --print, or --pretty-print\n";
+        exit(1);
     }
 }

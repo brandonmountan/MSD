@@ -142,7 +142,7 @@ public:
     Expr* subst(const std::string& var, Expr* replacement) override;
 
     void printExp(std::ostream& ot) override;
-    void pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos);
+    void pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) override;
 
 };
 
@@ -171,7 +171,7 @@ public:
     Expr* subst(const std::string& var, Expr* replacement) override;
 
     void printExp(std::ostream& ot) override;
-    void pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos);
+    void pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) override;
 };
 
 /**
@@ -222,7 +222,7 @@ public:
 
     void printExp(std::ostream& ot) override;
     void pretty_print(std::ostream& ot, precedence_t prec) override;
-    void pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos);
+    void pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) override;
 };
 
 #endif // EXPR_H
