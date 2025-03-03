@@ -58,14 +58,9 @@ int main(int argc, char* argv[]) {
             default:
                 // If the mode is invalid, print an error message
                 std::cerr << "Invalid mode.\n";
-                // Clean up the dynamically allocated Expr object
-                delete expr;
                 // Exit with a non-zero status code to indicate an error
                 return 1;
         }
-
-        // Clean up the dynamically allocated Expr object
-        delete expr;
 
         // Exit with a status code of 0 to indicate success
         return 0;

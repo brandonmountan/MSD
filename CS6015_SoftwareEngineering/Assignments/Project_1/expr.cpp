@@ -29,6 +29,8 @@ std::string Expr::to_pretty_string() {
 //   - prec: The precedence level of the parent expression.
 //   - last_newline_pos: The position of the last newline in the output stream.
 void Expr::pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) {
+    (void)prec; // Mark as unused
+    (void)last_newline_pos; // Mark as unused
     printExp(ot); // Default implementation: just call printExp
 }
 
@@ -73,6 +75,8 @@ bool NumExpr::has_variable() {
 //   - replacement: The expression to replace the variable with.
 // Returns: The current number expression (no substitution needed).
 Expr* NumExpr::subst(const std::string& var, Expr* replacement) {
+    (void)var; // Mark as unused
+    (void)replacement; // Mark as unused
     return this; // Numbers do not contain variables, so return the same expression
 }
 
@@ -406,7 +410,7 @@ void LetExpr::pretty_print_at(std::ostream& ot, precedence_t prec, std::streampo
     last_newline_pos = ot.tellp(); // Update the position of the last newline
 
     // Calculate the indentation for _in
-    int indent = static_cast<int>(current_pos - last_newline_pos); // Calculate the indentation level
+//    int indent = static_cast<int>(current_pos - last_newline_pos); // Calculate the indentation level
     for (int i = position1; i < current_pos; i++) {
         ot << " "; // Print spaces for indentation
     }
