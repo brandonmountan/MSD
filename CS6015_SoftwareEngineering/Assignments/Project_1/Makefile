@@ -10,7 +10,7 @@ TARGET = msdscript             # Name of the main executable
 TEST_TARGET = test_msdscript   # Name of the test executable
 
 # Source and object files for the main program
-SRCS = main.cpp expr.cpp cmdline.cpp tests.cpp parse.cpp  # List of source files
+SRCS = main.cpp expr.cpp cmdline.cpp tests.cpp parse.cpp val.cpp  # List of source files
 OBJS = $(SRCS:.cpp=.o)         # Generate object file names by replacing .cpp with .o
 
 # Source and object files for the test program

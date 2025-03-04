@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
         switch (mode) {
             case do_interp: {
                 // If the mode is do_interp, interpret the expression and print the result
-                int result = expr->interp();
+                Val* result = expr->interp();
                 std::cout << result << "\n";
                 break;
             }

@@ -1,5 +1,6 @@
 #include "catch.h"
 #include "expr.h"
+#include "val.h"
 #include "parse.hpp"
 #include <stdexcept>
 
@@ -13,7 +14,9 @@ TEST_CASE("NumExpr tests") {
     CHECK(num1->equals(num3) == false);
 
     // Test interp()
-    CHECK(num1->interp() == 5);
+    Val* result1 = num1->interp();
+    CHECK(result1->to_string() == "5"); // Check string representation
+    CHECK(result1->equals(new NumVal(5)));
 
     // Test has_variable()
     CHECK(num1->has_variable() == false);
@@ -33,7 +36,9 @@ TEST_CASE("AddExpr tests") {
     CHECK(add1->equals(add3) == false);
 
     // Test interp()
-    CHECK(add1->interp() == 5);  // 2 + 3 = 5
+    Val* result1 = add1->interp();
+    CHECK(result1->to_string() == "5"); // 2 + 3 = 5
+    CHECK(result1->equals(new NumVal(5)));
 
     // Test has_variable()
     CHECK(add1->has_variable() == false);
@@ -60,7 +65,9 @@ TEST_CASE("MultExpr tests") {
     CHECK(mult1->equals(mult3) == false);
 
     // Test interp()
-    CHECK(mult1->interp() == 6);  // 2 * 3 = 6
+    Val* result1 = mult1->interp();
+    CHECK(result1->to_string() == "6"); // 2 * 3 = 6
+    CHECK(result1->equals(new NumVal(6)));
 
     // Test has_variable()
     CHECK(mult1->has_variable() == false);
@@ -116,8 +123,11 @@ TEST_CASE("Complex nested expressions") {
 
     // Substituted expression interp
     substituted = expr->subst("x", new NumExpr(3));
-    CHECK(substituted->interp() == 11);  // (2 * 3) + 5 = 11
+    Val* result = substituted->interp();
+    CHECK(result->to_string() == "11");  // (2 * 3) + 5 = 11
+    CHECK(result->equals(new NumVal(11))); // Compare with another NumVal
 }
+
 
 TEST_CASE("Pretty print tests") {
     // Test pretty printing with proper spacing and minimal parentheses
@@ -148,7 +158,9 @@ TEST_CASE("LetExpr basic tests") {
     CHECK(let1->equals(let3) == false);
 
     // Test interp()
-    CHECK(let1->interp() == 6);  // (5 + 1) = 6
+    Val* result1 = let1->interp();
+    CHECK(result1->to_string() == "6");  // (5 + 1) = 6
+    CHECK(result1->equals(new NumVal(6))); // Compare with another NumVal
 
     // Test has_variable()
     CHECK(let1->has_variable() == true);  // Body has variable 'x'
@@ -162,7 +174,9 @@ TEST_CASE("LetExpr substitution with unbound variable") {
     Expr* substituted = let1->subst("y", new NumExpr(5));
 
     // Check that the substituted expression evaluates correctly
-    CHECK(substituted->interp() == 6);  // let x = 5 in (x + 1)
+    Val* result = substituted->interp();
+    CHECK(result->to_string() == "6");  // let x = 5 in (x + 1)
+    CHECK(result->equals(new NumVal(6))); // Compare with another NumVal
 }
 
 TEST_CASE("LetExpr pretty print - basic") {
@@ -184,7 +198,10 @@ TEST_CASE("LetExpr pretty print - nested") {
 TEST_CASE("LetExpr edge cases") {
     // Unused variable
     LetExpr* unusedVar = new LetExpr("x", new NumExpr(5), new NumExpr(10));
-    CHECK(unusedVar->interp() == 10);
+    Val* result1 = unusedVar->interp();
+    CHECK(result1->to_string() == "10");
+    CHECK(result1->equals(new NumVal(10))); // Compare with another NumVal
+
     CHECK(unusedVar->to_pretty_string() == "_let x = 5\n_in  10");
 
     // Let rhs with variable
@@ -197,12 +214,16 @@ TEST_CASE("LetExpr edge cases") {
     LetExpr* letInLet = new LetExpr("x", new NumExpr(5),
         new LetExpr("x", new NumExpr(6),
             new VarExpr("x")));
-    CHECK(letInLet->interp() == 6);  // Inner shadowing
+    Val* result2 = letInLet->interp();
+    CHECK(result2->to_string() == "6");  // Inner shadowing
+    CHECK(result2->equals(new NumVal(6))); // Compare with another NumVal
+
     CHECK(letInLet->to_pretty_string() ==
         "_let x = 5\n"
         "_in  _let x = 6\n"
         "     _in  x");
 }
+
 
 TEST_CASE("LetExpr in complex expressions") {
     // Let as part of multiplication
@@ -211,7 +232,10 @@ TEST_CASE("LetExpr in complex expressions") {
             new AddExpr(new VarExpr("x"), new NumExpr(1))),
         new NumExpr(2));
 
-    CHECK(multWithLet->interp() == 12);  // (5+1)*2 = 12
+    Val* result1 = multWithLet->interp();
+    CHECK(result1->to_string() == "12");  // (5+1)*2 = 12
+    CHECK(result1->equals(new NumVal(12))); // Compare with another NumVal
+
     CHECK(multWithLet->to_pretty_string() ==
         "(_let x = 5\n"
         " _in  x + 1) * 2");
@@ -223,7 +247,10 @@ TEST_CASE("LetExpr in complex expressions") {
                 new MultExpr(new VarExpr("a"), new VarExpr("b"))),
             new NumExpr(5)));
 
-    CHECK(complexLet->interp() == 17);  // (3*4)+5 = 17
+    Val* result2 = complexLet->interp();
+    CHECK(result2->to_string() == "17");  // (3*4)+5 = 17
+    CHECK(result2->equals(new NumVal(17))); // Compare with another NumVal
+
     CHECK(complexLet->to_pretty_string() ==
         "_let a = 3\n"
         "_in  (_let b = 4\n"

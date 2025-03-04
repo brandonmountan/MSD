@@ -1,6 +1,7 @@
 #include "expr.h"       // Include the header file for expression classes
 #include <stdexcept>    // For std::runtime_error
 #include <sstream>      // For std::stringstream
+#include "val.h" // Include val.h for Val and NumVal
 
 // ====================== Expr ======================
 
@@ -57,8 +58,8 @@ NumExpr::NumExpr(int value) {
 // Function: interp
 // Purpose: Interprets the number expression by returning its value.
 // Returns: The integer value of the number.
-int NumExpr::interp() {
-    return value;
+Val* NumExpr::interp() {
+    return new NumVal(value);
 }
 
 // Function: has_variable
@@ -113,8 +114,11 @@ AddExpr::AddExpr(Expr* lhs, Expr* rhs) {
 // Function: interp
 // Purpose: Interprets the addition expression by evaluating its sub-expressions.
 // Returns: The sum of the left and right sub-expressions.
-int AddExpr::interp() {
-    return lhs->interp() + rhs->interp(); // Add the results of the sub-expressions
+Val* AddExpr::interp() {
+    Val* lhsVal = lhs->interp(); // Evaluate the left-hand side
+    Val* rhsVal = rhs->interp(); // Evaluate the right-hand side
+    Val* result = lhsVal->add_to(rhsVal); // Add the two values}
+    return result; // Return the result
 }
 
 // Function: has_variable
@@ -190,8 +194,11 @@ MultExpr::MultExpr(Expr* lhs, Expr* rhs) {
 // Function: interp
 // Purpose: Interprets the multiplication expression by evaluating its sub-expressions.
 // Returns: The product of the left and right sub-expressions.
-int MultExpr::interp() {
-    return lhs->interp() * rhs->interp(); // Multiply the results of the sub-expressions
+Val* MultExpr::interp() {
+    Val* lhsVal = lhs->interp(); // Evaluate the left-hand side
+    Val* rhsVal = rhs->interp(); // Evaluate the right-hand side
+    Val* result = lhsVal->mult_with(rhsVal); // Multiply the two values}
+    return result;
 }
 
 // Function: has_variable
@@ -265,7 +272,7 @@ VarExpr::VarExpr(const std::string& name) {
 // Function: interp
 // Purpose: Interprets the variable expression (throws an error since variables have no value).
 // Throws: std::runtime_error because variables cannot be interpreted without a value.
-int VarExpr::interp() {
+Val* VarExpr::interp() {
     throw std::runtime_error("Variable has no value");
 }
 
@@ -336,9 +343,9 @@ bool LetExpr::equals(const Expr* e) {
 // Function: interp
 // Purpose: Interprets the let expression by evaluating the right-hand side and substituting it into the body.
 // Returns: The result of interpreting the substituted body expression.
-int LetExpr::interp() {
-    int rhsValue = rhs->interp(); // Evaluate the right-hand side
-    Expr* substitutedBody = body->subst(var, new NumExpr(rhsValue)); // Substitute the variable
+Val* LetExpr::interp() {
+    Val* rhsValue = rhs->interp(); // Evaluate the right-hand side
+    Expr* substitutedBody = body->subst(var, rhsValue->to_expr()); // Substitute the variable
     return substitutedBody->interp(); // Interpret the substituted body
 }
 

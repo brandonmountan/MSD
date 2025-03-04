@@ -18,6 +18,8 @@ typedef enum {
     prec_mult       ///< Precedence level for multiplication.
 } precedence_t;
 
+class Val; // Forward declaration of Val class
+
 /**
  * @class Expr
  * @brief Abstract base class for expressions.
@@ -40,7 +42,7 @@ public:
      *
      * @return The result of evaluating the expression.
      */
-    virtual int interp() = 0;
+    virtual Val* interp() = 0;
 
     /**
      * @brief Checks if the expression contains a variable.
@@ -109,7 +111,7 @@ public:
     NumExpr(int value);
 
     bool equals(const Expr* e) override;
-    int interp() override;
+    Val* interp() override;
     bool has_variable() override;
     Expr* subst(const std::string& var, Expr* replacement) override;
 
@@ -137,7 +139,7 @@ public:
     AddExpr(Expr* lhs, Expr* rhs);
 
     bool equals(const Expr* e) override;
-    int interp() override;
+    Val* interp() override;
     bool has_variable() override;
     Expr* subst(const std::string& var, Expr* replacement) override;
 
@@ -166,7 +168,7 @@ public:
     MultExpr(Expr* lhs, Expr* rhs);
 
     bool equals(const Expr* e) override;
-    int interp() override;
+    Val* interp() override;
     bool has_variable() override;
     Expr* subst(const std::string& var, Expr* replacement) override;
 
@@ -192,7 +194,7 @@ public:
     VarExpr(const std::string& name);
 
     bool equals(const Expr* e) override;
-    int interp() override;
+    Val* interp() override;
     bool has_variable() override;
     Expr* subst(const std::string& var, Expr* replacement) override;
 
@@ -216,7 +218,7 @@ public:
     LetExpr(const std::string& var, Expr* rhs, Expr* body);
 
     bool equals(const Expr* e) override;
-    int interp() override;
+    Val* interp() override;
     bool has_variable() override;
     Expr* subst(const std::string& var, Expr* replacement) override;
 
