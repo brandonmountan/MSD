@@ -1,15 +1,25 @@
-// Include necessary headers
-#include "parse.hpp"  // Header for parsing functions
-#include <iostream>   // Standard input/output (e.g., std::cin, std::cout)
-#include <sstream>    // String stream (e.g., std::stringstream)
-#include <cctype>     // Character handling functions (e.g., isdigit, isalpha)
+//////////////////////////////////////////////////////////////////////////////////
+//
+// Author: Brandon Mountan
+//
+// Date:   01/14/2025
+//
+// Class: CS 6015 - Software Engineering
+//
+//////////////////////////////////////////////////////////////////////////////////
 
-// Function: consume
-// Purpose: Consumes a specific character from the input stream.
-// Parameters:
-//   - in: The input stream.
-//   - expect: The expected character to consume.
-// Throws: std::runtime_error if the next character does not match the expected character.
+#include "parse.hpp"
+#include <iostream>
+#include <sstream>
+#include <cctype>
+
+/**
+ * @brief Consumes a specific character from the input stream.
+ *
+ * @param in The input stream.
+ * @param expect The expected character to consume.
+ * @throws std::runtime_error if the next character does not match the expected character.
+ */
 static void consume(std::istream& in, int expect) {
     int c = in.get();  // Read the next character from the input stream
     if (c != expect) { // Check if the character matches the expected one
@@ -17,10 +27,11 @@ static void consume(std::istream& in, int expect) {
     }
 }
 
-// Function: skip_whitespace
-// Purpose: Skips whitespace characters in the input stream.
-// Parameters:
-//   - in: The input stream.
+/**
+ * @brief Skips whitespace characters in the input stream.
+ *
+ * @param in The input stream.
+ */
 void skip_whitespace(std::istream& in) {
     while (true) {
         int c = in.peek(); // Peek at the next character without consuming it
@@ -29,12 +40,13 @@ void skip_whitespace(std::istream& in) {
     }
 }
 
-// Function: parse_num
-// Purpose: Parses a number (integer) from the input stream.
-// Parameters:
-//   - in: The input stream.
-// Returns: A pointer to a NumExpr object representing the parsed number.
-// Throws: std::runtime_error if the input is invalid (e.g., no digit after '-').
+/**
+ * @brief Parses a number (integer) from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to a NumExpr object representing the parsed number.
+ * @throws std::runtime_error if the input is invalid (e.g., no digit after '-').
+ */
 Expr* parse_num(std::istream& in) {
     int n = 0;          // Initialize the number to 0
     bool negative = false; // Flag to indicate if the number is negative
@@ -70,12 +82,13 @@ Expr* parse_num(std::istream& in) {
     return new NumExpr(n);
 }
 
-// Function: parse_var
-// Purpose: Parses a variable name from the input stream.
-// Parameters:
-//   - in: The input stream.
-// Returns: A pointer to a VarExpr object representing the parsed variable.
-// Throws: std::runtime_error if the variable name contains invalid characters (e.g., '_').
+/**
+ * @brief Parses a variable name from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to a VarExpr object representing the parsed variable.
+ * @throws std::runtime_error if the variable name contains invalid characters (e.g., '_').
+ */
 Expr* parse_var(std::istream& in) {
     std::string name; // Initialize an empty string to store the variable name
     while (true) {
@@ -100,12 +113,56 @@ Expr* parse_var(std::istream& in) {
     return new VarExpr(name);
 }
 
-// Function: parse_multicand
-// Purpose: Parses a multicand (number, variable, or parenthesized expression).
-// Parameters:
-//   - in: The input stream.
-// Returns: A pointer to an Expr object representing the parsed multicand.
-// Throws: std::runtime_error if the input is invalid.
+/**
+ * @brief Parses a _let expression from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to a LetExpr object representing the parsed _let expression.
+ * @throws std::runtime_error if the input is invalid.
+ */
+Expr* parse_let(std::istream& in) {
+    skip_whitespace(in);
+    consume(in, '_'); // Consume '_'
+    consume(in, 'l'); // Consume 'l'
+    consume(in, 'e'); // Consume 'e'
+    consume(in, 't'); // Consume 't'
+    skip_whitespace(in);
+
+    // Parse the variable name
+    std::string var;
+    while (isalpha(in.peek())) {
+        var += in.get();
+    }
+    skip_whitespace(in);
+
+    // Parse the '='
+    consume(in, '=');
+    skip_whitespace(in);
+
+    // Parse the right-hand side expression
+    Expr* rhs = parse_expr(in);
+    skip_whitespace(in);
+
+    // Parse the '_in' keyword
+    consume(in, '_');
+    consume(in, 'i');
+    consume(in, 'n');
+    skip_whitespace(in);
+
+    // Parse the body expression
+    Expr* body = parse_expr(in);
+
+    // Return a new LetExpr object
+    return new LetExpr(var, rhs, body);
+}
+
+/**
+ * @brief Parses a multicand (number, variable, parenthesized expression, or _let expression).
+ *
+ * @param in The input stream.
+ * @return A pointer to an Expr object representing the parsed multicand.
+ * @throws std::runtime_error if the input is invalid.
+ */
 Expr* parse_multicand(std::istream& in) {
     skip_whitespace(in); // Skip any leading whitespace
     int c = in.peek();   // Peek at the next character
@@ -126,17 +183,22 @@ Expr* parse_multicand(std::istream& in) {
     else if (isalpha(c)) {
         return parse_var(in);
     }
+    // Handle _let expressions
+    else if (c == '_') {
+        return parse_let(in);
+    }
     // Handle invalid input
     else {
         throw std::runtime_error("bad input");
     }
 }
 
-// Function: parse_addend
-// Purpose: Parses an addend (multicand or multiplication expression).
-// Parameters:
-//   - in: The input stream.
-// Returns: A pointer to an Expr object representing the parsed addend.
+/**
+ * @brief Parses an addend (multicand or multiplication expression).
+ *
+ * @param in The input stream.
+ * @return A pointer to an Expr object representing the parsed addend.
+ */
 Expr* parse_addend(std::istream& in) {
     Expr* lhs = parse_multicand(in); // Parse the left-hand side of the multiplication
     skip_whitespace(in); // Skip any whitespace
@@ -153,11 +215,12 @@ Expr* parse_addend(std::istream& in) {
     return lhs;
 }
 
-// Function: parse_expr
-// Purpose: Parses an expression (addend or addition expression).
-// Parameters:
-//   - in: The input stream.
-// Returns: A pointer to an Expr object representing the parsed expression.
+/**
+ * @brief Parses an expression (addend or addition expression).
+ *
+ * @param in The input stream.
+ * @return A pointer to an Expr object representing the parsed expression.
+ */
 Expr* parse_expr(std::istream& in) {
     Expr* lhs = parse_addend(in); // Parse the left-hand side of the addition
     skip_whitespace(in); // Skip any whitespace
@@ -174,20 +237,22 @@ Expr* parse_expr(std::istream& in) {
     return lhs;
 }
 
-// Function: parse
-// Purpose: Main parse function that parses an expression from the input stream.
-// Parameters:
-//   - in: The input stream.
-// Returns: A pointer to an Expr object representing the parsed expression.
+/**
+ * @brief Main parse function that parses an expression from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to an Expr object representing the parsed expression.
+ */
 Expr* parse(std::istream& in) {
     return parse_expr(in); // Delegate to parse_expr
 }
 
-// Function: parse_str
-// Purpose: Wrapper for testing that parses a string into an expression.
-// Parameters:
-//   - s: The input string.
-// Returns: A pointer to an Expr object representing the parsed expression.
+/**
+ * @brief Wrapper for testing that parses a string into an expression.
+ *
+ * @param s The input string.
+ * @return A pointer to an Expr object representing the parsed expression.
+ */
 Expr* parse_str(const std::string& s) {
     std::stringstream ss(s); // Create a string stream from the input string
     return parse(ss); // Parse the expression from the string stream

@@ -1,16 +1,30 @@
+//////////////////////////////////////////////////////////////////////////////////
 //
-// Created by Brandon Mountan on 1/13/25.
+// Author: Brandon Mountan
 //
+// Date:   01/13/2025
+//
+// Class: CS 6015 - Software Engineering
+//
+//////////////////////////////////////////////////////////////////////////////////
+
 #include "cmdline.h"
 #include <iostream>
 #include <cstdlib> // For exit()
 
-// Function: use_arguments
-// Purpose: Parses command-line arguments and returns the corresponding run mode.
-// Parameters:
-//   - argc: The number of command-line arguments.
-//   - argv: An array of C-style strings representing the command-line arguments.
-// Returns: A run_mode_t value indicating the mode of operation (e.g., do_test, do_interp, etc.).
+/**
+ * @brief Parses command-line arguments and returns the corresponding run mode.
+ *
+ * This function checks the command-line arguments and determines the mode of operation
+ * based on the provided flag. If the arguments are invalid, it prints an error message
+ * and exits the program with a non-zero status code.
+ *
+ * @param argc The number of command-line arguments.
+ * @param argv An array of C-style strings representing the command-line arguments.
+ * @return A run_mode_t value indicating the mode of operation (e.g., do_test, do_interp, etc.).
+ *
+ * @throws std::runtime_error If the number of arguments is incorrect or the flag is invalid.
+ */
 run_mode_t use_arguments(int argc, char **argv) {
     // Check if the number of arguments is not equal to 2.
     // The program expects exactly 2 arguments: the program name and a flag.

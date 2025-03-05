@@ -1,11 +1,16 @@
+//////////////////////////////////////////////////////////////////////////////////
 //
-// Created by Brandon Mountan on 1/13/25.
+// Author: Brandon Mountan
 //
+// Date:   01/13/2025
+//
+// Class: CS 6015 - Software Engineering
+//
+//////////////////////////////////////////////////////////////////////////////////
 // Define the CATCH_CONFIG_RUNNER macro to enable the Catch2 test framework.
 // This allows the program to run tests when the --test flag is provided.
 #define CATCH_CONFIG_RUNNER
 
-// Include necessary headers
 #include "catch.h"       // Catch2 testing framework
 #include "expr.h"        // Expression classes (e.g., Expr, NumExpr, AddExpr)
 #include "parse.hpp"     // Parser functions (e.g., parse_expr)

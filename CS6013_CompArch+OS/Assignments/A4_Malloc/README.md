@@ -1,4 +1,5 @@
 Overview
+
 In this assignment, you'll practice using system calls for allocating and deallocating virtual memory from the OS to implement the library functions malloc() and free(). In other words, you are writing replacements for  malloc() and free().
 
 Your allocator will be fairly "dumb", will probably be about 10x slower than the standard library malloc, and will waste lots of memory, but it should work as a drop-in replacement!
@@ -6,6 +7,7 @@ Your allocator will be fairly "dumb", will probably be about 10x slower than the
 When a user calls  malloc(),  allocate memory using the map() system call, which deals in units of pages. You'll forward calls to free() to munmap().  Unfortunately, free() doesn't take the allocation size as a parameter, so you'll have to store the original allocation sizes in a hash table that fits into some memory that we'll map().
 
 Approach
+
 For this assignment you'll write a Class that has 2 public methods...
 
 void* allocate(   size_t bytesToAllocate )

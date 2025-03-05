@@ -13,7 +13,18 @@
 #include <iostream>  // For std::cout
 #include <cstdlib>  // For malloc() and free()
 
-// Function to compare the performance of MyMalloc and system malloc
+/**
+ * @brief Runs a benchmark to compare the performance of MyMalloc and system malloc.
+ *
+ * This method performs the following steps:
+ * 1. Creates an instance of the custom allocator (MyMalloc).
+ * 2. Measures the time taken to allocate and deallocate memory 100,000 times using MyMalloc.
+ * 3. Measures the time taken to allocate and deallocate memory 100,000 times using system malloc.
+ * 4. Prints the elapsed time for both allocators.
+ *
+ * The benchmark is designed to highlight the performance differences between the custom
+ * allocator and the system allocator.
+ */
 void Benchmark::run() {
     MyMalloc my_malloc;  // Create an instance of the custom allocator
     const int num_allocations = 100000;  // Number of allocations to test
