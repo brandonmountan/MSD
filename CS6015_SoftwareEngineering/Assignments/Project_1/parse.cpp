@@ -1,13 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////////
-//
-// Author: Brandon Mountan
-//
-// Date:   01/14/2025
-//
-// Class: CS 6015 - Software Engineering
-//
-//////////////////////////////////////////////////////////////////////////////////
-
 #include "parse.hpp"
 #include <iostream>
 #include <sstream>
@@ -157,7 +147,94 @@ Expr* parse_let(std::istream& in) {
 }
 
 /**
- * @brief Parses a multicand (number, variable, parenthesized expression, or _let expression).
+ * @brief Parses a boolean value (`_true` or `_false`) from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to a BoolExpr object representing the parsed boolean value.
+ * @throws std::runtime_error if the input is invalid.
+ */
+Expr* parse_bool(std::istream& in) {
+    consume(in, '_'); // Consume '_'
+    if (in.peek() == 't') {
+        consume(in, 't');
+        consume(in, 'r');
+        consume(in, 'u');
+        consume(in, 'e');
+        return new BoolExpr(true);
+    } else if (in.peek() == 'f') {
+        consume(in, 'f');
+        consume(in, 'a');
+        consume(in, 'l');
+        consume(in, 's');
+        consume(in, 'e');
+        return new BoolExpr(false);
+    } else {
+        throw std::runtime_error("bad input");
+    }
+}
+
+/**
+ * @brief Parses an equality expression (`==`) from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to an EqExpr object representing the parsed equality expression.
+ * @throws std::runtime_error if the input is invalid.
+ */
+Expr* parse_eq(std::istream& in) {
+    Expr* lhs = parse_expr(in); // Parse the left-hand side of the equality
+    skip_whitespace(in);
+    if (in.peek() == '=') {
+        consume(in, '='); // Consume the first '='
+        consume(in, '='); // Consume the second '='
+        Expr* rhs = parse_expr(in); // Parse the right-hand side of the equality
+        return new EqExpr(lhs, rhs); // Return a new EqExpr object
+    }
+    return lhs; // If no equality operator, return the left-hand side
+}
+
+/**
+ * @brief Parses an if expression (`_if..._then..._else`) from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to an IfExpr object representing the parsed if expression.
+ * @throws std::runtime_error if the input is invalid.
+ */
+Expr* parse_if(std::istream& in) {
+    skip_whitespace(in); // Skip any leading whitespace
+
+    // Parse the condition
+    Expr* condition = parse_expr(in);
+    skip_whitespace(in);
+
+    // Parse the _then keyword
+    consume(in, '_');
+    consume(in, 't');
+    consume(in, 'h');
+    consume(in, 'e');
+    consume(in, 'n');
+    skip_whitespace(in);
+
+    // Parse the then branch
+    Expr* then_branch = parse_expr(in);
+    skip_whitespace(in);
+
+    // Parse the _else keyword
+    consume(in, '_');
+    consume(in, 'e');
+    consume(in, 'l');
+    consume(in, 's');
+    consume(in, 'e');
+    skip_whitespace(in);
+
+    // Parse the else branch
+    Expr* else_branch = parse_expr(in);
+
+    // Return a new IfExpr object
+    return new IfExpr(condition, then_branch, else_branch);
+}
+
+/**
+ * @brief Parses a multicand (number, variable, parenthesized expression, _let expression, or boolean value).
  *
  * @param in The input stream.
  * @return A pointer to an Expr object representing the parsed multicand.
@@ -183,9 +260,32 @@ Expr* parse_multicand(std::istream& in) {
     else if (isalpha(c)) {
         return parse_var(in);
     }
-    // Handle _let expressions
+    // Handle boolean values and if expressions
     else if (c == '_') {
-        return parse_let(in);
+        consume(in, '_'); // Consume the '_'
+        if (in.peek() == 't') {
+            // Parse _true
+            consume(in, 't');
+            consume(in, 'r');
+            consume(in, 'u');
+            consume(in, 'e');
+            return new BoolExpr(true);
+        } else if (in.peek() == 'f') {
+            // Parse _false
+            consume(in, 'f');
+            consume(in, 'a');
+            consume(in, 'l');
+            consume(in, 's');
+            consume(in, 'e');
+            return new BoolExpr(false);
+        } else if (in.peek() == 'i') {
+            // Parse _if
+            consume(in, 'i');
+            consume(in, 'f');
+            return parse_if(in);
+        } else {
+            throw std::runtime_error("bad input"); // Invalid input
+        }
     }
     // Handle invalid input
     else {
@@ -232,8 +332,15 @@ Expr* parse_expr(std::istream& in) {
         Expr* rhs = parse_expr(in); // Parse the right-hand side of the addition
         return new AddExpr(lhs, rhs); // Return a new AddExpr object
     }
+    // Handle equality
+    else if (c == '=') {
+        consume(in, '='); // Consume the first '='
+        consume(in, '='); // Consume the second '='
+        Expr* rhs = parse_expr(in); // Parse the right-hand side of the equality
+        return new EqExpr(lhs, rhs); // Return a new EqExpr object
+    }
 
-    // If no addition, return the left-hand side
+    // If no addition or equality, return the left-hand side
     return lhs;
 }
 

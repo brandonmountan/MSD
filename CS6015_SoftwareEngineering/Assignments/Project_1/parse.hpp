@@ -16,7 +16,7 @@
 #include <string>
 
 // Function declarations
-static void consume(std::istream& in, int expect);
+//static void consume(std::istream& in, int expect);
 void skip_whitespace(std::istream& in);
 Expr* parse_num(std::istream& in);
 Expr* parse_var(std::istream& in);
@@ -24,6 +24,10 @@ Expr* parse_let(std::istream& in); // Added for parsing _let expressions
 Expr* parse_multicand(std::istream& in);
 Expr* parse_addend(std::istream& in);
 Expr* parse_expr(std::istream& in);
+
+Expr* parse_bool(std::istream& in);
+Expr* parse_eq(std::istream& in);
+Expr* parse_if(std::istream& in);
 
 // Main parse function
 Expr* parse(std::istream& in);

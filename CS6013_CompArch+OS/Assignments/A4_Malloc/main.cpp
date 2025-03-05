@@ -40,3 +40,5 @@ int main() {
 
     return 0;
 }
+
+// g++ -std=c++17 -o my_malloc main.cpp HashTable.cpp MyMalloc.cpp Benchmark.cpp

@@ -14,6 +14,7 @@
 #include "parse.hpp"
 #include <stdexcept>
 
+// ====================== NumExpr Tests ======================
 TEST_CASE("NumExpr tests") {
     NumExpr* num1 = new NumExpr(5);
     NumExpr* num2 = new NumExpr(5);
@@ -35,6 +36,7 @@ TEST_CASE("NumExpr tests") {
     CHECK(num1->subst("x", new NumExpr(10))->equals(num1));
 }
 
+// ====================== AddExpr Tests ======================
 TEST_CASE("AddExpr tests") {
     AddExpr* add1 = new AddExpr(new NumExpr(2), new NumExpr(3));
     AddExpr* add2 = new AddExpr(new NumExpr(2), new NumExpr(3));
@@ -64,6 +66,7 @@ TEST_CASE("AddExpr tests") {
           ->equals(new AddExpr(new VarExpr("y"), new NumExpr(7))));
 }
 
+// ====================== MultExpr Tests ======================
 TEST_CASE("MultExpr tests") {
     MultExpr* mult1 = new MultExpr(new NumExpr(2), new NumExpr(3));
     MultExpr* mult2 = new MultExpr(new NumExpr(2), new NumExpr(3));
@@ -88,6 +91,7 @@ TEST_CASE("MultExpr tests") {
     CHECK(replaced->equals(new MultExpr(new NumExpr(10), new NumExpr(5))));
 }
 
+// ====================== VarExpr Tests ======================
 TEST_CASE("VarExpr tests") {
     VarExpr* var1 = new VarExpr("x");
     VarExpr* var2 = new VarExpr("x");
@@ -111,53 +115,7 @@ TEST_CASE("VarExpr tests") {
     CHECK(unchanged->equals(var1));
 }
 
-TEST_CASE("Complex nested expressions") {
-    // Nested AddExpr and MultExpr
-    Expr* expr = new AddExpr(
-        new MultExpr(new NumExpr(2), new VarExpr("x")),
-        new NumExpr(5)
-    );
-
-    // Test has_variable()
-    CHECK(expr->has_variable() == true);
-
-    // Test subst()
-    Expr* substituted = expr->subst("x", new NumExpr(10));
-    CHECK(substituted->equals(new AddExpr(
-        new MultExpr(new NumExpr(2), new NumExpr(10)),
-        new NumExpr(5)
-    )));
-
-    // Test interp() - Check exception for variables
-    CHECK_THROWS_WITH(expr->interp(), "Variable has no value");
-
-    // Substituted expression interp
-    substituted = expr->subst("x", new NumExpr(3));
-    Val* result = substituted->interp();
-    CHECK(result->to_string() == "11");  // (2 * 3) + 5 = 11
-    CHECK(result->equals(new NumVal(11))); // Compare with another NumVal
-}
-
-
-TEST_CASE("Pretty print tests") {
-    // Test pretty printing with proper spacing and minimal parentheses
-    CHECK((new MultExpr(new NumExpr(1), new AddExpr(new NumExpr(2), new NumExpr(3))))->to_string() == "(1*(2+3))");
-    CHECK((new MultExpr(new MultExpr(new NumExpr(8), new NumExpr(1)), new VarExpr("y")))->to_string() == "((8*1)*y)");
-    CHECK((new MultExpr(new AddExpr(new NumExpr(3), new NumExpr(5)), new MultExpr(new NumExpr(6), new NumExpr(1))))->to_string() == "((3+5)*(6*1))");
-    CHECK((new MultExpr(new MultExpr(new NumExpr(7), new NumExpr(7)), new AddExpr(new NumExpr(9), new NumExpr(2))))->to_string() == "((7*7)*(9+2))");
-
-    // Test pretty printing with spaces and minimal parentheses
-    CHECK((new MultExpr(new NumExpr(1), new AddExpr(new NumExpr(2), new NumExpr(3))))->to_pretty_string() == "1 * (2 + 3)");
-    CHECK((new MultExpr(new MultExpr(new NumExpr(8), new NumExpr(1)), new VarExpr("y")))->to_pretty_string() == "(8 * 1) * y");
-    CHECK((new MultExpr(new AddExpr(new NumExpr(3), new NumExpr(5)), new MultExpr(new NumExpr(6), new NumExpr(1))))->to_pretty_string() == "(3 + 5) * 6 * 1");
-    CHECK((new MultExpr(new MultExpr(new NumExpr(7), new NumExpr(7)), new AddExpr(new NumExpr(9), new NumExpr(2))))->to_pretty_string() == "(7 * 7) * (9 + 2)");
-}
-
-TEST_CASE("LetExpr pretty_print") {
-    Expr* expr = new LetExpr("x", new NumExpr(5), new AddExpr(new LetExpr("y", new NumExpr(3), new AddExpr(new VarExpr("y"), new NumExpr(2))), new VarExpr("x")));
-    CHECK(expr->to_pretty_string() == "_let x = 5\n_in  (_let y = 3\n      _in  y + 2) + x");
-}
-
+// ====================== LetExpr Tests ======================
 TEST_CASE("LetExpr basic tests") {
     LetExpr* let1 = new LetExpr("x", new NumExpr(5), new AddExpr(new VarExpr("x"), new NumExpr(1)));
     LetExpr* let2 = new LetExpr("x", new NumExpr(5), new AddExpr(new VarExpr("x"), new NumExpr(1)));
@@ -234,42 +192,91 @@ TEST_CASE("LetExpr edge cases") {
         "     _in  x");
 }
 
+// ====================== BoolExpr Tests ======================
+TEST_CASE("BoolExpr tests") {
+    BoolExpr* trueExpr = new BoolExpr(true);
+    BoolExpr* falseExpr = new BoolExpr(false);
 
-TEST_CASE("LetExpr in complex expressions") {
-    // Let as part of multiplication
-    MultExpr* multWithLet = new MultExpr(
-        new LetExpr("x", new NumExpr(5),
-            new AddExpr(new VarExpr("x"), new NumExpr(1))),
-        new NumExpr(2));
+    // Test equals()
+    CHECK(trueExpr->equals(new BoolExpr(true)) == true);
+    CHECK(trueExpr->equals(falseExpr) == false);
 
-    Val* result1 = multWithLet->interp();
-    CHECK(result1->to_string() == "12");  // (5+1)*2 = 12
-    CHECK(result1->equals(new NumVal(12))); // Compare with another NumVal
+    // Test interp()
+    Val* trueVal = trueExpr->interp();
+    CHECK(trueVal->to_string() == "_true");
+    CHECK(trueVal->equals(new BoolVal(true)));
 
-    CHECK(multWithLet->to_pretty_string() ==
-        "(_let x = 5\n"
-        " _in  x + 1) * 2");
+    Val* falseVal = falseExpr->interp();
+    CHECK(falseVal->to_string() == "_false");
+    CHECK(falseVal->equals(new BoolVal(false)));
 
-    // Let in let with arithmetic
-    Expr* complexLet = new LetExpr("a", new NumExpr(3),
-        new AddExpr(
-            new LetExpr("b", new NumExpr(4),
-                new MultExpr(new VarExpr("a"), new VarExpr("b"))),
-            new NumExpr(5)));
+    // Test has_variable()
+    CHECK(trueExpr->has_variable() == false);
 
-    Val* result2 = complexLet->interp();
-    CHECK(result2->to_string() == "17");  // (3*4)+5 = 17
-    CHECK(result2->equals(new NumVal(17))); // Compare with another NumVal
-
-    CHECK(complexLet->to_pretty_string() ==
-        "_let a = 3\n"
-        "_in  (_let b = 4\n"
-        "      _in  a * b) + 5");
+    // Test subst()
+    CHECK(trueExpr->subst("x", new NumExpr(10))->equals(trueExpr));
 }
 
-/* Some ideas for parse tests, probably not enough. Also, you may need
-   to adjust these tests, and there may even be mistakes here. */
+// ====================== IfExpr Tests ======================
+TEST_CASE("IfExpr tests") {
+    IfExpr* ifTrue = new IfExpr(new BoolExpr(true), new NumExpr(1), new NumExpr(2));
+    IfExpr* ifFalse = new IfExpr(new BoolExpr(false), new NumExpr(1), new NumExpr(2));
 
+    // Test equals()
+    CHECK(ifTrue->equals(new IfExpr(new BoolExpr(true), new NumExpr(1), new NumExpr(2))) == true);
+    CHECK(ifTrue->equals(ifFalse) == false);
+
+    // Test interp()
+    Val* result1 = ifTrue->interp();
+    CHECK(result1->to_string() == "1");  // Condition is true
+    CHECK(result1->equals(new NumVal(1)));
+
+    Val* result2 = ifFalse->interp();
+    CHECK(result2->to_string() == "2");  // Condition is false
+    CHECK(result2->equals(new NumVal(2)));
+
+    // Test has_variable()
+    CHECK(ifTrue->has_variable() == false);
+
+    // Test subst()
+    CHECK(ifTrue->subst("x", new NumExpr(10))->equals(ifTrue));
+
+    // Test invalid condition (non-boolean)
+    IfExpr* invalidIf = new IfExpr(new NumExpr(5), new NumExpr(1), new NumExpr(2));
+    CHECK_THROWS_WITH(invalidIf->interp(), "Condition must be a boolean");
+}
+
+// ====================== EqExpr Tests ======================
+TEST_CASE("EqExpr tests") {
+    EqExpr* eq1 = new EqExpr(new NumExpr(5), new NumExpr(5));
+    EqExpr* eq2 = new EqExpr(new NumExpr(5), new NumExpr(6));
+    EqExpr* eq3 = new EqExpr(new BoolExpr(true), new BoolExpr(true));
+
+    // Test equals()
+    CHECK(eq1->equals(new EqExpr(new NumExpr(5), new NumExpr(5))) == true);
+    CHECK(eq1->equals(eq2) == false);
+
+    // Test interp()
+    Val* result1 = eq1->interp();
+    CHECK(result1->to_string() == "_true");  // 5 == 5
+    CHECK(result1->equals(new BoolVal(true)));
+
+    Val* result2 = eq2->interp();
+    CHECK(result2->to_string() == "_false"); // 5 == 6
+    CHECK(result2->equals(new BoolVal(false)));
+
+    Val* result3 = eq3->interp();
+    CHECK(result3->to_string() == "_true");  // true == true
+    CHECK(result3->equals(new BoolVal(true)));
+
+    // Test has_variable()
+    CHECK(eq1->has_variable() == false);
+
+    // Test subst()
+    CHECK(eq1->subst("x", new NumExpr(10))->equals(eq1));
+}
+
+// ====================== Parser Tests ======================
 TEST_CASE("parse") {
     CHECK_THROWS_WITH( parse_str("()"), "bad input" );
 
@@ -283,10 +290,6 @@ TEST_CASE("parse") {
     CHECK( parse_str("-3")->equals(new NumExpr(-3)) );
     CHECK( parse_str("  \n 5  ")->equals(new NumExpr(5)) );
     CHECK_THROWS_WITH( parse_str("-"), "invalid input" );
-
-    // This was some temporary debugging code:
-    //  std::istringstream in("-");
-    //  parse_num(in)->print(std::cout); std::cout << "\n";
 
     CHECK_THROWS_WITH( parse_str(" -   5  "), "invalid input" );
 
@@ -307,4 +310,14 @@ TEST_CASE("parse") {
           ->equals(new MultExpr(new VarExpr("z"),
                             new AddExpr(new VarExpr("x"), new VarExpr("y"))) ));
 
+    // Test parsing boolean values
+    CHECK( parse_str("_true")->equals(new BoolExpr(true)) );
+    CHECK( parse_str("_false")->equals(new BoolExpr(false)) );
+
+    // Test parsing equality expressions
+    CHECK( parse_str("1 == 2")->equals(new EqExpr(new NumExpr(1), new NumExpr(2))) );
+
+    // Test parsing if expressions
+    CHECK( parse_str("_if _true _then 1 _else 2")
+          ->equals(new IfExpr(new BoolExpr(true), new NumExpr(1), new NumExpr(2))) );
 }

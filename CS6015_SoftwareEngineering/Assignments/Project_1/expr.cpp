@@ -453,3 +453,133 @@ void LetExpr::pretty_print_at(std::ostream& ot, precedence_t prec, std::streampo
         ot << ")"; // Print closing parenthesis if needed
     }
 }
+
+// ====================== BoolExpr ======================
+
+BoolExpr::BoolExpr(bool value) : value(value) {}
+
+Val* BoolExpr::interp() {
+    return new BoolVal(value);
+}
+
+bool BoolExpr::has_variable() {
+    return false;
+}
+
+Expr* BoolExpr::subst(const std::string& var, Expr* replacement) {
+  	(void)var;
+    (void)replacement;
+    return this;
+}
+
+bool BoolExpr::equals(const Expr* e) {
+    const BoolExpr* boolExpr = dynamic_cast<const BoolExpr*>(e);
+    return boolExpr && this->value == boolExpr->value;
+}
+
+void BoolExpr::printExp(std::ostream& ot) {
+    ot << (value ? "_true" : "_false");
+}
+
+void BoolExpr::pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) {
+  	(void)prec;
+    (void)last_newline_pos;
+    ot << (value ? "_true" : "_false");
+}
+
+// ====================== IfExpr ======================
+
+IfExpr::IfExpr(Expr* condition, Expr* then_branch, Expr* else_branch)
+    : condition(condition), then_branch(then_branch), else_branch(else_branch) {}
+
+Val* IfExpr::interp() {
+    Val* condVal = condition->interp();
+    BoolVal* boolVal = dynamic_cast<BoolVal*>(condVal);
+    if (!boolVal) {
+        throw std::runtime_error("Condition must be a boolean");
+    }
+    if (boolVal->is_true()) {
+        return then_branch->interp();
+    } else {
+        return else_branch->interp();
+    }
+}
+
+bool IfExpr::has_variable() {
+    return condition->has_variable() || then_branch->has_variable() || else_branch->has_variable();
+}
+
+Expr* IfExpr::subst(const std::string& var, Expr* replacement) {
+    return new IfExpr(condition->subst(var, replacement),
+                      then_branch->subst(var, replacement),
+                      else_branch->subst(var, replacement));
+}
+
+bool IfExpr::equals(const Expr* e) {
+    const IfExpr* ifExpr = dynamic_cast<const IfExpr*>(e);
+    return ifExpr && condition->equals(ifExpr->condition) &&
+           then_branch->equals(ifExpr->then_branch) &&
+           else_branch->equals(ifExpr->else_branch);
+}
+
+void IfExpr::printExp(std::ostream& ot) {
+    ot << "(_if ";
+    condition->printExp(ot);
+    ot << " _then ";
+    then_branch->printExp(ot);
+    ot << " _else ";
+    else_branch->printExp(ot);
+    ot << ")";
+}
+
+void IfExpr::pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) {
+  	(void)prec;
+    (void)last_newline_pos;
+    ot << "_if ";
+    condition->pretty_print(ot, prec_none);
+    ot << "\n_then ";
+    then_branch->pretty_print(ot, prec_none);
+    ot << "\n_else ";
+    else_branch->pretty_print(ot, prec_none);
+}
+
+// ====================== EqExpr ======================
+
+
+EqExpr::EqExpr(Expr* lhs, Expr* rhs) : lhs(lhs), rhs(rhs) {}
+
+Val* EqExpr::interp() {
+    Val* lhsVal = lhs->interp();
+    Val* rhsVal = rhs->interp();
+    return new BoolVal(lhsVal->equals(rhsVal));
+}
+
+bool EqExpr::has_variable() {
+    return lhs->has_variable() || rhs->has_variable();
+}
+
+Expr* EqExpr::subst(const std::string& var, Expr* replacement) {
+    return new EqExpr(lhs->subst(var, replacement), rhs->subst(var, replacement));
+}
+
+bool EqExpr::equals(const Expr* e) {
+    const EqExpr* eqExpr = dynamic_cast<const EqExpr*>(e);
+    return eqExpr && lhs->equals(eqExpr->lhs) && rhs->equals(eqExpr->rhs);
+}
+
+void EqExpr::printExp(std::ostream& ot) {
+    ot << "(";
+    lhs->printExp(ot);
+    ot << "==";
+    rhs->printExp(ot);
+    ot << ")";
+}
+
+void EqExpr::pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) {
+    bool needs_parentheses = (prec >= prec_eq);
+    if (needs_parentheses) ot << "(";
+    lhs->pretty_print_at(ot, prec_eq, last_newline_pos);
+    ot << " == ";
+    rhs->pretty_print_at(ot, prec_none, last_newline_pos);
+    if (needs_parentheses) ot << ")";
+}

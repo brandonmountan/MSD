@@ -24,8 +24,9 @@
  */
 typedef enum {
     prec_none,      ///< No precedence (default).
-    prec_add,       ///< Precedence level for addition.
-    prec_mult       ///< Precedence level for multiplication.
+    prec_eq,        ///< Precedence level for equality (==).
+    prec_add,       ///< Precedence level for addition (+).
+    prec_mult       ///< Precedence level for multiplication (*).
 } precedence_t;
 
 class Val; // Forward declaration of Val class
@@ -235,6 +236,51 @@ public:
     void printExp(std::ostream& ot) override;
     void pretty_print(std::ostream& ot, precedence_t prec) override;
     void pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) override;
+};
+
+class BoolExpr : public Expr {
+public:
+    BoolExpr(bool value);
+    Val* interp() override;
+    bool has_variable() override;
+    Expr* subst(const std::string& var, Expr* replacement) override;
+    bool equals(const Expr* e) override;
+    void printExp(std::ostream& ot) override;
+    void pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) override;
+
+private:
+    bool value;
+};
+
+class IfExpr : public Expr {
+public:
+    IfExpr(Expr* condition, Expr* then_branch, Expr* else_branch);
+    Val* interp() override;
+    bool has_variable() override;
+    Expr* subst(const std::string& var, Expr* replacement) override;
+    bool equals(const Expr* e) override;
+    void printExp(std::ostream& ot) override;
+    void pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) override;
+
+private:
+    Expr* condition;
+    Expr* then_branch;
+    Expr* else_branch;
+};
+
+class EqExpr : public Expr {
+public:
+    EqExpr(Expr* lhs, Expr* rhs);
+    Val* interp() override;
+    bool has_variable() override;
+    Expr* subst(const std::string& var, Expr* replacement) override;
+    bool equals(const Expr* e) override;
+    void printExp(std::ostream& ot) override;
+    void pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) override;
+
+private:
+    Expr* lhs;
+    Expr* rhs;
 };
 
 #endif // EXPR_H
