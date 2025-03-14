@@ -22,6 +22,19 @@ typedef enum {
     do_pretty_print
 } run_mode_t;
 
+/**
+ * @brief Parses command-line arguments and returns the corresponding run mode.
+ *
+ * This function checks the command-line arguments and determines the mode of operation
+ * based on the provided flag. If the arguments are invalid, it prints an error message
+ * and exits the program with a non-zero status code.
+ *
+ * @param argc The number of command-line arguments.
+ * @param argv An array of C-style strings representing the command-line arguments.
+ * @return A run_mode_t value indicating the mode of operation (e.g., do_test, do_interp, etc.).
+ *
+ * @throws std::runtime_error If the number of arguments is incorrect or the flag is invalid.
+ */
 run_mode_t use_arguments(int argc, char **argv);
 
 #endif // CMDLINE_H

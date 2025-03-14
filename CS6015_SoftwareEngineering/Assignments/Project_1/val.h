@@ -82,17 +82,53 @@ class NumVal : public Val {
     int value; // The numeric value
 
 public:
+
     /**
-     * @brief Constructs a numeric value.
+     * @brief Constructs a NumVal object with the given integer value.
      *
-     * @param value The numeric value.
+     * @param value The integer value to store in the NumVal object.
      */
     NumVal(int value);
 
+    /**
+     * @brief Checks if this NumVal is equal to another Val object.
+     *
+     * @param other A pointer to the Val object to compare with.
+     * @return true If the other object is a NumVal and has the same value.
+     * @return false Otherwise.
+     */
     bool equals(Val* other) override; // Compare with another Val
+
+    /**
+     * @brief Converts this NumVal to a NumExpr object.
+     *
+     * @return A pointer to a new NumExpr object representing the same value.
+     */
     Expr* to_expr() override; // Convert NumVal to NumExpr
+
+    /**
+     * @brief Converts this NumVal to a string representation.
+     *
+     * @return A string representation of the integer value.
+     */
     std::string to_string() override; // Convert NumVal to string
+
+    /**
+     * @brief Adds this NumVal to another Val object.
+     *
+     * @param other A pointer to the Val object to add to this NumVal.
+     * @return A pointer to a new NumVal object representing the sum.
+     * @throws std::runtime_error If the other object is not a NumVal.
+     */
     Val* add_to(Val* other) override; // Add NumVal to another Val
+
+    /**
+     * @brief Multiplies this NumVal with another Val object.
+     *
+     * @param other A pointer to the Val object to multiply with this NumVal.
+     * @return A pointer to a new NumVal object representing the product.
+     * @throws std::runtime_error If the other object is not a NumVal.
+     */
     Val* mult_with(Val* other) override; // Multiply NumVal with another Val
 
     /**
@@ -113,10 +149,11 @@ class BoolVal : public Val {
     bool value; // The boolean value
 
 public:
+
     /**
-     * @brief Constructs a boolean value.
+     * @brief Constructs a BoolVal object with the given boolean value.
      *
-     * @param value The boolean value.
+     * @param value The boolean value to store in the BoolVal object.
      */
     BoolVal(bool value);
 
@@ -128,7 +165,7 @@ public:
     bool is_true() override;
 
     /**
-     * @brief Converts this boolean value to a string.
+     * @brief Converts this BoolVal to a string representation.
      *
      * @return "_true" if true, "_false" if false.
      */
@@ -148,18 +185,20 @@ public:
      */
     Val* mult_with(Val* other) override;
 
+
     /**
-     * @brief Checks if this boolean value is equal to another value.
+     * @brief Checks if this BoolVal is equal to another Val object.
      *
-     * @param other The value to compare with.
-     * @return true if the values are equal, false otherwise.
+     * @param other A pointer to the Val object to compare with.
+     * @return true If the other object is a BoolVal and has the same value.
+     * @return false Otherwise.
      */
     bool equals(Val* other) override;
 
     /**
-     * @brief Converts this boolean value to an expression.
+     * @brief Converts this BoolVal to a BoolExpr object.
      *
-     * @return A pointer to a BoolExpr object representing this value.
+     * @return A pointer to a new BoolExpr object representing the same value.
      */
     Expr* to_expr() override;
 };

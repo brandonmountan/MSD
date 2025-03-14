@@ -15,24 +15,115 @@
 #include <istream>
 #include <string>
 
-// Function declarations
-//static void consume(std::istream& in, int expect);
+/**
+ * @brief Consumes a specific character from the input stream.
+ *
+ * @param in The input stream.
+ * @param expect The expected character to consume.
+ * @throws std::runtime_error if the next character does not match the expected character.
+ */
+void consume(std::istream& in, int expect);
+
+/**
+ * @brief Skips whitespace characters in the input stream.
+ *
+ * @param in The input stream.
+ */
 void skip_whitespace(std::istream& in);
+
+/**
+ * @brief Parses a number (integer) from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to a NumExpr object representing the parsed number.
+ * @throws std::runtime_error if the input is invalid (e.g., no digit after '-').
+ */
 Expr* parse_num(std::istream& in);
+
+/**
+ * @brief Parses a variable name from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to a VarExpr object representing the parsed variable.
+ * @throws std::runtime_error if the variable name contains invalid characters (e.g., '_').
+ */
 Expr* parse_var(std::istream& in);
+
+/**
+ * @brief Parses a _let expression from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to a LetExpr object representing the parsed _let expression.
+ * @throws std::runtime_error if the input is invalid.
+ */
 Expr* parse_let(std::istream& in); // Added for parsing _let expressions
+
+/**
+ * @brief Parses a multicand (number, variable, parenthesized expression, _let expression, or boolean value).
+ *
+ * @param in The input stream.
+ * @return A pointer to an Expr object representing the parsed multicand.
+ * @throws std::runtime_error if the input is invalid.
+ */
 Expr* parse_multicand(std::istream& in);
+
+/**
+ * @brief Parses an addend (multicand or multiplication expression).
+ *
+ * @param in The input stream.
+ * @return A pointer to an Expr object representing the parsed addend.
+ */
 Expr* parse_addend(std::istream& in);
+
+/**
+ * @brief Parses an expression (addend or addition expression).
+ *
+ * @param in The input stream.
+ * @return A pointer to an Expr object representing the parsed expression.
+ */
 Expr* parse_expr(std::istream& in);
 
+/**
+ * @brief Parses a boolean value (`_true` or `_false`) from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to a BoolExpr object representing the parsed boolean value.
+ * @throws std::runtime_error if the input is invalid.
+ */
 Expr* parse_bool(std::istream& in);
+
+/**
+ * @brief Parses an equality expression (`==`) from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to an EqExpr object representing the parsed equality expression.
+ * @throws std::runtime_error if the input is invalid.
+ */
 Expr* parse_eq(std::istream& in);
+
+/**
+ * @brief Parses an if expression (`_if..._then..._else`) from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to an IfExpr object representing the parsed if expression.
+ * @throws std::runtime_error if the input is invalid.
+ */
 Expr* parse_if(std::istream& in);
 
-// Main parse function
+/**
+ * @brief Main parse function that parses an expression from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to an Expr object representing the parsed expression.
+ */
 Expr* parse(std::istream& in);
 
-// Wrapper for testing
+/**
+ * @brief Wrapper for testing that parses a string into an expression.
+ *
+ * @param s The input string.
+ * @return A pointer to an Expr object representing the parsed expression.
+ */
 Expr* parse_str(const std::string& s);
 
 #endif // PARSE_HPP

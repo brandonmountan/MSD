@@ -12,19 +12,6 @@
 #include <iostream>
 #include <cstdlib> // For exit()
 
-/**
- * @brief Parses command-line arguments and returns the corresponding run mode.
- *
- * This function checks the command-line arguments and determines the mode of operation
- * based on the provided flag. If the arguments are invalid, it prints an error message
- * and exits the program with a non-zero status code.
- *
- * @param argc The number of command-line arguments.
- * @param argv An array of C-style strings representing the command-line arguments.
- * @return A run_mode_t value indicating the mode of operation (e.g., do_test, do_interp, etc.).
- *
- * @throws std::runtime_error If the number of arguments is incorrect or the flag is invalid.
- */
 run_mode_t use_arguments(int argc, char **argv) {
     // Check if the number of arguments is not equal to 2.
     // The program expects exactly 2 arguments: the program name and a flag.
@@ -41,17 +28,13 @@ run_mode_t use_arguments(int argc, char **argv) {
 
     // Check the value of the flag and return the corresponding run mode.
     if (flag == "--test") {
-        // If the flag is "--test", return do_test to indicate test mode.
-        return do_test;
+        return do_test; // If the flag is "--test", return do_test to indicate test mode.
     } else if (flag == "--interp") {
-        // If the flag is "--interp", return do_interp to indicate interpretation mode.
-        return do_interp;
+        return do_interp; // If the flag is "--interp", return do_interp to indicate interpretation mode.
     } else if (flag == "--print") {
-        // If the flag is "--print", return do_print to indicate print mode.
-        return do_print;
+        return do_print; // If the flag is "--print", return do_print to indicate print mode.
     } else if (flag == "--pretty-print") {
-        // If the flag is "--pretty-print", return do_pretty_print to indicate pretty-print mode.
-        return do_pretty_print;
+        return do_pretty_print; // If the flag is "--pretty-print", return do_pretty_print to indicate pretty-print mode.
     } else {
         // If the flag is not recognized, print an error message to standard error.
         std::cerr << "Invalid flag. Use --test, --interp, --print, or --pretty-print\n";

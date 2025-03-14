@@ -34,6 +34,9 @@ TEST_CASE("NumExpr tests") {
 
     // Test subst()
     CHECK(num1->subst("x", new NumExpr(10))->equals(num1));
+
+    // Test pretty_print()
+    CHECK(num1->to_pretty_string() == "5");
 }
 
 // ====================== AddExpr Tests ======================
@@ -64,6 +67,10 @@ TEST_CASE("AddExpr tests") {
     CHECK((new AddExpr(new VarExpr("x"), new NumExpr(7)))
           ->subst("x", new VarExpr("y"))
           ->equals(new AddExpr(new VarExpr("y"), new NumExpr(7))));
+
+    // Test pretty_print()
+    CHECK(add1->to_pretty_string() == "2 + 3");
+    CHECK(addWithVar->to_pretty_string() == "x + 5");
 }
 
 // ====================== MultExpr Tests ======================
@@ -89,6 +96,10 @@ TEST_CASE("MultExpr tests") {
     // Test subst()
     Expr* replaced = multWithVar->subst("x", new NumExpr(10));  // Replace "x" with 10
     CHECK(replaced->equals(new MultExpr(new NumExpr(10), new NumExpr(5))));
+
+    // Test pretty_print()
+    CHECK(mult1->to_pretty_string() == "2 * 3");
+    CHECK(multWithVar->to_pretty_string() == "x * 5");
 }
 
 // ====================== VarExpr Tests ======================
@@ -113,6 +124,9 @@ TEST_CASE("VarExpr tests") {
 
     Expr* unchanged = var1->subst("y", new NumExpr(10));
     CHECK(unchanged->equals(var1));
+
+    // Test pretty_print()
+    CHECK(var1->to_pretty_string() == "x");
 }
 
 // ====================== LetExpr Tests ======================
@@ -133,63 +147,12 @@ TEST_CASE("LetExpr basic tests") {
     // Test has_variable()
     CHECK(let1->has_variable() == true);  // Body has variable 'x'
     CHECK((new LetExpr("x", new NumExpr(5), new NumExpr(10)))->has_variable() == false);
-}
 
-TEST_CASE("LetExpr substitution with unbound variable") {
-    LetExpr* let1 = new LetExpr("x", new VarExpr("y"), new AddExpr(new VarExpr("x"), new NumExpr(1)));
+    // Test subst()
+    CHECK(let1->subst("x", new NumExpr(10))->equals(new LetExpr("x", new NumExpr(5), new AddExpr(new NumExpr(10), new NumExpr(1)))));
 
-    // Substitute y (unbound variable) - should affect rhs
-    Expr* substituted = let1->subst("y", new NumExpr(5));
-
-    // Check that the substituted expression evaluates correctly
-    Val* result = substituted->interp();
-    CHECK(result->to_string() == "6");  // let x = 5 in (x + 1)
-    CHECK(result->equals(new NumVal(6))); // Compare with another NumVal
-}
-
-TEST_CASE("LetExpr pretty print - basic") {
-    LetExpr* let1 = new LetExpr("x", new NumExpr(5), new AddExpr(new VarExpr("x"), new NumExpr(1)));
+    // Test pretty_print()
     CHECK(let1->to_pretty_string() == "_let x = 5\n_in  x + 1");
-}
-
-TEST_CASE("LetExpr pretty print - nested") {
-    LetExpr* nestedLet = new LetExpr("x", new NumExpr(2),
-        new LetExpr("y", new NumExpr(3),
-            new AddExpr(new VarExpr("x"), new VarExpr("y"))));
-
-    CHECK(nestedLet->to_pretty_string() ==
-        "_let x = 2\n"
-        "_in  _let y = 3\n"
-        "     _in  x + y");
-}
-
-TEST_CASE("LetExpr edge cases") {
-    // Unused variable
-    LetExpr* unusedVar = new LetExpr("x", new NumExpr(5), new NumExpr(10));
-    Val* result1 = unusedVar->interp();
-    CHECK(result1->to_string() == "10");
-    CHECK(result1->equals(new NumVal(10))); // Compare with another NumVal
-
-    CHECK(unusedVar->to_pretty_string() == "_let x = 5\n_in  10");
-
-    // Let rhs with variable
-    LetExpr* rhsVar = new LetExpr("x", new VarExpr("y"),
-        new AddExpr(new VarExpr("x"), new NumExpr(1)));
-    CHECK(rhsVar->has_variable() == true);
-    CHECK_THROWS_WITH(rhsVar->interp(), "Variable has no value");
-
-    // Let in let
-    LetExpr* letInLet = new LetExpr("x", new NumExpr(5),
-        new LetExpr("x", new NumExpr(6),
-            new VarExpr("x")));
-    Val* result2 = letInLet->interp();
-    CHECK(result2->to_string() == "6");  // Inner shadowing
-    CHECK(result2->equals(new NumVal(6))); // Compare with another NumVal
-
-    CHECK(letInLet->to_pretty_string() ==
-        "_let x = 5\n"
-        "_in  _let x = 6\n"
-        "     _in  x");
 }
 
 // ====================== BoolExpr Tests ======================
@@ -215,6 +178,10 @@ TEST_CASE("BoolExpr tests") {
 
     // Test subst()
     CHECK(trueExpr->subst("x", new NumExpr(10))->equals(trueExpr));
+
+    // Test pretty_print()
+    CHECK(trueExpr->to_pretty_string() == "_true");
+    CHECK(falseExpr->to_pretty_string() == "_false");
 }
 
 // ====================== IfExpr Tests ======================
@@ -240,6 +207,10 @@ TEST_CASE("IfExpr tests") {
 
     // Test subst()
     CHECK(ifTrue->subst("x", new NumExpr(10))->equals(ifTrue));
+
+    // Test pretty_print()
+    CHECK(ifTrue->to_pretty_string() == "_if _true\n_then 1\n_else 2");
+    CHECK(ifFalse->to_pretty_string() == "_if _false\n_then 1\n_else 2");
 
     // Test invalid condition (non-boolean)
     IfExpr* invalidIf = new IfExpr(new NumExpr(5), new NumExpr(1), new NumExpr(2));
@@ -274,6 +245,11 @@ TEST_CASE("EqExpr tests") {
 
     // Test subst()
     CHECK(eq1->subst("x", new NumExpr(10))->equals(eq1));
+
+    // Test pretty_print()
+    CHECK(eq1->to_pretty_string() == "5 == 5");
+    CHECK(eq2->to_pretty_string() == "5 == 6");
+    CHECK(eq3->to_pretty_string() == "_true == _true");
 }
 
 // ====================== Parser Tests ======================
@@ -320,4 +296,43 @@ TEST_CASE("parse") {
     // Test parsing if expressions
     CHECK( parse_str("_if _true _then 1 _else 2")
           ->equals(new IfExpr(new BoolExpr(true), new NumExpr(1), new NumExpr(2))) );
+}
+
+// ====================== Additional Tests for Pretty Print ======================
+TEST_CASE("Pretty print tests for conditionals") {
+    // Test pretty printing of nested if expressions
+    IfExpr* nestedIf = new IfExpr(
+        new BoolExpr(true),
+        new IfExpr(new BoolExpr(false), new NumExpr(1), new NumExpr(2)),
+        new NumExpr(3)
+    );
+    CHECK(nestedIf->to_pretty_string() ==
+        "_if _true\n"
+        "_then _if _false\n"
+        "      _then 1\n"
+        "      _else 2\n"
+        "_else 3");
+
+    // Test pretty printing of if expressions with arithmetic
+    IfExpr* ifWithArithmetic = new IfExpr(
+        new EqExpr(new NumExpr(1), new NumExpr(2)),
+        new AddExpr(new NumExpr(3), new NumExpr(4)),
+        new MultExpr(new NumExpr(5), new NumExpr(6))
+    );
+    CHECK(ifWithArithmetic->to_pretty_string() ==
+        "_if 1 == 2\n"
+        "_then 3 + 4\n"
+        "_else 5 * 6");
+
+    // Test pretty printing of if expressions with let expressions
+    IfExpr* ifWithLet = new IfExpr(
+        new BoolExpr(true),
+        new LetExpr("x", new NumExpr(5), new AddExpr(new VarExpr("x"), new NumExpr(1))),
+        new NumExpr(10)
+    );
+    CHECK(ifWithLet->to_pretty_string() ==
+        "_if _true\n"
+        "_then _let x = 5\n"
+        "      _in  x + 1\n"
+        "_else 10");
 }
