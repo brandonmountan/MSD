@@ -79,9 +79,11 @@ public:
  * This class represents a numeric value (integer).
  */
 class NumVal : public Val {
-    int value; // The numeric value
 
 public:
+
+    int value; // The numeric value
+
 
     /**
      * @brief Constructs a NumVal object with the given integer value.

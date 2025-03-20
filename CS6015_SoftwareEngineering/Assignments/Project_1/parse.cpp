@@ -12,6 +12,8 @@
 #include <iostream>
 #include <sstream>
 #include <cctype>
+#include <climits>
+#include <cstdint>
 
 void consume(std::istream& in, int expect) {
     int c = in.get();  // Read the next character from the input stream
@@ -29,38 +31,39 @@ void skip_whitespace(std::istream& in) {
 }
 
 Expr* parse_num(std::istream& in) {
-    int n = 0;          // Initialize the number to 0
-    bool negative = false; // Flag to indicate if the number is negative
+    uint64_t n = 0; // Use uint64_t to handle large numbers
+    bool negative = false;
 
-    // Check if the number is negative
     if (in.peek() == '-') {
-        negative = true; // Set the negative flag
-        consume(in, '-'); // Consume the '-' character
+        negative = true;
+        consume(in, '-');
 
-        // Ensure there is a digit after the '-'
         if (!isdigit(in.peek())) {
-            throw std::runtime_error("invalid input"); // Throw an error if no digit follows
+            throw std::runtime_error("invalid input");
         }
     }
 
-    // Parse the digits of the number
     while (true) {
-        int c = in.peek(); // Peek at the next character
-        if (isdigit(c)) {  // If it's a digit, consume it and add to the number
+        int c = in.peek();
+        if (isdigit(c)) {
             consume(in, c);
-            n = n * 10 + (c - '0'); // Convert the character to a digit and add to the number
+            uint64_t prev = n;
+            n = n * 10 + (c - '0');
+
+            // Check for overflow
+            if (n > static_cast<uint64_t>(INT_MAX)) {
+                throw std::runtime_error("number too large");
+            }
         } else {
-            break; // Exit the loop if a non-digit character is encountered
+            break;
         }
     }
 
-    // Apply the negative sign if necessary
     if (negative) {
-        n = -n;
+        n = -n; // Cast to signed value
     }
 
-    // Return a new NumExpr object representing the parsed number
-    return new NumExpr(n);
+    return new NumExpr(static_cast<int>(n)); // Cast back to int for NumExpr
 }
 
 Expr* parse_var(std::istream& in) {

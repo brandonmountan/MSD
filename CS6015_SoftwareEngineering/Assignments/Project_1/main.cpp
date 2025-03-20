@@ -17,6 +17,7 @@
 #include "cmdline.h"     // Command-line argument handling (e.g., use_arguments)
 #include <iostream>      // Standard input/output (e.g., std::cin, std::cout)
 #include <sstream>       // String stream (e.g., std::stringstream)
+#include "val.h"
 
 // Main function
 int main(int argc, char* argv[]) {
@@ -47,7 +48,7 @@ int main(int argc, char* argv[]) {
             case do_interp: {
                 // If the mode is do_interp, interpret the expression and print the result
                 Val* result = expr->interp();
-                std::cout << result << "\n";
+                std::cout << result->to_string() << "\n";
                 break;
             }
             case do_print: {

@@ -82,10 +82,24 @@ bool AddExpr::equals(const Expr* e) {
 }
 
 Val* AddExpr::interp() {
-    Val* lhsVal = lhs->interp(); // Evaluate the left-hand side
-    Val* rhsVal = rhs->interp(); // Evaluate the right-hand side
-    Val* result = lhsVal->add_to(rhsVal); // Add the two values
-    return result; // Return the result
+    Val* lhsVal = lhs->interp();
+    Val* rhsVal = rhs->interp();
+    NumVal* lhsNum = dynamic_cast<NumVal*>(lhsVal);
+    NumVal* rhsNum = dynamic_cast<NumVal*>(rhsVal);
+
+    if (!lhsNum || !rhsNum) {
+        throw std::runtime_error("Cannot add non-numeric values");
+    }
+
+    // Use uint64_t for intermediate calculations
+    uint64_t result = static_cast<uint64_t>(lhsNum->value) + static_cast<uint64_t>(rhsNum->value);
+
+    // Check for overflow
+    if (result > static_cast<uint64_t>(INT_MAX) || result < static_cast<uint64_t>(INT_MIN)) {
+        throw std::runtime_error("arithmetic overflow");
+    }
+
+    return new NumVal(static_cast<int>(result));
 }
 
 bool AddExpr::has_variable() {
@@ -130,10 +144,24 @@ bool MultExpr::equals(const Expr* e) {
 }
 
 Val* MultExpr::interp() {
-    Val* lhsVal = lhs->interp(); // Evaluate the left-hand side
-    Val* rhsVal = rhs->interp(); // Evaluate the right-hand side
-    Val* result = lhsVal->mult_with(rhsVal); // Multiply the two values
-    return result;
+    Val* lhsVal = lhs->interp();
+    Val* rhsVal = rhs->interp();
+    NumVal* lhsNum = dynamic_cast<NumVal*>(lhsVal);
+    NumVal* rhsNum = dynamic_cast<NumVal*>(rhsVal);
+
+    if (!lhsNum || !rhsNum) {
+        throw std::runtime_error("Cannot multiply non-numeric values");
+    }
+
+    // Use uint64_t for intermediate calculations
+    uint64_t result = static_cast<uint64_t>(lhsNum->value) * static_cast<uint64_t>(rhsNum->value);
+
+    // Check for overflow
+    if (result > static_cast<uint64_t>(INT_MAX) || result < static_cast<uint64_t>(INT_MIN)) {
+        throw std::runtime_error("arithmetic overflow");
+    }
+
+    return new NumVal(static_cast<int>(result));
 }
 
 bool MultExpr::has_variable() {
