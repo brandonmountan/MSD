@@ -1,0 +1,3 @@
+/Users/brandonmountan/MSD/CS6013_CompArch+OS/Assignments/A5_Thread-Safe_Queue/cmake-build-debug/CMakeFiles/A5_Thread_Safe_Queue.dir
+/Users/brandonmountan/MSD/CS6013_CompArch+OS/Assignments/A5_Thread-Safe_Queue/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/brandonmountan/MSD/CS6013_CompArch+OS/Assignments/A5_Thread-Safe_Queue/cmake-build-debug/CMakeFiles/rebuild_cache.dir

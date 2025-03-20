@@ -377,14 +377,14 @@ void IfExpr::pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos
     ot << "\n"; // Print a newline
     last_newline_pos = ot.tellp(); // Update the position of the last newline
 
-    // Calculate the indentation for _then
+    // Calculate the indentation for _in
     for (int i = position1; i < current_pos; i++) {
         ot << " "; // Print spaces for indentation
     }
 
     // Print the _then part with proper indentation
     ot << "_then "; // Print the then keyword
-    then_branch->pretty_print(ot, prec_none); // Pretty-print the then branch
+    then_branch->pretty_print_at(ot, prec_none, last_newline_pos); // Pretty-print the then branch
 
     // Track the position after the newline
     ot << "\n"; // Print a newline
@@ -397,12 +397,13 @@ void IfExpr::pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos
 
     // Print the _else part with proper indentation
     ot << "_else "; // Print the else keyword
-    else_branch->pretty_print(ot, prec_none); // Pretty-print the else branch
+    else_branch->pretty_print_at(ot, prec_none, last_newline_pos); // Pretty-print the else branch
 
     if (needs_parentheses) {
         ot << ")"; // Print closing parenthesis if needed
     }
 }
+
 
 // ====================== EqExpr ======================
 

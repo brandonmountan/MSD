@@ -149,7 +149,13 @@ TEST_CASE("LetExpr basic tests") {
     CHECK((new LetExpr("x", new NumExpr(5), new NumExpr(10)))->has_variable() == false);
 
     // Test subst()
-    CHECK(let1->subst("x", new NumExpr(10))->equals(new LetExpr("x", new NumExpr(5), new AddExpr(new NumExpr(10), new NumExpr(1)))));
+//    CHECK(let1->subst("x", new NumExpr(10))->equals(new LetExpr("x", new NumExpr(5), new AddExpr(new NumExpr(10), new NumExpr(1)))));
+    Expr* result = let1->subst("x", new NumExpr(10));
+
+    // Expected result: _let x = 5 _in x + 1
+    LetExpr* expected = new LetExpr("x", new NumExpr(5), new AddExpr(new VarExpr("x"), new NumExpr(1)));
+
+    CHECK(result->equals(expected)); // This should now pass
 
     // Test pretty_print()
     CHECK(let1->to_pretty_string() == "_let x = 5\n_in  x + 1");
