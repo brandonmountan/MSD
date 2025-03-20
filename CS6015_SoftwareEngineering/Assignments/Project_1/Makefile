@@ -1,6 +1,6 @@
 # Compiler and compiler flags
 CXX = g++                      # Use g++ as the C++ compiler
-CXXFLAGS = -Wall -Wextra -std=c++17 -fsanitize=undefined # Compiler flags:
+CXXFLAGS = -Wall -Wextra -std=c++17 # Compiler flags:
                                # -Wall: Enable all warnings
                                # -Wextra: Enable extra warnings
                                # -std=c++17: Use the C++17 standard
