@@ -91,15 +91,19 @@ Val* AddExpr::interp() {
         throw std::runtime_error("Cannot add non-numeric values");
     }
 
-    // Use uint64_t for intermediate calculations
-    uint64_t result = static_cast<uint64_t>(lhsNum->value) + static_cast<uint64_t>(rhsNum->value);
+    int a = lhsNum->value;
+    int b = rhsNum->value;
 
-    // Check for overflow
-    if (result > static_cast<uint64_t>(INT_MAX) || result < static_cast<uint64_t>(INT_MIN)) {
+    // Check for overflow in addition
+    if (b > 0 && a > INT_MAX - b) {
+        throw std::runtime_error("arithmetic overflow");
+    }
+    if (b < 0 && a < INT_MIN - b) {
         throw std::runtime_error("arithmetic overflow");
     }
 
-    return new NumVal(static_cast<int>(result));
+    int result = a + b;
+    return new NumVal(result);
 }
 
 bool AddExpr::has_variable() {
@@ -153,15 +157,28 @@ Val* MultExpr::interp() {
         throw std::runtime_error("Cannot multiply non-numeric values");
     }
 
-    // Use uint64_t for intermediate calculations
-    uint64_t result = static_cast<uint64_t>(lhsNum->value) * static_cast<uint64_t>(rhsNum->value);
+    int a = lhsNum->value;
+    int b = rhsNum->value;
 
-    // Check for overflow
-    if (result > static_cast<uint64_t>(INT_MAX) || result < static_cast<uint64_t>(INT_MIN)) {
-        throw std::runtime_error("arithmetic overflow");
+    // Check for overflow in multiplication
+    if (a > 0) {
+        if (b > 0 && a > INT_MAX / b) {
+            throw std::runtime_error("arithmetic overflow");
+        }
+        if (b < 0 && b < INT_MIN / a) {
+            throw std::runtime_error("arithmetic overflow");
+        }
+    } else if (a < 0) {
+        if (b > 0 && a < INT_MIN / b) {
+            throw std::runtime_error("arithmetic overflow");
+        }
+        if (b < 0 && b < INT_MAX / a) {
+            throw std::runtime_error("arithmetic overflow");
+        }
     }
 
-    return new NumVal(static_cast<int>(result));
+    int result = a * b;
+    return new NumVal(result);
 }
 
 bool MultExpr::has_variable() {
