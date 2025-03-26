@@ -57,7 +57,7 @@ public:
      * @brief Checks if the expression contains a variable.
      * @return true if the expression contains a variable, false otherwise.
      */
-    virtual bool has_variable() = 0;
+//    virtual bool has_variable() = 0;
 
     /**
      * @brief Substitutes a variable with another expression.
@@ -134,7 +134,7 @@ public:
      * @brief Checks if the number expression contains a variable.
      * @return false (numbers do not contain variables).
      */
-    bool has_variable() override;
+//    bool has_variable();
 
     /**
      * @brief Substitutes a variable with a replacement expression.
@@ -187,7 +187,7 @@ public:
      * @brief Checks if the addition expression contains a variable.
      * @return true if either sub-expression contains a variable, false otherwise.
      */
-    bool has_variable() override;
+//    bool has_variable();
 
     /**
      * @brief Substitutes a variable with a replacement expression in both sub-expressions.
@@ -249,7 +249,7 @@ public:
      * @brief Checks if the multiplication expression contains a variable.
      * @return true if either sub-expression contains a variable, false otherwise.
      */
-    bool has_variable() override;
+//    bool has_variable();
 
     /**
      * @brief Substitutes a variable with a replacement expression in both sub-expressions.
@@ -308,7 +308,7 @@ public:
      * @brief Checks if the variable expression contains a variable.
      * @return true (variables always contain themselves).
      */
-    bool has_variable() override;
+//    bool has_variable();
 
     /**
      * @brief Substitutes the variable with a replacement expression if it matches the variable name.
@@ -357,7 +357,7 @@ public:
      * @brief Checks if the let expression contains a variable.
      * @return true if either the right-hand side or body contains a variable, false otherwise.
      */
-    bool has_variable() override;
+//    bool has_variable();
 
     /**
      * @brief Substitutes a variable with a replacement expression in the let expression.
@@ -424,7 +424,7 @@ public:
      *
      * @return false, as boolean expressions do not contain variables.
      */
-    bool has_variable() override;
+//    bool has_variable();
 
     /**
      * @brief Substitutes a variable with a replacement expression in the boolean expression.
@@ -492,7 +492,7 @@ public:
      *
      * @return true if the condition, then-branch, or else-branch contains a variable, false otherwise.
      */
-    bool has_variable() override;
+//    bool has_variable();
 
     /**
      * @brief Substitutes a variable with a replacement expression in the if-then-else expression.
@@ -569,7 +569,7 @@ public:
      *
      * @return true if the left-hand side or right-hand side contains a variable, false otherwise.
      */
-    bool has_variable() override;
+//    bool has_variable();
 
     /**
      * @brief Substitutes a variable with a replacement expression in the equality expression.
@@ -599,6 +599,146 @@ public:
 private:
     Expr* lhs; // The left-hand side expression.
     Expr* rhs; // The right-hand side expression.
+};
+
+/**
+ * @class FunExpr
+ * @brief Represents a function definition expression.
+ *
+ * This class represents a function definition with a formal argument and body expression.
+ * Functions are first-class values that can be passed as arguments and returned from other functions.
+ */
+class FunExpr : public Expr {
+    std::string formal_arg; ///< The formal argument name of the function
+    Expr* body;             ///< The body expression of the function
+
+public:
+    /**
+     * @brief Constructs a function expression.
+     *
+     * @param formal_arg The name of the formal argument.
+     * @param body The body expression of the function.
+     */
+    FunExpr(const std::string& formal_arg, Expr* body);
+
+    /**
+     * @brief Checks if this function expression is equal to another expression.
+     *
+     * @param e The expression to compare with.
+     * @return true if the expressions are equal (same formal arg and body), false otherwise.
+     */
+    bool equals(const Expr* e) override;
+
+    /**
+     * @brief Interprets the function expression by creating a function value.
+     *
+     * @return A FunVal object representing the function.
+     */
+    Val* interp() override;
+
+    /**
+     * @brief Substitutes a variable with a replacement expression in the function body.
+     *
+     * Does not substitute if the variable matches the formal argument (shadowing).
+     *
+     * @param var The variable to substitute.
+     * @param replacement The expression to replace the variable with.
+     * @return A new FunExpr with the substitution applied to its body.
+     */
+    Expr* subst(const std::string& var, Expr* replacement) override;
+
+    /**
+     * @brief Prints the function expression to an output stream.
+     *
+     * Follows the format: (_fun (formal_arg) body)
+     *
+     * @param ot The output stream to print to.
+     */
+    void printExp(std::ostream& ot) override;
+
+//    void pretty_print(std::ostream& ot, precedence_t prec) override;
+//
+//    /**
+//     * @brief Pretty-prints the function expression with proper indentation.
+//     *
+//     * Formats with newlines and indentation for better readability:
+//     * _fun (formal_arg)
+//     *   body
+//     *
+//     * @param ot The output stream to print to.
+//     * @param prec The precedence level of the parent expression.
+//     * @param last_newline_pos The position of the last newline in the output stream.
+//     */
+//    void pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) override;
+};
+
+/**
+ * @class CallExpr
+ * @brief Represents a function call expression.
+ *
+ * This class represents the application of a function to an argument expression.
+ */
+class CallExpr : public Expr {
+    Expr* to_be_called; ///< The expression evaluating to the function to call
+    Expr* actual_arg;   ///< The argument expression to pass to the function
+
+public:
+    /**
+     * @brief Constructs a function call expression.
+     *
+     * @param to_be_called The expression that evaluates to the function.
+     * @param actual_arg The argument expression to pass to the function.
+     */
+    CallExpr(Expr* to_be_called, Expr* actual_arg);
+
+    /**
+     * @brief Checks if this call expression is equal to another expression.
+     *
+     * @param e The expression to compare with.
+     * @return true if both the function and argument expressions are equal, false otherwise.
+     */
+    bool equals(const Expr* e) override;
+
+    /**
+     * @brief Interprets the function call by evaluating the function and argument,
+     *        then applying the function to the argument value.
+     *
+     * @return The result of applying the function to the argument.
+     * @throws std::runtime_error if to_be_called doesn't evaluate to a function.
+     */
+    Val* interp() override;
+
+    /**
+     * @brief Substitutes a variable with a replacement expression in both
+     *        the function and argument expressions.
+     *
+     * @param var The variable to substitute.
+     * @param replacement The expression to replace the variable with.
+     * @return A new CallExpr with substitutions applied to both subexpressions.
+     */
+    Expr* subst(const std::string& var, Expr* replacement) override;
+
+    /**
+     * @brief Prints the function call expression to an output stream.
+     *
+     * Follows the format: function(arg)
+     *
+     * @param ot The output stream to print to.
+     */
+    void printExp(std::ostream& ot) override;
+
+//    void pretty_print(std::ostream& ot, precedence_t prec) override;
+//
+//    /**
+//     * @brief Pretty-prints the function call expression.
+//     *
+//     * Formats as: function(arg) with proper handling of nested expressions.
+//     *
+//     * @param ot The output stream to print to.
+//     * @param prec The precedence level of the parent expression.
+//     * @param last_newline_pos The position of the last newline in the output stream.
+//     */
+//    void pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) override;
 };
 
 #endif // EXPR_H

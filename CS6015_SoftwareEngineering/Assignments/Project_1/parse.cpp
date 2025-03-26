@@ -9,6 +9,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 #include "parse.hpp"
+#include "expr.h"
+#include "val.h"
 #include <iostream>
 #include <sstream>
 #include <cctype>
@@ -47,7 +49,7 @@ Expr* parse_num(std::istream& in) {
         int c = in.peek();
         if (isdigit(c)) {
             consume(in, c);
-            uint64_t prev = n;
+//            uint64_t prev = n;
             n = n * 10 + (c - '0');
 
             // Check for overflow
@@ -127,94 +129,56 @@ Expr* parse_let(std::istream& in) {
 }
 
 Expr* parse_multicand(std::istream& in) {
-    skip_whitespace(in); // Skip any leading whitespace
-    int c = in.peek();   // Peek at the next character
+    Expr* e = parse_inner(in);
 
-    // Handle numbers (including negative numbers)
-    if ((c == '-') || isdigit(c)) {
-        return parse_num(in);
-    }
-    // Handle parenthesized expressions
-    else if (c == '(') {
-        consume(in, '('); // Consume the '(' character
-        Expr* e = parse_expr(in); // Parse the inner expression
-        skip_whitespace(in); // Skip any trailing whitespace
-        consume(in, ')'); // Consume the ')' character
-        return e;
-    }
-    // Handle variables
-    else if (isalpha(c)) {
-        return parse_var(in);
-    }
-    // Handle boolean values and if expressions
-    else if (c == '_') {
-        consume(in, '_'); // Consume the '_'
-        if (in.peek() == 't') {
-            // Parse _true
-            consume(in, 't');
-            consume(in, 'r');
-            consume(in, 'u');
-            consume(in, 'e');
-            return new BoolExpr(true);
-        } else if (in.peek() == 'f') {
-            // Parse _false
-            consume(in, 'f');
-            consume(in, 'a');
-            consume(in, 'l');
-            consume(in, 's');
-            consume(in, 'e');
-            return new BoolExpr(false);
-        } else if (in.peek() == 'i') {
-            // Parse _if
-            consume(in, 'i');
-            consume(in, 'f');
-            return parse_if(in);
-        } else {
-            throw std::runtime_error("bad input"); // Invalid input
+    while (true) {
+        skip_whitespace(in);
+        int c = in.peek();
+        if (c == '(') {
+            consume(in, '(');
+            Expr* actual_arg = parse_expr(in);
+            skip_whitespace(in);
+            consume(in, ')');
+            e = new CallExpr(e, actual_arg);
+        }
+        else {
+            break;
         }
     }
-    // Handle invalid input
-    else {
-        throw std::runtime_error("bad input");
-    }
+
+    return e;
 }
 
 Expr* parse_addend(std::istream& in) {
-    Expr* lhs = parse_multicand(in); // Parse the left-hand side of the multiplication
-    skip_whitespace(in); // Skip any whitespace
-    int c = in.peek();   // Peek at the next character
+    Expr* lhs = parse_multicand(in);
+    skip_whitespace(in);
 
-    // Handle multiplication
-    if (c == '*') {
-        consume(in, '*'); // Consume the '*' character
-        Expr* rhs = parse_addend(in); // Parse the right-hand side of the multiplication
-        return new MultExpr(lhs, rhs); // Return a new MultExpr object
+    if (in.peek() == '*') {
+        consume(in, '*');
+        Expr* rhs = parse_addend(in);
+        return new MultExpr(lhs, rhs);
     }
 
-    // If no multiplication, return the left-hand side
     return lhs;
 }
 
 Expr* parse_expr(std::istream& in) {
-    Expr* lhs = parse_addend(in); // Parse the left-hand side of the addition
-    skip_whitespace(in); // Skip any whitespace
-    int c = in.peek();   // Peek at the next character
+    Expr* lhs = parse_addend(in);
+    skip_whitespace(in);
 
-    // Handle addition
+    int c = in.peek();
     if (c == '+') {
-        consume(in, '+'); // Consume the '+' character
-        Expr* rhs = parse_expr(in); // Parse the right-hand side of the addition
-        return new AddExpr(lhs, rhs); // Return a new AddExpr object
+        consume(in, '+');
+        Expr* rhs = parse_expr(in);
+        return new AddExpr(lhs, rhs);
     }
-    // Handle equality
-    else if (c == '=') {
-        consume(in, '='); // Consume the first '='
-        consume(in, '='); // Consume the second '='
-        Expr* rhs = parse_expr(in); // Parse the right-hand side of the equality
-        return new EqExpr(lhs, rhs); // Return a new EqExpr object
+    else if (c == '=' && in.peek() == '=') {
+        consume(in, '=');
+        consume(in, '=');
+        Expr* rhs = parse_expr(in);
+        return new EqExpr(lhs, rhs);
     }
 
-    // If no addition or equality, return the left-hand side
     return lhs;
 }
 
@@ -291,4 +255,100 @@ Expr* parse(std::istream& in) {
 Expr* parse_str(const std::string& s) {
     std::stringstream ss(s); // Create a string stream from the input string
     return parse(ss); // Parse the expression from the string stream
+}
+
+Expr* parse_fun(std::istream& in) {
+    skip_whitespace(in);
+    consume(in, '_');
+    consume(in, 'f');
+    consume(in, 'u');
+    consume(in, 'n');
+    skip_whitespace(in);
+
+    // Parse formal argument
+    consume(in, '(');
+    skip_whitespace(in);
+
+    std::string formal_arg;
+    while (isalpha(in.peek())) {
+        formal_arg += in.get();
+    }
+    skip_whitespace(in);
+
+    consume(in, ')');
+    skip_whitespace(in);
+
+    // Parse function body
+    Expr* body = parse_expr(in);
+
+    return new FunExpr(formal_arg, body);
+}
+
+Expr* parse_inner(std::istream& in) {
+    skip_whitespace(in);
+    int c = in.peek();
+
+    if ((c == '-') || isdigit(c)) {
+        return parse_num(in);
+    }
+    else if (c == '(') {
+        consume(in, '(');
+        Expr* e = parse_expr(in);
+        skip_whitespace(in);
+        consume(in, ')');
+        return e;
+    }
+    else if (isalpha(c)) {
+        return parse_var(in);
+    }
+    else if (c == '_') {
+        consume(in, '_');
+        if (in.peek() == 'f') {
+            // Could be _fun or _false
+            consume(in, 'f');
+            if (in.peek() == 'u') {
+                consume(in, 'u');
+                consume(in, 'n');
+                return parse_fun(in);
+            }
+            else if (in.peek() == 'a') {
+                // Handle _false
+                consume(in, 'a');
+                consume(in, 'l');
+                consume(in, 's');
+                consume(in, 'e');
+                return new BoolExpr(false);
+            }
+            else {
+                throw std::runtime_error("bad input");
+            }
+        }
+        else if (in.peek() == 't') {
+            // Handle _true
+            consume(in, 't');
+            consume(in, 'r');
+            consume(in, 'u');
+            consume(in, 'e');
+            return new BoolExpr(true);
+        }
+        else if (in.peek() == 'i') {
+            // Handle _if
+            consume(in, 'i');
+            consume(in, 'f');
+            return parse_if(in);
+        }
+        else if (in.peek() == 'l') {
+            // Handle _let
+            consume(in, 'l');
+            consume(in, 'e');
+            consume(in, 't');
+            return parse_let(in);
+        }
+        else {
+            throw std::runtime_error("bad input");
+        }
+    }
+    else {
+        throw std::runtime_error("bad input");
+    }
 }

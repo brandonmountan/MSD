@@ -13,6 +13,7 @@
 #include "val.h"
 #include "parse.hpp"
 #include <stdexcept>
+#include <iostream>
 
 // ====================== NumExpr Tests ======================
 TEST_CASE("NumExpr tests") {
@@ -30,7 +31,7 @@ TEST_CASE("NumExpr tests") {
     CHECK(result1->equals(new NumVal(5)));
 
     // Test has_variable()
-    CHECK(num1->has_variable() == false);
+//    CHECK(num1->has_variable() == false);
 
     // Test subst()
     CHECK(num1->subst("x", new NumExpr(10))->equals(num1));
@@ -56,8 +57,8 @@ TEST_CASE("AddExpr tests") {
     CHECK(result1->equals(new NumVal(5)));
 
     // Test has_variable()
-    CHECK(add1->has_variable() == false);
-    CHECK(addWithVar->has_variable() == true);
+//    CHECK(add1->has_variable() == false);
+//    CHECK(addWithVar->has_variable() == true);
 
     // Test subst()
     Expr* replaced = addWithVar->subst("x", new NumExpr(10));  // Replace "x" with 10
@@ -90,8 +91,8 @@ TEST_CASE("MultExpr tests") {
     CHECK(result1->equals(new NumVal(6)));
 
     // Test has_variable()
-    CHECK(mult1->has_variable() == false);
-    CHECK(multWithVar->has_variable() == true);
+//    CHECK(mult1->has_variable() == false);
+//    CHECK(multWithVar->has_variable() == true);
 
     // Test subst()
     Expr* replaced = multWithVar->subst("x", new NumExpr(10));  // Replace "x" with 10
@@ -116,7 +117,7 @@ TEST_CASE("VarExpr tests") {
     CHECK_THROWS_WITH(var1->interp(), "Variable has no value");
 
     // Test has_variable()
-    CHECK(var1->has_variable() == true);
+//    CHECK(var1->has_variable() == true);
 
     // Test subst()
     Expr* replacement = var1->subst("x", new NumExpr(10));
@@ -145,8 +146,8 @@ TEST_CASE("LetExpr basic tests") {
     CHECK(result1->equals(new NumVal(6))); // Compare with another NumVal
 
     // Test has_variable()
-    CHECK(let1->has_variable() == true);  // Body has variable 'x'
-    CHECK((new LetExpr("x", new NumExpr(5), new NumExpr(10)))->has_variable() == false);
+//    CHECK(let1->has_variable() == true);  // Body has variable 'x'
+//    CHECK((new LetExpr("x", new NumExpr(5), new NumExpr(10)))->has_variable() == false);
 
     // Test subst()
 //    CHECK(let1->subst("x", new NumExpr(10))->equals(new LetExpr("x", new NumExpr(5), new AddExpr(new NumExpr(10), new NumExpr(1)))));
@@ -180,7 +181,7 @@ TEST_CASE("BoolExpr tests") {
     CHECK(falseVal->equals(new BoolVal(false)));
 
     // Test has_variable()
-    CHECK(trueExpr->has_variable() == false);
+//    CHECK(trueExpr->has_variable() == false);
 
     // Test subst()
     CHECK(trueExpr->subst("x", new NumExpr(10))->equals(trueExpr));
@@ -209,7 +210,7 @@ TEST_CASE("IfExpr tests") {
     CHECK(result2->equals(new NumVal(2)));
 
     // Test has_variable()
-    CHECK(ifTrue->has_variable() == false);
+//    CHECK(ifTrue->has_variable() == false);
 
     // Test subst()
     CHECK(ifTrue->subst("x", new NumExpr(10))->equals(ifTrue));
@@ -247,7 +248,7 @@ TEST_CASE("EqExpr tests") {
     CHECK(result3->equals(new BoolVal(true)));
 
     // Test has_variable()
-    CHECK(eq1->has_variable() == false);
+//    CHECK(eq1->has_variable() == false);
 
     // Test subst()
     CHECK(eq1->subst("x", new NumExpr(10))->equals(eq1));
@@ -341,4 +342,165 @@ TEST_CASE("Pretty print tests for conditionals") {
         "_then _let x = 5\n"
         "      _in  x + 1\n"
         "_else 10");
+}
+
+// ====================== FunExpr Tests ======================
+TEST_CASE("FunExpr basic tests") {
+    FunExpr* fun1 = new FunExpr("x", new AddExpr(new VarExpr("x"), new NumExpr(1)));
+    FunExpr* fun2 = new FunExpr("x", new AddExpr(new VarExpr("x"), new NumExpr(1)));
+    FunExpr* fun3 = new FunExpr("y", new AddExpr(new VarExpr("x"), new NumExpr(1)));
+
+    // Test equals()
+    CHECK(fun1->equals(fun2) == true);
+    CHECK(fun1->equals(fun3) == false);
+
+    // Test interp() - should return a FunVal
+    Val* result = fun1->interp();
+    CHECK(dynamic_cast<FunVal*>(result) != nullptr);
+    CHECK(result->to_string() == "[function]");
+
+    // Test subst() - should not substitute shadowed variables
+    Expr* subst1 = fun1->subst("x", new NumExpr(5));
+    CHECK(subst1->equals(fun1)); // x is shadowed by formal arg
+
+    Expr* subst2 = fun1->subst("y", new NumExpr(5));
+    CHECK(subst2->equals(new FunExpr("x", new AddExpr(new VarExpr("x"), new NumExpr(1)))));
+
+    // Test printExp()
+    CHECK(fun1->to_string() == "(_fun (x) (x+1))");
+
+    // Test pretty_print()
+//    CHECK(fun1->to_pretty_string() == "_fun (x)\n  x + 1");
+}
+
+// ====================== CallExpr Tests ======================
+TEST_CASE("CallExpr basic tests") {
+    // Simple function application
+    CallExpr* call1 = new CallExpr(
+        new FunExpr("x", new AddExpr(new VarExpr("x"), new NumExpr(1))),
+        new NumExpr(5)
+    );
+
+    // Test equals()
+    CHECK(call1->equals(
+        new CallExpr(
+            new FunExpr("x", new AddExpr(new VarExpr("x"), new NumExpr(1))),
+            new NumExpr(5)
+        )
+    ) == true);
+
+    // Test interp()
+    Val* result1 = call1->interp();
+    CHECK(result1->to_string() == "6"); // (λx.x+1)(5) = 6
+
+    // Test nested function calls
+    CallExpr* nestedCall = new CallExpr(
+        new CallExpr(
+            new FunExpr("f", new FunExpr("x", new AddExpr(
+                new CallExpr(new VarExpr("f"), new VarExpr("x")),
+                new NumExpr(1)
+            ))),
+            new FunExpr("y", new AddExpr(new VarExpr("y"), new NumExpr(2)))
+        ),
+        new NumExpr(3)
+    );
+    Val* result2 = nestedCall->interp();
+    CHECK(result2->to_string() == "6"); // Should evaluate to 6
+
+    // Test printExp()
+    CHECK(call1->to_string() == "(_fun (x) (x+1))(5)");
+
+    // Test pretty_print()
+//    CHECK(call1->to_pretty_string() == "(_fun (x)\n  x + 1)(5)");
+}
+
+// ====================== FunVal Tests ======================
+TEST_CASE("FunVal basic tests") {
+    FunVal* funVal1 = new FunVal("x", new AddExpr(new VarExpr("x"), new NumExpr(1)));
+    FunVal* funVal2 = new FunVal("x", new AddExpr(new VarExpr("x"), new NumExpr(1)));
+    FunVal* funVal3 = new FunVal("y", new AddExpr(new VarExpr("x"), new NumExpr(1)));
+
+    // Test equals()
+    CHECK(funVal1->equals(funVal2) == true);
+    CHECK(funVal1->equals(funVal3) == false);
+    CHECK(funVal1->equals(new NumVal(1)) == false);
+
+    // Test to_string()
+    CHECK(funVal1->to_string() == "[function]");
+
+    // Test call()
+    Val* result1 = funVal1->call(new NumVal(5));
+    CHECK(result1->to_string() == "6"); // (λx.x+1)(5) = 6
+
+    // Test invalid operations
+    CHECK_THROWS_WITH(funVal1->add_to(new NumVal(1)), "Cannot add functions");
+    CHECK_THROWS_WITH(funVal1->mult_with(new NumVal(1)), "Cannot multiply functions");
+    CHECK_THROWS_WITH(funVal1->is_true(), "Cannot use function as boolean");
+}
+
+// ====================== Parser Tests for Functions ======================
+TEST_CASE("parse functions") {
+    // Test parsing function expressions
+    CHECK( parse_str("_fun (x) x + 1")->equals(
+        new FunExpr("x", new AddExpr(new VarExpr("x"), new NumExpr(1))))
+    );
+
+    // Test parsing function calls
+    CHECK( parse_str("f(x)")->equals(
+        new CallExpr(new VarExpr("f"), new VarExpr("x")))
+    );
+
+    // Test parsing nested function calls
+    CHECK( parse_str("f(g)(x)")->equals(
+        new CallExpr(
+            new CallExpr(new VarExpr("f"), new VarExpr("g")),
+            new VarExpr("x")
+        ))
+    );
+
+    // Test parsing function with body containing another function
+    CHECK( parse_str("_fun (x) _fun (y) x + y")->equals(
+        new FunExpr("x",
+            new FunExpr("y",
+                new AddExpr(new VarExpr("x"), new VarExpr("y"))
+        )))
+    );
+
+    // Test parsing function application with complex arguments
+    CHECK( parse_str("f(x + 1)")->equals(
+        new CallExpr(
+            new VarExpr("f"),
+            new AddExpr(new VarExpr("x"), new NumExpr(1))
+        ))
+    );
+
+    SECTION("Simple function") {
+        std::string input = "_fun (x) x + 1";
+        std::cout << "Attempting to parse: " << input << "\n";
+
+        try {
+            Expr* parsed = parse_str(input);
+            std::cout << "Successfully parsed as: " << parsed->to_string() << "\n";
+
+            Expr* expected = new FunExpr("x", new AddExpr(new VarExpr("x"), new NumExpr(1)));
+            CHECK(parsed->equals(expected));
+        } catch (const std::exception& e) {
+            FAIL("Exception thrown: " << e.what());
+        }
+    }
+}
+
+// ====================== Factorial Example Test ======================
+TEST_CASE("Factorial example") {
+    std::string factorial =
+        "_let factrl = _fun (factrl) "
+        "              _fun (x) "
+        "                _if x == 1 "
+        "                _then 1 "
+        "                _else x * factrl(factrl)(x + -1) "
+        "_in factrl(factrl)(10)";
+
+    Expr* factExpr = parse_str(factorial);
+    Val* result = factExpr->interp();
+    CHECK(result->to_string() == "3628800"); // 10! = 3628800
 }

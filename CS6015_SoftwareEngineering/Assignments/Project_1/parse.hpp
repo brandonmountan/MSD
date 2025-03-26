@@ -126,4 +126,22 @@ Expr* parse(std::istream& in);
  */
 Expr* parse_str(const std::string& s);
 
+/**
+ * @brief Parses a function expression (_fun (x) body) from the input stream.
+ *
+ * @param in The input stream.
+ * @return A pointer to a FunExpr object representing the parsed function.
+ * @throws std::runtime_error if the input is invalid.
+ */
+Expr* parse_fun(std::istream& in);
+
+/**
+ * @brief Parses an inner expression (base case for multicand parsing).
+ *
+ * @param in The input stream.
+ * @return A pointer to an Expr object representing the parsed inner expression.
+ * @throws std::runtime_error if the input is invalid.
+ */
+Expr* parse_inner(std::istream& in);
+
 #endif // PARSE_HPP

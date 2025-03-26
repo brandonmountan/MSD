@@ -70,6 +70,9 @@ public:
      * @throws std::runtime_error if this value is not a boolean.
      */
     virtual bool is_true() = 0;
+
+    virtual Val* call(Val* actual_arg) = 0;
+
 };
 
 /**
@@ -139,6 +142,8 @@ public:
      * @throws std::runtime_error Always throws an exception.
      */
     bool is_true() override;
+
+    Val* call(Val* actual_arg) override;
 };
 
 /**
@@ -203,6 +208,93 @@ public:
      * @return A pointer to a new BoolExpr object representing the same value.
      */
     Expr* to_expr() override;
+
+    Val* call(Val* actual_arg) override;
+};
+
+/**
+ * @class FunVal
+ * @brief Represents a function value in the interpreter.
+ *
+ * This class encapsulates a function as a value that can be stored in variables,
+ * passed as arguments, and returned from other functions. It maintains the
+ * function's formal argument and body expression for later application.
+ */
+class FunVal : public Val {
+    std::string formal_arg; ///< The name of the function's formal parameter
+    Expr* body;            ///< The function's body expression (unevaluated)
+
+public:
+    /**
+     * @brief Constructs a function value.
+     *
+     * @param formal_arg The name of the formal parameter for this function.
+     * @param body The expression representing the function body.
+     */
+    FunVal(const std::string& formal_arg, Expr* body);
+
+    /**
+     * @brief Checks if this function value equals another value.
+     *
+     * Two function values are considered equal if they have the same formal
+     * argument name and their bodies are structurally equal.
+     *
+     * @param other The value to compare with this function value.
+     * @return true if the values represent the same function, false otherwise.
+     */
+    bool equals(Val* other) override;
+
+    /**
+     * @brief Converts this function value back to an expression.
+     *
+     * @return A new FunExpr representing this function value.
+     */
+    Expr* to_expr() override;
+
+    /**
+     * @brief Returns a string representation of the function value.
+     *
+     * Note: Since functions don't have a literal syntax, this returns a
+     * generic indicator rather than reconstructing the original syntax.
+     *
+     * @return The string "[function]".
+     */
+    std::string to_string() override;
+
+    /**
+     * @brief Throws an error since functions cannot be added.
+     *
+     * @param other The value to attempt to add (ignored).
+     * @throws std::runtime_error Always throws, as function addition is undefined.
+     */
+    Val* add_to(Val* other) override;
+
+    /**
+     * @brief Throws an error since functions cannot be multiplied.
+     *
+     * @param other The value to attempt to multiply with (ignored).
+     * @throws std::runtime_error Always throws, as function multiplication is undefined.
+     */
+    Val* mult_with(Val* other) override;
+
+    /**
+     * @brief Throws an error since functions cannot be used as booleans.
+     *
+     * @throws std::runtime_error Always throws, as functions are not booleans.
+     */
+    bool is_true() override;
+
+    /**
+     * @brief Applies the function to an argument value.
+     *
+     * Implements function calling by:
+     * 1. Substituting the formal argument in the body with the actual argument
+     * 2. Evaluating the resulting expression
+     *
+     * @param actual_arg The value to apply the function to.
+     * @return The result of evaluating the function body with the argument substituted.
+     */
+    Val* call(Val* actual_arg) override;
 };
 
 #endif // VAL_H
