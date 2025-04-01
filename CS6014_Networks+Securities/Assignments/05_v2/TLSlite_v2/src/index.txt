@@ -1,0 +1,2 @@
+V	260327190511Z		1000	unknown	/C=US/ST=Utah/O=U of U/OU=MSD/CN=server
+V	260327190535Z		1001	unknown	/C=US/ST=Utah/O=U of U/OU=MSD/CN=client

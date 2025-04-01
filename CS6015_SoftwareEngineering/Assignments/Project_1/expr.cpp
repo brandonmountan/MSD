@@ -55,10 +55,6 @@ bool NumExpr::equals(const Expr* e) {
     return numExpr && this->value == numExpr->value; // Compare values
 }
 
-//bool NumExpr::has_variable() {
-//    return false;
-//}
-
 Expr* NumExpr::subst(const std::string& var, Expr* replacement) {
     (void)var; // Mark as unused
     (void)replacement; // Mark as unused
@@ -106,10 +102,6 @@ Val* AddExpr::interp() {
     int result = a + b;
     return new NumVal(result);
 }
-
-//bool AddExpr::has_variable() {
-//    return lhs->has_variable() || rhs->has_variable(); // Check both sub-expressions
-//}
 
 Expr* AddExpr::subst(const std::string& var, Expr* replacement) {
     return new AddExpr(lhs->subst(var, replacement), rhs->subst(var, replacement));
@@ -182,10 +174,6 @@ Val* MultExpr::interp() {
     return new NumVal(result);
 }
 
-//bool MultExpr::has_variable() {
-//    return lhs->has_variable() || rhs->has_variable(); // Check both sub-expressions
-//}
-
 Expr* MultExpr::subst(const std::string& var, Expr* replacement) {
     return new MultExpr(lhs->subst(var, replacement), rhs->subst(var, replacement));
 }
@@ -226,10 +214,6 @@ Val* VarExpr::interp() {
     throw std::runtime_error("Variable has no value");
 }
 
-//bool VarExpr::has_variable() {
-//    return true;
-//}
-
 Expr* VarExpr::subst(const std::string& var, Expr* replacement) {
     if (this->name == var) {
         return replacement; // Substitute if the variable matches
@@ -262,10 +246,6 @@ Val* LetExpr::interp() {
     Expr* substitutedBody = body->subst(var, rhsValue->to_expr()); // Substitute the variable
     return substitutedBody->interp(); // Interpret the substituted body
 }
-
-//bool LetExpr::has_variable() {
-//    return rhs->has_variable() || body->has_variable(); // Check both sub-expressions
-//}
 
 Expr* LetExpr::subst(const std::string& var, Expr* replacement) {
     if (this->var == var) {
@@ -335,10 +315,6 @@ Val* BoolExpr::interp() {
     return new BoolVal(value);
 }
 
-//bool BoolExpr::has_variable() {
-//    return false;
-//}
-
 Expr* BoolExpr::subst(const std::string& var, Expr* replacement) {
   	(void)var;
     (void)replacement;
@@ -380,10 +356,6 @@ Val* IfExpr::interp() {
         return else_branch->interp();
     }
 }
-
-//bool IfExpr::has_variable() {
-//    return condition->has_variable() || then_branch->has_variable() || else_branch->has_variable();
-//}
 
 Expr* IfExpr::subst(const std::string& var, Expr* replacement) {
     return new IfExpr(condition->subst(var, replacement),
@@ -467,10 +439,6 @@ Val* EqExpr::interp() {
     return new BoolVal(lhsVal->equals(rhsVal));
 }
 
-//bool EqExpr::has_variable() {
-//    return lhs->has_variable() || rhs->has_variable();
-//}
-
 Expr* EqExpr::subst(const std::string& var, Expr* replacement) {
     return new EqExpr(lhs->subst(var, replacement), rhs->subst(var, replacement));
 }
@@ -519,48 +487,6 @@ void FunExpr::printExp(std::ostream& ot) {
     ot << ")";
 }
 
-//void FunExpr::pretty_print(std::ostream& ot, precedence_t prec) {
-//    std::streampos last_newline_pos = ot.tellp();  // Get current position
-//    pretty_print_at(ot, prec, last_newline_pos);   // Delegate to pretty_print_at
-//}
-//
-//void FunExpr::pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) {
-//    bool needs_parentheses = (prec != prec_none);
-//    if (needs_parentheses) ot << "(";
-//
-//    // Save the starting position of this function
-//    std::streampos function_start = ot.tellp();
-//
-//    // Print function header
-//    ot << "_fun (" << formal_arg << ")";
-//
-//    // Move to next line
-//    ot << "\n";
-//    std::streampos after_newline = ot.tellp();
-//
-//    // Calculate indentation:
-//    // For top-level functions: 2 spaces
-//    // For nested functions: parent's indentation + 2 spaces
-//    int indent = 2; // Default minimum indentation
-//    if (function_start > last_newline_pos) {
-//        // If nested, add to parent's indentation
-//        indent = static_cast<int>(function_start - last_newline_pos) + 2;
-//    }
-//
-//    // Print indentation spaces
-//    for (int i = 0; i < indent; i++) {
-//        ot << " ";
-//    }
-//
-//    // Update last_newline_pos for the body
-//    last_newline_pos = after_newline;
-//
-//    // Print body with proper indentation
-//    body->pretty_print_at(ot, prec_none, last_newline_pos);
-//
-//    if (needs_parentheses) ot << ")";
-//}
-
 // ====================== CallExpr ======================
 
 CallExpr::CallExpr(Expr* to_be_called, Expr* actual_arg)
@@ -589,19 +515,3 @@ void CallExpr::printExp(std::ostream& ot) {
     actual_arg->printExp(ot);
     ot << ")";
 }
-
-//void CallExpr::pretty_print(std::ostream& ot, precedence_t prec) {
-//    std::streampos last_newline_pos = ot.tellp();
-//    pretty_print_at(ot, prec, last_newline_pos);
-//}
-//
-//void CallExpr::pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) {
-//    (void)prec;
-//    // Print the function being called
-//    to_be_called->pretty_print_at(ot, prec_mult, last_newline_pos); // prec_mult gives higher precedence
-//
-//    // Print the argument in parentheses
-//    ot << "(";
-//    actual_arg->pretty_print_at(ot, prec_none, last_newline_pos);
-//    ot << ")";
-//}

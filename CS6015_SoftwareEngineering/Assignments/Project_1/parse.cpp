@@ -39,7 +39,6 @@ Expr* parse_num(std::istream& in) {
     if (in.peek() == '-') {
         negative = true;
         consume(in, '-');
-
         if (!isdigit(in.peek())) {
             throw std::runtime_error("invalid input");
         }
@@ -253,16 +252,11 @@ Expr* parse(std::istream& in) {
 }
 
 Expr* parse_str(const std::string& s) {
-    std::stringstream ss(s); // Create a string stream from the input string
-    return parse(ss); // Parse the expression from the string stream
+    std::stringstream ss(s);
+    return parse_expr(ss);
 }
 
 Expr* parse_fun(std::istream& in) {
-    skip_whitespace(in);
-    consume(in, '_');
-    consume(in, 'f');
-    consume(in, 'u');
-    consume(in, 'n');
     skip_whitespace(in);
 
     // Parse formal argument
@@ -273,8 +267,8 @@ Expr* parse_fun(std::istream& in) {
     while (isalpha(in.peek())) {
         formal_arg += in.get();
     }
-    skip_whitespace(in);
 
+    skip_whitespace(in);
     consume(in, ')');
     skip_whitespace(in);
 
@@ -287,6 +281,13 @@ Expr* parse_fun(std::istream& in) {
 Expr* parse_inner(std::istream& in) {
     skip_whitespace(in);
     int c = in.peek();
+
+    // Handle newlines in pretty-printed input
+    while (c == '\n') {
+        consume(in, '\n');
+        skip_whitespace(in);
+        c = in.peek();
+    }
 
     if ((c == '-') || isdigit(c)) {
         return parse_num(in);
@@ -309,6 +310,7 @@ Expr* parse_inner(std::istream& in) {
             if (in.peek() == 'u') {
                 consume(in, 'u');
                 consume(in, 'n');
+                skip_whitespace(in);
                 return parse_fun(in);
             }
             else if (in.peek() == 'a') {
@@ -317,6 +319,7 @@ Expr* parse_inner(std::istream& in) {
                 consume(in, 'l');
                 consume(in, 's');
                 consume(in, 'e');
+                skip_whitespace(in);
                 return new BoolExpr(false);
             }
             else {
@@ -329,6 +332,7 @@ Expr* parse_inner(std::istream& in) {
             consume(in, 'r');
             consume(in, 'u');
             consume(in, 'e');
+            skip_whitespace(in);
             return new BoolExpr(true);
         }
         else if (in.peek() == 'i') {
@@ -342,6 +346,7 @@ Expr* parse_inner(std::istream& in) {
             consume(in, 'l');
             consume(in, 'e');
             consume(in, 't');
+            skip_whitespace(in);
             return parse_let(in);
         }
         else {

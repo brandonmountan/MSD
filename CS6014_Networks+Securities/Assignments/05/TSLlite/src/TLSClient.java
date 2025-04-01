@@ -1,48 +1,56 @@
-import java.io.*;
-import java.net.*;
-import java.security.*;
-import java.security.cert.Certificate;
+import java.io.*;          // For input/output operations
+import java.net.*;         // For network connections
+import java.security.*;    // For security functions
+import java.security.cert.Certificate;  // For handling digital certificates
 
 public class TLSClient {
-    public static void main(String[] args) {
-        try {
-            // Load client's certificate and private key
-            Certificate clientCert = CryptoUtils.loadCertificate("CASignedClientCertificate.pem");
-            PrivateKey clientPrivateKey = CryptoUtils.loadPrivateKey("clientPrivateKey.der");
+    public static void main(String[] args) throws Exception {
+        // Check if user provided all required arguments
+        if (args.length != 4) {
+            System.out.println("Usage: TLSClient <host> <port> <clientCertFile> <clientPrivateKeyFile>");
+            return;  // Exit if arguments are missing
+        }
 
-            // Load CA's certificate
-            Certificate caCert = CryptoUtils.loadCertificate("CAcertificate.pem");
+        // Store command line arguments in easy-to-understand variables
+        String host = args[0];                 // Server address (e.g., "example.com")
+        int port = Integer.parseInt(args[1]);  // Server port number (e.g., 443)
+        String clientCertFile = args[2];       // Client's certificate file
+        String clientPrivateKeyFile = args[3]; // Client's private key file
 
-            // Connect to server
-            Socket serverSocket = new Socket("localhost", 12345);
-            System.out.println("Connected to server!");
+        // Load the Certificate Authority (CA) certificate that we trust
+        Certificate caCert = CryptoUtils.loadCertificate("CAcertificate.pem");
 
-            // Perform handshake
-            HandshakeHandler handshake = new HandshakeHandler(serverSocket, clientCert, clientPrivateKey, caCert);
-            handshake.performClientHandshake();
+        // Load the client's own certificate and private key
+        Certificate clientCert = CryptoUtils.loadCertificate(clientCertFile);
+        PrivateKey clientPrivateKey = CryptoUtils.loadPrivateKey(clientPrivateKeyFile);
 
-            // Set up secure communication
-            SecureCommunication secureComm = new SecureCommunication(
-                    serverSocket,
-                    handshake.getSessionKeys().getClientEncryptKey(),
-                    handshake.getSessionKeys().getClientIV()
-            );
+        // Try to connect to the server (auto-closes when done)
+        try (Socket socket = new Socket(host, port)) {
+            System.out.println("Connected to server: " + socket.getInetAddress());
 
-            // Receive messages
-            byte[] message1 = secureComm.receiveMessage();
-            System.out.println("Received from server: " + new String(message1));
+            // Perform the TLS handshake (like introducing ourselves securely)
+            TLSHandshake.HandshakeResult result = TLSHandshake.clientHandshake(
+                    socket, clientCert, clientPrivateKey, caCert);
 
-            byte[] message2 = secureComm.receiveMessage();
-            System.out.println("Received from server: " + new String(message2));
+            // After handshake, create a secure communication channel
+            SecureChannel channel = result.clientChannel;
 
-            // Send response
-            secureComm.sendMessage("Hello from client!".getBytes());
+            // Receive two messages from the server
+            byte[] msg1 = channel.receiveMessage();
+            byte[] msg2 = channel.receiveMessage();
 
-            // Close connection
-            serverSocket.close();
-            System.out.println("Connection closed.");
+            // Print the received messages
+            System.out.println("Received from server:");
+            System.out.println(new String(msg1));  // Convert bytes to text
+            System.out.println(new String(msg2));
+
+            // Send a response back to the server
+            channel.sendMessage("Hello back from client!".getBytes());
+
         } catch (Exception e) {
-            e.printStackTrace();
+            // If anything goes wrong, show the error
+            System.err.println("Error communicating with server: " + e.getMessage());
+            e.printStackTrace();  // Detailed error information
         }
     }
 }

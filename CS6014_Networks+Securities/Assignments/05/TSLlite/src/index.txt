@@ -1,0 +1,4 @@
+V	260326171225Z		1000	unknown	/C=US/ST=UT/O=U of U/OU=MSD/CN=6014
+V	260326172333Z		1001	unknown	/C=US/ST=Utah/O=MSD/OU=Certificate Authority/CN=myserver.local/emailAddress=u6033375@gcloud.utah.edu
+V	260326172554Z		1002	unknown	/C=US/ST=Utah/O=MSD/OU=Client/CN=myclient.local/emailAddress=u6033375@gcloud.utah.edu
+V	260326172857Z		1003	unknown	/C=US/ST=Utah/O=MSD/OU=Server/CN=myserver.local/emailAddress=u6033375@gcloud.utah.edu

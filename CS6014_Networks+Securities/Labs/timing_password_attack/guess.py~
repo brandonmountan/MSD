@@ -1,0 +1,51 @@
+import subprocess
+import re
+import random
+
+def run_check_and_parse(guess):
+    try:
+        # Run the "check" command and capture the output
+        result = subprocess.run(["./check", guess], capture_output=True, text=True, check=True)
+        output = result.stdout
+
+        # Search for the pattern and extract the number
+        matches = re.findall(r"failed in virtual (\d+) ticks", output)
+        
+        if matches:
+            # Convert matches to integers
+            return int(matches[0])
+        else:
+            print(f"Succeeded with {guess}")
+            exit(0)
+
+    except subprocess.CalledProcessError as e:
+        print(f"Command failed with error:\n{e.stderr}")
+        exit(1)
+
+def set_string_char(str, i, char_val):
+    return str[:i] + chr(char_val+97) + str[i + 1:]
+
+best_time = run_check_and_parse("")
+
+# Find the right number of characters
+str = "_"
+while (True):
+    new_time = run_check_and_parse(str)
+    if (new_time > best_time):
+        best_time = new_time
+        break
+    str = str + "_"
+
+print(f"length is {len(str)}")
+    
+# Randomly guess:
+while (True):
+    i = random.randint(0, len(str)-1)
+    j = random.randint(0, 25)
+    str = set_string_char(str, i, j)
+    new_time = run_check_and_parse(str)
+    if (new_time > best_time):
+        best_time = new_time
+        print(f"closer: {str}")
+        
+print(str)

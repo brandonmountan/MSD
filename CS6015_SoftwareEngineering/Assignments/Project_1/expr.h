@@ -54,12 +54,6 @@ public:
     virtual Val* interp() = 0;
 
     /**
-     * @brief Checks if the expression contains a variable.
-     * @return true if the expression contains a variable, false otherwise.
-     */
-//    virtual bool has_variable() = 0;
-
-    /**
      * @brief Substitutes a variable with another expression.
      * @param var The variable to substitute.
      * @param replacement The expression to replace the variable with
@@ -131,12 +125,6 @@ public:
     Val* interp() override;
 
     /**
-     * @brief Checks if the number expression contains a variable.
-     * @return false (numbers do not contain variables).
-     */
-//    bool has_variable();
-
-    /**
      * @brief Substitutes a variable with a replacement expression.
      * @param var The variable to substitute.
      * @param replacement The expression to replace the variable with.
@@ -182,12 +170,6 @@ public:
      * @return A Val* object representing the sum of the left and right sub-expressions.
      */
     Val* interp() override;
-
-    /**
-     * @brief Checks if the addition expression contains a variable.
-     * @return true if either sub-expression contains a variable, false otherwise.
-     */
-//    bool has_variable();
 
     /**
      * @brief Substitutes a variable with a replacement expression in both sub-expressions.
@@ -246,12 +228,6 @@ public:
     Val* interp() override;
 
     /**
-     * @brief Checks if the multiplication expression contains a variable.
-     * @return true if either sub-expression contains a variable, false otherwise.
-     */
-//    bool has_variable();
-
-    /**
      * @brief Substitutes a variable with a replacement expression in both sub-expressions.
      * @param var The variable to substitute.
      * @param replacement The expression to replace the variable with.
@@ -305,12 +281,6 @@ public:
     Val* interp() override;
 
     /**
-     * @brief Checks if the variable expression contains a variable.
-     * @return true (variables always contain themselves).
-     */
-//    bool has_variable();
-
-    /**
      * @brief Substitutes the variable with a replacement expression if it matches the variable name.
      * @param var The variable to substitute.
      * @param replacement The expression to replace the variable with.
@@ -352,12 +322,6 @@ public:
      * @return A Val* object representing the result of interpreting the substituted body expression.
      */
     Val* interp() override;
-
-    /**
-     * @brief Checks if the let expression contains a variable.
-     * @return true if either the right-hand side or body contains a variable, false otherwise.
-     */
-//    bool has_variable();
 
     /**
      * @brief Substitutes a variable with a replacement expression in the let expression.
@@ -420,13 +384,6 @@ public:
     Val* interp() override;
 
     /**
-     * @brief Checks if the boolean expression contains a variable.
-     *
-     * @return false, as boolean expressions do not contain variables.
-     */
-//    bool has_variable();
-
-    /**
      * @brief Substitutes a variable with a replacement expression in the boolean expression.
      *
      * @param var The variable to substitute.
@@ -486,13 +443,6 @@ public:
      * @return A Val* object representing the result of evaluating the appropriate branch.
      */
     Val* interp() override;
-
-    /**
-     * @brief Checks if the if-then-else expression contains a variable.
-     *
-     * @return true if the condition, then-branch, or else-branch contains a variable, false otherwise.
-     */
-//    bool has_variable();
 
     /**
      * @brief Substitutes a variable with a replacement expression in the if-then-else expression.
@@ -563,13 +513,6 @@ public:
      * @return A Val* object representing the result of comparing the left-hand side and right-hand side.
      */
     Val* interp() override;
-
-    /**
-     * @brief Checks if the equality expression contains a variable.
-     *
-     * @return true if the left-hand side or right-hand side contains a variable, false otherwise.
-     */
-//    bool has_variable();
 
     /**
      * @brief Substitutes a variable with a replacement expression in the equality expression.
@@ -655,21 +598,6 @@ public:
      * @param ot The output stream to print to.
      */
     void printExp(std::ostream& ot) override;
-
-//    void pretty_print(std::ostream& ot, precedence_t prec) override;
-//
-//    /**
-//     * @brief Pretty-prints the function expression with proper indentation.
-//     *
-//     * Formats with newlines and indentation for better readability:
-//     * _fun (formal_arg)
-//     *   body
-//     *
-//     * @param ot The output stream to print to.
-//     * @param prec The precedence level of the parent expression.
-//     * @param last_newline_pos The position of the last newline in the output stream.
-//     */
-//    void pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) override;
 };
 
 /**
@@ -726,19 +654,6 @@ public:
      * @param ot The output stream to print to.
      */
     void printExp(std::ostream& ot) override;
-
-//    void pretty_print(std::ostream& ot, precedence_t prec) override;
-//
-//    /**
-//     * @brief Pretty-prints the function call expression.
-//     *
-//     * Formats as: function(arg) with proper handling of nested expressions.
-//     *
-//     * @param ot The output stream to print to.
-//     * @param prec The precedence level of the parent expression.
-//     * @param last_newline_pos The position of the last newline in the output stream.
-//     */
-//    void pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& last_newline_pos) override;
 };
 
 #endif // EXPR_H
