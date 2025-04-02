@@ -18,6 +18,7 @@
 #include <iostream>      // Standard input/output (e.g., std::cin, std::cout)
 #include <sstream>       // String stream (e.g., std::stringstream)
 #include "val.h"
+#include "pointer.h"
 
 // Main function
 int main(int argc, char* argv[]) {
@@ -41,13 +42,13 @@ int main(int argc, char* argv[]) {
         std::stringstream ss(input);
 
         // Parse the input expression into an Expr object
-        Expr* expr = parse_expr(ss);
+        PTR(Expr) expr = parse_expr(ss);
 
         // Handle the flag based on the run mode
         switch (mode) {
             case do_interp: {
                 // If the mode is do_interp, interpret the expression and print the result
-                Val* result = expr->interp();
+                PTR(Val) result = expr->interp();
                 std::cout << result->to_string() << "\n";
                 break;
             }

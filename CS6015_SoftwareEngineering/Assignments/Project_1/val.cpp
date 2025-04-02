@@ -12,45 +12,46 @@
 #include "expr.h" // Include expr.h for Expr and NumExpr
 #include "parse.hpp"
 #include <stdexcept> // For std::runtime_error
+#include "pointer.h"
 
 // ====================== NumVal Implementation ======================
 
 NumVal::NumVal(int value) : value(value) {}
 
-bool NumVal::equals(Val* other) {
-    NumVal* otherNum = dynamic_cast<NumVal*>(other);
-    return otherNum && this->value == otherNum->value;
+bool NumVal::equals(PTR(Val) other) {
+    PTR(NumVal) otherNum = CAST(NumVal)(other);
+    return otherNum && value == otherNum->value;
 }
 
-Expr* NumVal::to_expr() {
-    return new NumExpr(value); // Convert NumVal to NumExpr
+PTR(Expr) NumVal::to_expr() {
+    return NEW(NumExpr)(value); // Convert NumVal to NumExpr
 }
 
 std::string NumVal::to_string() {
     return std::to_string(value); // Convert NumVal to string
 }
 
-Val* NumVal::add_to(Val* other) {
-    NumVal* otherNum = dynamic_cast<NumVal*>(other);
+PTR(Val) NumVal::add_to(PTR(Val) other) {
+    PTR(NumVal) otherNum = CAST(NumVal)(other);
     if (!otherNum) {
         throw std::runtime_error("Cannot add non-numeric values");
     }
-    return new NumVal(this->value + otherNum->value);
+    return NEW(NumVal)(value + otherNum->value);
 }
 
-Val* NumVal::mult_with(Val* other) {
-    NumVal* otherNum = dynamic_cast<NumVal*>(other);
+PTR(Val) NumVal::mult_with(PTR(Val) other) {
+    PTR(NumVal) otherNum = CAST(NumVal)(other);
     if (!otherNum) {
         throw std::runtime_error("Cannot multiply non-numeric values");
     }
-    return new NumVal(this->value * otherNum->value);
+    return NEW(NumVal)(value * otherNum->value);
 }
 
 bool NumVal::is_true() {
     throw std::runtime_error("Cannot use a numeric value as a boolean");
 }
 
-Val* NumVal::call(Val* actual_arg) {
+PTR(Val) NumVal::call(PTR(Val) actual_arg) {
     (void)actual_arg; // Mark as unused
     throw std::runtime_error("Cannot call a number as a function");
 }
@@ -67,54 +68,54 @@ std::string BoolVal::to_string() {
     return value ? "_true" : "_false";
 }
 
-Val* BoolVal::add_to(Val* other) {
+PTR(Val) BoolVal::add_to(PTR(Val) other) {
     (void)other;
     throw std::runtime_error("Cannot add boolean values");
 }
 
-Val* BoolVal::mult_with(Val* other) {
+PTR(Val) BoolVal::mult_with(PTR(Val) other) {
     (void)other;
     throw std::runtime_error("Cannot multiply boolean values");
 }
 
-bool BoolVal::equals(Val* other) {
-    BoolVal* otherBool = dynamic_cast<BoolVal*>(other);
-    return otherBool && this->value == otherBool->value;
+bool BoolVal::equals(PTR(Val) other) {
+    PTR(BoolVal) otherBool = CAST(BoolVal)(other);
+    return otherBool && value == otherBool->value;
 }
 
-Expr* BoolVal::to_expr() {
-    return new BoolExpr(value); // Convert BoolVal to BoolExpr
+PTR(Expr) BoolVal::to_expr() {
+    return NEW(BoolExpr)(value); // Convert BoolVal to BoolExpr
 }
 
-Val* BoolVal::call(Val* actual_arg) {
+PTR(Val) BoolVal::call(PTR(Val) actual_arg) {
     (void)actual_arg; // Mark as unused
     throw std::runtime_error("Cannot call a boolean as a function");
 }
 
 // ====================== FunVal ======================
 
-FunVal::FunVal(const std::string& formal_arg, Expr* body)
+FunVal::FunVal(const std::string& formal_arg, PTR(Expr) body)
     : formal_arg(formal_arg), body(body) {}
 
-bool FunVal::equals(Val* other) {
-    FunVal* f = dynamic_cast<FunVal*>(other);
+bool FunVal::equals(PTR(Val) other) {
+    PTR(FunVal) f = CAST(FunVal)(other);
     return f && formal_arg == f->formal_arg && body->equals(f->body);
 }
 
-Expr* FunVal::to_expr() {
-    return new FunExpr(formal_arg, body);
+PTR(Expr) FunVal::to_expr() {
+    return NEW(FunExpr)(formal_arg, body);
 }
 
 std::string FunVal::to_string() {
     return "[function]";
 }
 
-Val* FunVal::add_to(Val* other) {
+PTR(Val) FunVal::add_to(PTR(Val) other) {
     (void)other;
     throw std::runtime_error("Cannot add functions");
 }
 
-Val* FunVal::mult_with(Val* other) {
+PTR(Val) FunVal::mult_with(PTR(Val) other) {
     (void)other;
     throw std::runtime_error("Cannot multiply functions");
 }
@@ -123,7 +124,7 @@ bool FunVal::is_true() {
     throw std::runtime_error("Cannot use function as boolean");
 }
 
-Val* FunVal::call(Val* actual_arg) {
-    Expr* substituted_body = body->subst(formal_arg, actual_arg->to_expr());
+PTR(Val) FunVal::call(PTR(Val) actual_arg) {
+    PTR(Expr) substituted_body = body->subst(formal_arg, actual_arg->to_expr());
     return substituted_body->interp();
 }

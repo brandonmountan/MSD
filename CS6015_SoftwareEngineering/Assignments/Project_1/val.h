@@ -13,8 +13,10 @@
 
 #include <string>
 #include <stdexcept> // For std::runtime_error
-
-class Expr; // Forward declaration of Expr class
+#include "pointer.h"
+#include "expr.h"
+#include "val.h"
+#include "parse.hpp"
 
 /**
  * @class Val
@@ -23,22 +25,24 @@ class Expr; // Forward declaration of Expr class
  * This class defines the interface for all value types. It includes pure virtual methods
  * that must be implemented by derived classes.
  */
-class Val {
+CLASS(Val) {
 public:
+    virtual ~Val() = default;
+
     /**
      * @brief Checks if this value is equal to another value.
      *
      * @param other The value to compare with.
      * @return true if the values are equal, false otherwise.
      */
-    virtual bool equals(Val* other) = 0;
+    virtual bool equals(PTR(Val) other) = 0;
 
     /**
      * @brief Converts this value to an expression.
      *
      * @return A pointer to an Expr object representing this value.
      */
-    virtual Expr* to_expr() = 0;
+    virtual PTR(Expr) to_expr() = 0;
 
     /**
      * @brief Converts this value to a string.
@@ -53,7 +57,7 @@ public:
      * @param other The value to add.
      * @return A pointer to a new Val object representing the result.
      */
-    virtual Val* add_to(Val* other) = 0;
+    virtual PTR(Val) add_to(PTR(Val) other) = 0;
 
     /**
      * @brief Multiplies this value with another value.
@@ -61,7 +65,7 @@ public:
      * @param other The value to multiply with.
      * @return A pointer to a new Val object representing the result.
      */
-    virtual Val* mult_with(Val* other) = 0;
+    virtual PTR(Val) mult_with(PTR(Val) other) = 0;
 
     /**
      * @brief Checks if this value represents a boolean true.
@@ -71,7 +75,7 @@ public:
      */
     virtual bool is_true() = 0;
 
-    virtual Val* call(Val* actual_arg) = 0;
+    virtual PTR(Val) call(PTR(Val) actual_arg) = 0;
 
 };
 
@@ -102,14 +106,14 @@ public:
      * @return true If the other object is a NumVal and has the same value.
      * @return false Otherwise.
      */
-    bool equals(Val* other) override; // Compare with another Val
+    bool equals(PTR(Val) other) override; // Compare with another Val
 
     /**
      * @brief Converts this NumVal to a NumExpr object.
      *
      * @return A pointer to a new NumExpr object representing the same value.
      */
-    Expr* to_expr() override; // Convert NumVal to NumExpr
+    PTR(Expr) to_expr() override; // Convert NumVal to NumExpr
 
     /**
      * @brief Converts this NumVal to a string representation.
@@ -125,7 +129,7 @@ public:
      * @return A pointer to a new NumVal object representing the sum.
      * @throws std::runtime_error If the other object is not a NumVal.
      */
-    Val* add_to(Val* other) override; // Add NumVal to another Val
+    PTR(Val) add_to(PTR(Val) other) override; // Add NumVal to another Val
 
     /**
      * @brief Multiplies this NumVal with another Val object.
@@ -134,7 +138,7 @@ public:
      * @return A pointer to a new NumVal object representing the product.
      * @throws std::runtime_error If the other object is not a NumVal.
      */
-    Val* mult_with(Val* other) override; // Multiply NumVal with another Val
+    PTR(Val) mult_with(PTR(Val) other) override; // Multiply NumVal with another Val
 
     /**
      * @brief Throws an exception since numeric values cannot be used as booleans.
@@ -143,7 +147,7 @@ public:
      */
     bool is_true() override;
 
-    Val* call(Val* actual_arg) override;
+    PTR(Val) call(PTR(Val) actual_arg) override;
 };
 
 /**
@@ -183,14 +187,14 @@ public:
      *
      * @throws std::runtime_error Always throws an exception.
      */
-    Val* add_to(Val* other) override;
+    PTR(Val) add_to(PTR(Val) other) override;
 
     /**
      * @brief Throws an exception since boolean values cannot be multiplied.
      *
      * @throws std::runtime_error Always throws an exception.
      */
-    Val* mult_with(Val* other) override;
+    PTR(Val) mult_with(PTR(Val) other) override;
 
 
     /**
@@ -200,16 +204,16 @@ public:
      * @return true If the other object is a BoolVal and has the same value.
      * @return false Otherwise.
      */
-    bool equals(Val* other) override;
+    bool equals(PTR(Val) other) override;
 
     /**
      * @brief Converts this BoolVal to a BoolExpr object.
      *
      * @return A pointer to a new BoolExpr object representing the same value.
      */
-    Expr* to_expr() override;
+    PTR(Expr) to_expr() override;
 
-    Val* call(Val* actual_arg) override;
+    PTR(Val) call(PTR(Val) actual_arg) override;
 };
 
 /**
@@ -222,7 +226,7 @@ public:
  */
 class FunVal : public Val {
     std::string formal_arg; ///< The name of the function's formal parameter
-    Expr* body;            ///< The function's body expression (unevaluated)
+    PTR(Expr) body;            ///< The function's body expression (unevaluated)
 
 public:
     /**
@@ -231,7 +235,7 @@ public:
      * @param formal_arg The name of the formal parameter for this function.
      * @param body The expression representing the function body.
      */
-    FunVal(const std::string& formal_arg, Expr* body);
+    FunVal(const std::string& formal_arg, PTR(Expr) body);
 
     /**
      * @brief Checks if this function value equals another value.
@@ -242,14 +246,14 @@ public:
      * @param other The value to compare with this function value.
      * @return true if the values represent the same function, false otherwise.
      */
-    bool equals(Val* other) override;
+    bool equals(PTR(Val) other) override;
 
     /**
      * @brief Converts this function value back to an expression.
      *
      * @return A new FunExpr representing this function value.
      */
-    Expr* to_expr() override;
+    PTR(Expr) to_expr() override;
 
     /**
      * @brief Returns a string representation of the function value.
@@ -267,7 +271,7 @@ public:
      * @param other The value to attempt to add (ignored).
      * @throws std::runtime_error Always throws, as function addition is undefined.
      */
-    Val* add_to(Val* other) override;
+    PTR(Val) add_to(PTR(Val) other) override;
 
     /**
      * @brief Throws an error since functions cannot be multiplied.
@@ -275,7 +279,7 @@ public:
      * @param other The value to attempt to multiply with (ignored).
      * @throws std::runtime_error Always throws, as function multiplication is undefined.
      */
-    Val* mult_with(Val* other) override;
+    PTR(Val) mult_with(PTR(Val) other) override;
 
     /**
      * @brief Throws an error since functions cannot be used as booleans.
@@ -294,7 +298,7 @@ public:
      * @param actual_arg The value to apply the function to.
      * @return The result of evaluating the function body with the argument substituted.
      */
-    Val* call(Val* actual_arg) override;
+    PTR(Val) call(PTR(Val) actual_arg) override;
 };
 
 #endif // VAL_H

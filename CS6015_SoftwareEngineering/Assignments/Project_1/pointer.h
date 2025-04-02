@@ -7,7 +7,11 @@
 
 #include <memory>
 
-#define USE_PLAIN_POINTERS 1
+// Forward declarations
+class Expr;
+class Val;
+
+#define USE_PLAIN_POINTERS 0
 #if USE_PLAIN_POINTERS
 
 # define NEW(T)    new T

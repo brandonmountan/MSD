@@ -13,6 +13,9 @@
 
 #include <stdexcept>
 #include <string>
+#include "expr.h"
+#include "val.h"
+#include "pointer.h"
 
 typedef enum {
     do_nothing,
