@@ -5,7 +5,8 @@
 //
 // CS 6013
 //
-// Outline for SerialQueue class.  Fill in the missing data, comments, etc.
+// A thread-unsafe (serial) queue implementation using a singly-linked list
+// with head and tail pointers. This is a FIFO (First-In-First-Out) data structure.
 //
 ////////////////////////////////////////////////////////////////////////
 
@@ -16,69 +17,85 @@ template <typename T>
 class SerialQueue {
 
 public:
-   SerialQueue() :
-      head_( new Node(T(), NULL) ), size_( 0 )
-   {
-      tail_ = head_;
-   }
+    // Constructor: Initializes an empty queue with a dummy head node.
+    // The dummy node simplifies edge cases (empty queue checks).
+    SerialQueue() :
+        head_(new Node(T(), NULL)), // Create dummy head with default T value
+        size_(0)                    // Initialize size to 0
+    {
+        tail_ = head_; // Tail points to dummy head initially
+    }
 
-   void enqueue( const T & x ) {
-      // Create a new node with the data
-      Node* newNode = new Node(x, NULL);
+    // Enqueues (adds) an element to the tail of the queue.
+    // @param x: The element to be added (passed by const reference).
+    void enqueue(const T& x) {
+        // 1. Create a new node with the given data and NULL next pointer
+        Node* newNode = new Node(x, NULL);
 
-      // Add it to the tail of the queue
-      tail_->next = newNode;
-      tail_ = newNode;
+        // 2. Link the new node to the current tail's next pointer
+        tail_->next = newNode;
 
-      // Increment size
-      size_++;
-   }
+        // 3. Update tail to point to the new node
+        tail_ = newNode;
 
-   bool dequeue( T * ret ) {
-      // If queue is empty (only dummy head exists)
-      if (head_->next == NULL) {
-         return false;
-      }
+        // 4. Increment the queue size
+        size_++;
+    }
 
-      // Get the first actual node (after dummy head)
-      Node* temp = head_->next;
+    // Dequeues (removes) an element from the head of the queue.
+    // @param ret: Pointer to store the dequeued value.
+    // @return: True if successful, false if queue is empty.
+    bool dequeue(T* ret) {
+        // 1. Check if queue is empty (only dummy head exists)
+        if (head_->next == NULL) {
+            return false; // Nothing to dequeue
+        }
 
-      // Return the data through ret pointer
-      *ret = temp->data;
+        // 2. Get the first actual node (after dummy head)
+        Node* temp = head_->next;
 
-      // Remove the node from the queue
-      head_->next = temp->next;
+        // 3. Copy the data to the return pointer
+        *ret = temp->data;
 
-      // If this was the last node, update tail
-      if (temp == tail_) {
-         tail_ = head_;
-      }
+        // 4. Update head's next pointer to skip the dequeued node
+        head_->next = temp->next;
 
-      // Delete the node and decrement size
-      delete temp;
-      size_--;
+        // 5. Special case: If dequeuing the last node, reset tail to dummy head
+        if (temp == tail_) {
+            tail_ = head_;
+        }
 
-      return true;
-   }
+        // 6. Delete the node and decrement size
+        delete temp;
+        size_--;
 
-   ~SerialQueue() {
-      while( head_ != NULL ) {
-         Node* temp = head_->next;
-         delete head_;
-         head_ = temp;
-      }
-   }
+        return true; // Success
+    }
 
-   int size() const { return size_; }
+    // Destructor: Cleans up all nodes (including dummy head) to prevent memory leaks.
+    ~SerialQueue() {
+        while (head_ != NULL) {
+            Node* temp = head_->next; // Save next node
+            delete head_;             // Delete current node
+            head_ = temp;             // Move to next node
+        }
+    }
+
+    // Returns the current number of elements in the queue.
+    // @return: Size of the queue.
+    int size() const { return size_; }
 
 private:
-   struct Node {
-      T data;
-      Node* next;
-      Node(const T& data, Node* next) : data(data), next(next) {}
-   };
+    // Internal Node structure for linked list implementation.
+    struct Node {
+        T data;       // Stores the element
+        Node* next;   // Pointer to the next node
 
-   Node * head_;
-   Node * tail_;
-   int    size_;
+        // Node constructor
+        Node(const T& data, Node* next) : data(data), next(next) {}
+    };
+
+    Node* head_; // Pointer to dummy head node (always exists)
+    Node* tail_; // Pointer to the last node in the queue
+    int size_;   // Tracks the number of elements (excluding dummy head)
 };

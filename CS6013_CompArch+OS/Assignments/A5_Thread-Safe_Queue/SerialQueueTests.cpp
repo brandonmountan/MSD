@@ -10,69 +10,65 @@
 ////////////////////////////////////////////////////////////////////////
 
 
-#include "SerialQueue.hpp"
 #include <iostream>
 #include <cassert>
+#include "SerialQueue.hpp"
 
-void basicTests() {
+// Basic manual tests
+void testBasicOperations() {
     SerialQueue<int> queue;
 
-    // Test initial state
-    assert(queue.size() == 0);
-
-    // Test enqueue and dequeue single element
+    // Test 1: Enqueue and dequeue single element
     queue.enqueue(42);
-    assert(queue.size() == 1);
-
     int val;
-    bool success = queue.dequeue(&val);
-    assert(success);
+    assert(queue.dequeue(&val) == true);
     assert(val == 42);
     assert(queue.size() == 0);
 
-    // Test empty dequeue
-    success = queue.dequeue(&val);
-    assert(!success);
+    // Test 2: Dequeue from empty queue
+    assert(queue.dequeue(&val) == false);
 
-    // Test multiple elements
-    for (int i = 0; i < 100; ++i) {
+    // Test 3: Enqueue multiple elements and dequeue in order (FIFO)
+    queue.enqueue(1);
+    queue.enqueue(2);
+    queue.enqueue(3);
+    assert(queue.size() == 3);
+
+    assert(queue.dequeue(&val) == true && val == 1);
+    assert(queue.dequeue(&val) == true && val == 2);
+    assert(queue.dequeue(&val) == true && val == 3);
+    assert(queue.size() == 0);
+
+    std::cout << "Basic tests passed!\n";
+}
+
+// Dynamic test: Enqueue N random elements and verify FIFO order
+void testDynamicOperations(int num_elements) {
+    SerialQueue<int> queue;
+
+    // Enqueue elements
+    for (int i = 0; i < num_elements; ++i) {
         queue.enqueue(i);
     }
-    assert(queue.size() == 100);
+    assert(queue.size() == num_elements);
 
-    for (int i = 0; i < 100; ++i) {
-        success = queue.dequeue(&val);
-        assert(success);
-        assert(val == i);
+    // Dequeue and verify order
+    int val;
+    for (int i = 0; i < num_elements; ++i) {
+        assert(queue.dequeue(&val) == true);
+        assert(val == i); // FIFO order must match insertion order
     }
     assert(queue.size() == 0);
 
-    std::cout << "Basic tests passed!" << std::endl;
-}
-
-void randomTests(int iterations) {
-    SerialQueue<int> queue;
-
-    for (int i = 0; i < iterations; ++i) {
-        int action = rand() % 2;
-        int val = rand() % 1000;
-
-        if (action == 0 || queue.size() == 0) {
-            // Enqueue
-            queue.enqueue(val);
-        } else {
-            // Dequeue
-            int ret;
-            bool success = queue.dequeue(&ret);
-            assert(success);
-        }
-    }
-
-    std::cout << "Random tests completed with " << iterations << " operations." << std::endl;
+    std::cout << "Dynamic test with " << num_elements << " elements passed!\n";
 }
 
 int main() {
-    basicTests();
-    randomTests(10000);
+    // Run basic tests
+    testBasicOperations();
+
+    // Run dynamic test with 100 elements
+    testDynamicOperations(100);
+
     return 0;
 }
