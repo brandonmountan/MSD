@@ -44,7 +44,8 @@ void Expr::pretty_print_at(std::ostream& ot, precedence_t prec, std::streampos& 
 
 NumExpr::NumExpr(int value) : value(value) {}
 
-PTR(Val) NumExpr::interp() {
+PTR(Val) NumExpr::interp(PTR(Env) env) {
+    (void)env;
     return NEW(NumVal)(value);
 }
 
@@ -53,11 +54,11 @@ bool NumExpr::equals(const PTR(Expr) e) {
     return numExpr && value == numExpr->value; // Compare values
 }
 
-PTR(Expr) NumExpr::subst(const std::string& var, PTR(Expr) replacement) {
-    (void)var; // Mark as unused
-    (void)replacement; // Mark as unused
-    return THIS; // Numbers do not contain variables, so return the same expression
-}
+//PTR(Expr) NumExpr::subst(const std::string& var, PTR(Expr) replacement) {
+//    (void)var; // Mark as unused
+//    (void)replacement; // Mark as unused
+//    return THIS; // Numbers do not contain variables, so return the same expression
+//}
 
 void NumExpr::printExp(std::ostream& ot) {
     ot << value; // Print the number
@@ -72,9 +73,9 @@ bool AddExpr::equals(const PTR(Expr) e) {
     return addExpr && lhs->equals(addExpr->lhs) && rhs->equals(addExpr->rhs); // Compare sub-expressions
 }
 
-PTR(Val) AddExpr::interp() {
-    PTR(Val) lhsVal = lhs->interp();
-    PTR(Val) rhsVal = rhs->interp();
+PTR(Val) AddExpr::interp(PTR(Env) env) {
+    PTR(Val) lhsVal = lhs->interp(env);
+    PTR(Val) rhsVal = rhs->interp(env);
     PTR(NumVal) lhsNum = CAST(NumVal)(lhsVal);
     PTR(NumVal) rhsNum = CAST(NumVal)(rhsVal);
 
@@ -97,9 +98,9 @@ PTR(Val) AddExpr::interp() {
     return NEW(NumVal)(result);
 }
 
-PTR(Expr) AddExpr::subst(const std::string& var, PTR(Expr) replacement) {
-    return NEW(AddExpr)(lhs->subst(var, replacement), rhs->subst(var, replacement));
-}
+//PTR(Expr) AddExpr::subst(const std::string& var, PTR(Expr) replacement) {
+//    return NEW(AddExpr)(lhs->subst(var, replacement), rhs->subst(var, replacement));
+//}
 
 void AddExpr::printExp(std::ostream& ot) {
     ot << "(";       // Print opening parenthesis
@@ -131,9 +132,9 @@ bool MultExpr::equals(const PTR(Expr) e) {
     return multExpr && lhs->equals(multExpr->lhs) && rhs->equals(multExpr->rhs); // Compare sub-expressions
 }
 
-PTR(Val) MultExpr::interp() {
-    PTR(Val) lhsVal = lhs->interp();
-    PTR(Val) rhsVal = rhs->interp();
+PTR(Val) MultExpr::interp(PTR(Env) env) {
+    PTR(Val) lhsVal = lhs->interp(env);
+    PTR(Val) rhsVal = rhs->interp(env);
     PTR(NumVal) lhsNum = CAST(NumVal)(lhsVal);
     PTR(NumVal) rhsNum = CAST(NumVal)(rhsVal);
 
@@ -165,9 +166,9 @@ PTR(Val) MultExpr::interp() {
     return NEW(NumVal)(result);
 }
 
-PTR(Expr) MultExpr::subst(const std::string& var, PTR(Expr) replacement) {
-    return NEW(MultExpr)(lhs->subst(var, replacement), rhs->subst(var, replacement));
-}
+//PTR(Expr) MultExpr::subst(const std::string& var, PTR(Expr) replacement) {
+//    return NEW(MultExpr)(lhs->subst(var, replacement), rhs->subst(var, replacement));
+//}
 
 void MultExpr::printExp(std::ostream& ot) {
     ot << "(";       // Print opening parenthesis
@@ -199,16 +200,16 @@ bool VarExpr::equals(const PTR(Expr) e) {
     return varExpr && name == varExpr->name; // Compare variable names
 }
 
-PTR(Val) VarExpr::interp() {
-    throw std::runtime_error("Variable has no value");
+PTR(Val) VarExpr::interp(PTR(Env) env) {
+    return env->lookup(name);  // Look up variable in environment
 }
 
-PTR(Expr) VarExpr::subst(const std::string& var, PTR(Expr) replacement) {
-    if (name == var) {
-        return replacement; // Substitute if the variable matches
-    }
-    return THIS; // Otherwise, return the current expression
-}
+//PTR(Expr) VarExpr::subst(const std::string& var, PTR(Expr) replacement) {
+//    if (name == var) {
+//        return replacement; // Substitute if the variable matches
+//    }
+//    return THIS; // Otherwise, return the current expression
+//}
 
 void VarExpr::printExp(std::ostream& ot) {
     ot << name; // Print the variable name
@@ -226,20 +227,26 @@ bool LetExpr::equals(const PTR(Expr) e) {
            body->equals(letExpr->body); // Compare bodies
 }
 
-PTR(Val) LetExpr::interp() {
-    PTR(Val) rhsValue = rhs->interp(); // Evaluate the right-hand side
-    PTR(Expr) substitutedBody = body->subst(var, rhsValue->to_expr()); // Substitute the variable
-    return substitutedBody->interp(); // Interpret the substituted body
+PTR(Val) LetExpr::interp(PTR(Env) env) {
+    // 1. Evaluate the right-hand side in the current environment
+    PTR(Val) rhs_val = rhs->interp(env);
+
+    // 2. Create a new environment that extends the current one
+    //    with the new variable binding
+    PTR(Env) new_env = NEW(ExtendedEnv)(var, rhs_val, env);
+
+    // 3. Evaluate the body in the extended environment
+    return body->interp(new_env);
 }
 
-PTR(Expr) LetExpr::subst(const std::string& var, PTR(Expr) replacement) {
-    if (var == var) {
-        // If the variable to substitute is the bound variable, do not substitute in the body
-        return NEW(LetExpr)(var, rhs->subst(var, replacement), body);
-    }
-    // Substitute in both rhs and body
-    return NEW(LetExpr)(var, rhs->subst(var, replacement), body->subst(var, replacement));
-}
+//PTR(Expr) LetExpr::subst(const std::string& var, PTR(Expr) replacement) {
+//    if (var == var) {
+//        // If the variable to substitute is the bound variable, do not substitute in the body
+//        return NEW(LetExpr)(var, rhs->subst(var, replacement), body);
+//    }
+//    // Substitute in both rhs and body
+//    return NEW(LetExpr)(var, rhs->subst(var, replacement), body->subst(var, replacement));
+//}
 
 void LetExpr::printExp(std::ostream& ot) {
     ot << "(_let " << var << "="; // Print the let keyword and variable
@@ -296,15 +303,16 @@ bool BoolExpr::equals(const PTR(Expr) e) {
     return boolExpr && value == boolExpr->value;
 }
 
-PTR(Val) BoolExpr::interp() {
+PTR(Val) BoolExpr::interp(PTR(Env) env) {
+    (void)env;
     return NEW(BoolVal)(value);
 }
 
-PTR(Expr) BoolExpr::subst(const std::string& var, PTR(Expr) replacement) {
-  	(void)var;
-    (void)replacement;
-    return THIS;
-}
+//PTR(Expr) BoolExpr::subst(const std::string& var, PTR(Expr) replacement) {
+//  	(void)var;
+//    (void)replacement;
+//    return THIS;
+//}
 
 void BoolExpr::printExp(std::ostream& ot) {
     ot << (value ? "_true" : "_false");
@@ -329,24 +337,29 @@ bool IfExpr::equals(const PTR(Expr) e) {
            else_branch->equals(ifExpr->else_branch);
 }
 
-PTR(Val) IfExpr::interp() {
-    PTR(Val) condVal = condition->interp();
+PTR(Val) IfExpr::interp(PTR(Env) env) {
+    // 1. Evaluate the condition in the current environment
+    PTR(Val) condVal = condition->interp(env);
     PTR(BoolVal) boolVal = CAST(BoolVal)(condVal);
+
+    // 2. Verify it's a boolean value
     if (!boolVal) {
         throw std::runtime_error("Condition must be a boolean");
     }
+
+    // 3. Evaluate the appropriate branch in the same environment
     if (boolVal->is_true()) {
-        return then_branch->interp();
+        return then_branch->interp(env);
     } else {
-        return else_branch->interp();
+        return else_branch->interp(env);
     }
 }
 
-PTR(Expr) IfExpr::subst(const std::string& var, PTR(Expr) replacement) {
-    return NEW(IfExpr)(condition->subst(var, replacement),
-                      then_branch->subst(var, replacement),
-                      else_branch->subst(var, replacement));
-}
+//PTR(Expr) IfExpr::subst(const std::string& var, PTR(Expr) replacement) {
+//    return NEW(IfExpr)(condition->subst(var, replacement),
+//                      then_branch->subst(var, replacement),
+//                      else_branch->subst(var, replacement));
+//}
 
 void IfExpr::printExp(std::ostream& ot) {
     ot << "(_if ";
@@ -418,15 +431,15 @@ bool EqExpr::equals(const PTR(Expr) e) {
     return eqExpr && lhs->equals(eqExpr->lhs) && rhs->equals(eqExpr->rhs);
 }
 
-PTR(Val) EqExpr::interp() {
-    PTR(Val) lhsVal = lhs->interp();
-    PTR(Val) rhsVal = rhs->interp();
+PTR(Val) EqExpr::interp(PTR(Env) env) {
+    PTR(Val) lhsVal = lhs->interp(env);
+    PTR(Val) rhsVal = rhs->interp(env);
     return NEW(BoolVal)(lhsVal->equals(rhsVal));
 }
 
-PTR(Expr) EqExpr::subst(const std::string& var, PTR(Expr) replacement) {
-    return NEW(EqExpr)(lhs->subst(var, replacement), rhs->subst(var, replacement));
-}
+//PTR(Expr) EqExpr::subst(const std::string& var, PTR(Expr) replacement) {
+//    return NEW(EqExpr)(lhs->subst(var, replacement), rhs->subst(var, replacement));
+//}
 
 void EqExpr::printExp(std::ostream& ot) {
     ot << "(";
@@ -455,15 +468,9 @@ bool FunExpr::equals(const PTR(Expr) e) {
     return f && formal_arg == f->formal_arg && body->equals(f->body);
 }
 
-PTR(Val) FunExpr::interp() {
-    return std::make_shared<FunVal>(formal_arg, body);
-}
-
-PTR(Expr) FunExpr::subst(const std::string& var, PTR(Expr) replacement) {
-    if (var == formal_arg) {
-        return NEW(FunExpr)(formal_arg, body);
-    }
-    return NEW(FunExpr)(formal_arg, body->subst(var, replacement));
+PTR(Val) FunExpr::interp(PTR(Env) env) {
+    // Create a closure that captures the current environment
+    return NEW(FunVal)(formal_arg, body, env);
 }
 
 void FunExpr::printExp(std::ostream& ot) {
@@ -483,15 +490,15 @@ bool CallExpr::equals(const PTR(Expr) e) {
            && actual_arg->equals(c->actual_arg);
 }
 
-PTR(Val) CallExpr::interp() {
-    PTR(Val) fun_val = to_be_called->interp();
-    PTR(Val) arg_val = actual_arg->interp();
-    return fun_val->call(arg_val);
-}
+PTR(Val) CallExpr::interp(PTR(Env) env) {
+    // 1. Evaluate the function expression in the current environment
+    PTR(Val) fun_val = to_be_called->interp(env);
 
-PTR(Expr) CallExpr::subst(const std::string& var, PTR(Expr) replacement) {
-    return NEW(CallExpr)(to_be_called->subst(var, replacement),
-                       actual_arg->subst(var, replacement));
+    // 2. Evaluate the argument expression in the same environment
+    PTR(Val) arg_val = actual_arg->interp(env);
+
+    // 3. Call the function with the argument
+    return fun_val->call(arg_val);
 }
 
 void CallExpr::printExp(std::ostream& ot) {

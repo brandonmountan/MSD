@@ -19,6 +19,7 @@
 #include <sstream>       // String stream (e.g., std::stringstream)
 #include "val.h"
 #include "pointer.h"
+#include "env.h"
 
 // Main function
 int main(int argc, char* argv[]) {
@@ -48,7 +49,7 @@ int main(int argc, char* argv[]) {
         switch (mode) {
             case do_interp: {
                 // If the mode is do_interp, interpret the expression and print the result
-                PTR(Val) result = expr->interp();
+                PTR(Val) result = expr->interp(Env::empty);
                 std::cout << result->to_string() << "\n";
                 break;
             }

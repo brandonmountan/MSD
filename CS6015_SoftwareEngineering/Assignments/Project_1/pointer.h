@@ -10,6 +10,7 @@
 // Forward declarations
 class Expr;
 class Val;
+class Env;
 
 #define USE_PLAIN_POINTERS 0
 #if USE_PLAIN_POINTERS

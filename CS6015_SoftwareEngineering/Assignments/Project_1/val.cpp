@@ -94,8 +94,8 @@ PTR(Val) BoolVal::call(PTR(Val) actual_arg) {
 
 // ====================== FunVal ======================
 
-FunVal::FunVal(const std::string& formal_arg, PTR(Expr) body)
-    : formal_arg(formal_arg), body(body) {}
+FunVal::FunVal(const std::string& formal_arg, PTR(Expr) body, PTR(Env) env)
+    : formal_arg(formal_arg), body(body), env(env) {}
 
 bool FunVal::equals(PTR(Val) other) {
     PTR(FunVal) f = CAST(FunVal)(other);
@@ -125,6 +125,6 @@ bool FunVal::is_true() {
 }
 
 PTR(Val) FunVal::call(PTR(Val) actual_arg) {
-    PTR(Expr) substituted_body = body->subst(formal_arg, actual_arg->to_expr());
-    return substituted_body->interp();
+    PTR(Env) new_env = NEW(ExtendedEnv)(formal_arg, actual_arg, env);
+    return body->interp(new_env);
 }

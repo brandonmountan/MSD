@@ -17,6 +17,7 @@
 #include "pointer.h"
 #include "val.h"
 #include "parse.hpp"
+#include "env.h"
 
 /**
  * @enum precedence_t
@@ -54,7 +55,7 @@ public:
      * @brief Evaluates the expression to an integer value.
      * @return The result of evaluating the expression.
      */
-    virtual PTR(Val) interp() = 0;
+    virtual PTR(Val) interp(PTR(Env) env) = 0;
 
     /**
      * @brief Substitutes a variable with another expression.
@@ -62,7 +63,7 @@ public:
      * @param replacement The expression to replace the variable with
      * @return A new expression with the substitution applied.
      */
-    virtual PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) = 0;
+//    virtual PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) = 0;
 
     /**
      * @brief Prints the expression to an output stream.
@@ -118,13 +119,13 @@ public:
      * @param e The expression to compare with.
      * @return true if the expressions are equal, false otherwise.
      */
-    bool equals(const PTR(Expr)) override;
+    bool equals(const PTR(Expr) e) override;
 
     /**
      * @brief Interprets the number expression by returning its value.
      * @return A NumVal object representing the number.
      */
-    PTR(Val) interp() override;
+    PTR(Val) interp(PTR(Env) env) override;
 
     /**
      * @brief Substitutes a variable with a replacement expression.
@@ -132,7 +133,7 @@ public:
      * @param replacement The expression to replace the variable with.
      * @return The current number expression (no substitution needed).
      */
-    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
+//    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
 
     /**
      * @brief Prints the number expression to an output stream.
@@ -171,7 +172,7 @@ public:
      * @brief Interprets the addition expression by evaluating its sub-expressions.
      * @return A Val* object representing the sum of the left and right sub-expressions.
      */
-    PTR(Val) interp() override;
+    PTR(Val) interp(PTR(Env) env) override;
 
     /**
      * @brief Substitutes a variable with a replacement expression in both sub-expressions.
@@ -179,7 +180,7 @@ public:
      * @param replacement The expression to replace the variable with.
      * @return A new AddExpr with the substitution applied.
      */
-    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
+//    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
 
     /**
      * @brief Prints the addition expression to an output stream.
@@ -227,7 +228,7 @@ public:
      * @brief Interprets the multiplication expression by evaluating its sub-expressions.
      * @return A PTR(Val) object representing the product of the left and right sub-expressions.
      */
-    PTR(Val) interp() override;
+    PTR(Val) interp(PTR(Env) env) override;
 
     /**
      * @brief Substitutes a variable with a replacement expression in both sub-expressions.
@@ -235,7 +236,7 @@ public:
      * @param replacement The expression to replace the variable with.
      * @return A new MultExpr with the substitution applied.
      */
-    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
+//    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
 
     /**
      * @brief Prints the multiplication expression to an output stream.
@@ -280,7 +281,7 @@ public:
      * @brief Interprets the variable expression (throws an error since variables have no value).
      * @throws std::runtime_error because variables cannot be interpreted without a value.
      */
-    PTR(Val) interp() override;
+    PTR(Val) interp(PTR(Env) env) override;
 
     /**
      * @brief Substitutes the variable with a replacement expression if it matches the variable name.
@@ -288,7 +289,7 @@ public:
      * @param replacement The expression to replace the variable with.
      * @return The replacement expression if the variable matches, otherwise the current expression.
      */
-    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
+//    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
 
     /**
      * @brief Prints the variable expression to an output stream.
@@ -323,7 +324,7 @@ public:
      * @brief Interprets the let expression by evaluating the right-hand side and substituting it into the body.
      * @return A PTR(Val) object representing the result of interpreting the substituted body expression.
      */
-    PTR(Val) interp() override;
+    PTR(Val) interp(PTR(Env) env) override;
 
     /**
      * @brief Substitutes a variable with a replacement expression in the let expression.
@@ -331,7 +332,7 @@ public:
      * @param replacement The expression to replace the variable with.
      * @return A new LetExpr with the substitution applied.
      */
-    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
+//    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
 
     /**
      * @brief Prints the let expression to an output stream.
@@ -383,7 +384,7 @@ public:
      *
      * @return A Val* object representing the boolean value.
      */
-    PTR(Val) interp() override;
+    PTR(Val) interp(PTR(Env) env) override;
 
     /**
      * @brief Substitutes a variable with a replacement expression in the boolean expression.
@@ -392,7 +393,7 @@ public:
      * @param replacement The expression to replace the variable with.
      * @return A new BoolExpr with the same value, as boolean expressions do not contain variables.
      */
-    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
+//    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
 
     /**
      * @brief Prints the boolean expression to an output stream.
@@ -444,7 +445,7 @@ public:
      *
      * @return A Val* object representing the result of evaluating the appropriate branch.
      */
-    PTR(Val) interp() override;
+    PTR(Val) interp(PTR(Env) env) override;
 
     /**
      * @brief Substitutes a variable with a replacement expression in the if-then-else expression.
@@ -453,7 +454,7 @@ public:
      * @param replacement The expression to replace the variable with.
      * @return A new IfExpr with the substitution applied to the condition, then-branch, and else-branch.
      */
-    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
+//    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
 
     /**
      * @brief Prints the if-then-else expression to an output stream.
@@ -514,7 +515,7 @@ public:
      *
      * @return A Val* object representing the result of comparing the left-hand side and right-hand side.
      */
-    PTR(Val) interp() override;
+    PTR(Val) interp(PTR(Env) env) override;
 
     /**
      * @brief Substitutes a variable with a replacement expression in the equality expression.
@@ -523,7 +524,7 @@ public:
      * @param replacement The expression to replace the variable with.
      * @return A new EqExpr with the substitution applied to the left-hand side and right-hand side.
      */
-    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
+//    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
 
     /**
      * @brief Prints the equality expression to an output stream.
@@ -579,7 +580,7 @@ public:
      *
      * @return A FunVal object representing the function.
      */
-    PTR(Val) interp() override;
+    PTR(Val) interp(PTR(Env) env) override;
 
     /**
      * @brief Substitutes a variable with a replacement expression in the function body.
@@ -590,7 +591,7 @@ public:
      * @param replacement The expression to replace the variable with.
      * @return A new FunExpr with the substitution applied to its body.
      */
-    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
+//    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
 
     /**
      * @brief Prints the function expression to an output stream.
@@ -636,7 +637,7 @@ public:
      * @return The result of applying the function to the argument.
      * @throws std::runtime_error if to_be_called doesn't evaluate to a function.
      */
-    PTR(Val) interp() override;
+    PTR(Val) interp(PTR(Env) env) override;
 
     /**
      * @brief Substitutes a variable with a replacement expression in both
@@ -646,7 +647,7 @@ public:
      * @param replacement The expression to replace the variable with.
      * @return A new CallExpr with substitutions applied to both subexpressions.
      */
-    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
+//    PTR(Expr) subst(const std::string& var, PTR(Expr) replacement) override;
 
     /**
      * @brief Prints the function call expression to an output stream.

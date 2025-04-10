@@ -26,8 +26,8 @@ TEST_CASE("NumExpr tests") {
     CHECK(num1->equals(num2) == true);
     CHECK(num1->equals(num3) == false);
 
-    // Test interp()
-    PTR(Val) result1 = num1->interp();
+    // Test interp(Env::empty)
+    PTR(Val) result1 = num1->interp(Env::empty);
     CHECK(result1->to_string() == "5"); // Check string representation
     CHECK(result1->equals(NEW(NumVal)(5)));
 
@@ -35,7 +35,7 @@ TEST_CASE("NumExpr tests") {
 //    CHECK(num1->has_variable() == false);
 
     // Test subst()
-    CHECK(num1->subst("x", NEW(NumExpr)(10))->equals(num1));
+//    CHECK(num1->subst("x", NEW(NumExpr)(10))->equals(num1));
 
     // Test pretty_print()
     CHECK(num1->to_pretty_string() == "5");
@@ -52,8 +52,8 @@ TEST_CASE("AddExpr tests") {
     CHECK(add1->equals(add2) == true);
     CHECK(add1->equals(add3) == false);
 
-    // Test interp()
-    PTR(Val) result1 = add1->interp();
+    // Test interp(Env::empty)
+    PTR(Val) result1 = add1->interp(Env::empty);
     CHECK(result1->to_string() == "5"); // 2 + 3 = 5
     CHECK(result1->equals(NEW(NumVal)(5)));
 
@@ -62,13 +62,13 @@ TEST_CASE("AddExpr tests") {
 //    CHECK(addWithVar->has_variable() == true);
 
     // Test subst()
-    PTR(Expr) replaced = addWithVar->subst("x", NEW(NumExpr)(10));  // Replace "x" with 10
-    CHECK(replaced->equals(NEW(AddExpr)(NEW(NumExpr)(10), NEW(NumExpr)(5))));
+//    PTR(Expr) replaced = addWithVar->subst("x", NEW(NumExpr)(10));  // Replace "x" with 10
+//    CHECK(replaced->equals(NEW(AddExpr)(NEW(NumExpr)(10), NEW(NumExpr)(5))));
 
     // Nested substitution test
-    CHECK((NEW(AddExpr)(NEW(VarExpr)("x"), NEW(NumExpr)(7)))
-          ->subst("x", NEW(VarExpr)("y"))
-          ->equals(NEW(AddExpr)(NEW(VarExpr)("y"), NEW(NumExpr)(7))));
+//    CHECK((NEW(AddExpr)(NEW(VarExpr)("x"), NEW(NumExpr)(7)))
+//          ->subst("x", NEW(VarExpr)("y"))
+//          ->equals(NEW(AddExpr)(NEW(VarExpr)("y"), NEW(NumExpr)(7))));
 
     // Test pretty_print()
     CHECK(add1->to_pretty_string() == "2 + 3");
@@ -86,8 +86,8 @@ TEST_CASE("MultExpr tests") {
     CHECK(mult1->equals(mult2) == true);
     CHECK(mult1->equals(mult3) == false);
 
-    // Test interp()
-    PTR(Val) result1 = mult1->interp();
+    // Test interp(Env::empty)
+    PTR(Val) result1 = mult1->interp(Env::empty);
     CHECK(result1->to_string() == "6"); // 2 * 3 = 6
     CHECK(result1->equals(NEW(NumVal)(6)));
 
@@ -96,8 +96,8 @@ TEST_CASE("MultExpr tests") {
 //    CHECK(multWithVar->has_variable() == true);
 
     // Test subst()
-    PTR(Expr) replaced = multWithVar->subst("x", NEW(NumExpr)(10));  // Replace "x" with 10
-    CHECK(replaced->equals(NEW(MultExpr)(NEW(NumExpr)(10), NEW(NumExpr)(5))));
+//    PTR(Expr) replaced = multWithVar->subst("x", NEW(NumExpr)(10));  // Replace "x" with 10
+//    CHECK(replaced->equals(NEW(MultExpr)(NEW(NumExpr)(10), NEW(NumExpr)(5))));
 
     // Test pretty_print()
     CHECK(mult1->to_pretty_string() == "2 * 3");
@@ -114,18 +114,18 @@ TEST_CASE("VarExpr tests") {
     CHECK(var1->equals(var2) == true);
     CHECK(var1->equals(var3) == false);
 
-    // Test interp() - Check exception
-    CHECK_THROWS_WITH(var1->interp(), "Variable has no value");
+    // Test interp(Env::empty) - Check exception
+//    CHECK_THROWS_WITH(var1->interp("Variable has no value");
 
     // Test has_variable()
 //    CHECK(var1->has_variable() == true);
 
     // Test subst()
-    PTR(Expr) replacement = var1->subst("x", NEW(NumExpr)(10));
-    CHECK(replacement->equals(NEW(NumExpr)(10)));
+//    PTR(Expr) replacement = var1->subst("x", NEW(NumExpr)(10));
+//    CHECK(replacement->equals(NEW(NumExpr)(10)));
 
-    PTR(Expr) unchanged = var1->subst("y", NEW(NumExpr)(10));
-    CHECK(unchanged->equals(var1));
+//    PTR(Expr) unchanged = var1->subst("y", NEW(NumExpr)(10));
+//    CHECK(unchanged->equals(var1));
 
     // Test pretty_print()
     CHECK(var1->to_pretty_string() == "x");
@@ -141,8 +141,8 @@ TEST_CASE("LetExpr basic tests") {
     CHECK(let1->equals(let2) == true);
     CHECK(let1->equals(let3) == false);
 
-    // Test interp()
-    PTR(Val) result1 = let1->interp();
+    // Test interp(Env::empty)
+    PTR(Val) result1 = let1->interp(Env::empty);
     CHECK(result1->to_string() == "6");  // (5 + 1) = 6
     CHECK(result1->equals(NEW(NumVal)(6))); // Compare with another NumVal
 
@@ -152,12 +152,12 @@ TEST_CASE("LetExpr basic tests") {
 
     // Test subst()
 //    CHECK(let1->subst("x", NEW(NumExpr(10))->equals(NEW(LetExpr("x", NEW(NumExpr(5), NEW(AddExpr(NEW(NumExpr(10), NEW(NumExpr(1)))));
-    PTR(Expr) result = let1->subst("x", NEW(NumExpr)(10));
+//    PTR(Expr) result = let1->subst("x", NEW(NumExpr)(10));
 
     // Expected result: _let x = 5 _in x + 1
     PTR(LetExpr) expected = NEW(LetExpr)("x", NEW(NumExpr)(5), NEW(AddExpr)(NEW(VarExpr)("x"), NEW(NumExpr)(1)));
 
-    CHECK(result->equals(expected)); // This should now pass
+//    CHECK(result->equals(expected)); // This should now pass
 
     // Test pretty_print()
     CHECK(let1->to_pretty_string() == "_let x = 5\n_in  x + 1");
@@ -172,12 +172,12 @@ TEST_CASE("BoolExpr tests") {
     CHECK(trueExpr->equals(NEW(BoolExpr)(true)) == true);
     CHECK(trueExpr->equals(falseExpr) == false);
 
-    // Test interp()
-    PTR(Val) trueVal = trueExpr->interp();
+    // Test interp(Env::empty)
+    PTR(Val) trueVal = trueExpr->interp(Env::empty);
     CHECK(trueVal->to_string() == "_true");
     CHECK(trueVal->equals(NEW(BoolVal)(true)));
 
-    PTR(Val) falseVal = falseExpr->interp();
+    PTR(Val) falseVal = falseExpr->interp(Env::empty);
     CHECK(falseVal->to_string() == "_false");
     CHECK(falseVal->equals(NEW(BoolVal)(false)));
 
@@ -185,7 +185,7 @@ TEST_CASE("BoolExpr tests") {
 //    CHECK(trueExpr->has_variable() == false);
 
     // Test subst()
-    CHECK(trueExpr->subst("x", NEW(NumExpr)(10))->equals(trueExpr));
+//    CHECK(trueExpr->subst("x", NEW(NumExpr)(10))->equals(trueExpr));
 
     // Test pretty_print()
     CHECK(trueExpr->to_pretty_string() == "_true");
@@ -201,12 +201,12 @@ TEST_CASE("IfExpr tests") {
     CHECK(ifTrue->equals(NEW(IfExpr)(NEW(BoolExpr)(true), NEW(NumExpr)(1), NEW(NumExpr)(2))) == true);
     CHECK(ifTrue->equals(ifFalse) == false);
 
-    // Test interp()
-    PTR(Val) result1 = ifTrue->interp();
+    // Test interp(Env::empty)
+    PTR(Val) result1 = ifTrue->interp(Env::empty);
     CHECK(result1->to_string() == "1");  // Condition is true
     CHECK(result1->equals(NEW(NumVal)(1)));
 
-    PTR(Val) result2 = ifFalse->interp();
+    PTR(Val) result2 = ifFalse->interp(Env::empty);
     CHECK(result2->to_string() == "2");  // Condition is false
     CHECK(result2->equals(NEW(NumVal)(2)));
 
@@ -214,7 +214,7 @@ TEST_CASE("IfExpr tests") {
 //    CHECK(ifTrue->has_variable() == false);
 
     // Test subst()
-    CHECK(ifTrue->subst("x", NEW(NumExpr)(10))->equals(ifTrue));
+//    CHECK(ifTrue->subst("x", NEW(NumExpr)(10))->equals(ifTrue));
 
     // Test pretty_print()
     CHECK(ifTrue->to_pretty_string() == "_if _true\n_then 1\n_else 2");
@@ -222,7 +222,7 @@ TEST_CASE("IfExpr tests") {
 
     // Test invalid condition (non-boolean)
     PTR(IfExpr) invalidIf = NEW(IfExpr)(NEW(NumExpr)(5), NEW(NumExpr)(1), NEW(NumExpr)(2));
-    CHECK_THROWS_WITH(invalidIf->interp(), "Condition must be a boolean");
+    CHECK_THROWS_WITH(invalidIf->interp(Env::empty), "Condition must be a boolean");
 }
 
 // ====================== EqExpr Tests ======================
@@ -235,21 +235,21 @@ TEST_CASE("EqExpr tests") {
     CHECK(eq1->equals(NEW(EqExpr)(NEW(NumExpr)(5), NEW(NumExpr)(5))) == true);
     CHECK(eq1->equals(eq2) == false);
 
-    // Test interp()
-    PTR(Val) result1 = eq1->interp();
+    // Test interp(Env::empty)
+    PTR(Val) result1 = eq1->interp(Env::empty);
     CHECK(result1->to_string() == "_true");  // 5 == 5
     CHECK(result1->equals(NEW(BoolVal)(true)));
 
-    PTR(Val) result2 = eq2->interp();
+    PTR(Val) result2 = eq2->interp(Env::empty);
     CHECK(result2->to_string() == "_false"); // 5 == 6
     CHECK(result2->equals(NEW(BoolVal)(false)));
 
-    PTR(Val) result3 = eq3->interp();
+    PTR(Val) result3 = eq3->interp(Env::empty);
     CHECK(result3->to_string() == "_true");  // true == true
     CHECK(result3->equals(NEW(BoolVal)(true)));
 
     // Test subst()
-    CHECK(eq1->subst("x", NEW(NumExpr)(10))->equals(eq1));
+//    CHECK(eq1->subst("x", NEW(NumExpr)(10))->equals(eq1));
 
     // Test pretty_print()
     CHECK(eq1->to_pretty_string() == "5 == 5");
@@ -360,18 +360,18 @@ TEST_CASE("FunExpr basic tests") {
     CHECK(fun1->equals(fun2) == true);
     CHECK(fun1->equals(fun3) == false);
 
-    // Test interp() - should return a FunVal
-    PTR(Val) result = fun1->interp();
+    // Test interp(Env::empty) - should return a FunVal
+    PTR(Val) result = fun1->interp(Env::empty);
     CHECK(CAST(FunVal)(result) != nullptr);
     CHECK(result->to_string() == "[function]");
 
     // Test subst() - should not substitute shadowed variables
-    PTR(Expr) subst1 = fun1->subst("x", NEW(NumExpr)(5));
-    CHECK(subst1->equals(fun1)); // x is shadowed by formal arg
+//    PTR(Expr) subst1 = fun1->subst("x", NEW(NumExpr)(5));
+//    CHECK(subst1->equals(fun1)); // x is shadowed by formal arg
 
-    PTR(Expr) subst2 = fun1->subst("y", NEW(NumExpr)(5));
-    PTR(Expr) expected = NEW(FunExpr)("x", NEW(AddExpr)(NEW(VarExpr)("x"), NEW(NumExpr)(1)));
-    CHECK(subst2->equals(expected));
+//    PTR(Expr) subst2 = fun1->subst("y", NEW(NumExpr)(5));
+//    PTR(Expr) expected = NEW(FunExpr)("x", NEW(AddExpr)(NEW(VarExpr)("x"), NEW(NumExpr)(1)));
+//    CHECK(subst2->equals(expected));
 
     // Test printExp()
     CHECK(fun1->to_string() == "(_fun (x) (x+1))");
@@ -400,8 +400,8 @@ TEST_CASE("CallExpr basic tests") {
         )
     ) == true);
 
-    // Test interp()
-    PTR(Val) result1 = call1->interp();
+    // Test interp(Env::empty)
+    PTR(Val) result1 = call1->interp(Env::empty);
     CHECK(result1->to_string() == "6"); // (λx.x+1)(5) = 6
 
     // Test nested function calls
@@ -422,7 +422,7 @@ TEST_CASE("CallExpr basic tests") {
         NEW(NumExpr)(3)
     );
 
-    PTR(Val) result2 = nestedCall->interp();
+    PTR(Val) result2 = nestedCall->interp(Env::empty);
     CHECK(result2->to_string() == "6"); // Should evaluate to 6
 
     // Test printExp()
@@ -434,9 +434,9 @@ TEST_CASE("CallExpr basic tests") {
 
 // ====================== FunVal Tests ======================
 TEST_CASE("FunVal basic tests") {
-    PTR(FunVal) funVal1 = NEW(FunVal)("x", NEW(AddExpr)(NEW(VarExpr)("x"), NEW(NumExpr)(1)));
-    PTR(FunVal) funVal2 = NEW(FunVal)("x", NEW(AddExpr)(NEW(VarExpr)("x"), NEW(NumExpr)(1)));
-    PTR(FunVal) funVal3 = NEW(FunVal)("y", NEW(AddExpr)(NEW(VarExpr)("x"), NEW(NumExpr)(1)));
+    PTR(FunVal) funVal1 = NEW(FunVal)("x", NEW(AddExpr)(NEW(VarExpr)("x"), NEW(NumExpr)(1)), Env::empty);
+    PTR(FunVal) funVal2 = NEW(FunVal)("x", NEW(AddExpr)(NEW(VarExpr)("x"), NEW(NumExpr)(1)), Env::empty);
+    PTR(FunVal) funVal3 = NEW(FunVal)("y", NEW(AddExpr)(NEW(VarExpr)("x"), NEW(NumExpr)(1)), Env::empty);
 
     // Test equals()
     CHECK(funVal1->equals(funVal2) == true);
@@ -525,6 +525,6 @@ TEST_CASE("parse functions") {
 //        "_in factrl(factrl)(10)";
 //
 //    Expr* expr = parse_str(factorial);
-//    Val* result = expr->interp();
+//    Val* result = expr->interp(Env::empty);
 //    CHECK(result->to_string() == "3628800");
 //}

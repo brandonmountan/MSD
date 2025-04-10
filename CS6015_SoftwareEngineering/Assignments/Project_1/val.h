@@ -17,6 +17,7 @@
 #include "expr.h"
 #include "val.h"
 #include "parse.hpp"
+#include "env.h"
 
 /**
  * @class Val
@@ -227,7 +228,7 @@ public:
 class FunVal : public Val {
     std::string formal_arg; ///< The name of the function's formal parameter
     PTR(Expr) body;            ///< The function's body expression (unevaluated)
-
+    PTR(Env) env;
 public:
     /**
      * @brief Constructs a function value.
@@ -235,7 +236,7 @@ public:
      * @param formal_arg The name of the formal parameter for this function.
      * @param body The expression representing the function body.
      */
-    FunVal(const std::string& formal_arg, PTR(Expr) body);
+    FunVal(const std::string& formal_arg, PTR(Expr) body, PTR(Env) env);
 
     /**
      * @brief Checks if this function value equals another value.
