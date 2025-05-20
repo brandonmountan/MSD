@@ -72,13 +72,13 @@ Part 3 - Fill in Tables
 
 Car Table
 
-VIN                     | make    | model    | year | color
-------------------------+---------+----------+------+------
-1HGCM82633A123456       | Toyota  | Tacoma   | 2008 | Red
-JT3HN86R0X0123457       | Toyota  | Tacoma   | 1999 | Green
-5YJ3E1EA4JF123458       | Tesla   | Model 3  | 2018 | White
-JF1VA1A69G9123459       | Subaru  | WRX      | 2016 | Blue
-1FTFW1ET3EK123460       | Ford    | F150     | 2004 | Red
+| VIN                | make   | model   | year | color |
+|--------------------|--------|---------|------|-------|
+| 1HGCM82633A123456  | Toyota | Tacoma  | 2008 | Red   |
+| JT3HN86R0X0123457  | Toyota | Tacoma  | 1999 | Green |
+| 5YJ3E1EA4JF123458  | Tesla  | Model 3 | 2018 | White |
+| JF1VA1A69G9123459  | Subaru | WRX     | 2016 | Blue  |
+| 1FTFW1ET3EK123460  | Ford   | F150    | 2004 | Red   |
 
 Salesperson Table
 
