@@ -1,0 +1,16 @@
+Brandon Mountan
+CS6016 Database Systems
+05/22/25
+
+Part 1 - English to Schema
+
+Problem 1 - Done for us
+
+Problem 2 - A grocery store needs to track an inventory of products for sale
+
+We need to track products with their SKU, name, quantity, and price.
+
+Product [__SKU (string)__, name (string), quantity (integer), price (real)]
+
+SKU is the unique identifier for each product type. Quantity is how much product is in stock.
+

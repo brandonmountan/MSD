@@ -3,16 +3,16 @@ TARGET = Qt_part02
 TEMPLATE = app
 
 SOURCES += main.cpp \
+           MSDScript/expr.cpp \
+           MSDScript/parse.cpp \
+           MSDScript/val.cpp \
            mainwindow.cpp \
-           msdscript/env.cpp \
-           msdscript/expr.cpp \
-           msdscript/parse.cpp \
-           msdscript/val.cpp
+           msdscript/env.cpp
 
 HEADERS += mainwindow.h \
+           MSDScript/env.h \
+           MSDScript/expr.h \
            MSDScript/parse.hpp \
-           MSDScript/pointer.h \
+           MSDScript/val.h \
            msdscript/env.h \
-           msdscript/expr.h \
-           msdscript/parse.h \
-           msdscript/val.h
+           msdscript/parse.h

@@ -8,7 +8,8 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-#include "MSDScript/parse.hpp"
+#include "parse.hpp"
+#include "expr.h"
 #include <iostream>
 #include <sstream>
 #include <cctype>

@@ -1,30 +1,14 @@
-# Compiler and flags
 CXX = c++
-CXXFLAGS = -std=c++11 -Wall -Wextra -g
+CXXFLAGS = -std=c++11 -Wall -Werror
 
-# Target executable
-TARGET = main
+main: main.o shelpers.o
+	$(CXX) $(CXXFLAGS) main.o shelpers.o -o main
 
-# Source files
-SRCS = main.cpp shelpers.cpp
+main.o: main.cpp shelpers.hpp
+	$(CXX) $(CXXFLAGS) -c main.cpp
 
-# Object files (generated from source files)
-OBJS = $(SRCS:.cpp=.o)
+shelpers.o: shelpers.cpp shelpers.hpp
+	$(CXX) $(CXXFLAGS) -c shelpers.cpp
 
-# Default target
-all: $(TARGET)
-
-# Rule to build the target executable
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
-
-# Rule to compile .cpp files into .o files
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-# Clean up generated files
 clean:
-	rm -f $(OBJS) $(TARGET)
-
-# Phony targets (not actual files)
-.PHONY: all clean
+	rm -f *.o main

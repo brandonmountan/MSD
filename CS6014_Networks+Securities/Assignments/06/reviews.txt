@@ -1,0 +1,39 @@
+Brandon Mountan
+CS6014
+04/21/2025
+Olivia & Victor, Min Shan & Zhiyuan, Gaofei & JJ, and 3 more
+For each presentation you review, include the following, which will be shared with the presenters (without your name attached to the feedback):
+•	What was the major security vulnerability in the described system (e.g., buffer overflow, code injection, susceptibility to denial of service)?
+•	What was (at least) one thing the presenters did well in their talk?
+•	What is one way the presenters could improve their presentation?
+•	Include any other comments you'd like to provide.
+
+Olivia & Victor
+-	Stack Buffer Underflow in SQLite
+-	One strength was there was clear division of the topics between the two speakers. It made it easy to follow. Good job of introducing technical concepts in a simplified way.
+-	One area for improvement would be to incorporate simple visual aids. 
+
+Min Shan & Zhiyuan
+-	Shellshock
+-	They did a great job explaining the background of Shellshock, including the role of Bash in Unix-based systems and how environment variables are used.
+-	One part that could’ve been better was slowing down when talking about the technical payloads or code.
+
+Gaofei & JJ
+-	Log4Shell
+-	Great job explaining what Log4Shell is and why it was such a critical vulnerability.
+-	One way to improve the presentation would be to visualize the attack chain more clearly, maybe using diagrams or simple visual aids.
+
+Evan & Jose
+-	Evan and Jose did a great job outlining the timeline of key events of the attack which gave an understanding of what happened and when.
+-	One improvement I could suggest would be to slow down on the details of the SQL injection or simplify it in a way that can be remembered easier.
+
+Owen & Ben
+-	Stuxnet
+-	Excellent job capturing the complexity and intrigue of Stuxnet, emphasizing how it was a highly sophisticated, targeted cyber weapon.
+-	The ending or wrap up of the presentation could have been a little better. Maybe explaining how it changed cyber warfare or defense strategies in a way that would leave a lasting impact.
+
+Alexia & Kaitlyn
+-	Dude, where’s my heap
+-	Good job explaining complex memory-related bug in an engaging way.
+-	One suggestion is to simplify the visual aids of the heap before and after the bug is triggered.
+

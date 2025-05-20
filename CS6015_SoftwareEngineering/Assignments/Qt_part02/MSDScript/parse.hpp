@@ -11,11 +11,9 @@
 #ifndef PARSE_HPP
 #define PARSE_HPP
 
+#include "pointer.h"
 #include <istream>
 #include <string>
-#include "MSDScript/expr.h"
-#include "MSDScript/val.h"
-#include "MSDScript/pointer.h"
 
 /**
  * @brief Consumes a specific character from the input stream.

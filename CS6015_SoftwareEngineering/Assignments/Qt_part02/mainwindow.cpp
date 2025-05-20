@@ -62,7 +62,7 @@ void MainWindow::interpretExpression()
     try {
         std::string input = inputEdit->toPlainText().toUtf8().constData();
         PTR(Expr) e = parse_str(input);
-        PTR(Val) v = e->interp(); // Changed to use interp() without Env parameter
+        PTR(Val) v = e->interp(Env::empty); // Changed to use interp() without Env parameter
         outputEdit->setText(QString::fromStdString(v->to_string()));
     } catch (std::runtime_error &e) {
         QMessageBox::critical(this, "Error", e.what());
