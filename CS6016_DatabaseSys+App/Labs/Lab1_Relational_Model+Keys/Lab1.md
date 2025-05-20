@@ -82,21 +82,21 @@ Car Table
 
 Salesperson Table
 
-SSN           | name
---------------+-------
-123-45-6789   | Arnold
-987-65-4321   | Hannah
-456-78-9012   | Steve
+| SSN         | name   |
+|-------------|--------|
+| 123-45-6789 | Arnold |
+| 987-65-4321 | Hannah |
+| 456-78-9012 | Steve  |
 
 SalesAssignment Table
 
-VIN                     | SSN
-------------------------+-------------
-1HGCM82633A123456       | 123-45-6789  (Arnold - Toyota)
-1HGCM82633A123456       | 987-65-4321  (Hannah - Red car)
-JT3HN86R0X0123457       | 123-45-6789  (Arnold - Toyota)
-5YJ3E1EA4JF123458       | 456-78-9012  (Steve - Tesla)
-1FTFW1ET3EK123460       | 987-65-4321  (Hannah - Red car)
+| VIN                | SSN         | (Note)               |
+|--------------------|-------------|----------------------|
+| 1HGCM82633A123456  | 123-45-6789 | (Arnold - Toyota)    |
+| 1HGCM82633A123456  | 987-65-4321 | (Hannah - Red car)   |
+| JT3HN86R0X0123457  | 123-45-6789 | (Arnold - Toyota)    |
+| 5YJ3E1EA4JF123458  | 456-78-9012 | (Steve - Tesla)      |
+| 1FTFW1ET3EK123460  | 987-65-4321 | (Hannah - Red car)   |
 
 
 Part 4 - Keys and Superkeys
