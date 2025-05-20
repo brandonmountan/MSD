@@ -35,37 +35,37 @@ Car table uses VIN as the primary key so each car is uniquely identified. The Sa
 Part 2 - SQL Table Declarations
 
 CREATE TABLE Patrons (
-       CardNum (integer) PRIMARY KEY,
-       Name (string)
-)
+   CardNum (integer) PRIMARY KEY,
+   Name (string)
+);
 
 CREATE TABLE Phones (
-       CardNum (integer),
-       Phone (string),
-       PRIMARY KEY (CardNum, Phone),
-       FOREIGN KEY (CardNum) REFERENCES Patrons(CardNum)
-)
+   CardNum (integer),
+   Phone (string),
+   PRIMARY KEY (CardNum, Phone),
+   FOREIGN KEY (CardNum) REFERENCES Patrons(CardNum)
+);
 
 CREATE TABLE Titles (
-       ISBN (string) PRIMARY KEY,
-       Title (string),
-       Author (string)
-)
+   ISBN (string) PRIMARY KEY,
+   Title (string),
+   Author (string)
+);
 
 CREATE TABLE Inventory (
-       Serial (integer),
-       ISBN (string),
-       PRIMARY KEY (Serial, ISBN),
-       FOREIGN KEY (ISBN) REFERENCES Titles (ISBN)
-)
+   Serial (integer),
+   ISBN (string),
+   PRIMARY KEY (Serial, ISBN),
+   FOREIGN KEY (ISBN) REFERENCES Titles(ISBN)
+);
 
 CREATE TABLE CheckedOut (
-       CardNum (integer),
-       Serial (integer),
-       PRIMARY KEY (CardNum, Serial),
-       FOREIGN KEY (CardNum) REFERENCES Patrons(CardNum),
-       FOREIGN KEY (Serial) REFERENCES Inventory(Serial)
-)
+   CardNum (integer),
+   Serial (integer),
+   PRIMARY KEY (CardNum, Serial),
+   FOREIGN KEY (CardNum) REFERENCES Patrons(CardNum),
+   FOREIGN KEY (Serial) REFERENCES Inventory(Serial)
+);
 
 
 Part 3 - Fill in Tables
