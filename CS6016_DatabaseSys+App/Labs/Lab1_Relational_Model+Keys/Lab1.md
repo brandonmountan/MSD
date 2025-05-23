@@ -10,7 +10,9 @@ Problem 2 - A grocery store needs to track an inventory of products for sale
 
 We need to track products with their SKU, name, quantity, and price.
 
+```
 Product [__SKU (string)__, name (string), quantity (integer), price (real)]
+```
 
 SKU is the unique identifier for each product type. Quantity is how much product is in stock.
 
@@ -18,16 +20,20 @@ Problem 3 - Consider grocery store database with products on multiple aisles.
 
 Product can be on multiple aisles but can't have multiple display cases per aisle. So we need two tables.
 
+```
 Product [__SKU (string)__, name (string), price (real)]
 ProductLocation [__SKU (string)__, __aisle (integer)__, displayCase (string)]
+```
 
 ProductLocation table uses composite key of SKU and aisle which makes it so a product can't have multiple display cases on the same aisle. Many-to-many relationship
 
 Problem 4 - A car dealership with cars and salespeople
 
+```
 Car [__VIN (string)__, make (string), model (string), year (integer), color (string)]
 Salesperson [__SSN (string)__, name (string)]
 SalesAssignment [__VIN (string)__, __SSN (string)__]
+```
 
 Car table uses VIN as the primary key so each car is uniquely identified. The Salesperson table uses the SSN as the primary key. The SalesAssignment table has a composite key of VIN and SSN so we know which salespeople are assignment to which cars. Many-to-many relationship.
 
