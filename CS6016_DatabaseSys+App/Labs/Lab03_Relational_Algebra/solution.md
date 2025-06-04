@@ -206,18 +206,4 @@ StudentsWithAll3000 ← StudentCourses ÷ ThreeThousandCourses
 π(Name)(Students ⋈ (π(StudentID, CourseID)(Enrollments) ÷ π(CourseID)(σ(CourseID LIKE '3___')(Courses))))
 ```
 
-## Key Concepts Used:
 
-- **Selection (σ)**: Filter rows based on conditions
-- **Projection (π)**: Select specific columns
-- **Join (⋈)**: Combine tables based on conditions
-- **Union (∪)**: Combine results from multiple queries
-- **Division (÷)**: Find tuples that are related to ALL tuples in another relation
-- **Renaming (ρ)**: Change attribute names for compatibility
-
-## Tips for Relational Algebra:
-1. Break complex queries into smaller steps using intermediate relations
-2. Use natural joins when tables share common attribute names
-3. Use theta joins when you need to specify join conditions
-4. Remember that division finds "for all" relationships
-5. Use union when you need to combine results from OR conditions
