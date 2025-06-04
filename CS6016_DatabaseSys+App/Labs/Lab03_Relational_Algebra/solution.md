@@ -1,7 +1,7 @@
 # Relational Algebra Homework Solutions
 
-**Student Name:** Brandon Mountan
-**Course:** CS6016
+**Student Name:** Brandon Mountan  
+**Course:** CS6016  
 **Assignment:** Relational Algebra Queries  
 **Date:** 06/05/2025
 
@@ -22,17 +22,38 @@ A   B   C
 20  b   5
 ```
 
-*Note: The specific join operations from the screenshot are not visible, but here are common join operations:*
+### Query Solutions:
 
-**T1 ⋈ T2 (Natural Join on A):**
+**1. T1 ⋈(T1.A=T2.A) T2**
 ```
 A   Q   R   B   C
 20  a   5   b   6
 20  a   5   b   5
 ```
+*Explanation: Join T1 and T2 where A values match. Only T1's row with A=20 matches T2's two rows with A=20.*
 
-**T1 ⋈ₐ T2 (Theta Join where T1.A = T2.A):**
-Same result as natural join above.
+**2. T1 ⋈(T1.Q=T2.B) T2**
+```
+T1.A  Q   R   T2.A  B   C
+25    b   8   20    b   6
+25    b   8   20    b   5
+```
+*Explanation: Join where T1.Q equals T2.B. Only T1's row with Q='b' matches T2's rows with B='b'.*
+
+**3. T1 ⋈ T2 (Natural Join)**
+```
+A   Q   R   B   C
+20  a   5   b   6
+20  a   5   b   5
+```
+*Explanation: Natural join on common attribute A. Same result as query 1.*
+
+**4. T1 ⋈(T1.A=T2.A∧T1.R=T2.C) T2**
+```
+A   Q   R   B   C
+20  a   5   b   5
+```
+*Explanation: Join where BOTH conditions are met: T1.A=T2.A AND T1.R=T2.C. Only one combination satisfies both A=20 and R=C=5.*
 
 ## Part 2 - Chess Queries
 
@@ -91,14 +112,81 @@ OpponentIDs ← ρ(pID←bpID)(MagnusAsWhite) ∪ ρ(pID←wpID)(MagnusAsBlack)
 
 ## Part 3 - LMS Queries
 
-*Note: The screenshots showing the specific relational algebra queries are not visible. The solutions would depend on:*
-- The LMS database schema (Students, Courses, Enrollments, etc.)
-- The specific relational algebra expressions in the screenshots
+**Given LMS Database:**
+```
+Students:
+sID  Name      DOB
+1    Hermione  1980
+2    Harry     1979
+3    Ron       1980
+4    Malfoy    1982
 
-**General approach for LMS queries:**
-- Part 3.1, 3.2, 3.3 would each involve executing the given relational algebra expression
-- Results would be tables showing the selected/projected data
-- English descriptions would explain what each query finds (e.g., "students enrolled in specific courses", "courses with high enrollment", etc.)
+Enrolled:
+sID  cID   Grd
+1    3500  A
+1    3810  A-
+1    5530  A
+2    3810  A
+2    5530  B
+3    3500  C
+3    3810  B
+4    3500  C
+
+Courses:
+cID   Name
+3500  SW Practice
+3810  Architecture
+5530  Databases
+```
+
+### Part 3.1
+**Query:**
+```
+ρ(C, π_sid(σ_Grd=C(Enrolled)))
+π_Name((π_sid(Enrolled)−C) ⋈ Students)
+```
+
+**a) Result Table:**
+```
+Name
+Hermione
+Harry
+```
+
+**b) English Description:**
+This query finds the names of all students who are enrolled in courses but have never received a grade of 'C'. Students Ron and Malfoy both got C grades, so only Hermione and Harry remain.
+
+### Part 3.2
+**Query:**
+```
+ρ(S1, Students)
+ρ(S2, Students)
+π_S2.Name(σ_S1.Name==Ron∧S1.DOB==S2.DOB∧S2.name!=Ron(S1 × S2))
+```
+
+**a) Result Table:**
+```
+Name
+Hermione
+```
+
+**b) English Description:**
+This query finds the names of all students who have the same date of birth as "Ron" (1980), but are not Ron himself. Only Hermione shares Ron's birth year of 1980.
+
+### Part 3.3
+**Query:**
+```
+π_cName((π_cID,sID(Enroll)/π_sID(Students)) ⋈ Courses)
+```
+
+**a) Result Table:**
+```
+cName
+(empty - no results)
+```
+
+**b) English Description:**
+This query finds the names of courses that ALL students in the database are enrolled in. Since no course has all four students (Hermione, Harry, Ron, and Malfoy) enrolled, the result is empty. Course 3810 comes closest with 3 out of 4 students.
 
 ## Part 4 - Divide Operator Query
 
