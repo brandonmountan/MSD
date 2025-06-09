@@ -1,0 +1,151 @@
+rank,title_length,age_hours,points,comments,title
+1,41,2025,144,64,Why Android can't use CDC Ethernet (2023)
+2,62,2025,26,0,Riding high in Germany on the world's oldest suspended railway
+3,62,2025,54,24,Tracking Copilot vs. Codex vs. Cursor vs. Devin PR Performance
+4,7,2025,71,21,Omnimax
+5,71,2025,107,48,Building supercomputers for autocrats probably isn't good for democracy
+6,65,2025,34,15,Zig Devlog: Self-Hosted x86 Back End Is Now Default in Debug Mode
+7,70,2025,86,57,Panjandrum: The 'giant firework' built to break Hitler's Atlantic Wall
+8,64,2025,122,83,Administering immunotherapy in the morning seems to matter. Why?
+9,34,2025,6,0,Analyzing IPv4 Trades with Gnuplot
+10,59,2025,79,17,Show HN: Let’s Bend – Open-Source Harmonica Bending Trainer
+11,57,2025,74,39,Poison everywhere: No output from your MCP server is safe
+12,79,2025,42,26,"I used AI-powered calorie counting apps, and they were even worse than expected"
+13,67,2025,52,6,Endangered classic Mac plastic color returns as 3D-printer filament
+14,28,2025,141,29,Gaussian integration is cool
+15,28,2025,23,1,Generating Pixels One by One
+16,49,2025,10,3,How to get started with writing tech video essays
+17,35,2025,110,20,How Compiler Explorer Works in 2025
+18,64,2025,733,186,"The last six months in LLMs, illustrated by pelicans on bicycles"
+19,43,2025,81,19,Binfmtc – binfmt_misc C scripting interface
+20,29,2025,393,113,Joining Apple Computer (2018)
+21,75,2025,71,45,Cheap yet ultrapure titanium might enable widespread use in industry (2024)
+22,65,2025,79,16,Efficient mRNA delivery to resting T cells to reverse HIV latency
+23,61,2025,418,200,Self-Host and Tech Independence: The Joy of Building Your Own
+24,28,2025,200,160,<Blink> and <Marquee> (2020)
+25,56,2025,39,13,Launching the BeOS on Hitachi Flora Prius Systems (1999)
+26,33,2025,85,46,Building an AI server on a budget
+27,65,2025,74,77,FAA to eliminate floppy disks used in air traffic control systems
+28,80,2025,5,0,"tcpulse: A TCP/UDP load generator that provides fine-grained, flow-level control"
+29,26,2025,74,28,Focus and Context and LLMs
+30,24,2025,188,253,Coventry Very Light Rail
+31,40,2025,6,1,Cult AI Computer's Boom and Bust [video]
+32,18,2025,107,55,Startup Equity 101
+33,47,2025,282,81,Field Notes from Shipping Real Code with Claude
+34,47,2025,199,68,Ask HN: How to learn CUDA to professional level
+35,70,2025,36,12,Tool to identify poisonous books developed by University of St Andrews
+36,52,2025,20,3,OpenBSD IO Benchmarking: How Many Jobs Are Worth It?
+37,45,2025,236,153,A look at Cloudflare's AI-coded OAuth library
+38,31,2025,290,187,Low-Level Optimization with Zig
+39,70,2025,37,42,"The Wire That Transforms Much of Manhattan into One Big, Symbolic Home"
+40,28,2025,214,113,"What was Radiant AI, anyway?"
+41,28,2025,264,125,Why We're Moving on from Nix
+42,39,2025,76,45,My first attempt at iOS app development
+43,68,2025,193,56,A tool for burning visible pictures on a compact disc surface (2022)
+44,62,2025,1477,918,The time bomb in the tax code that's fueling mass tech layoffs
+45,21,2025,40,6,Nginx Restic Back End
+46,51,2025,181,105,BorgBackup 2 has no server-side append-only anymore
+47,74,2025,137,42,"Discovering a JDK Race Condition, and Debugging It in 30 Minutes with Fray"
+48,37,2025,114,73,Knowledge Management in the Age of AI
+49,68,2025,79,39,PS5 shooter goes from 5 players to bestseller after devs defend game
+50,57,2025,71,21,"Why Understanding Software Cycle Time Is Messy, Not Magic"
+51,64,2025,205,44,The FAIR Package Manager: Decentralized WordPress infrastructure
+52,79,2025,446,299,"Washington Post's Privacy Tip: Stop Using Chrome, Delete Meta Apps (and Yandex)"
+53,60,2025,65,3,Fray: A Controlled Concurrency Testing Framework for the JVM
+54,36,2025,412,50,Convert photos to Atkinson dithering
+55,53,2025,0,0,OneText (YC W23) Is Hiring a DevOps/DBA Lead Engineer
+56,46,2025,57,3,Dolphin Emulator Progress Report: Release 2506
+57,55,2025,283,663,Musk-Trump dispute includes threats to SpaceX contracts
+58,52,2025,448,201,My experiment living in a tent in Hong Kong's jungle
+59,22,2025,1538,266,Bill Atkinson has died
+60,79,2025,18,10,Acetylated cellulose suppresses mass through commensals consuming carbohydrates
+61,67,2025,474,183,Show HN: Air Lab – A portable and open air quality measuring device
+62,66,2025,428,273,Researchers develop ‘transparent paper’ as alternative to plastics
+63,68,2025,72,33,YouTuber claims to have received an offer to buy the Commodore brand
+64,33,2025,23,12,The race to find GPS alternatives
+65,39,2025,141,31,Reverse Engineering Cursor's LLM Client
+66,35,2025,116,11,You need much less memory than time
+67,17,2025,135,131,Hate Radio (2011)
+68,69,2025,569,238,How we decreased GitLab repo backup times from 48 hours to 41 minutes
+69,28,2025,407,164,Getting Past Procrastination
+70,75,2025,133,91,Medieval Africans had a unique process for purifying gold with glass (2019)
+71,80,2025,19,0,Reinforcement Learning to Train Large Language Models to Explain Human Decisions
+72,19,2025,168,108,Too Many Open Files
+73,23,2025,46,19,Math Symbol Frequencies
+74,51,2025,286,270,I read all of Cloudflare's Claude-generated commits
+75,27,2025,124,57,"Smalltalk, Haskell and Lisp"
+76,36,2025,373,123,A year of funded FreeBSD development
+77,77,2025,111,34,Workhorse LLMs: Why Open Source Models Dominate Closed Source for Batch Tasks
+78,56,2025,85,120,Freight rail fueled a new luxury overnight train startup
+79,70,2025,3,0,LayerPeeler: Autoregressive Peeling for Layer-Wise Image Vectorization
+80,25,2025,146,77,Curate your shell history
+81,49,2025,108,55,Weaponizing Dependabot: Pwn Request at its finest
+82,46,2025,524,222,Meta: Shut down your invasive AI Discover feed
+83,20,2025,38,3,Log-Linear Attention
+84,52,2025,9,3,Abstract visual reasoning based on algebraic methods
+85,77,2025,407,244,The Illusion of Thinking: Strengths and limitations of reasoning models [pdf]
+86,42,2025,108,79,What “working” means in the era of AI apps
+87,18,2025,4,0,Pen.el (A Holy OS)
+88,69,2025,58,12,CEO of Health Care Software Company Convicted of $1B Fraud Conspiracy
+89,18,2025,91,68,Series C and scale
+90,66,2025,874,518,Cloudlflare builds OAuth with Claude and publishes all the prompts
+91,31,2025,97,46,Should I Use a Carousel? (2013)
+92,80,2025,32,7,Congress is poised to increase energy bills by hundreds of dollars per household
+93,50,2025,77,14,An innovative superfamily of fonts for code (2023)
+94,45,2025,564,182,The impossible predicament of the death newts
+95,28,2025,186,45,Why are smokestacks so tall?
+96,73,2025,57,33,How to (actually) send DTMF on Android without being the default call app
+97,64,2025,141,74,Maintaining an Android app in Google Play Store is a lot of work
+98,56,2025,19,9,A simple comma is going to cost Apple billions in Europe
+99,69,2025,98,84,Swift and the Cute 2d game framework: Setting up a project with CMake
+100,54,2025,137,24,I made a search engine worse than Elasticsearch (2024)
+101,66,2025,671,377,A proposal to restrict sites from accessing a users’ local network
+102,35,2025,156,52,Test Postgres in Python Like SQLite
+103,54,2025,50,53,What happens when people don't understand how AI works
+104,38,2025,281,48,A masochist's guide to web development
+105,79,2025,280,310,How we’re responding to The NYT’s data demands in order to protect user privacy
+106,53,2025,218,89,Sandia turns on brain-like storage-free supercomputer
+107,37,2025,153,46,An Interactive Guide to Rate Limiting
+108,15,2025,275,109,4-7-8 Breathing
+109,46,2025,8,1,Tapping into the World’s largest gold reserves
+110,80,2025,12,1,What drives differences in life expectancy between the U.S. and other countries?
+111,38,2025,196,66,Wendelstein 7-X sets new fusion record
+112,31,2025,109,21,Reverse engineering Claude Code
+113,65,2025,110,57,"If it works, it's not AI: a commercial look at AI startups (1999)"
+114,48,2025,210,128,SaaS is just vendor lock-in with better branding
+115,41,2025,125,62,Highly efficient matrix transpose in Mojo
+116,78,2025,81,2,EFF to the FTC: DMCA Section 1201 Creates Anti-Competitive Regulatory Barriers
+117,25,2025,71,46,A Knockout Blow for LLMs?
+118,41,2025,28,0,Semi-Sync Meetings: Stop Wasting Our Time
+119,38,2025,84,70,How much energy does it take to think?
+120,79,2025,126,57,Show HN: Ask-human-mcp – zero-config human-in-loop hatch to stop hallucinations
+121,58,2025,133,8,Sharing everything I could understand about gradient noise
+122,72,2025,12,2,What's a healthy amount of sleep? It differs from one country to another
+123,43,2025,155,113,Show HN: AI game animation sprite generator
+124,77,2025,211,34,Researchers find a way to make the HIV virus visible within white blood cells
+125,39,2025,167,197,What you need to know about EMP weapons
+126,55,2025,243,51,Odyc.js – A tiny JavaScript library for narrative games
+127,45,2025,444,191,Falsehoods programmers believe about aviation
+128,46,2025,86,52,Defending adverbs exuberantly if conditionally
+129,24,2025,50,28,The Coleco Adam Computer
+130,59,2025,39,10,The printer that transcends dimensions and corrupts reality
+131,50,2025,82,124,The startling rise of disability in America (2013)
+132,74,2025,123,24,From tokens to thoughts: How LLMs and humans trade compression for meaning
+133,24,2025,214,235,Machine Code Isn't Scary
+134,67,2025,1599,742,Self-hosting your own media considered harmful according to YouTube
+135,49,2025,22,4,PyOpticL – Code-to-CAD optical system engineering
+136,72,2025,286,182,"Ask HN: Startup getting spammed with PayPal disputes, what should we do?"
+137,74,2025,10,8,"In aviation, finding skilled workers to make airplanes has been a struggle"
+138,21,2025,183,193,AGI is not multimodal
+139,26,2025,19,2,The Agentic Systems Series
+140,42,2025,248,34,A practical guide to building agents [pdf]
+141,45,2025,184,86,"Show HN: GPT image editing, but for 3D models"
+142,23,2025,147,65,The Universal Tech Tree
+143,62,2025,87,200,I'm Wirecutter's water-quality expert. I don't filter my water
+144,61,2025,33,7,The AI Tool Used by Doge to Review Veterans Affairs Contracts
+145,77,2025,70,12,Free Gaussian Primitives at Anytime Anywhere for Dynamic Scene Reconstruction
+146,39,2025,136,215,Amelia Earhart's Reckless Final Flights
+147,76,2025,4,2,"Apple study finds ""a fundamental scaling limitation"" in LLM reasoning models"
+148,27,2025,238,85,Jepsen: TigerBeetle 0.16.11
+149,67,2025,6,0,"Free online participation in the Ada Developers Workshop, June 13th"
+150,53,2025,70,27,"Show HN: Lambduck, a Functional Programming Brainfuck"
