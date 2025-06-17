@@ -34,44 +34,36 @@ CarAssignment [__VIN (string), SSN (string)__]
 
 ```sql
 CREATE TABLE Patrons (
-  CardNum (integer) PRIMARY KEY,
-  Name (string),
-  Phone (string),
-  Address (string)
+   CardNum (integer) PRIMARY KEY,
+   Name (string)
 );
 
-CREATE TABLE Books (
-  ISBN (string) PRIMARY KEY,
-  Title (string),
-  PublisherID (integer),
-  PublicationYear (integer)
+CREATE TABLE Phones (
+   CardNum (integer),
+   Phone (string),
+   PRIMARY KEY (CardNum, Phone),
+   FOREIGN KEY (CardNum) REFERENCES Patrons(CardNum)
 );
 
-CREATE TABLE Authors (
-  AuthorID (integer) PRIMARY KEY,
-  Name (string),
-  BirthYear (integer)
+CREATE TABLE Titles (
+   ISBN (string) PRIMARY KEY,
+   Title (string),
+   Author (string)
 );
 
-CREATE TABLE Publishers (
-  PublisherID (integer) PRIMARY KEY,
-  Name (string),
-  Address (string)
+CREATE TABLE Inventory (
+   Serial (integer),
+   ISBN (string),
+   PRIMARY KEY (Serial, ISBN),
+   FOREIGN KEY (ISBN) REFERENCES Titles(ISBN)
 );
 
-CREATE TABLE BookAuthors (
-  ISBN (string),
-  AuthorID (integer),
-  PRIMARY KEY (ISBN, AuthorID)
-);
-
-CREATE TABLE Loans (
-  LoanID (integer) PRIMARY KEY,
-  CardNum (integer),
-  ISBN (string),
-  CheckoutDate (string),
-  DueDate (string),
-  ReturnDate (string)
+CREATE TABLE CheckedOut (
+   CardNum (integer),
+   Serial (integer),
+   PRIMARY KEY (CardNum, Serial),
+   FOREIGN KEY (CardNum) REFERENCES Patrons(CardNum),
+   FOREIGN KEY (Serial) REFERENCES Inventory(Serial)
 );
 ```
 
