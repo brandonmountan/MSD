@@ -1,0 +1,79 @@
+# Additional Library Database Queries
+
+## Library Schema
+- **Patrons**: CardNum, Name
+- **CheckedOut**: CardNum, Serial
+- **Inventory**: Serial, ISBN
+- **Phones**: CardNum, Phone
+- **Titles**: ISBN, Title, Author
+
+## Additional Query Set
+
+```sql
+-- 1. Find the name of the patron who has checked out the most books
+SELECT p.Name
+FROM Patron p
+JOIN CheckedOut c ON p.CardNum = c.CardNum
+GROUP BY p.CardNum, p.Name
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+
+-- 2. Find the Titles of all books that were written by an author whose name starts with 'K'
+SELECT Title
+FROM Titles
+WHERE Author LIKE 'K%';
+
+-- 3. Find the Authors who have written more than one book
+SELECT Author
+FROM Titles
+GROUP BY Author
+HAVING COUNT(*) > 1;
+
+-- 4. Find the Authors for which the library has more than one book in inventory
+-- (includes multiple copies of the same book)
+SELECT t.Author
+FROM Titles t
+JOIN Inventory i ON t.ISBN = i.ISBN
+GROUP BY t.Author
+HAVING COUNT(*) > 1;
+
+-- 5. Customer loyalty program: names, book count, and loyalty level of each Patron
+SELECT p.Name,
+       COALESCE(COUNT(c.Serial), 0) AS BooksCheckedOut,
+       CASE 
+           WHEN COUNT(c.Serial) > 2 THEN 'Platinum'
+           WHEN COUNT(c.Serial) = 2 THEN 'Gold'
+           WHEN COUNT(c.Serial) = 1 THEN 'Silver'
+           ELSE 'Bronze'
+       END AS LoyaltyLevel
+FROM Patron p
+LEFT JOIN CheckedOut c ON p.CardNum = c.CardNum
+GROUP BY p.CardNum, p.Name
+ORDER BY BooksCheckedOut DESC;
+```
+
+## Query Explanations
+
+### Query 1: Most Active Patron
+- Joins Patron with CheckedOut to count books per patron
+- Groups by patron information and orders by count descending
+- Uses LIMIT 1 to get only the top patron
+
+### Query 2: Authors Starting with 'K'
+- Simple pattern matching using LIKE 'K%'
+- Returns book titles, not author names as requested
+
+### Query 3: Prolific Authors
+- Groups by Author name in Titles table
+- Uses HAVING to filter for authors with more than one book title
+
+### Query 4: Authors with Multiple Inventory Items
+- Joins Titles with Inventory to count physical books per author
+- Includes multiple copies of same book and different books by same author
+- Groups by Author and filters for counts > 1
+
+### Query 5: Loyalty Program
+- Uses LEFT JOIN to include all patrons, even those with no checkouts
+- COALESCE handles NULL counts (converts to 0 for display)
+- CASE statement implements the loyalty tier logic
+- COUNT(c.Serial) will be 0 for patrons with no checkouts due to LEFT JOIN behavior
