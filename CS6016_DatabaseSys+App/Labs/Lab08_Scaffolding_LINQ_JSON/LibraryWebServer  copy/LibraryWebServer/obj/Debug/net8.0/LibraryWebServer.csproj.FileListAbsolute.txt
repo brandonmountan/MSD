@@ -1,0 +1,7 @@
+/Users/nabil/Downloads/LibraryWebServer /LibraryWebServer/obj/Debug/net8.0/LibraryWebServer.GeneratedMSBuildEditorConfig.editorconfig
+/Users/nabil/Downloads/LibraryWebServer /LibraryWebServer/obj/Debug/net8.0/LibraryWebServer.AssemblyInfoInputs.cache
+/Users/nabil/Downloads/LibraryWebServer /LibraryWebServer/obj/Debug/net8.0/LibraryWebServer.AssemblyInfo.cs
+/Users/nabil/Downloads/LibraryWebServer /LibraryWebServer/obj/Debug/net8.0/LibraryWebServer.csproj.CoreCompileInputs.cache
+/Users/nabil/Downloads/LibraryWebServer /LibraryWebServer/obj/Debug/net8.0/LibraryWebServer.MvcApplicationPartsAssemblyInfo.cache
+/Users/nabil/Downloads/LibraryWebServer /LibraryWebServer/obj/Debug/net8.0/LibraryWebServer.RazorAssemblyInfo.cache
+/Users/nabil/Downloads/LibraryWebServer /LibraryWebServer/obj/Debug/net8.0/LibraryWebServer.RazorAssemblyInfo.cs
