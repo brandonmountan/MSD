@@ -1,6 +1,3 @@
-// ModelTests.kt - Custom testing for Model package
-// Put this in: app/src/test/java/com/example/degreeplanner/model/ModelTests.kt
-
 package com.example.degreeplanner.model
 
 // Simple custom testing framework

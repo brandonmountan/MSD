@@ -1,23 +1,18 @@
-// ApiModels.kt - Simple data classes for API (CORRECTED)
 package com.example.degreeplanner.model
 
 import kotlinx.serialization.Serializable
 
-/**
- * PHASE 2 SIMPLE: API response models matching actual server structure
- */
-
 // Main response from degreePlans.json
 @Serializable
 data class DegreePlansResponse(
-    val plans: List<PlanInfo>  // Fixed: "plans" not "degreePlans"
+    val plans: List<PlanInfo>
 )
 
 // Individual plan info
 @Serializable
 data class PlanInfo(
-    val name: String,    // e.g., "Computer Science"
-    val path: String     // e.g., "cs.json" - Fixed: "path" not "file"
+    val name: String,
+    val path: String
 )
 
 // Individual degree plan details

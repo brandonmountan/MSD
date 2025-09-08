@@ -1,4 +1,3 @@
-// DegreePlanRepository.kt - SIMPLE version
 package com.example.degreeplanner.repository
 
 import com.example.degreeplanner.model.*
@@ -11,9 +10,6 @@ import io.ktor.client.request.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
-/**
- * PHASE 2 SIMPLE: Basic repository for API calls
- */
 class DegreePlanRepository {
 
     // Simple HTTP client

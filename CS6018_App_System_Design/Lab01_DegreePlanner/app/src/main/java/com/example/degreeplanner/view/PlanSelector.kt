@@ -1,4 +1,3 @@
-// DegreePlanSelector.kt - SIMPLE version
 package com.example.degreeplanner.view
 
 import androidx.compose.foundation.layout.*

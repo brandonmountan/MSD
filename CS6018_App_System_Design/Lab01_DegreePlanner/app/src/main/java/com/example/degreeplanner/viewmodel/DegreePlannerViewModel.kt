@@ -1,4 +1,3 @@
-// DegreePlannerViewModel.kt - SIMPLE Phase 2 version
 package com.example.degreeplanner.viewmodel
 
 import androidx.compose.runtime.*
@@ -38,7 +37,6 @@ class DegreePlannerViewModel : ViewModel() {
         loadPlans()
     }
 
-    // Existing methods from Phase 1 (unchanged)
     fun addCourse(course: Course) {
         if (!_courses.contains(course)) {
             _courses.add(course)

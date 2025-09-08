@@ -1,6 +1,3 @@
-// ViewTests.kt - Custom testing for View package
-// Put this in: app/src/test/java/com/example/degreeplanner/view/ViewTests.kt
-
 package com.example.degreeplanner.view
 
 import com.example.degreeplanner.model.Course
