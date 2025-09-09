@@ -2,61 +2,67 @@ package com.example.degreeplanner.model
 
 import kotlinx.serialization.Serializable
 
+
 // Main response from degreePlans.json
 @Serializable
 data class DegreePlansResponse(
     val plans: List<PlanInfo>
 )
 
-// Individual plan info
+// Individual plan info from the main list
 @Serializable
 data class PlanInfo(
     val name: String,
     val path: String
 )
 
-// Individual degree plan details
 @Serializable
 data class PlanDetails(
     val name: String,
-    val requirements: List<SimpleRequirement>
+    val requirements: List<ApiRequirement>
 )
 
-// Simple requirement from API
 @Serializable
-data class SimpleRequirement(
-    val type: String,                    // "course" or "choice"
-    val description: String,             // Human description
-    val department: String? = null,      // For single course
-    val number: Int? = null,             // For single course
-    val options: List<SimpleCourse>? = null  // For choice requirements
+data class ApiRequirement(
+    val type: String,
+    val course: ApiCourse? = null,
+    val courses: List<ApiCourse>? = null
 )
 
-// Simple course from API
 @Serializable
-data class SimpleCourse(
+data class ApiCourse(
     val department: String,
-    val number: Int
+    val number: String
 )
 
-/**
- * Convert API models to our existing domain models
- */
-fun SimpleCourse.toCourse(): Course = Course(department, number)
+fun ApiCourse.toCourse(): Course {
+    // Convert string number to int, handle any parsing errors
+    val courseNumber = number.toIntOrNull() ?: 0
+    return Course(department, courseNumber)
+}
 
-fun SimpleRequirement.toRequirement(): Requirement? {
+fun ApiRequirement.toRequirement(): Requirement? {
     return when (type) {
-        "course" -> {
-            if (department != null && number != null) {
-                Requirement.SpecificCourse(Course(department, number), description)
-            } else null
-        }
-        "choice" -> {
-            options?.let { opts ->
-                val courses = opts.map { it.toCourse() }
-                Requirement.OneOf(courses, description)
+        "requiredCourse" -> {
+            course?.let { apiCourse ->
+                val domainCourse = apiCourse.toCourse()
+                val description = "Complete ${domainCourse.department} ${domainCourse.number}"
+                Requirement.SpecificCourse(domainCourse, description)
             }
         }
-        else -> null
+        "oneOf" -> {
+            courses?.let { apiCourses ->
+                val domainCourses = apiCourses.map { it.toCourse() }
+                val description = "Complete one of: ${domainCourses.joinToString(" or ")}"
+                Requirement.OneOf(domainCourses, description)
+            }
+        }
+        else -> {
+            null
+        }
     }
+}
+
+fun PlanDetails.toRequirements(): List<Requirement> {
+    return requirements.mapNotNull { it.toRequirement() }
 }

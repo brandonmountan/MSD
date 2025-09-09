@@ -7,18 +7,13 @@ import com.example.degreeplanner.model.*
 import com.example.degreeplanner.repository.DegreePlanRepository
 import kotlinx.coroutines.launch
 
-/**
- * PHASE 2 SIMPLE: Enhanced ViewModel with basic API support
- */
 class DegreePlannerViewModel : ViewModel() {
 
     private val repository = DegreePlanRepository()
 
-    // Existing state from Phase 1
     private val _courses = mutableStateListOf<Course>()
     val courses: List<Course> = _courses
 
-    // New state for Phase 2
     var availablePlans by mutableStateOf(listOf<PlanInfo>())
         private set
 
@@ -53,7 +48,6 @@ class DegreePlannerViewModel : ViewModel() {
     fun isRequirementSatisfied(requirement: Requirement): Boolean =
         RequirementChecker.isSatisfied(requirement, courses)
 
-    // New methods for Phase 2
     private fun loadDefaultRequirements() {
         _requirements.clear()
         _requirements.addAll(

@@ -1,7 +1,6 @@
 package com.example.degreeplanner.repository
 
 import com.example.degreeplanner.model.*
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.client.HttpClient
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.android.*
@@ -12,51 +11,55 @@ import kotlinx.serialization.json.Json
 
 class DegreePlanRepository {
 
-    // Simple HTTP client
+    // HTTP client configured for JSON parsing
     private val client = HttpClient(Android) {
         install(ContentNegotiation) {
-            json(Json { ignoreUnknownKeys = true })
+            json(Json {
+                ignoreUnknownKeys = true      // Ignore extra fields in JSON
+                coerceInputValues = true      // Handle type mismatches gracefully
+            })
         }
     }
 
     private val baseUrl = "https://msd2025.github.io/degreePlans/"
 
-    /**
-     * Get list of available plans
-     */
     suspend fun getPlans(): List<PlanInfo> {
         return try {
             val response = client.get("${baseUrl}degreePlans.json")
             val data: DegreePlansResponse = response.body()
             data.plans
         } catch (e: Exception) {
-            emptyList() // Simple fallback
+            // Return empty list if API fails - graceful fallback
+            println("Failed to load degree plans: ${e.message}")
+            emptyList()
         }
     }
 
-    /**
-     * Get requirements for a specific plan
-     */
     suspend fun getRequirements(path: String): List<Requirement> {
         return try {
             val response = client.get("$baseUrl$path")
             val data: PlanDetails = response.body()
-            data.requirements.mapNotNull { it.toRequirement() }
+
+            // Convert API requirements to domain requirements
+            data.toRequirements()
         } catch (e: Exception) {
-            getDefaultRequirements() // Fallback to default
+            // Fallback to default requirements if API fails
+            println("Failed to load requirements for $path: ${e.message}")
+            getDefaultRequirements()
         }
     }
 
-    /**
-     * Default requirements (same as Phase 1)
-     */
-    private fun getDefaultRequirements(): List<Requirement> {
+    fun getDefaultRequirements(): List<Requirement> {
         return listOf(
-            Requirement.SpecificCourse(Course("CS", 101)),
+            Requirement.SpecificCourse(Course("CS", 101), "Complete CS 101"),
             Requirement.OneOf(
                 listOf(Course("PHIL", 101), Course("SOC", 101)),
-                "Complete one of: Philosophy or Sociology"
+                "Complete one of: PHIL 101 or SOC 101"
             )
         )
+    }
+
+    fun close() {
+        client.close()
     }
 }

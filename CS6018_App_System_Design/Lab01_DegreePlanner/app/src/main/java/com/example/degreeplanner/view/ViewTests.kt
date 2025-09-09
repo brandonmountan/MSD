@@ -4,7 +4,6 @@ import com.example.degreeplanner.model.Course
 import com.example.degreeplanner.model.Requirement
 import com.example.degreeplanner.model.RequirementChecker
 
-// Simple custom testing framework for View logic
 object ViewTestRunner {
     private var passCount = 0
     private var failCount = 0
@@ -55,9 +54,6 @@ object ViewTestRunner {
     }
 }
 
-/**
- * Mock callback tracker for testing component interactions
- */
 class CallbackTracker {
     val calls = mutableListOf<String>()
     var lastCourse: Course? = null
@@ -78,10 +74,6 @@ class CallbackTracker {
     }
 }
 
-/**
- * Tests for CourseInputCard logic
- * Since we can't test Composable UI directly, we test the business logic
- */
 object CourseInputCardTests {
     
     fun runAllTests() {

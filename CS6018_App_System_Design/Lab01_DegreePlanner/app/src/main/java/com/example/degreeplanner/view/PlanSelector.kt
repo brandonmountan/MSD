@@ -12,9 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.degreeplanner.model.PlanInfo
 
-/**
- * PHASE 2 SIMPLE: Basic plan selector
- */
 @Composable
 fun PlanSelector(
     plans: List<PlanInfo>,
@@ -36,9 +33,9 @@ fun PlanSelector(
                     Icon(Icons.Default.Refresh, contentDescription = "Refresh")
                 }
             }
-            
+
             Spacer(modifier = Modifier.height(8.dp))
-            
+
             // Loading or plans
             if (isLoading) {
                 Text("Loading...")

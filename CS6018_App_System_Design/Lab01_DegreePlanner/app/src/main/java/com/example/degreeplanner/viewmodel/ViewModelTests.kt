@@ -3,7 +3,6 @@ package com.example.degreeplanner.viewmodel
 import com.example.degreeplanner.model.Course
 import com.example.degreeplanner.model.Requirement
 
-// Simple custom testing framework
 object ViewModelTestRunner {
     private var passCount = 0
     private var failCount = 0
