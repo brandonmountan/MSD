@@ -7,20 +7,20 @@ import androidx.camera.core.ImageProxy
 import org.tensorflow.lite.support.image.ImageProcessor
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.image.ops.ResizeOp
-import com.example.objectdetection.ml.AutoModel2 // Auto-generated class
+import com.example.objectdetection.ml.AutoModel2 // Auto-generated class from our 2.tflite model file
 import androidx.core.graphics.createBitmap
 
-class EfficientDetDetectionEngine(private val context: Context) {
+class EfficientDetDetectionEngine(private val context: Context) { // Class that handles EfficientDet AI object detection
 
-    private var model: AutoModel2? = null
-    private var isInitialized = false
+    private var model: AutoModel2? = null // The TensorFlow Lite model (null until loaded)
+    private var isInitialized = false // Track whether model successfully loaded
 
-    // Image processor for 640x640 input (as specified in tensor description)
-    private val imageProcessor = ImageProcessor.Builder()
-        .add(ResizeOp(640, 640, ResizeOp.ResizeMethod.BILINEAR))
-        .build()
+    // Image processor that resizes images to 640x640 pixels (required by our model)
+    private val imageProcessor = ImageProcessor.Builder() // Create image processor builder
+        .add(ResizeOp(640, 640, ResizeOp.ResizeMethod.BILINEAR)) // Add resize operation to 640x640
+        .build() // Build the processor
 
-    // COCO dataset labels for object detection
+    // COCO dataset labels - these are the 80 objects our model can detect
     private val labels = arrayOf(
         "person", "bicycle", "car", "motorcycle", "airplane", "bus", "train", "truck", "boat",
         "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat",
@@ -34,129 +34,135 @@ class EfficientDetDetectionEngine(private val context: Context) {
         "book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush"
     )
 
-    suspend fun initialize(): Boolean {
-        return try {
-            Log.d("EfficientDet", "Initializing AutoModel2...")
-            model = AutoModel2.newInstance(context)
-            isInitialized = true
-            Log.d("EfficientDet", "AutoModel2 initialized successfully")
-            true
-        } catch (e: Exception) {
-            Log.e("EfficientDet", "Failed to initialize Model2", e)
-            isInitialized = false
-            false
+    suspend fun initialize(): Boolean { // Load the AI model when app starts
+        return try { // Try to load the model
+            Log.d("EfficientDet", "Initializing AutoModel2...") // Log that we're starting
+            model = AutoModel2.newInstance(context) // Create new model instance from 2.tflite file
+            isInitialized = true // Mark that model loaded successfully
+            Log.d("EfficientDet", "AutoModel2 initialized successfully") // Log success
+            true // Return true to indicate success
+        } catch (e: Exception) { // If anything goes wrong
+            Log.e("EfficientDet", "Failed to initialize Model2", e) // Log the error
+            isInitialized = false // Mark that model failed to load
+            false // Return false to indicate failure
         }
     }
 
-    suspend fun detectObjects(imageProxy: ImageProxy): List<DetectedObject> {
-        if (!isInitialized || model == null) {
-            Log.w("EfficientDet", "Model not initialized")
-            return emptyList()
+    suspend fun detectObjects(imageProxy: ImageProxy): List<DetectedObject> { // Main function to detect objects in camera frame
+        if (!isInitialized || model == null) { // Check if model is ready to use
+            Log.w("EfficientDet", "Model not initialized") // Log warning
+            return emptyList() // Return empty list (no detections)
         }
 
-        try {
-            val bitmap = imageProxyToBitmap(imageProxy)
-            if (bitmap == null) {
-                Log.w("EfficientDet", "Failed to convert ImageProxy to Bitmap")
-                return emptyList()
+        try { // Try to run object detection
+            val bitmap = imageProxyToBitmap(imageProxy) // Convert camera frame to bitmap image
+            if (bitmap == null) { // If conversion failed
+                Log.w("EfficientDet", "Failed to convert ImageProxy to Bitmap") // Log warning
+                return emptyList() // Return empty list (no detections)
             }
 
-            Log.d("EfficientDet", "Processing bitmap: ${bitmap.width}x${bitmap.height}")
+            Log.d("EfficientDet", "Processing bitmap: ${bitmap.width}x${bitmap.height}") // Log original image size
 
-            // Resize and process image to 640x640 as expected by model
-            val tensorImage = TensorImage.fromBitmap(bitmap)
-            val processedImage = imageProcessor.process(tensorImage)
+            // Prepare image for AI model
+            val tensorImage = TensorImage.fromBitmap(bitmap) // Convert bitmap to TensorImage format
+            val processedImage = imageProcessor.process(tensorImage) // Resize to 640x640 pixels
 
-            Log.d("EfficientDet", "Processed image to: ${processedImage.width}x${processedImage.height}")
+            Log.d("EfficientDet", "Processed image to: ${processedImage.width}x${processedImage.height}") // Log processed size (should be 640x640)
 
-            // Run model inference
-            val outputs = model!!.process(processedImage)
+            // Run AI model inference (this is where the magic happens!)
+            val outputs = model!!.process(processedImage) // Feed image to AI and get results
 
-            // Access the specific outputs based on tensor specification
-            val locationFeature = outputs.locationAsTensorBuffer
-            val categoryFeature = outputs.categoryAsTensorBuffer
-            val scoreFeature = outputs.scoreAsTensorBuffer
-            val numDetectionsFeature = outputs.numberOfDetectionsAsTensorBuffer
+            // Extract the model's outputs (locations, categories, scores, count)
+            val locationFeature = outputs.locationAsTensorBuffer // Bounding box coordinates for each object
+            val categoryFeature = outputs.categoryAsTensorBuffer // Category index for each object (0-79)
+            val scoreFeature = outputs.scoreAsTensorBuffer // Confidence score for each object (0-1)
+            val numDetectionsFeature = outputs.numberOfDetectionsAsTensorBuffer // Total number of objects found
 
-            val numDetections = numDetectionsFeature.floatArray[0].toInt()
-            Log.d("EfficientDet", "Model returned $numDetections detections")
+            val numDetections = numDetectionsFeature.floatArray[0].toInt() // Get count as integer
+            Log.d("EfficientDet", "Model returned $numDetections detections") // Log how many objects found
 
-            val locations = locationFeature.floatArray
-            val categories = categoryFeature.floatArray
-            val scores = scoreFeature.floatArray
+            // Convert tensor buffers to regular arrays for easier access
+            val locations = locationFeature.floatArray // Array of bounding box coordinates
+            val categories = categoryFeature.floatArray // Array of category indices
+            val scores = scoreFeature.floatArray // Array of confidence scores
 
-            val detectedObjects = mutableListOf<DetectedObject>()
+            val detectedObjects = mutableListOf<DetectedObject>() // List to store final detected objects
 
-            for (i in 0 until numDetections.coerceAtMost(100)) {
-                val score = scores[i]
+            for (i in 0 until numDetections.coerceAtMost(100)) { // Loop through each detection (max 100)
+                val score = scores[i] // Get confidence score for this detection
 
-                Log.d("EfficientDet", "Detection $i: score=$score")
+                Log.d("EfficientDet", "Detection $i: score=$score") // Log the confidence score
 
-                // Lower threshold for testing
-                if (score > 0.3f) {
-                    // Extract bounding box coordinates (typically ymin, xmin, ymax, xmax)
-                    val ymin = locations[i * 4 + 0]     // top
-                    val xmin = locations[i * 4 + 1]     // left
-                    val ymax = locations[i * 4 + 2]     // bottom
-                    val xmax = locations[i * 4 + 3]     // right
+                // Only keep detections with confidence > 30%
+                if (score > 0.3f) { // Filter out low-confidence detections
 
-                    Log.d("EfficientDet", "Raw coordinates: ymin=$ymin, xmin=$xmin, ymax=$ymax, xmax=$xmax")
+                    // Extract bounding box coordinates (model outputs: ymin, xmin, ymax, xmax)
+                    val ymin = locations[i * 4 + 0]     // Top edge (0-1 range)
+                    val xmin = locations[i * 4 + 1]     // Left edge (0-1 range)
+                    val ymax = locations[i * 4 + 2]     // Bottom edge (0-1 range)
+                    val xmax = locations[i * 4 + 3]     // Right edge (0-1 range)
 
-                    // Ensure coordinates are normalized (0-1 range)
-                    val left = xmin.coerceIn(0f, 1f)
-                    val top = ymin.coerceIn(0f, 1f)
-                    val right = xmax.coerceIn(0f, 1f)
-                    val bottom = ymax.coerceIn(0f, 1f)
+                    Log.d("EfficientDet", "Raw coordinates: ymin=$ymin, xmin=$xmin, ymax=$ymax, xmax=$xmax") // Log raw coordinates
 
-                    // Get category index and map to label
-                    val categoryIndex = categories[i].toInt()
-                    val label = if (categoryIndex < labels.size && categoryIndex >= 0) {
-                        labels[categoryIndex]
-                    } else {
-                        "Object $categoryIndex"
+                    // Ensure coordinates are valid (between 0 and 1)
+                    val left = xmin.coerceIn(0f, 1f) // Clamp left to 0-1 range
+                    val top = ymin.coerceIn(0f, 1f) // Clamp top to 0-1 range
+                    val right = xmax.coerceIn(0f, 1f) // Clamp right to 0-1 range
+                    val bottom = ymax.coerceIn(0f, 1f) // Clamp bottom to 0-1 range
+
+                    // Get category index and map it to a human-readable label
+                    val categoryIndex = categories[i].toInt() // Get category index (0-79)
+                    val label = if (categoryIndex < labels.size && categoryIndex >= 0) { // If valid index
+                        labels[categoryIndex] // Get label name from our labels array
+                    } else { // If invalid index
+                        "Object $categoryIndex" // Use generic name
                     }
 
-                    Log.d("EfficientDet", "Final detection: $label, score=$score, cords=($left,$top,$right,$bottom)")
+                    Log.d("EfficientDet", "Final detection: $label, score=$score, cords=($left,$top,$right,$bottom)") // Log final detection info
 
+                    // Create bounding box object with normalized coordinates
                     val boundingBox = BoundingBox(left, top, right, bottom)
+
+                    // Create object label with name and confidence
                     val objectLabel = ObjectLabel(
-                        text = label,
-                        confidence = score,
-                        index = categoryIndex
+                        text = label, // Object name (e.g., "person", "car")
+                        confidence = score, // Confidence score (0-1)
+                        index = categoryIndex // Category index (0-79)
                     )
 
+                    // Create detected object combining box and label
                     val detectedObject = DetectedObject(
-                        boundingBox = boundingBox,
-                        labels = listOf(objectLabel)
+                        boundingBox = boundingBox, // Where the object is
+                        labels = listOf(objectLabel) // What the object is
                     )
 
-                    detectedObjects.add(detectedObject)
+                    detectedObjects.add(detectedObject) // Add to our list of detections
                 }
             }
 
-            Log.d("EfficientDet", "Returning ${detectedObjects.size} valid detections")
-            return detectedObjects
+            Log.d("EfficientDet", "Returning ${detectedObjects.size} valid detections") // Log final count
+            return detectedObjects // Return the list of detected objects
 
-        } catch (e: Exception) {
-            Log.e("EfficientDet", "Error during object detection", e)
-            e.printStackTrace()
-            return emptyList()
+        } catch (e: Exception) { // If anything goes wrong during detection
+            Log.e("EfficientDet", "Error during object detection", e) // Log the error
+            e.printStackTrace() // Print full error stack trace
+            return emptyList() // Return empty list (no detections)
         }
     }
 
-    private fun imageProxyToBitmap(imageProxy: ImageProxy): Bitmap? {
-        return ImageUtils.imageProxyToBitmap(imageProxy)
-            ?: createBitmap(640, 640)
+    private fun imageProxyToBitmap(imageProxy: ImageProxy): Bitmap? { // Convert camera frame to bitmap
+        return ImageUtils.imageProxyToBitmap(imageProxy) // Use utility function to convert
+            ?: createBitmap(640, 640) // If conversion fails, create blank 640x640 bitmap
     }
 
-    fun close() {
-        try {
-            model?.close()
-            model = null
-            isInitialized = false
-            Log.d("EfficientDet", "AutoModel2 closed successfully")
-        } catch (e: Exception) {
-            Log.e("EfficientDet", "Error closing model", e)
+    fun close() { // Clean up when we're done using the model
+        try { // Try to close the model
+            model?.close() // Close TensorFlow Lite model (free memory)
+            model = null // Clear the model reference
+            isInitialized = false // Mark as not initialized
+            Log.d("EfficientDet", "AutoModel2 closed successfully") // Log success
+        } catch (e: Exception) { // If closing fails
+            Log.e("EfficientDet", "Error closing model", e) // Log the error
         }
     }
 }
