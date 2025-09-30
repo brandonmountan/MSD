@@ -2,25 +2,25 @@ package com.example.objectdetection.model
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.util.Log
 import androidx.camera.core.ImageProxy
-import org.tensorflow.lite.Interpreter
 import org.tensorflow.lite.support.image.ImageProcessor
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.image.ops.ResizeOp
-import java.io.FileInputStream
-import java.nio.ByteBuffer
-import java.nio.channels.FileChannel
+import com.example.objectdetection.ml.AutoModel2 // Auto-generated class
+import androidx.core.graphics.createBitmap
 
 class EfficientDetDetectionEngine(private val context: Context) {
 
-    private var interpreter: Interpreter? = null // TensorFlow Lite interpreter
-    private var isInitialized = false // Track if model loaded successfully
+    private var model: AutoModel2? = null
+    private var isInitialized = false
 
-    private val imageProcessor = ImageProcessor.Builder() // Image preprocessor
-        .add(ResizeOp(512, 512, ResizeOp.ResizeMethod.BILINEAR)) // Resize to 512x512 pixels
+    // Image processor for 640x640 input (as specified in tensor description)
+    private val imageProcessor = ImageProcessor.Builder()
+        .add(ResizeOp(640, 640, ResizeOp.ResizeMethod.BILINEAR))
         .build()
 
-    // Objects that EfficientDet can detect (COCO dataset labels)
+    // COCO dataset labels for object detection
     private val labels = arrayOf(
         "person", "bicycle", "car", "motorcycle", "airplane", "bus", "train", "truck", "boat",
         "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat",
@@ -34,99 +34,129 @@ class EfficientDetDetectionEngine(private val context: Context) {
         "book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush"
     )
 
-    suspend fun initialize(): Boolean { // Load the TensorFlow model
+    suspend fun initialize(): Boolean {
         return try {
-            val modelBuffer = loadModelFile() // Load .tflite file from assets
-
-            val options = Interpreter.Options() // TensorFlow options
-            options.setNumThreads(4) // Use 4 CPU threads for speed
-            interpreter = Interpreter(modelBuffer, options) // Create interpreter
-
-            isInitialized = true // Mark as ready
-            true // Success
+            Log.d("EfficientDet", "Initializing AutoModel2...")
+            model = AutoModel2.newInstance(context)
+            isInitialized = true
+            Log.d("EfficientDet", "AutoModel2 initialized successfully")
+            true
         } catch (e: Exception) {
-            e.printStackTrace() // Log error
-            false // Failed
+            Log.e("EfficientDet", "Failed to initialize Model2", e)
+            isInitialized = false
+            false
         }
     }
 
-    private fun loadModelFile(): ByteBuffer { // Load .tflite model from assets folder
-        val assetFileDescriptor = context.assets.openFd("2.tflite") // Open model file
-        val inputStream = FileInputStream(assetFileDescriptor.fileDescriptor) // Create input stream
-        val fileChannel = inputStream.channel // Get file channel
-        val startOffset = assetFileDescriptor.startOffset // File start position
-        val declaredLength = assetFileDescriptor.declaredLength // File length
-        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength) // Map file to memory
-    }
-
-    suspend fun detectObjects(imageProxy: ImageProxy): List<DetectedObject> { // Analyze camera frame
-        if (!isInitialized || interpreter == null) { // If model not loaded
-            return emptyList() // Return no detections
+    suspend fun detectObjects(imageProxy: ImageProxy): List<DetectedObject> {
+        if (!isInitialized || model == null) {
+            Log.w("EfficientDet", "Model not initialized")
+            return emptyList()
         }
 
         try {
-            val bitmap = imageProxyToBitmap(imageProxy) // Convert camera frame to bitmap
-            val tensorImage = TensorImage.fromBitmap(bitmap) // Convert to tensor format
-            val processedImage = imageProcessor.process(tensorImage) // Resize to 512x512
+            val bitmap = imageProxyToBitmap(imageProxy)
+            if (bitmap == null) {
+                Log.w("EfficientDet", "Failed to convert ImageProxy to Bitmap")
+                return emptyList()
+            }
 
-            // Prepare output arrays for model results
-            val outputLocations = Array(1) { Array(100) { FloatArray(4) } } // Bounding boxes (x,y,w,h)
-            val outputClasses = Array(1) { FloatArray(100) } // Object class indices
-            val outputScores = Array(1) { FloatArray(100) } // Confidence scores
-            val numDetections = FloatArray(1) // Total number of detections
+            Log.d("EfficientDet", "Processing bitmap: ${bitmap.width}x${bitmap.height}")
 
-            val outputMap = mapOf( // Map outputs to arrays
-                0 to outputLocations, // Bounding boxes
-                1 to outputClasses, // Classes
-                2 to outputScores, // Confidence scores
-                3 to numDetections // Detection count
-            )
+            // Resize and process image to 640x640 as expected by model
+            val tensorImage = TensorImage.fromBitmap(bitmap)
+            val processedImage = imageProcessor.process(tensorImage)
 
-            interpreter!!.runForMultipleInputsOutputs( // Run AI inference
-                arrayOf(processedImage.buffer), // Input: processed image
-                outputMap // Outputs: detection results
-            )
+            Log.d("EfficientDet", "Processed image to: ${processedImage.width}x${processedImage.height}")
 
-            val detectedObjects = mutableListOf<DetectedObject>() // List to store results
-            val numObjects = numDetections[0].toInt().coerceAtMost(100) // Max 100 objects
+            // Run model inference
+            val outputs = model!!.process(processedImage)
 
-            for (i in 0 until numObjects) { // For each detected object
-                val confidence = outputScores[0][i] // Get confidence score
+            // Access the specific outputs based on tensor specification
+            val locationFeature = outputs.locationAsTensorBuffer
+            val categoryFeature = outputs.categoryAsTensorBuffer
+            val scoreFeature = outputs.scoreAsTensorBuffer
+            val numDetectionsFeature = outputs.numberOfDetectionsAsTensorBuffer
 
-                if (confidence > 0.5f) { // Only keep high-confidence detections (>50%)
-                    val top = outputLocations[0][i][0] // Bounding box coordinates
-                    val left = outputLocations[0][i][1]
-                    val bottom = outputLocations[0][i][2]
-                    val right = outputLocations[0][i][3]
+            val numDetections = numDetectionsFeature.floatArray[0].toInt()
+            Log.d("EfficientDet", "Model returned $numDetections detections")
 
-                    val classIndex = outputClasses[0][i].toInt() // Get object class
-                    val label = if (classIndex < labels.size) labels[classIndex] else "Unknown" // Get label name
+            val locations = locationFeature.floatArray
+            val categories = categoryFeature.floatArray
+            val scores = scoreFeature.floatArray
 
-                    val detectedObject = DetectedObject( // Create detected object
-                        boundingBox = BoundingBox(left, top, right, bottom), // Set bounding box
-                        labels = listOf(ObjectLabel(label, confidence, classIndex)) // Set label and confidence
+            val detectedObjects = mutableListOf<DetectedObject>()
+
+            for (i in 0 until numDetections.coerceAtMost(100)) {
+                val score = scores[i]
+
+                Log.d("EfficientDet", "Detection $i: score=$score")
+
+                // Lower threshold for testing
+                if (score > 0.3f) {
+                    // Extract bounding box coordinates (typically ymin, xmin, ymax, xmax)
+                    val ymin = locations[i * 4 + 0]     // top
+                    val xmin = locations[i * 4 + 1]     // left
+                    val ymax = locations[i * 4 + 2]     // bottom
+                    val xmax = locations[i * 4 + 3]     // right
+
+                    Log.d("EfficientDet", "Raw coordinates: ymin=$ymin, xmin=$xmin, ymax=$ymax, xmax=$xmax")
+
+                    // Ensure coordinates are normalized (0-1 range)
+                    val left = xmin.coerceIn(0f, 1f)
+                    val top = ymin.coerceIn(0f, 1f)
+                    val right = xmax.coerceIn(0f, 1f)
+                    val bottom = ymax.coerceIn(0f, 1f)
+
+                    // Get category index and map to label
+                    val categoryIndex = categories[i].toInt()
+                    val label = if (categoryIndex < labels.size && categoryIndex >= 0) {
+                        labels[categoryIndex]
+                    } else {
+                        "Object $categoryIndex"
+                    }
+
+                    Log.d("EfficientDet", "Final detection: $label, score=$score, cords=($left,$top,$right,$bottom)")
+
+                    val boundingBox = BoundingBox(left, top, right, bottom)
+                    val objectLabel = ObjectLabel(
+                        text = label,
+                        confidence = score,
+                        index = categoryIndex
                     )
 
-                    detectedObjects.add(detectedObject) // Add to results
+                    val detectedObject = DetectedObject(
+                        boundingBox = boundingBox,
+                        labels = listOf(objectLabel)
+                    )
+
+                    detectedObjects.add(detectedObject)
                 }
             }
 
-            return detectedObjects // Return all detected objects
+            Log.d("EfficientDet", "Returning ${detectedObjects.size} valid detections")
+            return detectedObjects
 
         } catch (e: Exception) {
-            e.printStackTrace() // Log error
-            return emptyList() // Return no detections on error
+            Log.e("EfficientDet", "Error during object detection", e)
+            e.printStackTrace()
+            return emptyList()
         }
     }
 
-    private fun imageProxyToBitmap(imageProxy: ImageProxy): Bitmap { // Convert camera frame to bitmap
-        return ImageUtils.imageProxyToBitmap(imageProxy) // Use utility function
-            ?: Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888) // Fallback empty bitmap
+    private fun imageProxyToBitmap(imageProxy: ImageProxy): Bitmap? {
+        return ImageUtils.imageProxyToBitmap(imageProxy)
+            ?: createBitmap(640, 640)
     }
 
-    fun close() { // Clean up resources
-        interpreter?.close() // Close TensorFlow interpreter
-        interpreter = null // Clear reference
-        isInitialized = false // Mark as not initialized
+    fun close() {
+        try {
+            model?.close()
+            model = null
+            isInitialized = false
+            Log.d("EfficientDet", "AutoModel2 closed successfully")
+        } catch (e: Exception) {
+            Log.e("EfficientDet", "Error closing model", e)
+        }
     }
 }

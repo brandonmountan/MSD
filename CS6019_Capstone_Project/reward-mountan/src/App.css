@@ -1,0 +1,253 @@
+/* Global app container */
+.App {
+  width: 100%;             /* Full width */
+  min-height: 100vh;       /* Minimum full viewport height */
+}
+
+/* Dashboard main container */
+.dashboard {
+  min-height: 100vh;       /* Full viewport height */
+  background-color: #f8fafc;  /* Light gray background */
+}
+
+/* Dashboard header */
+.dashboard-header {
+  background: white;       /* White background */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* Subtle shadow */
+  padding: 0;              /* No padding (handled by inner content) */
+}
+
+.header-content {
+  max-width: 1200px;       /* Maximum width for content */
+  margin: 0 auto;          /* Center content */
+  padding: 20px;           /* Space inside header */
+  display: flex;           /* Use flexbox */
+  justify-content: space-between;  /* Space between brand and user section */
+  align-items: center;     /* Vertically center items */
+}
+
+/* Brand section styling */
+.brand-section h1 {
+  color: #667eea;          /* Purple brand color */
+  margin: 0;               /* Remove default margin */
+  font-size: 1.8rem;       /* Large brand text */
+}
+
+/* Header navigation styling */
+.header-nav {
+  flex: 1;                 /* Take up available space */
+  display: flex;           /* Use flexbox */
+  justify-content: center; /* Center the navigation */
+}
+
+.nav-list {
+  display: flex;           /* Horizontal list */
+  list-style: none;        /* Remove bullet points */
+  gap: 30px;               /* Space between nav items */
+  margin: 0;               /* Remove default margin */
+  padding: 0;              /* Remove default padding */
+}
+
+.nav-link {
+  color: #374151;          /* Dark gray text */
+  text-decoration: none;   /* Remove underlines */
+  font-weight: 500;        /* Medium font weight */
+  padding: 8px 12px;       /* Space around links */
+  border-radius: 6px;      /* Rounded corners */
+  transition: background-color 0.2s ease, color 0.2s ease;  /* Smooth transitions */
+}
+
+.nav-link:hover {
+  background-color: #f3f4f6; /* Light gray background on hover */
+  color: #667eea;          /* Purple text on hover */
+  text-decoration: none;   /* Keep underline removed on hover */
+}
+
+/* User section in header */
+.user-section {
+  display: flex;           /* Use flexbox */
+  align-items: center;     /* Vertically center items */
+  gap: 15px;               /* Space between items */
+}
+
+.user-section span {
+  color: #555;             /* Medium gray text */
+  font-weight: 500;        /* Medium font weight */
+}
+
+/* Logout button */
+.logout-btn {
+  background: #ef4444;     /* Red background */
+  color: white;            /* White text */
+  border: none;            /* No border */
+  padding: 8px 16px;       /* Space inside button */
+  border-radius: 6px;      /* Rounded corners */
+  cursor: pointer;         /* Pointer cursor */
+  font-weight: 500;        /* Medium font weight */
+  transition: background-color 0.2s ease;  /* Smooth color transition */
+}
+
+.logout-btn:hover {
+  background: #dc2626;     /* Darker red on hover */
+}
+
+/* Dashboard main content area */
+.dashboard-main {
+  max-width: 1200px;       /* Maximum width for content */
+  margin: 0 auto;          /* Center content */
+  padding: 40px 20px;      /* Space around content */
+}
+
+.dashboard-content {
+  display: flex;           /* Use flexbox */
+  flex-direction: column;  /* Stack sections vertically */
+  gap: 40px;               /* Space between sections */
+}
+
+/* Welcome section */
+.welcome-section {
+  text-align: center;      /* Center text */
+}
+
+.welcome-section h2 {
+  color: #1f2937;          /* Dark gray color */
+  margin-bottom: 10px;     /* Space below title */
+  font-size: 2.2rem;       /* Large title */
+}
+
+.welcome-section p {
+  color: #6b7280;          /* Medium gray color */
+  font-size: 1.1rem;       /* Slightly larger text */
+  max-width: 600px;        /* Limit line length */
+  margin: 0 auto;          /* Center text block */
+}
+
+/* Dashboard cards grid */
+.dashboard-cards {
+  display: grid;           /* Use CSS Grid */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));  /* Responsive columns */
+  gap: 24px;               /* Space between cards */
+}
+
+/* Individual card styling */
+.card {
+  background: white;       /* White background */
+  padding: 24px;           /* Space inside card */
+  border-radius: 12px;     /* Rounded corners */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);  /* Subtle shadow */
+  text-align: center;      /* Center content */
+  border: 1px solid #e5e7eb;  /* Light border */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;  /* Smooth animations */
+}
+
+.card:hover {
+  transform: translateY(-2px);  /* Slight lift on hover */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);  /* Stronger shadow on hover */
+}
+
+.card h3 {
+  color: #374151;          /* Dark gray title */
+  margin-bottom: 12px;     /* Space below title */
+  font-size: 1rem;         /* Normal font size */
+  font-weight: 600;        /* Semi-bold */
+}
+
+.card-number {
+  font-size: 2.5rem;       /* Large number */
+  font-weight: bold;       /* Bold text */
+  color: #667eea;          /* Purple color */
+  margin: 8px 0;           /* Space above and below */
+}
+
+.card-subtitle {
+  color: #6b7280;          /* Medium gray */
+  font-size: 0.9rem;       /* Smaller text */
+  margin: 0;               /* Remove default margin */
+}
+
+/* Quick actions section */
+.quick-actions h3 {
+  color: #1f2937;          /* Dark gray */
+  margin-bottom: 20px;     /* Space below title */
+  font-size: 1.5rem;       /* Medium-large title */
+}
+
+/* Action buttons container */
+.action-buttons {
+  display: grid;           /* Use CSS Grid */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));  /* Responsive columns */
+  gap: 16px;               /* Space between buttons */
+}
+
+/* Action button styling */
+.action-btn {
+  background: #667eea;     /* Purple background */
+  color: white;            /* White text */
+  border: none;            /* No border */
+  padding: 16px 24px;      /* Space inside button */
+  border-radius: 8px;      /* Rounded corners */
+  font-size: 1rem;         /* Normal font size */
+  font-weight: 500;        /* Medium font weight */
+  cursor: pointer;         /* Pointer cursor */
+  transition: background-color 0.2s ease, transform 0.2s ease;  /* Smooth animations */
+}
+
+.action-btn:hover {
+  background: #5a67d8;     /* Darker purple on hover */
+  transform: translateY(-1px);  /* Slight lift effect */
+}
+
+/* Restaurant info section */
+.restaurant-info h3 {
+  color: #1f2937;          /* Dark gray */
+  margin-bottom: 20px;     /* Space below title */
+  font-size: 1.5rem;       /* Medium-large title */
+}
+
+/* Info card styling */
+.info-card {
+  background: white;       /* White background */
+  padding: 24px;           /* Space inside card */
+  border-radius: 8px;      /* Rounded corners */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);  /* Subtle shadow */
+  border: 1px solid #e5e7eb;  /* Light border */
+}
+
+.info-card p {
+  margin: 12px 0;          /* Space above and below each line */
+  color: #374151;          /* Dark gray text */
+}
+
+.info-card strong {
+  color: #1f2937;          /* Darker gray for labels */
+  font-weight: 600;        /* Semi-bold labels */
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;  /* Stack header items on mobile */
+    gap: 15px;              /* Space between stacked items */
+    text-align: center;     /* Center everything */
+  }
+  
+  .dashboard-main {
+    padding: 20px 15px;     /* Less padding on mobile */
+  }
+  
+  .dashboard-content {
+    gap: 30px;              /* Less space between sections */
+  }
+  
+  .welcome-section h2 {
+    font-size: 1.8rem;      /* Smaller title on mobile */
+  }
+  
+  .dashboard-cards {
+    grid-template-columns: 1fr;  /* Single column on mobile */
+  }
+  
+  .action-buttons {
+    grid-template-columns: 1fr;  /* Single column for buttons */
+  }
+}

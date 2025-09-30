@@ -8,15 +8,16 @@ espressoCore = "3.7.0"
 lifecycleRuntimeKtx = "2.9.4"
 activityCompose = "1.11.0"
 composeBom = "2025.09.01"
+tensorflow = "2.14.0"
 
 # Object Detection Dependencies
 objectDetectionVersion = "17.0.2"
 tensorflowLite = "2.17.0"
 cameraX = "1.5.0"
-objectDetection = "17.0.1"
+objectDetection = "17.0.2"
 tensorflowLiteMetadataVersion = "0.5.0"
 tensorFlowLiteSupport = "0.5.0"
-tensorFlowLiteMetadata = "0.4.4"
+tensorFlowLiteMetadata = "0.5.0"
 lifecycleViewmodelCompose = "2.9.4"
 coroutinesPlayServices = "1.10.2"
 
@@ -36,6 +37,9 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+tensorflow-lite-gpu = { group = "org.tensorflow", name = "tensorflow-lite-gpu", version = "" }
+
 
 # Object Detection Libraries
 androidx-camera-core = { group = "androidx.camera", name = "camera-core", version.ref = "cameraX" }

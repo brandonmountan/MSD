@@ -8,6 +8,10 @@ android {
     namespace = "com.example.objectdetection"
     compileSdk = 36
 
+    buildFeatures {
+        mlModelBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.objectdetection"
         minSdk = 24
@@ -36,6 +40,7 @@ android {
     }
     buildFeatures {
         compose = true
+        mlModelBinding = true
     }
 }
 
