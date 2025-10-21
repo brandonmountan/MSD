@@ -1,0 +1,421 @@
+/* Page container - main wrapper for all pages */
+.page-container {
+  min-height: 100vh;           /* Full viewport height */
+  background-color: #f8fafc;   /* Light gray background */
+}
+
+/* Page main content area */
+.page-main {
+  max-width: 1400px;           /* Maximum width for content */
+  margin: 0 auto;              /* Center content */
+  padding: 40px 20px;          /* Space around content */
+}
+
+/* Page content wrapper */
+.page-content {
+  display: flex;               /* Use flexbox */
+  flex-direction: column;      /* Stack elements vertically */
+  gap: 30px;                   /* Space between sections */
+}
+
+/* Page header section */
+.page-header {
+  text-align: center;          /* Center text */
+  margin-bottom: 20px;         /* Space below header */
+}
+
+.page-header h2 {
+  color: #1f2937;              /* Dark gray */
+  font-size: 2.5rem;           /* Large title */
+  margin-bottom: 10px;         /* Space below title */
+}
+
+.page-header p {
+  color: #6b7280;              /* Medium gray */
+  font-size: 1.2rem;           /* Larger subtitle */
+}
+
+/* Two column grid layout */
+.page-grid {
+  display: grid;               /* Use CSS Grid */
+  grid-template-columns: 1fr 1fr;  /* Two equal columns */
+  gap: 30px;                   /* Space between columns */
+}
+
+/* Form section (left column) */
+.form-section {
+  background: white;           /* White background */
+  padding: 30px;               /* Space inside */
+  border-radius: 12px;         /* Rounded corners */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);  /* Subtle shadow */
+  border: 1px solid #e5e7eb;   /* Light border */
+}
+
+.form-section h3 {
+  color: #374151;              /* Dark gray */
+  margin-bottom: 20px;         /* Space below title */
+  font-size: 1.5rem;           /* Medium-large title */
+  border-bottom: 2px solid #667eea;  /* Purple bottom border */
+  padding-bottom: 10px;        /* Space below text */
+}
+
+/* Page form styling */
+.page-form {
+  display: flex;               /* Use flexbox */
+  flex-direction: column;      /* Stack fields vertically */
+  gap: 20px;                   /* Space between fields */
+}
+
+.page-form .form-group {
+  display: flex;               /* Use flexbox */
+  flex-direction: column;      /* Stack label and input */
+  gap: 8px;                    /* Space between label and input */
+}
+
+.page-form label {
+  font-weight: 600;            /* Semi-bold */
+  color: #374151;              /* Dark gray */
+  font-size: 0.95rem;          /* Slightly smaller */
+}
+
+.page-form input,
+.page-form textarea,
+.page-form select {
+  padding: 12px 16px;          /* Space inside fields */
+  border: 2px solid #e5e7eb;   /* Light border */
+  border-radius: 8px;          /* Rounded corners */
+  font-size: 1rem;             /* Normal font size */
+  transition: border-color 0.3s ease;  /* Smooth border transition */
+}
+
+.page-form input:focus,
+.page-form textarea:focus,
+.page-form select:focus {
+  outline: none;               /* Remove default outline */
+  border-color: #667eea;       /* Purple border on focus */
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);  /* Glow effect */
+}
+
+.page-form textarea {
+  resize: vertical;            /* Allow vertical resizing only */
+  font-family: inherit;        /* Use same font as rest of page */
+}
+
+/* Submit button */
+.submit-btn {
+  padding: 14px 24px;          /* Space inside button */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);  /* Purple gradient */
+  color: white;                /* White text */
+  border: none;                /* No border */
+  border-radius: 8px;          /* Rounded corners */
+  font-size: 1.1rem;           /* Slightly larger text */
+  font-weight: 600;            /* Semi-bold */
+  cursor: pointer;             /* Pointer cursor */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;  /* Smooth animations */
+  margin-top: 10px;            /* Space above button */
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);  /* Lift effect */
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);  /* Shadow on hover */
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;                /* Faded when disabled */
+  cursor: not-allowed;         /* Show disabled cursor */
+  transform: none;             /* No hover effect */
+}
+
+/* List section (right column) */
+.list-section {
+  background: white;           /* White background */
+  padding: 30px;               /* Space inside */
+  border-radius: 12px;         /* Rounded corners */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);  /* Subtle shadow */
+  border: 1px solid #e5e7eb;   /* Light border */
+}
+
+.list-section h3 {
+  color: #374151;              /* Dark gray */
+  margin-bottom: 20px;         /* Space below title */
+  font-size: 1.5rem;           /* Medium-large title */
+  border-bottom: 2px solid #667eea;  /* Purple bottom border */
+  padding-bottom: 10px;        /* Space below text */
+}
+
+/* Items list container */
+.items-list {
+  display: flex;               /* Use flexbox */
+  flex-direction: column;      /* Stack items vertically */
+  gap: 16px;                   /* Space between items */
+  max-height: 600px;           /* Maximum height */
+  overflow-y: auto;            /* Scrollable if too many items */
+}
+
+/* Scrollbar styling for items list */
+.items-list::-webkit-scrollbar {
+  width: 8px;                  /* Width of scrollbar */
+}
+
+.items-list::-webkit-scrollbar-track {
+  background: #f1f1f1;         /* Track color */
+  border-radius: 10px;         /* Rounded track */
+}
+
+.items-list::-webkit-scrollbar-thumb {
+  background: #667eea;         /* Purple scrollbar */
+  border-radius: 10px;         /* Rounded scrollbar */
+}
+
+/* Empty state message */
+.empty-message {
+  text-align: center;          /* Center text */
+  color: #9ca3af;              /* Light gray */
+  padding: 40px 20px;          /* Space around text */
+  font-style: italic;          /* Italic text */
+}
+
+/* Individual item card */
+.item-card {
+  border: 2px solid #e5e7eb;   /* Light border */
+  border-radius: 10px;         /* Rounded corners */
+  padding: 20px;               /* Space inside card */
+  background: #fafafa;         /* Very light gray background */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;  /* Smooth animations */
+}
+
+.item-card:hover {
+  transform: translateY(-2px);  /* Slight lift on hover */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);  /* Shadow on hover */
+}
+
+/* Item card header */
+.item-header {
+  display: flex;               /* Use flexbox */
+  justify-content: space-between;  /* Space between title and badge */
+  align-items: center;         /* Vertically center items */
+  margin-bottom: 12px;         /* Space below header */
+}
+
+.item-header h4 {
+  color: #1f2937;              /* Dark gray */
+  margin: 0;                   /* Remove default margin */
+  font-size: 1.2rem;           /* Larger title */
+}
+
+/* Badge styling */
+.item-badge {
+  padding: 4px 12px;           /* Space inside badge */
+  border-radius: 20px;         /* Rounded pill shape */
+  font-size: 0.85rem;          /* Smaller text */
+  font-weight: 600;            /* Semi-bold */
+  text-transform: capitalize;  /* Capitalize first letter */
+  background: #667eea;         /* Purple background */
+  color: white;                /* White text */
+}
+
+.status-active {
+  background: #10b981;         /* Green for active */
+}
+
+.status-upcoming {
+  background: #3b82f6;         /* Blue for upcoming */
+}
+
+.discount-badge {
+  background: #f59e0b;         /* Orange for discount */
+}
+
+/* Item description */
+.item-description {
+  color: #6b7280;              /* Medium gray */
+  margin: 12px 0;              /* Space above and below */
+  line-height: 1.5;            /* Comfortable line spacing */
+}
+
+/* Item footer with actions */
+.item-footer {
+  display: flex;               /* Use flexbox */
+  justify-content: space-between;  /* Space between price and button */
+  align-items: center;         /* Vertically center items */
+  margin-top: 16px;            /* Space above footer */
+  padding-top: 16px;           /* Space inside footer */
+  border-top: 1px solid #e5e7eb;  /* Top border divider */
+}
+
+/* Price display */
+.item-price {
+  font-size: 1.5rem;           /* Large price */
+  font-weight: bold;           /* Bold text */
+  color: #667eea;              /* Purple color */
+}
+
+/* Delete button */
+.delete-btn {
+  padding: 8px 16px;           /* Space inside button */
+  background: #ef4444;         /* Red background */
+  color: white;                /* White text */
+  border: none;                /* No border */
+  border-radius: 6px;          /* Rounded corners */
+  font-weight: 500;            /* Medium font weight */
+  cursor: pointer;             /* Pointer cursor */
+  transition: background-color 0.2s ease;  /* Smooth color transition */
+}
+
+.delete-btn:hover {
+  background: #dc2626;         /* Darker red on hover */
+}
+
+/* Promotion-specific details */
+.promo-details,
+.event-details,
+.reward-info {
+  margin: 12px 0;              /* Space above and below */
+  padding: 12px;               /* Space inside */
+  background: white;           /* White background */
+  border-radius: 6px;          /* Rounded corners */
+  border-left: 3px solid #667eea;  /* Purple left border */
+}
+
+.promo-details p,
+.event-details p,
+.reward-info p {
+  margin: 6px 0;               /* Small space between lines */
+  color: #374151;              /* Dark gray */
+  font-size: 0.95rem;          /* Slightly smaller text */
+}
+
+/* Points required styling */
+.points-required {
+  font-size: 1.1rem;           /* Slightly larger */
+  color: #667eea;              /* Purple color */
+  margin-bottom: 8px;          /* Space below */
+}
+
+/* Reward card specific styling */
+.reward-card {
+  border-left: 4px solid #667eea;  /* Thicker purple left border */
+}
+
+/* Settings card (for rewards page) */
+.settings-card {
+  background: white;           /* White background */
+  padding: 30px;               /* Space inside */
+  border-radius: 12px;         /* Rounded corners */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);  /* Subtle shadow */
+  border: 2px solid #667eea;   /* Purple border */
+}
+
+.settings-card h3 {
+  color: #374151;              /* Dark gray */
+  margin-bottom: 20px;         /* Space below title */
+  font-size: 1.5rem;           /* Medium-large title */
+}
+
+.settings-content {
+  display: flex;               /* Use flexbox */
+  flex-direction: column;      /* Stack settings vertically */
+  gap: 20px;                   /* Space between settings */
+}
+
+.setting-item {
+  display: flex;               /* Use flexbox */
+  align-items: center;         /* Vertically center items */
+  gap: 15px;                   /* Space between label and input */
+}
+
+.setting-item label {
+  font-weight: 600;            /* Semi-bold */
+  color: #374151;              /* Dark gray */
+  min-width: 250px;            /* Minimum label width */
+}
+
+.settings-input {
+  padding: 10px 16px;          /* Space inside input */
+  border: 2px solid #e5e7eb;   /* Light border */
+  border-radius: 6px;          /* Rounded corners */
+  font-size: 1rem;             /* Normal font size */
+  width: 100px;                /* Fixed width */
+}
+
+/* Checkbox label styling */
+.checkbox-label {
+  display: flex;               /* Use flexbox */
+  align-items: center;         /* Vertically center items */
+  gap: 10px;                   /* Space between checkbox and text */
+  cursor: pointer;             /* Pointer cursor */
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 20px;                 /* Checkbox width */
+  height: 20px;                /* Checkbox height */
+  cursor: pointer;             /* Pointer cursor */
+}
+
+/* Toggle button (large) */
+.toggle-btn-large {
+  padding: 12px 24px;          /* Space inside button */
+  border: none;                /* No border */
+  border-radius: 8px;          /* Rounded corners */
+  font-size: 1.1rem;           /* Larger text */
+  font-weight: 600;            /* Semi-bold */
+  cursor: pointer;             /* Pointer cursor */
+  background: #10b981;         /* Green when active */
+  color: white;                /* White text */
+  transition: all 0.3s ease;   /* Smooth transitions */
+}
+
+.toggle-btn-large:hover {
+  transform: scale(1.05);      /* Slightly larger on hover */
+}
+
+/* Info box */
+.info-box {
+  background: #eff6ff;         /* Light blue background */
+  border: 2px solid #3b82f6;   /* Blue border */
+  border-radius: 12px;         /* Rounded corners */
+  padding: 24px;               /* Space inside */
+  margin-top: 20px;            /* Space above */
+}
+
+.info-box h4 {
+  color: #1e40af;              /* Dark blue */
+  margin-bottom: 12px;         /* Space below title */
+  font-size: 1.2rem;           /* Larger title */
+}
+
+.info-box ul {
+  margin: 0;                   /* Remove default margin */
+  padding-left: 20px;          /* Indent list */
+}
+
+.info-box li {
+  color: #1f2937;              /* Dark gray */
+  margin: 8px 0;               /* Space between list items */
+  line-height: 1.6;            /* Comfortable line spacing */
+}
+
+/* Responsive design for mobile */
+@media (max-width: 968px) {
+  .page-grid {
+    grid-template-columns: 1fr;  /* Single column on mobile */
+  }
+  
+  .page-header h2 {
+    font-size: 2rem;            /* Smaller title on mobile */
+  }
+  
+  .form-section,
+  .list-section {
+    padding: 20px;              /* Less padding on mobile */
+  }
+  
+  .setting-item {
+    flex-direction: column;     /* Stack settings on mobile */
+    align-items: flex-start;    /* Align to left */
+  }
+  
+  .setting-item label {
+    min-width: auto;            /* Remove minimum width */
+  }
+}

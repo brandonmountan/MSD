@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # OpenLDAP service for authentication
+  ldap:
+    image: osixia/openldap:1.5.0
+    container_name: objectdetection-ldap
+    environment:
+      # Admin credentials
+      LDAP_ADMIN_USERNAME: admin
+      LDAP_ADMIN_PASSWORD: admin_password
+      LDAP_ORGANISATION: "ObjectDetection"
+      LDAP_DOMAIN: "objectdetection.com"
+      # Base DN will be: dc=objectdetection,dc=com
+    ports:
+      - "389:389"   # LDAP port
+      - "636:636"   # LDAPS port
+    volumes:
+      - ldap-data:/var/lib/ldap          # LDAP database - NAMED VOLUME
+      - ldap-config:/etc/ldap/slapd.d    # LDAP configuration - NAMED VOLUME
+    networks:
+      - app-network
+
+  # Application server
+  app:
+    build: .
+    container_name: objectdetection-server
+    ports:
+      - "8080:8080"
+    environment:
+      # LDAP configuration
+      LDAP_HOST: ldap
+      LDAP_PORT: 389
+      LDAP_BASE_DN: dc=objectdetection,dc=com
+      LDAP_ADMIN_DN: cn=admin,dc=objectdetection,dc=com
+      LDAP_ADMIN_PASSWORD: admin_password
+    volumes:
+      - photos-data:/app/photos  # Persist photos - NAMED VOLUME
+    depends_on:
+      - ldap
+    networks:
+      - app-network
+
+# Named volumes for data persistence
+volumes:
+  ldap-data:
+    name: objectdetection-ldap-data
+  ldap-config:
+    name: objectdetection-ldap-config
+  photos-data:
+    name: objectdetection-photos
+
+networks:
+  app-network:
+    driver: bridge

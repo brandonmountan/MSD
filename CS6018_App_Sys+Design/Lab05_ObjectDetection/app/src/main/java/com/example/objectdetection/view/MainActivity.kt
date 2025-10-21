@@ -13,113 +13,155 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import com.example.objectdetection.viewmodel.AuthViewModel
 import com.example.objectdetection.viewmodel.CameraViewModel
+import com.example.objectdetection.viewmodel.GalleryViewModel
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: CameraViewModel by viewModels() // Create ViewModel instance
+    private val cameraViewModel: CameraViewModel by viewModels()
+    private val authViewModel: AuthViewModel by viewModels() // NEW: Auth ViewModel
+    private val galleryViewModel: GalleryViewModel by viewModels() // NEW: Gallery ViewModel
 
-    // Handle permission request results
     private val permissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestMultiplePermissions() // Request multiple permissions
+        ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
-        var allGranted = true // Track if all permissions granted
-        permissions.entries.forEach { permission -> // Check each permission
-            if (permission.key in REQUIRED_PERMISSIONS && !permission.value) { // If required permission denied
-                allGranted = false // Mark as not all granted
+        var allGranted = true
+        permissions.entries.forEach { permission ->
+            if (permission.key in REQUIRED_PERMISSIONS && !permission.value) {
+                allGranted = false
             }
         }
-        if (!allGranted) { // If any permission denied
-            Toast.makeText(this, "Camera permission required", Toast.LENGTH_LONG).show() // Show error
+        if (!allGranted) {
+            Toast.makeText(this, "Camera permission required", Toast.LENGTH_LONG).show()
         } else {
-            recreate() // Restart activity with permissions
+            recreate()
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState) // Call parent method
+        super.onCreate(savedInstanceState)
 
-        if (!hasPermissions()) { // If missing permissions
-            requestPermissions() // Ask for permissions
+        if (!hasPermissions()) {
+            requestPermissions()
         }
 
-        setContent { // Set up Compose UI
-            MaterialTheme { // Apply theme
-                Surface( // Background surface
-                    modifier = Modifier.fillMaxSize(), // Fill entire screen
-                    color = MaterialTheme.colorScheme.background // Use theme background
+        setContent {
+            MaterialTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
                 ) {
-                    if (hasPermissions()) { // If we have permissions
-                        CameraScreen(viewModel = viewModel) // Show camera screen
+                    if (hasPermissions()) {
+                        AppNavigation() // NEW: Navigation system
                     } else {
-                        PermissionScreen { requestPermissions() } // Show permission request
+                        PermissionScreen { requestPermissions() }
                     }
                 }
             }
         }
     }
 
-    private fun hasPermissions(): Boolean { // Check if all permissions granted
-        return REQUIRED_PERMISSIONS.all { permission -> // Check each required permission
-            ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED // Permission granted?
+    // NEW: Navigation between screens
+    @Composable
+    private fun AppNavigation() {
+        val authState by authViewModel.authState
+        var currentScreen by remember { mutableStateOf("login") }
+
+        // Navigate based on login state
+        LaunchedEffect(authState.isLoggedIn) {
+            if (authState.isLoggedIn) {
+                currentScreen = "camera"
+            } else {
+                currentScreen = "login"
+            }
+        }
+
+        when (currentScreen) {
+            "login" -> {
+                LoginScreen(
+                    viewModel = authViewModel,
+                    onLoginSuccess = { currentScreen = "camera" }
+                )
+            }
+            "camera" -> {
+                CameraScreen(
+                    viewModel = cameraViewModel,
+                    authViewModel = authViewModel,
+                    onNavigateToGallery = { currentScreen = "gallery" },
+                    onLogout = { currentScreen = "login" }
+                )
+            }
+            "gallery" -> {
+                GalleryScreen(
+                    viewModel = galleryViewModel,
+                    onBackToCamera = { currentScreen = "camera" }
+                )
+            }
         }
     }
 
-    private fun requestPermissions() { // Request all needed permissions
-        permissionLauncher.launch(REQUIRED_PERMISSIONS) // Launch permission request
+    private fun hasPermissions(): Boolean {
+        return REQUIRED_PERMISSIONS.all { permission ->
+            ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+        }
+    }
+
+    private fun requestPermissions() {
+        permissionLauncher.launch(REQUIRED_PERMISSIONS)
     }
 
     companion object {
-        private val REQUIRED_PERMISSIONS = mutableListOf<String>().apply { // Create permission list
-            add(Manifest.permission.CAMERA) // Always need camera permission
-            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) { // For older Android versions
-                add(Manifest.permission.WRITE_EXTERNAL_STORAGE) // Need storage permission
+        private val REQUIRED_PERMISSIONS = mutableListOf<String>().apply {
+            add(Manifest.permission.CAMERA)
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+                add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
             }
-        }.toTypedArray() // Convert to array
+        }.toTypedArray()
     }
 }
 
 @Composable
-fun PermissionScreen(onRequestPermissions: () -> Unit) { // Permission request UI
-    Box( // Center content
-        modifier = Modifier.fillMaxSize(), // Fill screen
-        contentAlignment = Alignment.Center // Center alignment
+fun PermissionScreen(onRequestPermissions: () -> Unit) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
-        Column( // Vertical layout
-            horizontalAlignment = Alignment.CenterHorizontally, // Center horizontally
-            verticalArrangement = Arrangement.spacedBy(16.dp) // 16dp spacing
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Icon( // Settings icon
-                imageVector = Icons.Default.Settings, // Use settings icon
-                contentDescription = "Camera Permission", // Accessibility description
-                modifier = Modifier.size(64.dp), // 64dp size
-                tint = MaterialTheme.colorScheme.primary // Primary color
+            Icon(
+                imageVector = Icons.Default.Settings,
+                contentDescription = "Camera Permission",
+                modifier = Modifier.size(64.dp),
+                tint = MaterialTheme.colorScheme.primary
             )
 
-            Text( // Title text
-                text = "Camera Permission Required", // Title
-                style = MaterialTheme.typography.headlineMedium, // Large text style
-                textAlign = TextAlign.Center // Center text
+            Text(
+                text = "Camera Permission Required",
+                style = MaterialTheme.typography.headlineMedium,
+                textAlign = TextAlign.Center
             )
 
-            Text( // Description text
-                text = "This app needs camera permission to detect objects.", // Description
-                style = MaterialTheme.typography.bodyMedium, // Normal text style
-                textAlign = TextAlign.Center, // Center text
-                modifier = Modifier.padding(horizontal = 32.dp) // Side padding
+            Text(
+                text = "This app needs camera permission to detect objects.",
+                style = MaterialTheme.typography.bodyMedium,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(horizontal = 32.dp)
             )
 
-            Button( // Request permission button
-                onClick = onRequestPermissions, // Call when clicked
-                modifier = Modifier.padding(top = 16.dp) // Top padding
+            Button(
+                onClick = onRequestPermissions,
+                modifier = Modifier.padding(top = 16.dp)
             ) {
-                Text("Grant Camera Permission") // Button text
+                Text("Grant Camera Permission")
             }
         }
     }

@@ -4,9 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
 import androidx.camera.core.ImageProxy
-import org.tensorflow.lite.support.image.ImageProcessor
 import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.image.ops.ResizeOp
 import com.example.objectdetection.ml.AutoModel2 // Auto-generated class from our 2.tflite model file
 import androidx.core.graphics.createBitmap
 
@@ -14,25 +12,6 @@ class EfficientDetDetectionEngine(private val context: Context) { // Class that 
 
     private var model: AutoModel2? = null // The TensorFlow Lite model (null until loaded)
     private var isInitialized = false // Track whether model successfully loaded
-
-    // Image processor that resizes images to 640x640 pixels (required by our model)
-    private val imageProcessor = ImageProcessor.Builder() // Create image processor builder
-        .add(ResizeOp(640, 640, ResizeOp.ResizeMethod.BILINEAR)) // Add resize operation to 640x640
-        .build() // Build the processor
-
-    // COCO dataset labels - these are the 80 objects our model can detect
-    private val labels = arrayOf(
-        "person", "bicycle", "car", "motorcycle", "airplane", "bus", "train", "truck", "boat",
-        "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat",
-        "dog", "horse", "sheep", "cow", "elephant", "bear", "zebra", "giraffe", "backpack",
-        "umbrella", "handbag", "tie", "suitcase", "frisbee", "skis", "snowboard", "sports ball",
-        "kite", "baseball bat", "baseball glove", "skateboard", "surfboard", "tennis racket",
-        "bottle", "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana", "apple",
-        "sandwich", "orange", "broccoli", "carrot", "hot dog", "pizza", "donut", "cake", "chair",
-        "couch", "potted plant", "bed", "dining table", "toilet", "tv", "laptop", "mouse",
-        "remote", "keyboard", "cell phone", "microwave", "oven", "toaster", "sink", "refrigerator",
-        "book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush"
-    )
 
     suspend fun initialize(): Boolean { // Load the AI model when app starts
         return try { // Try to load the model
@@ -42,7 +21,7 @@ class EfficientDetDetectionEngine(private val context: Context) { // Class that 
             Log.d("EfficientDet", "AutoModel2 initialized successfully") // Log success
             true // Return true to indicate success
         } catch (e: Exception) { // If anything goes wrong
-            Log.e("EfficientDet", "Failed to initialize Model2", e) // Log the error
+            Log.e("EfficientDet", "Failed to initialize AutoModel2", e) // Log the error
             isInitialized = false // Mark that model failed to load
             false // Return false to indicate failure
         }
@@ -63,71 +42,58 @@ class EfficientDetDetectionEngine(private val context: Context) { // Class that 
 
             Log.d("EfficientDet", "Processing bitmap: ${bitmap.width}x${bitmap.height}") // Log original image size
 
-            // Prepare image for AI model
-            val tensorImage = TensorImage.fromBitmap(bitmap) // Convert bitmap to TensorImage format
-            val processedImage = imageProcessor.process(tensorImage) // Resize to 640x640 pixels
-
-            Log.d("EfficientDet", "Processed image to: ${processedImage.width}x${processedImage.height}") // Log processed size (should be 640x640)
+            // Create input tensor from bitmap (model handles resizing internally)
+            val image = TensorImage.fromBitmap(bitmap) // Convert bitmap to TensorImage format
 
             // Run AI model inference (this is where the magic happens!)
-            val outputs = model!!.process(processedImage) // Feed image to AI and get results
+            val outputs = model!!.process(image) // Feed image to AI and get results
 
-            // Extract the model's outputs (locations, categories, scores, count)
-            val locationFeature = outputs.locationAsTensorBuffer // Bounding box coordinates for each object
-            val categoryFeature = outputs.categoryAsTensorBuffer // Category index for each object (0-79)
-            val scoreFeature = outputs.scoreAsTensorBuffer // Confidence score for each object (0-1)
-            val numDetectionsFeature = outputs.numberOfDetectionsAsTensorBuffer // Total number of objects found
+            // Get the list of detection results (using the correct API as shown in example)
+            val detectionResultList = outputs.detectionResultList // List of detected objects
 
-            val numDetections = numDetectionsFeature.floatArray[0].toInt() // Get count as integer
-            Log.d("EfficientDet", "Model returned $numDetections detections") // Log how many objects found
-
-            // Convert tensor buffers to regular arrays for easier access
-            val locations = locationFeature.floatArray // Array of bounding box coordinates
-            val categories = categoryFeature.floatArray // Array of category indices
-            val scores = scoreFeature.floatArray // Array of confidence scores
+            Log.d("EfficientDet", "Model returned ${detectionResultList.size} detections") // Log how many objects found
 
             val detectedObjects = mutableListOf<DetectedObject>() // List to store final detected objects
 
-            for (i in 0 until numDetections.coerceAtMost(100)) { // Loop through each detection (max 100)
-                val score = scores[i] // Get confidence score for this detection
+            // Loop through each detection result
+            detectionResultList.forEach { detectionResult ->
+                // Extract detection information (as shown in example)
+                val location = detectionResult.locationAsRectF // Bounding box coordinates
+                val category = detectionResult.categoryAsString // Object name (e.g., "person", "car")
+                val score = detectionResult.scoreAsFloat // Confidence score (0.0 to 1.0)
 
-                Log.d("EfficientDet", "Detection $i: score=$score") // Log the confidence score
+                Log.d("EfficientDet", "Detection: category='$category', score=$score, location=$location") // Log detection info
 
-                // Only keep detections with confidence > 30%
-                if (score > 0.3f) { // Filter out low-confidence detections
+                // Only keep detections with confidence > 50% (higher = fewer false positives)
+                if (score > 0.5f) { // Filter out low-confidence detections
 
-                    // Extract bounding box coordinates (model outputs: ymin, xmin, ymax, xmax)
-                    val ymin = locations[i * 4 + 0]     // Top edge (0-1 range)
-                    val xmin = locations[i * 4 + 1]     // Left edge (0-1 range)
-                    val ymax = locations[i * 4 + 2]     // Bottom edge (0-1 range)
-                    val xmax = locations[i * 4 + 3]     // Right edge (0-1 range)
+                    // Convert RectF coordinates to normalized (0-1) range
+                    // The location might be in pixel coordinates, so we need to normalize
+                    val left = (location.left / bitmap.width).coerceIn(0f, 1f) // Left edge (0-1)
+                    val top = (location.top / bitmap.height).coerceIn(0f, 1f) // Top edge (0-1)
+                    val right = (location.right / bitmap.width).coerceIn(0f, 1f) // Right edge (0-1)
+                    val bottom = (location.bottom / bitmap.height).coerceIn(0f, 1f) // Bottom edge (0-1)
 
-                    Log.d("EfficientDet", "Raw coordinates: ymin=$ymin, xmin=$xmin, ymax=$ymax, xmax=$xmax") // Log raw coordinates
+                    // Calculate box size and skip if too small (likely false positive)
+                    val boxWidth = right - left // Width as fraction of image
+                    val boxHeight = bottom - top // Height as fraction of image
+                    val boxArea = boxWidth * boxHeight // Area as fraction of image
 
-                    // Ensure coordinates are valid (between 0 and 1)
-                    val left = xmin.coerceIn(0f, 1f) // Clamp left to 0-1 range
-                    val top = ymin.coerceIn(0f, 1f) // Clamp top to 0-1 range
-                    val right = xmax.coerceIn(0f, 1f) // Clamp right to 0-1 range
-                    val bottom = ymax.coerceIn(0f, 1f) // Clamp bottom to 0-1 range
-
-                    // Get category index and map it to a human-readable label
-                    val categoryIndex = categories[i].toInt() // Get category index (0-79)
-                    val label = if (categoryIndex < labels.size && categoryIndex >= 0) { // If valid index
-                        labels[categoryIndex] // Get label name from our labels array
-                    } else { // If invalid index
-                        "Object $categoryIndex" // Use generic name
+                    if (boxArea < 0.01f) { // Skip boxes smaller than 1% of image (likely noise)
+                        Log.d("EfficientDet", "Skipping tiny box: area=$boxArea")
+                        return@forEach // Skip to next detection
                     }
 
-                    Log.d("EfficientDet", "Final detection: $label, score=$score, cords=($left,$top,$right,$bottom)") // Log final detection info
+                    Log.d("EfficientDet", "Valid detection: $category at ($left,$top,$right,$bottom)") // Log valid detection
 
                     // Create bounding box object with normalized coordinates
                     val boundingBox = BoundingBox(left, top, right, bottom)
 
                     // Create object label with name and confidence
                     val objectLabel = ObjectLabel(
-                        text = label, // Object name (e.g., "person", "car")
+                        text = category, // Object name (e.g., "person", "car")
                         confidence = score, // Confidence score (0-1)
-                        index = categoryIndex // Category index (0-79)
+                        index = null // No index available from this API
                     )
 
                     // Create detected object combining box and label
@@ -140,8 +106,13 @@ class EfficientDetDetectionEngine(private val context: Context) { // Class that 
                 }
             }
 
-            Log.d("EfficientDet", "Returning ${detectedObjects.size} valid detections") // Log final count
-            return detectedObjects // Return the list of detected objects
+            Log.d("EfficientDet", "Returning ${detectedObjects.size} valid detections before NMS") // Log count before filtering
+
+            // Apply Non-Maximum Suppression to remove duplicate/overlapping detections
+            val filteredObjects = applyNMS(detectedObjects, iouThreshold = 0.5f)
+
+            Log.d("EfficientDet", "Returning ${filteredObjects.size} detections after NMS") // Log final count
+            return filteredObjects // Return the filtered list of detected objects
 
         } catch (e: Exception) { // If anything goes wrong during detection
             Log.e("EfficientDet", "Error during object detection", e) // Log the error
@@ -153,6 +124,61 @@ class EfficientDetDetectionEngine(private val context: Context) { // Class that 
     private fun imageProxyToBitmap(imageProxy: ImageProxy): Bitmap? { // Convert camera frame to bitmap
         return ImageUtils.imageProxyToBitmap(imageProxy) // Use utility function to convert
             ?: createBitmap(640, 640) // If conversion fails, create blank 640x640 bitmap
+    }
+
+    // Non-Maximum Suppression: Remove overlapping duplicate detections
+    private fun applyNMS(detections: List<DetectedObject>, iouThreshold: Float): List<DetectedObject> {
+        if (detections.isEmpty()) return detections // If no detections, return empty list
+
+        // Sort detections by confidence (highest first)
+        val sortedDetections = detections.sortedByDescending {
+            it.labels.firstOrNull()?.confidence ?: 0f
+        }
+
+        val selected = mutableListOf<DetectedObject>() // List of detections to keep
+
+        sortedDetections.forEach { detection -> // Check each detection
+            var shouldKeep = true // Assume we'll keep this detection
+
+            // Compare with already selected detections
+            selected.forEach { selectedDetection ->
+                val iou = calculateIoU(detection.boundingBox, selectedDetection.boundingBox) // Calculate overlap
+                if (iou > iouThreshold) { // If boxes overlap too much
+                    shouldKeep = false // Don't keep this detection (it's a duplicate)
+                    return@forEach // Stop checking
+                }
+            }
+
+            if (shouldKeep) { // If this detection is unique
+                selected.add(detection) // Add it to our final list
+            }
+        }
+
+        return selected // Return filtered list
+    }
+
+    // Calculate Intersection over Union (IoU) - measures how much two boxes overlap
+    private fun calculateIoU(box1: BoundingBox, box2: BoundingBox): Float {
+        // Calculate intersection area (overlapping region)
+        val intersectionLeft = maxOf(box1.left, box2.left) // Leftmost edge of overlap
+        val intersectionTop = maxOf(box1.top, box2.top) // Topmost edge of overlap
+        val intersectionRight = minOf(box1.right, box2.right) // Rightmost edge of overlap
+        val intersectionBottom = minOf(box1.bottom, box2.bottom) // Bottommost edge of overlap
+
+        // Calculate intersection width and height
+        val intersectionWidth = maxOf(0f, intersectionRight - intersectionLeft)
+        val intersectionHeight = maxOf(0f, intersectionBottom - intersectionTop)
+        val intersectionArea = intersectionWidth * intersectionHeight // Area of overlap
+
+        // Calculate area of each box
+        val box1Area = (box1.right - box1.left) * (box1.bottom - box1.top)
+        val box2Area = (box2.right - box2.left) * (box2.bottom - box2.top)
+
+        // Calculate union area (total area covered by both boxes)
+        val unionArea = box1Area + box2Area - intersectionArea
+
+        // Return IoU (0 = no overlap, 1 = complete overlap)
+        return if (unionArea > 0) intersectionArea / unionArea else 0f
     }
 
     fun close() { // Clean up when we're done using the model

@@ -1,3 +1,6 @@
+// Import Link from React Router for navigation
+import { Link } from 'react-router-dom'
+
 // Header component receives user data and onLogout function as props
 function Header({ user, onLogout, showUserSection = true }) {
   // Function to handle logout button click
@@ -16,14 +19,14 @@ function Header({ user, onLogout, showUserSection = true }) {
           <h1>Reward Mountan</h1>
         </div>
         
-        {/* Navigation menu (placeholder for future features) */}
+        {/* Navigation menu */}
         <nav className="header-nav">
           <ul className="nav-list">
-            <li><a href="#dashboard" className="nav-link">Dashboard</a></li>
-            <li><a href="#menu" className="nav-link">Menu</a></li>
-            <li><a href="#promotions" className="nav-link">Promotions</a></li>
-            <li><a href="#events" className="nav-link">Events</a></li>
-            <li><a href="#rewards" className="nav-link">Rewards</a></li>
+            <li><Link to="/dashboard" className="nav-link">Dashboard</Link></li>
+            <li><Link to="/menu" className="nav-link">Menu</Link></li>
+            <li><Link to="/promotions" className="nav-link">Promotions</Link></li>
+            <li><Link to="/events" className="nav-link">Events</Link></li>
+            <li><Link to="/rewards" className="nav-link">Rewards</Link></li>
           </ul>
         </nav>
         

@@ -5,15 +5,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.objectdetection"
-    compileSdk = 36
-
-    buildFeatures {
-        mlModelBinding = true
+    namespace = "com.example.objectdetectionserver"
+    compileSdk {
+        version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.objectdetection"
+        applicationId = "com.example.objectdetectionserver"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -40,12 +38,10 @@ android {
     }
     buildFeatures {
         compose = true
-        mlModelBinding = true
     }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -62,35 +58,30 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    // CameraX dependencies
-    implementation(libs.androidx.camera.core)
-    implementation(libs.androidx.camera.camera2)
-    implementation(libs.androidx.camera.lifecycle)
-    implementation(libs.androidx.camera.view)
-    implementation(libs.androidx.camera.extensions)
+    // Ktor server
+    implementation(libs.ktor.server.core.jvm)
+    implementation(libs.ktor.server.netty.jvm)
 
-    // MLKit Object Detection
-    implementation(libs.object1.detection.v1702)
+    // Content negotiation for JSON
+    implementation(libs.ktor.server.content.negotiation.jvm)
+    implementation(libs.ktor.serialization.kotlinx.json.jvm)
 
-    // TensorFlow Lite for EfficientDet
-    implementation(libs.tensorflow.lite)
-    implementation(libs.tensorflow.lite.support)
-    implementation(libs.tensorflow.lite.metadata.v050)
+    // CORS support
+    implementation(libs.ktor.server.cors.jvm)
 
-    // NEW DEPENDENCIES
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.material.icons.extended)
-    implementation(libs.kotlinx.coroutines.play.services)
+    // Sessions
+    implementation(libs.ktor.server.sessions.jvm)
 
-    // Networking with Ktor client
-    implementation(libs.ktor.client.android)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.serialization.kotlinx.json)
-    implementation(libs.ktor.client.logging)
+    // Logging
+    implementation(libs.logback.classic)
 
-    // DataStore for storing auth token
-    implementation(libs.androidx.datastore.preferences)
+    // Testing
+    testImplementation(libs.ktor.server.tests.jvm)
+    testImplementation(libs.kotlin.test.junit)
 
-    // Coil for image loading
-    implementation(libs.coil.compose)
+    // Kotlinx serialization - IMPORTANT!
+    implementation(libs.kotlinx.serialization.json.v160)
+
+    // LDAP client
+    implementation(libs.unboundid.ldapsdk)
 }

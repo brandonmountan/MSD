@@ -5,6 +5,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 // Import our custom components (we'll create these)
 import AuthPage from './pages/AuthPage'
 import Dashboard from './pages/Dashboard'
+import MenuPage from './pages/MenuPage'
+import PromotionsPage from './pages/PromotionsPage'
+import EventsPage from './pages/EventsPage'
+import RewardsPage from './pages/RewardsPage'
 // Import CSS for styling
 import './App.css'
 
@@ -52,6 +56,54 @@ function App() {
             element={
               isLoggedIn ? (
                 <Dashboard user={currentUser} onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/auth" replace />
+              )
+            } 
+          />
+          
+          {/* Menu page route */}
+          <Route 
+            path="/menu" 
+            element={
+              isLoggedIn ? (
+                <MenuPage user={currentUser} onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/auth" replace />
+              )
+            } 
+          />
+          
+          {/* Promotions page route */}
+          <Route 
+            path="/promotions" 
+            element={
+              isLoggedIn ? (
+                <PromotionsPage user={currentUser} onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/auth" replace />
+              )
+            } 
+          />
+          
+          {/* Events page route */}
+          <Route 
+            path="/events" 
+            element={
+              isLoggedIn ? (
+                <EventsPage user={currentUser} onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/auth" replace />
+              )
+            } 
+          />
+          
+          {/* Rewards page route */}
+          <Route 
+            path="/rewards" 
+            element={
+              isLoggedIn ? (
+                <RewardsPage user={currentUser} onLogout={handleLogout} />
               ) : (
                 <Navigate to="/auth" replace />
               )

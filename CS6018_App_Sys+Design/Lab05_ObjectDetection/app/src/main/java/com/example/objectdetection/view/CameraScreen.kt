@@ -6,6 +6,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
@@ -20,126 +23,167 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.camera.view.PreviewView
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.example.objectdetection.model.DetectedObject
 import com.example.objectdetection.model.DetectionModel
+import com.example.objectdetection.viewmodel.AuthViewModel
 import com.example.objectdetection.viewmodel.CameraViewModel
 
-@Composable // This is a composable function that builds UI
-fun CameraScreen(viewModel: CameraViewModel) { // Main screen showing camera and detections
-    val cameraState by viewModel.cameraState // Get current camera state from ViewModel
-    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current // Get lifecycle owner for camera
+@Composable
+fun CameraScreen(
+    viewModel: CameraViewModel,
+    authViewModel: AuthViewModel, // NEW: For logout
+    onNavigateToGallery: () -> Unit, // NEW: Navigate to gallery
+    onLogout: () -> Unit // NEW: Handle logout
+) {
+    val cameraState by viewModel.cameraState
+    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
 
-    LaunchedEffect(viewModel.cameraController) { // Run this once when screen starts
-        viewModel.bindToLifecycle(lifecycleOwner) // Connect camera to app lifecycle
+    LaunchedEffect(viewModel.cameraController) {
+        viewModel.bindToLifecycle(lifecycleOwner)
     }
 
-    Box(modifier = Modifier.fillMaxSize()) { // Container that stacks everything on top of each other
+    Box(modifier = Modifier.fillMaxSize()) {
 
-        // Layer 1: Camera preview (bottom layer, shows live camera feed)
+        // Layer 1: Camera preview
         CameraPreview(
-            cameraController = viewModel.cameraController, // Pass camera controller
-            modifier = Modifier.fillMaxSize() // Fill entire screen
+            cameraController = viewModel.cameraController,
+            modifier = Modifier.fillMaxSize()
         )
 
-        // Layer 2: Bounding boxes (draw rectangles around detected objects)
+        // Layer 2: Bounding boxes
         ObjectDetectionOverlay(
-            detectedObjects = cameraState.detectedObjects, // List of detected objects
-            modifier = Modifier.fillMaxSize() // Fill entire screen
+            detectedObjects = cameraState.detectedObjects,
+            modifier = Modifier.fillMaxSize()
         )
 
-        // Layer 3: Text labels at top (show object names and confidence)
+        // Layer 3: Text labels
         ObjectLabelsOverlay(
-            detectedObjects = cameraState.detectedObjects, // List of detected objects
-            modifier = Modifier.fillMaxSize() // Fill entire screen
+            detectedObjects = cameraState.detectedObjects,
+            modifier = Modifier.fillMaxSize()
         )
 
-        // Layer 4: Model indicator in top-left corner (shows which AI model is active)
+        // Layer 4: Model indicator
         ModelIndicatorWithDetections(
-            currentModel = cameraState.currentModel, // Which AI model (MLKit or EfficientDet)
-            detectedObjects = cameraState.detectedObjects, // List of detected objects
+            currentModel = cameraState.currentModel,
+            detectedObjects = cameraState.detectedObjects,
             modifier = Modifier
-                .align(Alignment.TopStart) // Position in top-left corner
-                .padding(16.dp) // 16dp padding from edges
+                .align(Alignment.TopStart)
+                .padding(16.dp)
         )
 
-        // Layer 5: Control buttons at bottom (camera controls, photo button, model switch)
-        CameraControls(
-            onSwitchCamera = { viewModel.switchCamera() }, // What to do when switch camera button pressed
-            onTakePhoto = { viewModel.takePhoto() }, // What to do when photo button pressed
-            onSwitchModel = { viewModel.switchDetectionModel() }, // What to do when model switch pressed
-            isCapturing = cameraState.isCapturing, // Are we currently taking a photo?
+        // NEW: Layer 5: Top-right buttons (Gallery and Logout)
+        Row(
             modifier = Modifier
-                .align(Alignment.BottomCenter) // Position at bottom center
-                .padding(16.dp) // 16dp padding from bottom
+                .align(Alignment.TopEnd)
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            // Gallery button
+            FloatingActionButton(
+                onClick = onNavigateToGallery,
+                modifier = Modifier.size(48.dp),
+                containerColor = MaterialTheme.colorScheme.secondaryContainer
+            ) {
+                Icon(
+                    imageVector = Icons.Default.List,
+                    contentDescription = "View Gallery",
+                    tint = MaterialTheme.colorScheme.onSecondaryContainer
+                )
+            }
+
+            // Logout button
+            FloatingActionButton(
+                onClick = {
+                    authViewModel.logout()
+                    onLogout()
+                },
+                modifier = Modifier.size(48.dp),
+                containerColor = MaterialTheme.colorScheme.errorContainer
+            ) {
+                Icon(
+                    imageVector = Icons.Default.ExitToApp,
+                    contentDescription = "Logout",
+                    tint = MaterialTheme.colorScheme.onErrorContainer
+                )
+            }
+        }
+
+        // Layer 6: Camera controls at bottom
+        CameraControls(
+            onSwitchCamera = { viewModel.switchCamera() },
+            onTakePhoto = { viewModel.takePhoto() },
+            onSwitchModel = { viewModel.switchDetectionModel() },
+            isCapturing = cameraState.isCapturing,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(16.dp)
         )
     }
 }
 
-@Composable // Composable function for camera preview
+@Composable
 private fun CameraPreview(
-    cameraController: androidx.camera.view.LifecycleCameraController, // Controller that manages camera
-    modifier: Modifier = Modifier // Optional styling modifications
+    cameraController: androidx.camera.view.LifecycleCameraController,
+    modifier: Modifier = Modifier
 ) {
-    AndroidView( // Embed an Android View (not Compose) into our Compose UI
-        factory = { context -> // Function that creates the view
-            PreviewView(context).apply { // Create PreviewView for showing camera feed
-                this.controller = cameraController // Connect camera controller to preview
+    AndroidView(
+        factory = { context ->
+            PreviewView(context).apply {
+                this.controller = cameraController
             }
         },
-        modifier = modifier // Apply any styling modifications
+        modifier = modifier
     )
 }
 
-@Composable // Composable for drawing bounding boxes
+@Composable
 private fun ObjectDetectionOverlay(
-    detectedObjects: List<DetectedObject>, // List of objects to draw boxes around
-    modifier: Modifier = Modifier // Optional styling modifications
+    detectedObjects: List<DetectedObject>,
+    modifier: Modifier = Modifier
 ) {
-    Canvas(modifier = modifier) { // Create a drawing canvas that covers the screen
-        detectedObjects.forEach { detectedObject -> // Loop through each detected object
-            drawBoundingBox(detectedObject) // Draw a rectangle around this object
+    Canvas(modifier = modifier) {
+        detectedObjects.forEach { detectedObject ->
+            drawBoundingBox(detectedObject)
         }
     }
 }
 
-@Composable // Composable for showing text labels
+@Composable
 private fun ObjectLabelsOverlay(
-    detectedObjects: List<DetectedObject>, // List of objects to show labels for
-    modifier: Modifier = Modifier // Optional styling modifications
+    detectedObjects: List<DetectedObject>,
+    modifier: Modifier = Modifier
 ) {
-    if (detectedObjects.isNotEmpty()) { // Only show labels if we detected something
-        Column( // Arrange labels vertically
+    if (detectedObjects.isNotEmpty()) {
+        Column(
             modifier = modifier
-                .fillMaxWidth() // Take full width of screen
-                .padding(16.dp), // 16dp padding from edges
-            verticalArrangement = Arrangement.Top // Align to top of screen
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Top
         ) {
-            detectedObjects.take(3).forEach { detectedObject -> // Show only first 3 objects
-                if (detectedObject.labels.isNotEmpty()) { // If this object has a label
-                    val primaryLabel = detectedObject.labels.first() // Get first label
-                    val labelText = "${primaryLabel.text} ${(primaryLabel.confidence * 100).toInt()}%" // Format: "person 85%"
+            detectedObjects.take(3).forEach { detectedObject ->
+                if (detectedObject.labels.isNotEmpty()) {
+                    val primaryLabel = detectedObject.labels.first()
+                    val labelText = "${primaryLabel.text} ${(primaryLabel.confidence * 100).toInt()}%"
 
-                    Card( // Create a colored background card for the text
+                    Card(
                         modifier = Modifier
-                            .padding(vertical = 2.dp) // Small vertical spacing between cards
-                            .wrapContentWidth(), // Card width matches text width
-                        colors = CardDefaults.cardColors( // Set card colors
-                            containerColor = getColorForObject(detectedObject).copy(alpha = 0.9f) // Semi-transparent colored background
+                            .padding(vertical = 2.dp)
+                            .wrapContentWidth(),
+                        colors = CardDefaults.cardColors(
+                            containerColor = getColorForObject(detectedObject).copy(alpha = 0.9f)
                         ),
-                        shape = RoundedCornerShape(4.dp) // Slightly rounded corners
+                        shape = RoundedCornerShape(4.dp)
                     ) {
-                        Text( // The actual text label
-                            text = labelText, // Display "object name XX%"
-                            color = Color.White, // White text color
-                            fontSize = 12.sp, // Small font size
-                            fontWeight = FontWeight.Bold, // Bold text
-                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp) // Padding inside card
+                        Text(
+                            text = labelText,
+                            color = Color.White,
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                         )
                     }
                 }
@@ -148,203 +192,196 @@ private fun ObjectLabelsOverlay(
     }
 }
 
-private fun DrawScope.drawBoundingBox(detectedObject: DetectedObject) { // Function to draw a rectangle around detected object
-    val boundingBox = detectedObject.boundingBox // Get the box coordinates (0-1 range)
+private fun DrawScope.drawBoundingBox(detectedObject: DetectedObject) {
+    val boundingBox = detectedObject.boundingBox
 
-    // Convert normalized coordinates (0-1) to pixel coordinates
-    val left = boundingBox.left * size.width // Left edge in pixels
-    val top = boundingBox.top * size.height // Top edge in pixels
-    val right = boundingBox.right * size.width // Right edge in pixels
-    val bottom = boundingBox.bottom * size.height // Bottom edge in pixels
+    val left = boundingBox.left * size.width
+    val top = boundingBox.top * size.height
+    val right = boundingBox.right * size.width
+    val bottom = boundingBox.bottom * size.height
 
-    val boxColor = getColorForObject(detectedObject) // Choose color based on object type
+    val boxColor = getColorForObject(detectedObject)
 
-    drawRect( // Draw the rectangle
-        color = boxColor, // Color of the rectangle outline
-        topLeft = Offset(left, top), // Top-left corner position
-        size = Size(right - left, bottom - top), // Width and height of rectangle
-        style = Stroke(width = 4f) // Draw outline only (not filled), 4 pixels thick
+    drawRect(
+        color = boxColor,
+        topLeft = Offset(left, top),
+        size = Size(right - left, bottom - top),
+        style = Stroke(width = 4f)
     )
 }
 
-private fun getColorForObject(detectedObject: DetectedObject): Color { // Choose color based on what object was detected
-    return when { // Check object type and return appropriate color
-        detectedObject.labels.any { it.text.contains("person", ignoreCase = true) } -> Color.Green // Person = Green
-        detectedObject.labels.any { it.text.contains("car", ignoreCase = true) } -> Color.Blue // Car = Blue
-        detectedObject.labels.any { it.text.contains("dog", ignoreCase = true) } -> Color.Yellow // Dog = Yellow
-        detectedObject.labels.any { it.text.contains("cat", ignoreCase = true) } -> Color.Magenta // Cat = Magenta
-        detectedObject.labels.any { it.text.contains("food", ignoreCase = true) } -> Color.Cyan // Food = Cyan
-        else -> Color.Red // Everything else = Red
+private fun getColorForObject(detectedObject: DetectedObject): Color {
+    return when {
+        detectedObject.labels.any { it.text.contains("person", ignoreCase = true) } -> Color.Green
+        detectedObject.labels.any { it.text.contains("car", ignoreCase = true) } -> Color.Blue
+        detectedObject.labels.any { it.text.contains("dog", ignoreCase = true) } -> Color.Yellow
+        detectedObject.labels.any { it.text.contains("cat", ignoreCase = true) } -> Color.Magenta
+        detectedObject.labels.any { it.text.contains("food", ignoreCase = true) } -> Color.Cyan
+        else -> Color.Red
     }
 }
 
-@Composable // Composable that shows AI model name and list of detections
+@Composable
 private fun ModelIndicatorWithDetections(
-    currentModel: DetectionModel, // Which AI model is active (MLKit or EfficientDet)
-    detectedObjects: List<DetectedObject>, // List of currently detected objects
-    modifier: Modifier = Modifier // Optional styling modifications
+    currentModel: DetectionModel,
+    detectedObjects: List<DetectedObject>,
+    modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier) { // Stack cards vertically
-
-        // First card: Show which AI model is being used
+    Column(modifier = modifier) {
         Card(
-            colors = CardDefaults.cardColors( // Set card styling
-                containerColor = Color.Black.copy(alpha = 0.7f) // Semi-transparent black background
+            colors = CardDefaults.cardColors(
+                containerColor = Color.Black.copy(alpha = 0.7f)
             ),
-            shape = RoundedCornerShape(8.dp) // Rounded corners
+            shape = RoundedCornerShape(8.dp)
         ) {
-            Text( // Display model name
-                text = when (currentModel) { // Check which model is active
-                    DetectionModel.MLKIT -> "MLKit" // Show "MLKit"
-                    DetectionModel.EFFICIENTDET -> "EfficientDet" // Show "EfficientDet"
+            Text(
+                text = when (currentModel) {
+                    DetectionModel.MLKIT -> "MLKit"
+                    DetectionModel.EFFICIENTDET -> "EfficientDet"
                 },
-                color = Color.White, // White text
-                fontSize = 14.sp, // Medium font size
-                fontWeight = FontWeight.Bold, // Bold text
-                modifier = Modifier.padding(8.dp) // Padding inside card
+                color = Color.White,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(8.dp)
             )
         }
 
-        Spacer(modifier = Modifier.height(8.dp)) // 8dp gap between cards
+        Spacer(modifier = Modifier.height(8.dp))
 
-        // Second card: Show list of detected objects or "No objects detected"
-        if (detectedObjects.isNotEmpty()) { // If we detected something
+        if (detectedObjects.isNotEmpty()) {
             Card(
-                colors = CardDefaults.cardColors( // Set card styling
-                    containerColor = Color.Black.copy(alpha = 0.7f) // Semi-transparent black background
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.Black.copy(alpha = 0.7f)
                 ),
-                shape = RoundedCornerShape(8.dp) // Rounded corners
+                shape = RoundedCornerShape(8.dp)
             ) {
-                Column( // Arrange detection list vertically
+                Column(
                     modifier = Modifier
-                        .padding(8.dp) // Padding inside card
-                        .widthIn(max = 200.dp) // Maximum width of 200dp
+                        .padding(8.dp)
+                        .widthIn(max = 200.dp)
                 ) {
-                    Text( // Header text
-                        text = "Detecting:", // Label for the list
-                        color = Color.White.copy(alpha = 0.7f), // Slightly transparent white
-                        fontSize = 11.sp, // Small font
-                        fontWeight = FontWeight.Bold, // Bold text
-                        modifier = Modifier.padding(bottom = 4.dp) // Space below header
+                    Text(
+                        text = "Detecting:",
+                        color = Color.White.copy(alpha = 0.7f),
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(bottom = 4.dp)
                     )
 
-                    detectedObjects.take(5).forEach { obj -> // Show up to 5 detected objects
-                        if (obj.labels.isNotEmpty()) { // If object has a label
-                            val label = obj.labels.first() // Get first label
-                            Row( // Arrange object name and confidence horizontally
-                                modifier = Modifier.padding(vertical = 2.dp), // Small vertical spacing
-                                horizontalArrangement = Arrangement.SpaceBetween, // Space between name and percentage
-                                verticalAlignment = Alignment.CenterVertically // Center vertically
+                    detectedObjects.take(5).forEach { obj ->
+                        if (obj.labels.isNotEmpty()) {
+                            val label = obj.labels.first()
+                            Row(
+                                modifier = Modifier.padding(vertical = 2.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Text( // Object name
-                                    text = "• ${label.text}", // Bullet point + object name
-                                    color = Color.White, // White text
-                                    fontSize = 12.sp, // Small font
-                                    modifier = Modifier.weight(1f) // Take up remaining space
+                                Text(
+                                    text = "• ${label.text}",
+                                    color = Color.White,
+                                    fontSize = 12.sp,
+                                    modifier = Modifier.weight(1f)
                                 )
-                                Text( // Confidence percentage
-                                    text = "${(label.confidence * 100).toInt()}%", // Convert 0.85 to "85%"
-                                    color = Color.White.copy(alpha = 0.8f), // Slightly transparent white
-                                    fontSize = 11.sp, // Small font
-                                    modifier = Modifier.padding(start = 8.dp) // 8dp space from object name
+                                Text(
+                                    text = "${(label.confidence * 100).toInt()}%",
+                                    color = Color.White.copy(alpha = 0.8f),
+                                    fontSize = 11.sp,
+                                    modifier = Modifier.padding(start = 8.dp)
                                 )
                             }
                         }
                     }
 
-                    if (detectedObjects.size > 5) { // If we detected more than 5 objects
-                        Text( // Show count of additional objects
-                            text = "+${detectedObjects.size - 5} more", // "e.g. +3 more"
-                            color = Color.White.copy(alpha = 0.6f), // More transparent white
-                            fontSize = 10.sp, // Very small font
-                            modifier = Modifier.padding(top = 4.dp) // Space above this text
+                    if (detectedObjects.size > 5) {
+                        Text(
+                            text = "+${detectedObjects.size - 5} more",
+                            color = Color.White.copy(alpha = 0.6f),
+                            fontSize = 10.sp,
+                            modifier = Modifier.padding(top = 4.dp)
                         )
                     }
                 }
             }
-        } else { // If no objects detected
+        } else {
             Card(
-                colors = CardDefaults.cardColors( // Set card styling
-                    containerColor = Color.Black.copy(alpha = 0.7f) // Semi-transparent black background
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.Black.copy(alpha = 0.7f)
                 ),
-                shape = RoundedCornerShape(8.dp) // Rounded corners
+                shape = RoundedCornerShape(8.dp)
             ) {
-                Text( // Message when nothing detected
-                    text = "No objects detected", // Display this message
-                    color = Color.White.copy(alpha = 0.6f), // Transparent white (dimmed)
-                    fontSize = 11.sp, // Small font
-                    modifier = Modifier.padding(8.dp) // Padding inside card
+                Text(
+                    text = "No objects detected",
+                    color = Color.White.copy(alpha = 0.6f),
+                    fontSize = 11.sp,
+                    modifier = Modifier.padding(8.dp)
                 )
             }
         }
     }
 }
 
-@Composable // Composable for camera control buttons
+@Composable
 private fun CameraControls(
-    onSwitchCamera: () -> Unit, // Function to call when switch camera button pressed
-    onTakePhoto: () -> Unit, // Function to call when take photo button pressed
-    onSwitchModel: () -> Unit, // Function to call when switch model button pressed
-    isCapturing: Boolean, // Are we currently taking a photo?
-    modifier: Modifier = Modifier // Optional styling modifications
+    onSwitchCamera: () -> Unit,
+    onTakePhoto: () -> Unit,
+    onSwitchModel: () -> Unit,
+    isCapturing: Boolean,
+    modifier: Modifier = Modifier
 ) {
-    Row( // Arrange buttons horizontally
-        modifier = modifier, // Apply styling
-        horizontalArrangement = Arrangement.spacedBy(16.dp), // 16dp spacing between buttons
-        verticalAlignment = Alignment.CenterVertically // Center buttons vertically
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
 
-        // Button 1: Switch between front and back camera
         FloatingActionButton(
-            onClick = onSwitchCamera, // What to do when button pressed
+            onClick = onSwitchCamera,
             modifier = Modifier
-                .size(56.dp) // Medium size button
-                .clip(CircleShape), // Make button circular
-            containerColor = MaterialTheme.colorScheme.secondary // Use secondary theme color
+                .size(56.dp)
+                .clip(CircleShape),
+            containerColor = MaterialTheme.colorScheme.secondary
         ) {
-            Icon( // Refresh/rotate icon
-                imageVector = Icons.Default.Refresh, // Built-in refresh icon
-                contentDescription = "Switch Camera", // Accessibility description
-                tint = Color.White // White icon color
+            Icon(
+                imageVector = Icons.Default.Refresh,
+                contentDescription = "Switch Camera",
+                tint = Color.White
             )
         }
 
-        // Button 2: Take photo (center button, largest)
         FloatingActionButton(
-            onClick = onTakePhoto, // What to do when button pressed
+            onClick = onTakePhoto,
             modifier = Modifier
-                .size(72.dp) // Large size button
-                .clip(CircleShape), // Make button circular
-            containerColor = MaterialTheme.colorScheme.primary // Use primary theme color
+                .size(72.dp)
+                .clip(CircleShape),
+            containerColor = MaterialTheme.colorScheme.primary
         ) {
-            if (isCapturing) { // If currently taking photo
-                CircularProgressIndicator( // Show spinning progress indicator
-                    modifier = Modifier.size(32.dp), // Medium size
-                    color = Color.White, // White color
-                    strokeWidth = 3.dp // Thin line
+            if (isCapturing) {
+                CircularProgressIndicator(
+                    modifier = Modifier.size(32.dp),
+                    color = Color.White,
+                    strokeWidth = 3.dp
                 )
-            } else { // If not taking photo
-                Icon( // Camera icon (using plus sign)
-                    imageVector = Icons.Default.Add, // Plus icon as camera symbol
-                    contentDescription = "Take Photo", // Accessibility description
-                    tint = Color.White, // White icon color
-                    modifier = Modifier.size(32.dp) // Large icon
+            } else {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "Take Photo",
+                    tint = Color.White,
+                    modifier = Modifier.size(32.dp)
                 )
             }
         }
 
-        // Button 3: Switch between MLKit and EfficientDet AI models
         FloatingActionButton(
-            onClick = onSwitchModel, // What to do when button pressed
+            onClick = onSwitchModel,
             modifier = Modifier
-                .size(56.dp) // Medium size button
-                .clip(CircleShape), // Make button circular
-            containerColor = MaterialTheme.colorScheme.tertiary // Use tertiary theme color
+                .size(56.dp)
+                .clip(CircleShape),
+            containerColor = MaterialTheme.colorScheme.tertiary
         ) {
-            Icon( // Settings/gear icon
-                imageVector = Icons.Default.Settings, // Built-in settings icon
-                contentDescription = "Switch AI Model", // Accessibility description
-                tint = Color.White // White icon color
+            Icon(
+                imageVector = Icons.Default.Settings,
+                contentDescription = "Switch AI Model",
+                tint = Color.White
             )
         }
     }
