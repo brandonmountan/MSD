@@ -1,6 +1,3 @@
-package com.example.objectdetectionserver
-
-import com.example.LdapClient
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -12,7 +9,7 @@ import io.ktor.server.plugins.cors.routing.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.http.*
 import io.ktor.http.content.*
-import kotlinx.serialization.Serializable
+import kotlinx.serialization.*
 import java.io.File
 import java.util.*
 

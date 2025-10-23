@@ -84,4 +84,5 @@ dependencies {
 
     // LDAP client
     implementation(libs.unboundid.ldapsdk)
+
 }

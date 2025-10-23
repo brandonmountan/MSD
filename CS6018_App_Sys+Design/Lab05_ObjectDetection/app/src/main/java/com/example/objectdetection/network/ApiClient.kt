@@ -15,15 +15,13 @@ import io.ktor.client.request.*
 import io.ktor.client.request.forms.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 import kotlinx.serialization.Serializable
 
 // DataStore for storing auth token
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "auth")
 
-// Data models matching server
+// IMPORTANT: All data classes sent/received as JSON must be @Serializable
 @Serializable
 data class UserCredentials(val username: String, val password: String)
 
@@ -40,8 +38,8 @@ class ApiClient(private val context: Context) {
 
     // CHANGE THIS TO YOUR SERVER IP ADDRESS (find it with ipconfig/ifconfig)
     // If testing on emulator, use 10.0.2.2 (emulator's localhost)
-    // If testing on real device, use your computer's local IP (e.g., "155.98.131.3")
-    private val BASE_URL = "http://155.98.131.3:8080" // Change this!
+    // If testing on real device, use your computer's local IP (e.g., "192.168.1.100")
+    private val BASE_URL = "http://10.0.2.2:8080" // Change this!
 
     private val TOKEN_KEY = stringPreferencesKey("auth_token")
 
