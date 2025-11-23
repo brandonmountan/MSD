@@ -37,7 +37,7 @@ class ShakeDetector(private val onShake: (Float) -> Unit) : SensorEventListener 
             val acceleration = sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ)
 
             // If acceleration is big enough, it's a shake
-            if (acceleration > 12f) { // Shake threshold
+            if (acceleration > 1f) { // Shake threshold
                 // Remember when this shake happened
                 lastShakeTime = currentTime
                 // Tell the app about the shake

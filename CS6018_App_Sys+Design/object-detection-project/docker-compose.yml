@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # OpenLDAP service for authentication
+  ldap:
+    image: osixia/openldap:1.5.0
+    container_name: objectdetection-ldap
+    environment:
+      LDAP_ADMIN_USERNAME: admin
+      LDAP_ADMIN_PASSWORD: admin_password
+      LDAP_ORGANISATION: "ObjectDetection"
+      LDAP_DOMAIN: "objectdetection.com"
+    networks:
+      - app-network
+    volumes:
+      - ldap-data:/var/lib/ldap
+      - ldap-config:/etc/ldap/slapd.d
+
+  # ML Model Server (FastAPI)
+  ml-server:
+    build:
+      context: ./Lab08_ml_server     # ← Your ML server folder
+      dockerfile: Dockerfile
+    container_name: objectdetection-ml
+    networks:
+      - app-network
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+
+  # KTOR Application Server (ONLY ONE WITH EXTERNAL ACCESS)
+  app:
+    build:
+      context: ./Lab06_07_ObjectDetectionServer  # ← Your KTOR server folder
+      dockerfile: Dockerfile
+    container_name: objectdetection-server
+    ports:
+      - "8080:8080"               # ← Only this port exposed externally
+    environment:
+      LDAP_HOST: ldap
+      LDAP_PORT: 389
+      LDAP_BASE_DN: dc=objectdetection,dc=com
+      LDAP_ADMIN_DN: cn=admin,dc=objectdetection,dc=com
+      LDAP_ADMIN_PASSWORD: admin_password
+      ML_SERVER_URL: http://ml-server:8000  # ← Internal Docker network URL
+    volumes:
+      - photos-data:/app/photos
+    depends_on:
+      - ldap
+      - ml-server
+    networks:
+      - app-network
+
+volumes:
+  ldap-data:
+    name: objectdetection-ldap-data
+  ldap-config:
+    name: objectdetection-ldap-config
+  photos-data:
+    name: objectdetection-photos
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # OpenLDAP server for user authentication
+  ldap:
+    image: osixia/openldap:1.5.0
+    container_name: captainslog-ldap
+    environment:
+      # LDAP admin credentials
+      LDAP_ADMIN_USERNAME: admin
+      LDAP_ADMIN_PASSWORD: admin_password
+      # LDAP organization and domain
+      LDAP_ORGANISATION: "CaptainsLog"
+      LDAP_DOMAIN: "captainslog.com"
+    ports:
+      # LDAP port (non-SSL)
+      - "389:389"
+      # LDAPS port (SSL)
+      - "636:636"
+    volumes:
+      # Persist LDAP data
+      - ldap-data:/var/lib/ldap
+      # Persist LDAP config
+      - ldap-config:/etc/ldap/slapd.d
+      - ./logs:/app/logs
+    networks:
+      - app-network
+
+  # Ktor backend server (commented out for prototype - run locally instead)
+  # app:
+  #   build: .
+  #   container_name: captainslog-server
+  #   environment:
+  #     LDAP_HOST: ldap
+  #     LDAP_PORT: 389
+  #     LDAP_BASE_DN: "dc=captainslog,dc=com"
+  #     LDAP_ADMIN_DN: "cn=admin,dc=captainslog,dc=com"
+  #     LDAP_ADMIN_PASSWORD: "admin_password"
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - ldap
+  #   networks:
+  #     - app-network
+
+# Named volumes for data persistence
+volumes:
+  ldap-data:
+  ldap-config:
+
+# Network for inter-container communication
+networks:
+  app-network:
